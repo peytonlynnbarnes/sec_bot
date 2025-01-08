@@ -1,0 +1,26 @@
+[0.020s] Invoking command in '/home/peyton/dev_ws/build/sec_bot': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/peyton/dev_ws/build/sec_bot -- -j12 -l12
+[0.104s] Invoked command in '/home/peyton/dev_ws/build/sec_bot' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/peyton/dev_ws/build/sec_bot -- -j12 -l12
+[0.112s] Invoking command in '/home/peyton/dev_ws/build/sec_bot': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/peyton/dev_ws/build/sec_bot
+[0.117s] -- Install configuration: ""
+[0.118s] -- Execute custom install script
+[0.120s] -- Up-to-date symlink: /home/peyton/dev_ws/install/sec_bot/share/sec_bot/config/empty.yaml
+[0.120s] -- Up-to-date symlink: /home/peyton/dev_ws/install/sec_bot/share/sec_bot/description/robot.urdf.xacro
+[0.120s] -- Up-to-date symlink: /home/peyton/dev_ws/install/sec_bot/share/sec_bot/description/robot_core.xacro
+[0.120s] -- Up-to-date symlink: /home/peyton/dev_ws/install/sec_bot/share/sec_bot/launch/rsp.launch.py
+[0.120s] -- Up-to-date symlink: /home/peyton/dev_ws/install/sec_bot/share/sec_bot/worlds/empty.world
+[0.121s] -- Up-to-date symlink: /home/peyton/dev_ws/install/sec_bot/share/ament_index/resource_index/package_run_dependencies/sec_bot
+[0.121s] -- Up-to-date symlink: /home/peyton/dev_ws/install/sec_bot/share/ament_index/resource_index/parent_prefix_path/sec_bot
+[0.121s] -- Up-to-date symlink: /home/peyton/dev_ws/install/sec_bot/share/sec_bot/environment/ament_prefix_path.sh
+[0.121s] -- Up-to-date symlink: /home/peyton/dev_ws/install/sec_bot/share/sec_bot/environment/ament_prefix_path.dsv
+[0.121s] -- Up-to-date symlink: /home/peyton/dev_ws/install/sec_bot/share/sec_bot/environment/path.sh
+[0.122s] -- Up-to-date symlink: /home/peyton/dev_ws/install/sec_bot/share/sec_bot/environment/path.dsv
+[0.122s] -- Up-to-date symlink: /home/peyton/dev_ws/install/sec_bot/share/sec_bot/local_setup.bash
+[0.122s] -- Up-to-date symlink: /home/peyton/dev_ws/install/sec_bot/share/sec_bot/local_setup.sh
+[0.122s] -- Up-to-date symlink: /home/peyton/dev_ws/install/sec_bot/share/sec_bot/local_setup.zsh
+[0.122s] -- Up-to-date symlink: /home/peyton/dev_ws/install/sec_bot/share/sec_bot/local_setup.dsv
+[0.122s] -- Symlinking: /home/peyton/dev_ws/install/sec_bot/share/sec_bot/package.dsv
+[0.128s] -- Up-to-date symlink: /home/peyton/dev_ws/install/sec_bot/share/ament_index/resource_index/packages/sec_bot
+[0.128s] -- Up-to-date symlink: /home/peyton/dev_ws/install/sec_bot/share/sec_bot/cmake/sec_botConfig.cmake
+[0.128s] -- Up-to-date symlink: /home/peyton/dev_ws/install/sec_bot/share/sec_bot/cmake/sec_botConfig-version.cmake
+[0.128s] -- Up-to-date symlink: /home/peyton/dev_ws/install/sec_bot/share/sec_bot/package.xml
+[0.130s] Invoked command in '/home/peyton/dev_ws/build/sec_bot' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/peyton/dev_ws/build/sec_bot

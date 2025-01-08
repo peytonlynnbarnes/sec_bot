@@ -1,0 +1,2 @@
+Invoking command in '/home/peyton/dev_ws/build/sec_bot': /usr/bin/cmake /home/peyton/dev_ws/src/sec_bot -DCMAKE_INSTALL_PREFIX=/home/peyton/dev_ws/install/sec_bot
+Invoked command in '/home/peyton/dev_ws/build/sec_bot' returned '1': /usr/bin/cmake /home/peyton/dev_ws/src/sec_bot -DCMAKE_INSTALL_PREFIX=/home/peyton/dev_ws/install/sec_bot

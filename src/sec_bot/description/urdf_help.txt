@@ -1,6 +1,7 @@
 ---------
 remember to run command "source install/setup.bash" if rviz2 is not running for some reason
 to show robot/urdf in rviz "ros2 launch sec_bot rsp.launch.py" 
+if you add a new xacro file make sure to rebuild "colcon build --symlink-install"
 to show joints "ros2 run joint_state_publisher_gui joint_state_publisher_gui"
 ---------
 

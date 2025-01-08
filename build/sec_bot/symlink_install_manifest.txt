@@ -1,6 +1,8 @@
 /home/peyton/dev_ws/install/sec_bot/share/sec_bot/config/empty.yaml
+/home/peyton/dev_ws/install/sec_bot/share/sec_bot/description/inertial_macros.xacro
 /home/peyton/dev_ws/install/sec_bot/share/sec_bot/description/robot.urdf.xacro
 /home/peyton/dev_ws/install/sec_bot/share/sec_bot/description/robot_core.xacro
+/home/peyton/dev_ws/install/sec_bot/share/sec_bot/description/urdf_help.txt
 /home/peyton/dev_ws/install/sec_bot/share/sec_bot/launch/rsp.launch.py
 /home/peyton/dev_ws/install/sec_bot/share/sec_bot/worlds/empty.world
 /home/peyton/dev_ws/install/sec_bot/share/ament_index/resource_index/package_run_dependencies/sec_bot

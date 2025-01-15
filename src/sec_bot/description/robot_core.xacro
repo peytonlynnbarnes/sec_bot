@@ -205,7 +205,7 @@
         </xacro:inertial_cylinder>
     </link>
 
-    <gazebo reference="right_front_wheel">
+    <gazebo reference="caster_wheel">
         <material>Gazebo/Black</material>
     </gazebo>
 

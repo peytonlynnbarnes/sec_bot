@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/peyton/dev_ws/src/sec_bot
+CMAKE_SOURCE_DIR = /home/ubuntu-vm/Desktop/sec_bot/src/sec_bot
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/peyton/dev_ws/build/sec_bot
+CMAKE_BINARY_DIR = /home/ubuntu-vm/Desktop/sec_bot/build/sec_bot
 
 # Utility rule file for uninstall.
 
@@ -78,6 +78,6 @@ CMakeFiles/uninstall.dir/clean:
 .PHONY : CMakeFiles/uninstall.dir/clean
 
 CMakeFiles/uninstall.dir/depend:
-	cd /home/peyton/dev_ws/build/sec_bot && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/peyton/dev_ws/src/sec_bot /home/peyton/dev_ws/src/sec_bot /home/peyton/dev_ws/build/sec_bot /home/peyton/dev_ws/build/sec_bot /home/peyton/dev_ws/build/sec_bot/CMakeFiles/uninstall.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/ubuntu-vm/Desktop/sec_bot/build/sec_bot && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ubuntu-vm/Desktop/sec_bot/src/sec_bot /home/ubuntu-vm/Desktop/sec_bot/src/sec_bot /home/ubuntu-vm/Desktop/sec_bot/build/sec_bot /home/ubuntu-vm/Desktop/sec_bot/build/sec_bot /home/ubuntu-vm/Desktop/sec_bot/build/sec_bot/CMakeFiles/uninstall.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/uninstall.dir/depend
 

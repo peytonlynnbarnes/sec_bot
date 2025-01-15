@@ -5,6 +5,10 @@
     <include>
       <uri>model://sun</uri>
     </include>
+    <include>
+      <uri>model://field/mining_mayhem_field</uri>
+      <pose>0 0 0 0 0 0 0</pose>
+    </include>
     <!-- A ground plane -->
     <include>
       <uri>model://ground_plane</uri>

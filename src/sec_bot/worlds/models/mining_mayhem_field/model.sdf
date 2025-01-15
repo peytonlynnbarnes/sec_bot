@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 
 <sdf version="1.5">
-  <model name="Mining Mayhem Field">
+  <model name="Mining_Mayhem_Field">
     <pose>0 0 0.1 0 0 0</pose>
     <static>true</static>
     

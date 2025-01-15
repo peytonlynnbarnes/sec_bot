@@ -4,6 +4,10 @@
     <!-- A global light source -->
     <include>
       <uri>model://sun</uri>
+      </include>
+    <!-- Mining Mayhem Field -->
+    <include>
+      <uri>model://models/Mining_Mayhem_Field</uri>
     </include>
     <!-- A ground plane -->
     <include>

@@ -39,7 +39,6 @@ def generate_launch_description():
             get_package_share_directory('gazebo_ros'), 'launch', 'gazebo.launch.py')]),
         condition=IfCondition(LaunchConfiguration('use_world_file')),
         launch_arguments={
-            'gui': use_gazebo_gui,
             'extra_gazebo_args': '--ros-args --params-file ' + gazebo_params_path}.items()
     )
 

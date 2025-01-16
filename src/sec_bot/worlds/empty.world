@@ -7,7 +7,7 @@
       </include>
     <!-- Mining Mayhem Field -->
     <include>
-      <uri>model://models/Mining_Mayhem_Field</uri>
+      <uri>model://models/mining_mayhem_field</uri>
     </include>
     <!-- A ground plane -->
     <include>

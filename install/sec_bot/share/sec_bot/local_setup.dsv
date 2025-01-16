@@ -1,2 +1,1 @@
-source;share/sec_bot/environment/ament_prefix_path.sh
-source;share/sec_bot/environment/path.sh
+/home/ubuntu-vm/Desktop/sec_bot/build/sec_bot/ament_cmake_environment_hooks/local_setup.dsv

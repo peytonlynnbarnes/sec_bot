@@ -1,6 +1,1 @@
-<?xml version="1.0"?>
-<robot xmlns:xacro="http://www.ros.org/wiki/xacro"  name="robot">
-
-    <xacro:include filename="robot_core.xacro" />
-
-</robot>
+/home/ubuntu-vm/Desktop/sec_bot/src/sec_bot/description/robot.urdf.xacro

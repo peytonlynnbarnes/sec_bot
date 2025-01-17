@@ -1,0 +1,4 @@
+Invoking command in '/home/ubuntu-vm/Desktop/sec_bot/build/sec_bot': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/ubuntu-vm/Desktop/sec_bot/build/sec_bot -- -j8 -l8
+Invoked command in '/home/ubuntu-vm/Desktop/sec_bot/build/sec_bot' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/ubuntu-vm/Desktop/sec_bot/build/sec_bot -- -j8 -l8
+Invoking command in '/home/ubuntu-vm/Desktop/sec_bot/build/sec_bot': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/ubuntu-vm/Desktop/sec_bot/build/sec_bot
+Invoked command in '/home/ubuntu-vm/Desktop/sec_bot/build/sec_bot' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/ubuntu-vm/Desktop/sec_bot/build/sec_bot

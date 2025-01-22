@@ -29,11 +29,15 @@ To install and run the following ros2 code for the IEEE SEC Competition 2025 rob
     ```
     cd sec_bot
     ```
-4. Build the entire repo using colcon:
+4. Source both ros commands and the local ones:
+    ```
+    source /opt/ros/humble/setup.bash && source install/local_setup.bash
+    ```
+5. Build the entire repo using colcon:
     ```
     colcon build --symlink-install
     ```
-5. Launch the simulation (to ensure that entire package was installed correctly) via: 
+6. Launch the simulation (to ensure that entire package was installed correctly) via: 
     ```
     ros2 launch sec_bot launch_sim.launch.py
     ```

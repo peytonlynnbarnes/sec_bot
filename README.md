@@ -17,7 +17,7 @@ To install and run the following ros2 code for the IEEE SEC Competition 2025 rob
     sudo apt update && sudo apt upgrade
     ```
     ```
-    sudo apt install ros-humble-desktop ros-dev-tools ros-humble-xacro
+    sudo apt install ros-humble-desktop ros-dev-tools ros-humble-xacro ros-humble-gazebo-ros-pkgs
     ```
 
 2. Git clone the repo with the following command:

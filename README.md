@@ -2,7 +2,7 @@
 To install and run the following ros2 code for the IEEE SEC Competition 2025 robot please do the following steps:
 1. Install ros2-humble (you need Ubuntu 22.04 installed) via the following commands, in order:
     ```
-    sudo apt install software-properties-common && sudo add-apt-repository universe curl
+    sudo apt install software-properties-common && sudo add-apt-repository universe
     ```
     ```
     sudo apt update && sudo apt install curl python3-pip python3-colcon-common-extensions -y
@@ -12,6 +12,9 @@ To install and run the following ros2 code for the IEEE SEC Competition 2025 rob
     ```
     ```
     echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(. /etc/os-release && echo $UBUNTU_CODENAME) main" | sudo tee /etc/apt/sources.list.d/ros2.list > /dev/null
+    ```
+    ```
+    sudo sh -c 'echo "deb [arch=amd64,arm64] http://repo.ros2.org/ubuntu/main `lsb_release -cs` main" > /etc/apt/sources.list.d/ros2-latest.list' && curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo apt-key add -
     ```
     ```
     sudo apt update && sudo apt upgrade

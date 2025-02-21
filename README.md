@@ -5,7 +5,7 @@ To install and run the following ros2 code for the IEEE SEC Competition 2025 rob
     sudo apt install software-properties-common && sudo add-apt-repository universe
     ```
     ```
-    sudo apt update && sudo apt install curl python3-pip python3-colcon-common-extensions -y
+    sudo apt update && sudo apt install curl python3-pip -y
     ```
     ```
     sudo curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg

@@ -1,5 +1,7 @@
 /home/peyton/dev_ws/src/sec_bot/install/sec_bot/share/sec_bot/config/empty.yaml
 /home/peyton/dev_ws/src/sec_bot/install/sec_bot/share/sec_bot/config/view_bot.rviz
+/home/peyton/dev_ws/src/sec_bot/install/sec_bot/share/sec_bot/description/camera.xacro
+/home/peyton/dev_ws/src/sec_bot/install/sec_bot/share/sec_bot/description/gazebo_control.xacro
 /home/peyton/dev_ws/src/sec_bot/install/sec_bot/share/sec_bot/description/inertial_macros.xacro
 /home/peyton/dev_ws/src/sec_bot/install/sec_bot/share/sec_bot/description/robot.urdf.xacro
 /home/peyton/dev_ws/src/sec_bot/install/sec_bot/share/sec_bot/description/robot_core.xacro

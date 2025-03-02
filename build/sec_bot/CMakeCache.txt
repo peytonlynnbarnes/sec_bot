@@ -314,6 +314,12 @@ ament_cmake_xmllint_DIR:PATH=/opt/ros/humble/share/ament_cmake_xmllint/cmake
 ament_copyright_BIN:FILEPATH=/opt/ros/humble/bin/ament_copyright
 
 //Path to a program.
+ament_cppcheck_BIN:FILEPATH=/opt/ros/humble/bin/ament_cppcheck
+
+//Path to a program.
+ament_cpplint_BIN:FILEPATH=/opt/ros/humble/bin/ament_cpplint
+
+//Path to a program.
 ament_flake8_BIN:FILEPATH=/opt/ros/humble/bin/ament_flake8
 
 //The directory containing a CMake configuration file for ament_lint_auto.
@@ -327,6 +333,9 @@ ament_lint_common_DIR:PATH=/opt/ros/humble/share/ament_lint_common/cmake
 
 //Path to a program.
 ament_pep257_BIN:FILEPATH=/opt/ros/humble/bin/ament_pep257
+
+//Path to a program.
+ament_uncrustify_BIN:FILEPATH=/opt/ros/humble/bin/ament_uncrustify
 
 //Path to a program.
 ament_xmllint_BIN:FILEPATH=/opt/ros/humble/bin/ament_xmllint

@@ -17,5 +17,8 @@ to use keyboard controls in gazebo:
 ros2 run teleop_twist_keyboard teleop_twist_keyboard
 
 ros2 run rqt_image_view rqt_image_view
+ros2 run image_transport republish compressed raw --ros-args -r in/compressed:=/camera/image_raw/compressed -r out:=/camera/imagine_raw/uncompressed
+
+ros2 run image_transport republish raw compressed --ros-args -r in/raw:=/camera/image_raw/ -r out:=/camera/imagine_raw/compressed
 ---------
 

@@ -23,6 +23,14 @@ To install and run the following ros2 code for the IEEE SEC Competition 2025 rob
     sudo apt install ros-humble-desktop ros-dev-tools ros-humble-xacro ros-humble-gazebo-ros-pkgs git
     ```
 
+2. Install opencv via pip (ew)
+    ```
+    pip install --upgrade pip
+    ```
+    ```
+    pip install opencv-python-headless
+    ```
+
 2. Git clone the repo with the following command:
     ```
     git clone https://github.com/peytonlynnbarnes/sec_bot
@@ -42,7 +50,7 @@ To install and run the following ros2 code for the IEEE SEC Competition 2025 rob
     ```
 6. Launch the simulation (to ensure that entire package was installed correctly) via: 
     ```
-    ros2 launch sec_bot launch_sim.launch.py
+    haha
     ```
 
 # Usage Steps (on for example a rasberry pi)

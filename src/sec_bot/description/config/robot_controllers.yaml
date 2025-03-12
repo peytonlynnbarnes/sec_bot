@@ -1,0 +1,25 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 100 # updates controllers at 100 Hz
+
+joint_state_broadcaster:
+  type: joint_state_broadcaster/JointStateBroadcaster
+  publish_rate: 50 # broadcasts joint states at 50 Hz
+
+diff_drive_controller:
+  type: diff_drive_controller/DiffDriveController
+  left_wheel_names: ["left_front_wheel_joint", "left_back_wheel_joint"]
+  right_wheel_names: ["right_front_wheel_joint", "right_back_wheel_joint"]
+  wheel_separation: 0.35
+  wheel_separation_multiplier: 1.05
+  wheel_radius: 0.04
+  velocity_command_interface: velocity
+  cmd_vel_timeout: 0.5 # timeout for velocity commands
+  use_stamped_vel: false
+  odom_frame_id: odom
+  base_frame_id: base_footprint
+  publish_rate: 50
+  linear.x.min_velocity: -1.0
+  linear.x.max_velocity: 1.0
+  angular.z.min_velocity: -1.0
+  angular.z.max_velocity: 1.0

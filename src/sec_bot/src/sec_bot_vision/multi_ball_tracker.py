@@ -1,156 +1,141 @@
-import cv2
-import numpy as np
-import threading
-import queue
-from collections import deque
+import cv2  # opencv for image processing
+import numpy as np  # numpy for numerical operations
+import threading  # threading for parallel execution
+import queue  # queue to store frames efficiently
+import rclpy  # ROS 2 python api for communication
+from rclpy.node import Node  # ROS 2 node class (every ROS program needs a node)
+from geometry_msgs.msg import Point  # ROS 2 message type for publishing ball positions
 
-# turns on OpenCV optimizations to speed things up
-cv2.setUseOptimized(True)
-print(f"[System] OPENCV OPTIMIZATIONS ENABLED BABY!!!! {cv2.useOptimized()}")
+# enable opencv optimizations to improve performance
+cv2.setUseOptimized(True)  # optimized code execution (better cpu usage)
+print(f"[System] OPENCV OPTIMIZATIONS ENABLED!!!!!!!! {cv2.useOptimized()}")  # print optimization status
 
-# starts capturing video from the webcam
+# open video capture from the default camera (index 0)
 cap = cv2.VideoCapture(0)
-cap.set(cv2.CAP_PROP_FRAME_WIDTH, 320)  # sets video width to 320 pixels
-cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 240)  # sets video height to 240 pixels
-cap.set(cv2.CAP_PROP_FPS, 30)  # tries to keep the frame rate at 30 FPS
 
-# creates a queue to store frames, but keeps it small to avoid lag
+# set the resolution of the video stream to 320x240 (lower resolution = faster processing)
+cap.set(cv2.CAP_PROP_FRAME_WIDTH, 320)
+cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 240)
+cap.set(cv2.CAP_PROP_FPS, 30)  # set fps to 30 (matches standard webcam refresh rate)
+
+# create a queue to store video frames with a maximum size of 3
 frame_queue = queue.Queue(maxsize=3)
 
+# threaded function to continuously capture frames from the camera
 def capture_frames():
-    # runs in a separate thread to constantly grab frames from the camera
-    while True:
-        ret, frame = cap.read()
-        if ret and frame_queue.qsize() < 2:
-            frame_queue.put(cv2.UMat(frame))  # converts the frame to UMat for GPU acceleration
+    while True:  # infinite loop (runs as long as the program runs)
+        ret, frame = cap.read()  # read a frame from the camera
+        if ret and frame_queue.qsize() < 2:  # only store the frame if the queue is not full
+            frame_queue.put(cv2.UMat(frame))  # store the frame in opencv's umat (optimized memory management)
 
-# starts the frame capture thread
+# start the capture_frames function as a separate thread (daemon=True means it stops when the main program stops)
 threading.Thread(target=capture_frames, daemon=True).start()
 
-# defies the HSV color range for detecting purple objects
-lower_purple = np.array([130, 50, 50])
-upper_purple = np.array([160, 255, 255])
+# define the color range for detecting purple balls (hsv format)
+lower_purple = np.array([130, 50, 50])  # lower bound of purple
+upper_purple = np.array([160, 255, 255])  # upper bound of purple
 
+# class to track individual balls using a kalman filter
 class BallTrack:
-    # BALL TRACKING VIA KALMAN FILTER!!!!
     def __init__(self, track_id, initial_pos):
-        self.track_id = track_id  # assins a unique ID to this ball
-        self.kf = cv2.KalmanFilter(4, 2)  # 4D state (x, y, vx, vy), 2D measurement (x, y)
+        self.track_id = track_id  # unique id for each tracked ball
+
+        # initialize kalman filter (4d state: x, y, dx, dy and 2d measurement: x, y)
+        self.kf = cv2.KalmanFilter(4, 2)
+
+        # define the kalman filter transition matrix (predicts the next position based on velocity)
         self.kf.transitionMatrix = np.array([
-            [1, 0, 0.1, 0],  # x, y, vx, vy
+            [1, 0, 0.1, 0], 
             [0, 1, 0, 0.1],
             [0, 0, 1, 0],
             [0, 0, 0, 1]], np.float32)
+
+        # measurement matrix (describes how we observe the object)
         self.kf.measurementMatrix = np.array([[1, 0, 0, 0], [0, 1, 0, 0]], np.float32)
+
+        # process noise covariance (tells the kalman filter how much trust to place in the model vs the measurement)
         self.kf.processNoiseCov = 1e-3 * np.eye(4, dtype=np.float32)
+
+        # measurement noise covariance (accounts for noise in sensor readings)
         self.kf.measurementNoiseCov = 5e-2 * np.eye(2, dtype=np.float32)
+
+        # set the initial state estimate (ball's starting position)
         self.kf.statePost = np.array([[initial_pos[0]], [initial_pos[1]], [0], [0]], dtype=np.float32)
-        self.prediction = initial_pos  # stores the predicted position
-        self.history = deque(maxlen=15)  # keeps track of past positions to draw a trail
-        self.last_seen = cv2.getTickCount()  # saves the time when this ball was last seen
+
+        self.prediction = initial_pos  # store last predicted position
+        self.last_seen = cv2.getTickCount()  # time when the ball was last detected
 
     def update(self, measurement):
-        # updates the balls (balls haha) position with new positions from the camera
-        self.kf.correct(np.array(measurement, dtype=np.float32))  # Adjusts filter with new data
-        self.prediction = self.kf.predict()  # predicts the next position
-        self.history.append((int(self.prediction[0]), int(self.prediction[1])))  # Saves history for drawing a trail
-        self.last_seen = cv2.getTickCount()  # updates the last seen timestamp
+        self.kf.correct(np.array(measurement, dtype=np.float32))  # correct state based on new measurement
+        self.prediction = self.kf.predict()  # predict next state
+        self.last_seen = cv2.getTickCount()  # update last seen timestamp
 
-# dictionary to keep track of all detected balls
-tracks = {}
-next_id = 0  # keeps track of the next available ID for new objects
-MAX_DISTANCE = 60  # maximum distance a ball can move between frames before it's considered "new"
-TRACK_TIMEOUT = 1.5 * cv2.getTickFrequency()  # if a ball disappears for 1.5 seconds, remove it
+# ROS 2 node for tracking balls and publishing their positions
+class BallTrackerNode(Node):
+    def __init__(self):
+        super().__init__('ball_tracker_node')  # initialize ROS 2 node
 
-while True:
-    tick_start = cv2.getTickCount()  # starts FPS calculation
-    
-    # if we have too many frames in the queue, drop old ones to avoid lag
-    while frame_queue.qsize() > 1:
-        frame_queue.get()
-    if frame_queue.empty():
-        continue  # if no frames are available, just wait
-    
-    # grabs the latest frame
-    frame_umat = frame_queue.get()
-    
-    # converts the image to HSV (easier for color filtering)
-    hsv_umat = cv2.cvtColor(frame_umat, cv2.COLOR_BGR2HSV)
-    blurred_hsv = cv2.GaussianBlur(hsv_umat, (5, 5), 0)  # Blurs the image to reduce noise
-    color_mask = cv2.inRange(blurred_hsv, lower_purple, upper_purple)  # Filters out only purple areas
-    
-    # converts the image to grayscale for extra filtering
-    gray_umat = cv2.cvtColor(frame_umat, cv2.COLOR_BGR2GRAY)
-    blurred_gray = cv2.GaussianBlur(gray_umat, (5, 5), 0)
-    _, thresh_gray = cv2.threshold(blurred_gray, 60, 255, cv2.THRESH_BINARY)
-    
-    # combines both masks to get a cleaner result
-    combined_mask = cv2.bitwise_and(color_mask, thresh_gray)
-    mask_clean = cv2.erode(combined_mask, None, iterations=1)  # removes small noise
-    mask_clean = cv2.dilate(mask_clean, None, iterations=2)  # restores object shape=
-    
-    # converts back to CPU format for contour detection (GPU doesnt support contours!!!)
-    mask_cpu = cv2.UMat.get(mask_clean)
-    contours, _ = cv2.findContours(mask_cpu, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-    
-    # finds the center of each detected purple object
-    current_detections = []
-    for contour in contours:
-        if cv2.contourArea(contour) > 300:  # ignores small objects
-            M = cv2.moments(contour)
-            if M["m00"] > 0:
-                cx = int(M["m10"]/M["m00"])
-                cy = int(M["m01"]/M["m00"])
-                current_detections.append((cx, cy))
+        self.ball_pub = self.create_publisher(Point, '/ball_positions', 10)  # ROS 2 publisher to send ball positions
 
-    #  self explanatory . . .
-    updated_tracks = set()
-    
-    for detection in current_detections:
-        best_match = None
-        min_dist = float('inf')  # starts with a large number
-        
-        # tries to match this detection with an existing tracked object
-        for track_id, track in tracks.items():
-            distance = np.linalg.norm(np.array(detection) - np.array(track.prediction[:2]))
-            if distance < MAX_DISTANCE and distance < min_dist:
-                min_dist = distance
-                best_match = track_id
-                
-        if best_match is not None:
-            tracks[best_match].update(detection)  # updates an existing tracked object
-            updated_tracks.add(best_match)
-        else:
-            # if no match, create a new track for this object
-            tracks[next_id] = BallTrack(next_id, detection)
-            updated_tracks.add(next_id)
-            next_id += 1
+        self.tracks = {}  # dictionary to store all tracked balls
+        self.next_id = 0  # id counter for assigning unique ids to new balls
+        self.MAX_DISTANCE = 60  # maximum distance allowed to associate new detections with existing tracks
+        self.TRACK_TIMEOUT = 1.5 * cv2.get_tick_frequency()  # timeout for removing stale tracks
 
-    # removes objects that haven't been seen in a while
-    current_tick = cv2.getTickCount()
-    stale_tracks = [tid for tid, t in tracks.items() if (current_tick - t.last_seen) > TRACK_TIMEOUT]
-    for tid in stale_tracks:
-        del tracks[tid]
+        self.timer = self.create_timer(0.03, self.track_balls)  # ROS 2 timer to execute `track_balls()` every 30ms
 
-    # converts back to a regular frame for drawing
-    display_frame = cv2.UMat.get(frame_umat)
-    for track_id, track in tracks.items():
-        # draws the predicted position of the ball
-        x, y = map(int, track.prediction[:2])
-        cv2.circle(display_frame, (x, y), 7, (0, 0, 255), -1)
-        
-        # labels the ball with its ID
-        cv2.putText(display_frame, f"ID:{track_id}", (x+10, y-10),
-                    cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 255), 2)
+    def track_balls(self):
+        tick_start = cv2.getTickCount()  # get the starting time of this iteration
 
-    # displays the fps
-    fps = cv2.getTickFrequency() / (cv2.getTickCount() - tick_start)
-    cv2.putText(display_frame, f"FPS: {int(fps)}", (10, 20), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
+        # process only the most recent frame (drop older frames)
+        while frame_queue.qsize() > 1:
+            frame_queue.get()
+        if frame_queue.empty():
+            return  # skip processing if no frame is available
 
-    # this shows our output lol
-    cv2.imshow('THE ULTIMATE BALL TRACKER', display_frame)
-    if cv2.waitKey(1) & 0xFF == ord('q'):
-        break
+        frame_umat = frame_queue.get()  # get the most recent frame
+        hsv_umat = cv2.cvtColor(frame_umat, cv2.COLOR_BGR2HSV)  # convert to hsv
+        blurred_hsv = cv2.GaussianBlur(hsv_umat, (5, 5), 0)  # apply gaussian blur
+        color_mask = cv2.inRange(blurred_hsv, lower_purple, upper_purple)  # apply color thresholding
 
-cap.release()
-cv2.destroyAllWindows()
+        gray_umat = cv2.cvtColor(frame_umat, cv2.COLOR_BGR2GRAY)  # convert to grayscale
+        blurred_gray = cv2.GaussianBlur(gray_umat, (5, 5), 0)  # apply gaussian blur
+        _, thresh_gray = cv2.threshold(blurred_gray, 60, 255, cv2.THRESH_BINARY)  # thresholding
+
+        combined_mask = cv2.bitwise_and(color_mask, thresh_gray)  # combine color + threshold mask
+        mask_clean = cv2.erode(combined_mask, None, iterations=1)  # remove noise (erode)
+        mask_clean = cv2.dilate(mask_clean, None, iterations=2)  # expand valid regions (dilate)
+
+        # find contours of detected balls
+        mask_cpu = cv2.UMat.get(mask_clean)
+        contours, _ = cv2.findContours(mask_cpu, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+
+        current_detections = []  # store detected ball positions
+        for contour in contours:
+            if cv2.contourArea(contour) > 300:  # ignore small noise
+                M = cv2.moments(contour)
+                if M["m00"] > 0:
+                    cx = int(M["m10"]/M["m00"])  # calculate centroid x
+                    cy = int(M["m01"]/M["m00"])  # calculate centroid y
+                    current_detections.append((cx, cy))  # store detection
+
+        # publish ball positions to ROS 2
+        for detection in current_detections:
+            x, y = detection
+            ball_msg = Point()
+            ball_msg.x = x
+            ball_msg.y = y
+            ball_msg.z = 0
+            self.ball_pub.publish(ball_msg)
+            self.get_logger().info(f"Published Ball: ({x}, {y})")
+
+def main(args=None):
+    rclpy.init(args=args)
+    node = BallTrackerNode()
+    rclpy.spin(node)  # keep node running
+    node.destroy_node()
+    rclpy.shutdown()
+
+if __name__ == '__main__':
+    main()
+

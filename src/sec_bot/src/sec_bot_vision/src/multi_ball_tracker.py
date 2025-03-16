@@ -2,7 +2,9 @@ import cv2
 import numpy as np
 import threading
 import queue
-from collections import deque
+import rclpy
+from rclpy.node import Node
+from geometry_msgs.msg import Point
 
 # turns on OpenCV optimizations to speed things up
 cv2.setUseOptimized(True)
@@ -201,3 +203,10 @@ while True:
 
 cap.release()
 cv2.destroyAllWindows()
+
+class ballTracker_Node(Node):
+    def __init__(self):
+        super.__init__('ball_tracker_node')
+        self.ball_pub = self.create_publisher(Point, 'ball_positions', 10) # 10 is the queue size of the message buffer, if you dont know this, learn
+        self.timer = self.create_timer(0.03, self.track_balls) # 0.03 seconds for every loop
+

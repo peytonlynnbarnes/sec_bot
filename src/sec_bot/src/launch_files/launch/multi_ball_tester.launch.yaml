@@ -2,5 +2,5 @@ launch:
 
   - node:
     pkg: "sec_bot_vision"
-    exec: ""
-    name: "multi"
+    exec: "ballTracker_Node"
+    name: "ballTracker"

@@ -1,0 +1,41 @@
+running egg_info
+creating ../build/purple_tracker/purple_tracker.egg-info
+writing ../build/purple_tracker/purple_tracker.egg-info/PKG-INFO
+writing dependency_links to ../build/purple_tracker/purple_tracker.egg-info/dependency_links.txt
+writing entry points to ../build/purple_tracker/purple_tracker.egg-info/entry_points.txt
+writing requirements to ../build/purple_tracker/purple_tracker.egg-info/requires.txt
+writing top-level names to ../build/purple_tracker/purple_tracker.egg-info/top_level.txt
+writing manifest file '../build/purple_tracker/purple_tracker.egg-info/SOURCES.txt'
+reading manifest file '../build/purple_tracker/purple_tracker.egg-info/SOURCES.txt'
+adding license file 'LICENSE'
+writing manifest file '../build/purple_tracker/purple_tracker.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /home/peyton/dev_ws/src/build/purple_tracker/build
+creating /home/peyton/dev_ws/src/build/purple_tracker/build/lib
+creating /home/peyton/dev_ws/src/build/purple_tracker/build/lib/purple_tracker
+copying purple_tracker/follow_ball.py -> /home/peyton/dev_ws/src/build/purple_tracker/build/lib/purple_tracker
+copying purple_tracker/__init__.py -> /home/peyton/dev_ws/src/build/purple_tracker/build/lib/purple_tracker
+copying purple_tracker/process_image.py -> /home/peyton/dev_ws/src/build/purple_tracker/build/lib/purple_tracker
+copying purple_tracker/ball_tracker.py -> /home/peyton/dev_ws/src/build/purple_tracker/build/lib/purple_tracker
+running install
+running install_lib
+creating /home/peyton/dev_ws/src/install/purple_tracker/lib/python3.10/site-packages/purple_tracker
+copying /home/peyton/dev_ws/src/build/purple_tracker/build/lib/purple_tracker/follow_ball.py -> /home/peyton/dev_ws/src/install/purple_tracker/lib/python3.10/site-packages/purple_tracker
+copying /home/peyton/dev_ws/src/build/purple_tracker/build/lib/purple_tracker/__init__.py -> /home/peyton/dev_ws/src/install/purple_tracker/lib/python3.10/site-packages/purple_tracker
+copying /home/peyton/dev_ws/src/build/purple_tracker/build/lib/purple_tracker/process_image.py -> /home/peyton/dev_ws/src/install/purple_tracker/lib/python3.10/site-packages/purple_tracker
+copying /home/peyton/dev_ws/src/build/purple_tracker/build/lib/purple_tracker/ball_tracker.py -> /home/peyton/dev_ws/src/install/purple_tracker/lib/python3.10/site-packages/purple_tracker
+byte-compiling /home/peyton/dev_ws/src/install/purple_tracker/lib/python3.10/site-packages/purple_tracker/follow_ball.py to follow_ball.cpython-310.pyc
+byte-compiling /home/peyton/dev_ws/src/install/purple_tracker/lib/python3.10/site-packages/purple_tracker/__init__.py to __init__.cpython-310.pyc
+byte-compiling /home/peyton/dev_ws/src/install/purple_tracker/lib/python3.10/site-packages/purple_tracker/process_image.py to process_image.cpython-310.pyc
+byte-compiling /home/peyton/dev_ws/src/install/purple_tracker/lib/python3.10/site-packages/purple_tracker/ball_tracker.py to ball_tracker.cpython-310.pyc
+running install_data
+creating /home/peyton/dev_ws/src/install/purple_tracker/share/ament_index
+creating /home/peyton/dev_ws/src/install/purple_tracker/share/ament_index/resource_index
+creating /home/peyton/dev_ws/src/install/purple_tracker/share/ament_index/resource_index/packages
+copying resource/purple_tracker -> /home/peyton/dev_ws/src/install/purple_tracker/share/ament_index/resource_index/packages
+copying package.xml -> /home/peyton/dev_ws/src/install/purple_tracker/share/purple_tracker
+running install_egg_info
+Copying ../build/purple_tracker/purple_tracker.egg-info to /home/peyton/dev_ws/src/install/purple_tracker/lib/python3.10/site-packages/purple_tracker-0.0.0-py3.10.egg-info
+running install_scripts
+writing list of installed files to '/home/peyton/dev_ws/src/build/purple_tracker/install.log'

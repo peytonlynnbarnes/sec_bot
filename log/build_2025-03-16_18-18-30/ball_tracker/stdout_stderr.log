@@ -1,0 +1,19 @@
+running develop
+running egg_info
+writing ball_tracker.egg-info/PKG-INFO
+writing dependency_links to ball_tracker.egg-info/dependency_links.txt
+writing entry points to ball_tracker.egg-info/entry_points.txt
+writing requirements to ball_tracker.egg-info/requires.txt
+writing top-level names to ball_tracker.egg-info/top_level.txt
+reading manifest file 'ball_tracker.egg-info/SOURCES.txt'
+writing manifest file 'ball_tracker.egg-info/SOURCES.txt'
+running build_ext
+Creating /home/peyton/dev_ws/install/ball_tracker/lib/python3.10/site-packages/ball-tracker.egg-link (link to .)
+Installing image_publisher script to /home/peyton/dev_ws/install/ball_tracker/lib/ball_tracker
+Installing image_subscriber script to /home/peyton/dev_ws/install/ball_tracker/lib/ball_tracker
+
+Installed /home/peyton/dev_ws/build/ball_tracker
+running symlink_data
+symbolically linking /home/peyton/dev_ws/build/ball_tracker/resource/ball_tracker -> /home/peyton/dev_ws/install/ball_tracker/share/ament_index/resource_index/packages
+symbolically linking /home/peyton/dev_ws/build/ball_tracker/package.xml -> /home/peyton/dev_ws/install/ball_tracker/share/ball_tracker
+symbolically linking /home/peyton/dev_ws/build/ball_tracker/launch/camera.launch.py -> /home/peyton/dev_ws/install/ball_tracker/share/ball_tracker/launch

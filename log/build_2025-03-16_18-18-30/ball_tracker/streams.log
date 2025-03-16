@@ -1,0 +1,21 @@
+[0.655s] Invoking command in '/home/peyton/dev_ws/build/ball_tracker': PYTHONPATH=/home/peyton/dev_ws/build/ball_tracker/prefix_override:/home/peyton/.local/lib/python3.10/site-packages/colcon_core/task/python/colcon_distutils_commands:/home/peyton/dev_ws/install/ball_tracker/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/peyton/dev_ws/build/ball_tracker/build --no-deps symlink_data --force
+[0.830s] running develop
+[0.940s] running egg_info
+[0.941s] writing ball_tracker.egg-info/PKG-INFO
+[0.941s] writing dependency_links to ball_tracker.egg-info/dependency_links.txt
+[0.942s] writing entry points to ball_tracker.egg-info/entry_points.txt
+[0.942s] writing requirements to ball_tracker.egg-info/requires.txt
+[0.942s] writing top-level names to ball_tracker.egg-info/top_level.txt
+[0.943s] reading manifest file 'ball_tracker.egg-info/SOURCES.txt'
+[0.944s] writing manifest file 'ball_tracker.egg-info/SOURCES.txt'
+[0.945s] running build_ext
+[0.945s] Creating /home/peyton/dev_ws/install/ball_tracker/lib/python3.10/site-packages/ball-tracker.egg-link (link to .)
+[0.946s] Installing image_publisher script to /home/peyton/dev_ws/install/ball_tracker/lib/ball_tracker
+[0.946s] Installing image_subscriber script to /home/peyton/dev_ws/install/ball_tracker/lib/ball_tracker
+[0.947s] 
+[0.947s] Installed /home/peyton/dev_ws/build/ball_tracker
+[0.947s] running symlink_data
+[0.947s] symbolically linking /home/peyton/dev_ws/build/ball_tracker/resource/ball_tracker -> /home/peyton/dev_ws/install/ball_tracker/share/ament_index/resource_index/packages
+[0.947s] symbolically linking /home/peyton/dev_ws/build/ball_tracker/package.xml -> /home/peyton/dev_ws/install/ball_tracker/share/ball_tracker
+[0.947s] symbolically linking /home/peyton/dev_ws/build/ball_tracker/launch/camera.launch.py -> /home/peyton/dev_ws/install/ball_tracker/share/ball_tracker/launch
+[0.971s] Invoked command in '/home/peyton/dev_ws/build/ball_tracker' returned '0': PYTHONPATH=/home/peyton/dev_ws/build/ball_tracker/prefix_override:/home/peyton/.local/lib/python3.10/site-packages/colcon_core/task/python/colcon_distutils_commands:/home/peyton/dev_ws/install/ball_tracker/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/peyton/dev_ws/build/ball_tracker/build --no-deps symlink_data --force

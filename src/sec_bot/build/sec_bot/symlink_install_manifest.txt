@@ -5,7 +5,9 @@
 /home/peyton/dev_ws/src/sec_bot/install/sec_bot/share/sec_bot/description/inertial_macros.xacro
 /home/peyton/dev_ws/src/sec_bot/install/sec_bot/share/sec_bot/description/robot.urdf.xacro
 /home/peyton/dev_ws/src/sec_bot/install/sec_bot/share/sec_bot/description/robot_core.xacro
+/home/peyton/dev_ws/src/sec_bot/install/sec_bot/share/sec_bot/description/ros2_control.xacro
 /home/peyton/dev_ws/src/sec_bot/install/sec_bot/share/sec_bot/description/urdf_help.txt
+/home/peyton/dev_ws/src/sec_bot/install/sec_bot/share/sec_bot/launch/ball_tracker_launch.py
 /home/peyton/dev_ws/src/sec_bot/install/sec_bot/share/sec_bot/launch/launch_sim.launch.py
 /home/peyton/dev_ws/src/sec_bot/install/sec_bot/share/sec_bot/launch/rsp.launch.py
 /home/peyton/dev_ws/src/sec_bot/install/sec_bot/share/sec_bot/worlds/empty.world

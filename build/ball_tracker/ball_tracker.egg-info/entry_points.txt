@@ -1,0 +1,4 @@
+[console_scripts]
+image_publisher = ball_tracker.image_publisher:main
+image_subscriber = ball_tracker.image_subscriber:main
+

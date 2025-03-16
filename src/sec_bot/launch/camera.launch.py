@@ -1,4 +1,4 @@
-import os # temporary for file locations before turning launch scripts to seperate package
+import os  # temporary for file locations before turning launch scripts to seperate package
 
 from launch import LaunchDescription
 from launch import LaunchConfiguration
@@ -11,8 +11,9 @@ def generate_launch_description():
 
     pkgs_vision = os.path.join(get_package_share_directory("sec_bo"))
 
-
-    use_sim_time = LaunchConfiguration("use_sim_time") # making the simulation track time
+    use_sim_time = LaunchConfiguration(
+        "use_sim_time"
+    )  # making the simulation track time
 
     # initializing the talker node
     vision_node = Node(

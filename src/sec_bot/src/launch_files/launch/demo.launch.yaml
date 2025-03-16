@@ -1,0 +1,15 @@
+# this is a minmimum viable yaml launch file for demonstration purposes.
+
+launch:
+  
+  # nodes are declared as the following
+  - node:
+      pkg: "demo_node_cpp" # what is the package you want?
+      exec: "talker" # what do you want in the package
+      name: "talker" # not nesecary but nice to have
+
+  # we can declare a second package
+  - node:
+      pkg: "demo_node_cpp"
+      exec: "listener"
+      name: "listener"

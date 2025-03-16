@@ -1,2 +1,0 @@
-Invoking command in '/home/ubuntu-vm/Desktop/sec_bot/build/sec_bot': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake /home/ubuntu-vm/Desktop/sec_bot/src/sec_bot -DCMAKE_INSTALL_PREFIX=/home/ubuntu-vm/Desktop/sec_bot/install/sec_bot
-Invoked command in '/home/ubuntu-vm/Desktop/sec_bot/build/sec_bot' returned '1': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake /home/ubuntu-vm/Desktop/sec_bot/src/sec_bot -DCMAKE_INSTALL_PREFIX=/home/ubuntu-vm/Desktop/sec_bot/install/sec_bot

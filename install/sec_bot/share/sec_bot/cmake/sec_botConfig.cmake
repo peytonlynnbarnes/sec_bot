@@ -1,1 +1,0 @@
-/home/ubuntu-vm/Desktop/sec_bot/build/sec_bot/ament_cmake_core/sec_botConfig.cmake

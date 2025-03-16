@@ -8,7 +8,7 @@ launch:
       exec: "talker" # what do you want in the package
       name: "talker" # not nesecary but nice to have
 
-  # we can declare a second package
+  # we can also declare more than one package
   - node:
       pkg: "demo_nodes_cpp"
       exec: "listener"

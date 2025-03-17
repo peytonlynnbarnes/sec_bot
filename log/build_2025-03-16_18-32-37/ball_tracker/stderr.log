@@ -1,5 +1,0 @@
-  File "/home/peyton/dev_ws/install/ball_tracker/lib/python3.10/site-packages/ball_tracker/image_subscriber.py", line 54
-    <package format="3">
-    ^
-SyntaxError: invalid syntax
-

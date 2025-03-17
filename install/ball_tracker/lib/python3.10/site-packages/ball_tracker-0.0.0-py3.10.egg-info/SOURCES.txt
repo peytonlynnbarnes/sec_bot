@@ -10,10 +10,13 @@ setup.py
 ../../build/ball_tracker/ball_tracker.egg-info/top_level.txt
 ../../build/ball_tracker/ball_tracker.egg-info/zip-safe
 ball_tracker/__init__.py
+ball_tracker/follow_ball.py
 ball_tracker/image_publisher.py
 ball_tracker/image_subscriber.py
 ball_tracker/multi_ball_tracker.py
+ball_tracker/sim_multi_ball_tracker.py
 launch/camera.launch.py
+launch/follow_ball.launch.py
 launch/sim_cam.launch.py
 resource/ball_tracker
 test/test_copyright.py

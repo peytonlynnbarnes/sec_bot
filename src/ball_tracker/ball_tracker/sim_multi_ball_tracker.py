@@ -17,12 +17,13 @@ class BallTrackerNode(Node):
         super().__init__('ball_tracker_node')
         self.ball_pub = self.create_publisher(Point, '/ball_positions', 10)
         self.image_sub = self.create_subscription(Image, '/camera/image_raw', self.image_callback, 10)
+        print("[INFO] Ball Tracker Node Initialized.")
 
     def image_callback(self, msg):
         try:
             frame = bridge.imgmsg_to_cv2(msg, "bgr8")
             if frame_queue.qsize() < 2:
-                frame_queue.put(cv2.UMat(frame))
+                frame_queue.put(frame)  # Store as NumPy array instead of UMat
             print("[DEBUG] Received an image frame!")
         except Exception as e:
             print(f"[ERROR] Error converting image: {e}")
@@ -32,9 +33,9 @@ class BallTrackerNode(Node):
             print("[DEBUG] Frame queue is empty, skipping detection.")
             return
         
-        frame_umat = frame_queue.get()
-        hsv_umat = cv2.cvtColor(frame_umat, cv2.COLOR_BGR2HSV)
-        blurred_hsv = cv2.GaussianBlur(hsv_umat, (5, 5), 0)
+        frame = frame_queue.get()
+        hsv_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+        blurred_hsv = cv2.GaussianBlur(hsv_frame, (5, 5), 0)
         print("[DEBUG] Processing frame for ball detection.")
 
         # Define HSV range for the purple ball
@@ -53,14 +54,21 @@ class BallTrackerNode(Node):
 
             if radius > 5:  # Ignore small noise
                 msg = Point()
-                msg.x = (x - frame_umat.shape[1] / 2) / frame_umat.shape[1]  # Normalize X position
-                msg.z = radius / frame_umat.shape[1]  # Use size as distance approximation
+                msg.x = (x - frame.shape[1] / 2) / frame.shape[1]  # Normalize X position
+                msg.z = radius / frame.shape[1]  # Use size as distance approximation
                 self.ball_pub.publish(msg)
                 print(f"[DEBUG] Published ball position: x={msg.x}, z={msg.z}")
+                
+                # Draw detected ball on the frame
+                cv2.drawContours(frame, [largest_contour], -1, (0, 255, 0), 2)  # Green contour
+                cv2.circle(frame, (int(x), int(y)), int(radius), (255, 0, 0), 2)  # Blue circle
             else:
                 print("[DEBUG] Detected ball is too small, ignoring.")
         else:
             print("[DEBUG] No ball detected in frame.")
+
+        cv2.imshow("Contour Detection", frame)
+        cv2.waitKey(1)
 
 
 def main(args=None):

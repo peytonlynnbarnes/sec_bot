@@ -9,7 +9,7 @@ Make sure you have the following installed:
 ### **Install & Build the Package**
 ```bash
 cd ~/dev_ws/
-git clone https://github.com/YOUR_USERNAME/sec_bot
+git clone https://github.com/peytonlynnbarnes/sec_bot.git
 colcon build --symlink-install
 source install/setup.bash
 ```

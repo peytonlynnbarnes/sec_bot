@@ -75,7 +75,7 @@ Publishes to /ball_position topic and subscribes to simulated camera/image_raw t
   
 <ins> camera.launch.py </ins>: launches image_publisher and image_subscriber nodes
   
-<ins> sim_cam.launch.py </ins> launches image_subscriber that directly subscribes to /camera/image_raw  
+<ins> sim_cam.launch.py </ins>: launches image_subscriber that directly subscribes to /camera/image_raw  
   
-<ins> follow_ball.launch.py </ins> launches follow_ball script  
+<ins> follow_ball.launch.py: </ins> launches follow_ball script  
 

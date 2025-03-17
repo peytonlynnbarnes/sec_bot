@@ -16,16 +16,20 @@ source install/setup.bash
 ### Launch Simulation
 To run the simulation run the following 4 commands in separate terminals. (Don't forget to ```bash source install/setup.bash``` in all terminals)
 ```bash
-ros2 launch sec_bot launch_sim.launch.py # runs Gazebo simulation, robot state publisher, and spawn entity for ease in testing.
+ros2 launch sec_bot launch_sim.launch.py
+# runs Gazebo simulation, robot state publisher, and spawn entity for ease in testing.
 ```
 ``` bash
-ros2 launch ball_tracker sim_cam.launch.py # launches image_subscriber that directly subscribes to /camera/image_raw  
+ros2 launch ball_tracker sim_cam.launch.py
+# launches image_subscriber that directly subscribes to /camera/image_raw  
 ```
 ```bash
-ros2 run ball_tracker sim_multi_ball_tracker # runs script that masks processed images and publishes /ball_position topic
+ros2 run ball_tracker sim_multi_ball_tracker
+# runs script that masks processed images and publishes /ball_position topic
 ```
 ``` bash
-ros2 launch ball_tracker follow_ball.launch.py # runs script that subscribes to /ball_position and publishes to /cmd_vel to follow ball
+ros2 launch ball_tracker follow_ball.launch.py
+# runs script that subscribes to /ball_position and publishes to /cmd_vel to follow ball
 ```
 
 # sec_bot description  

@@ -4,7 +4,7 @@
   <!-- box inertial macro with explicit origin parameters -->
   <xacro:macro name="inertial_box" 
                params="mass:=1.0 x:=0.1 y:=0.1 z:=0.1 
-                       origin_xyz:=0 0 0 origin_rpy:=0 0 0">
+                       origin_xyz:='0 0 0' origin_rpy:='0 0 0'">
     <inertial>
       <origin xyz="${origin_xyz}" rpy="${origin_rpy}"/>
       <mass value="${mass}"/>

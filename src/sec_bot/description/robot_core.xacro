@@ -33,16 +33,24 @@
     <origin xyz="-0.1 0 0"/>
   </joint>
 
-  <link name="chassis">
-    <visual>
-      <geometry><box size="0.3 0.3 0.25"/></geometry>
-      <material name="white"/>
-    </visual>
-    <collision>
-      <geometry><box size="0.3 0.3 0.25"/></geometry>
-    </collision>
-    <xacro:inertial_box mass="0.5" x="0.3" y="0.3" z="0.25"/>
-  </link>
+<link name="chassis">
+  <visual>
+    <geometry><box size="0.3 0.3 0.25"/></geometry>
+    <material name="white"/>
+  </visual>
+  <collision>
+    <geometry><box size="0.3 0.3 0.25"/></geometry>
+  </collision>
+
+  <xacro:inertial_box 
+    mass="0.5" 
+    x="0.3" 
+    y="0.3" 
+    z="0.25" 
+    origin_xyz="'0 0 0'" 
+    origin_rpy="'0 0 0'" 
+  />
+</link>
 
   <!-- Wheels & Transmissions -->
   <xacro:macro name="full_wheel" params="name parent origin rpy axis">

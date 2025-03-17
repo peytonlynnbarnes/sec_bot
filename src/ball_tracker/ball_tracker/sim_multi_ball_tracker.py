@@ -1,13 +1,12 @@
-import rclpy
-from rclpy.node import Node
-from geometry_msgs.msg import Point
-from sensor_msgs.msg import Image
-from cv_bridge import CvBridge
-import cv2
-import numpy as np
-import queue
+import cv2  # OpenCV for image processing
+import numpy as np  # Numerical operations
+import queue  # Efficient frame storage
+import rclpy  # ROS 2 API for communication
+from rclpy.node import Node  # ROS 2 Node class
+from geometry_msgs.msg import Point  # Message type for ball positions
+from sensor_msgs.msg import Image  # ROS 2 Image message
+from cv_bridge import CvBridge  # Bridge between ROS and OpenCV
 
-# Create a CvBridge object for converting ROS images to OpenCV images
 bridge = CvBridge()
 frame_queue = queue.Queue(maxsize=3)
 cv2.setUseOptimized(True)
@@ -17,57 +16,57 @@ class BallTrackerNode(Node):
         super().__init__('ball_tracker_node')
         self.ball_pub = self.create_publisher(Point, '/ball_positions', 10)
         self.image_sub = self.create_subscription(Image, '/camera/image_raw', self.image_callback, 10)
-        print("[INFO] Ball Tracker Node Initialized.")
+        self.current_target = None  # Track which ball we're following
 
     def image_callback(self, msg):
         try:
             frame = bridge.imgmsg_to_cv2(msg, "bgr8")
             if frame_queue.qsize() < 2:
-                frame_queue.put(frame)  # Store as NumPy array instead of UMat
-            print("[DEBUG] Received an image frame!")
+                frame_queue.put(frame)
         except Exception as e:
             print(f"[ERROR] Error converting image: {e}")
 
     def track_balls(self):
         if frame_queue.empty():
-            print("[DEBUG] Frame queue is empty, skipping detection.")
             return
         
         frame = frame_queue.get()
         hsv_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
         blurred_hsv = cv2.GaussianBlur(hsv_frame, (5, 5), 0)
-        print("[DEBUG] Processing frame for ball detection.")
 
-        # Define HSV range for the purple ball
-        lower_bound = np.array([130, 50, 50])
-        upper_bound = np.array([160, 255, 255])
+        lower_bound = np.array([110, 50, 50])
+        upper_bound = np.array([170, 255, 255])
         mask = cv2.inRange(blurred_hsv, lower_bound, upper_bound)
 
-        cv2.imshow("Debug Mask", mask)
-        cv2.waitKey(1)
-
-        # Find contours
         contours, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-        if contours:
-            largest_contour = max(contours, key=cv2.contourArea)
-            (x, y), radius = cv2.minEnclosingCircle(largest_contour)
+        detected_balls = []
 
+        for contour in contours:
+            (x, y), radius = cv2.minEnclosingCircle(contour)
             if radius > 5:  # Ignore small noise
-                msg = Point()
-                msg.x = (x - frame.shape[1] / 2) / frame.shape[1]  # Normalize X position
-                msg.z = radius / frame.shape[1]  # Use size as distance approximation
-                self.ball_pub.publish(msg)
-                print(f"[DEBUG] Published ball position: x={msg.x}, z={msg.z}")
-                
-                # Draw detected ball on the frame
-                cv2.drawContours(frame, [largest_contour], -1, (0, 255, 0), 2)  # Green contour
-                cv2.circle(frame, (int(x), int(y)), int(radius), (255, 0, 0), 2)  # Blue circle
+                detected_balls.append((x, y, radius))
+                cv2.circle(frame, (int(x), int(y)), int(radius), (0, 255, 0), 2)
+        
+        if detected_balls:
+            # Sort balls by distance (largest radius = closest)
+            detected_balls.sort(key=lambda b: -b[2])
+            
+            if self.current_target:
+                # Stick to the closest ball unless it's lost
+                closest_ball = min(detected_balls, key=lambda b: abs(b[0] - self.current_target[0]))
             else:
-                print("[DEBUG] Detected ball is too small, ignoring.")
+                closest_ball = detected_balls[0]
+            
+            self.current_target = closest_ball  # Update target
+            msg = Point()
+            msg.x = (closest_ball[0] - frame.shape[1] / 2) / frame.shape[1]  # Normalize X position
+            msg.z = closest_ball[2] / frame.shape[1]  # Use size as distance approximation
+            self.ball_pub.publish(msg)
+            print(f"[DEBUG] Tracking ball at x={msg.x}, z={msg.z}")
         else:
-            print("[DEBUG] No ball detected in frame.")
+            self.current_target = None  # Reset target if no balls detected
 
-        cv2.imshow("Contour Detection", frame)
+        cv2.imshow("Ball Tracking", frame)
         cv2.waitKey(1)
 
 
@@ -77,7 +76,7 @@ def main(args=None):
 
     while rclpy.ok():
         rclpy.spin_once(node)
-        node.track_balls()  # Ensure this function exists
+        node.track_balls()
 
     node.destroy_node()
     rclpy.shutdown()

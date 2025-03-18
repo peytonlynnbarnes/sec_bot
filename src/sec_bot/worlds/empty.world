@@ -6,8 +6,8 @@
       <uri>model://sun</uri>
     </include>
     <!-- Mining Mayhem Field -->
-<!--    <include>
-      <uri>model://mining_mayhem_field</uri>  <!-- Fixed URI -->
+  <!--    <include> -->
+    <!--      <uri>model://mining_mayhem_field</uri> -->
 <!--    </include> -->
     <!-- A ground plane -->
     <include>

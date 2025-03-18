@@ -1,1 +1,0 @@
-/home/peyton/dev_ws/src/sec_bot/build/sec_bot/ament_cmake_core/sec_botConfig-version.cmake

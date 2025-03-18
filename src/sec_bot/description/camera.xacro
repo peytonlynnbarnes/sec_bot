@@ -1,106 +1,81 @@
 <?xml version="1.0"?>
-<robot xmlns:xacro="http://www.ros.org/wiki/xacro" >
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-    <joint name="camera_joint" type="fixed">
-        <parent link="chassis"/>
-        <child link="camera_link"/>
-        <origin xyz="0.32 0.1400242 0.25" rpy="0 0 0"/>
-    </joint>
+  <!-- Camera 1 -->
+  <joint name="camera_joint" type="fixed">
+    <parent link="base_link"/> <!-- Changed parent to base_link -->
+    <child link="camera_link"/>
+    <origin xyz="0.15 0.14 0.25" rpy="0 0 0"/> <!-- Adjusted position -->
+  </joint>
 
-    <link name="camera_link">
-        <visual>
-            <geometry>
-                <box size="0.010 0.03 0.03"/>
-            </geometry>
-            <material name="red"/>
-        </visual>
-    </link>
+  <link name="camera_link">
+    <visual>
+      <geometry><box size="0.010 0.03 0.03"/></geometry>
+      <material name="red"/>
+    </visual>
+  </link>
 
+  <joint name="camera_optical_joint" type="fixed">
+    <parent link="camera_link"/>
+    <child link="camera_link_optical"/>
+    <origin xyz="0 0 0" rpy="${-M_PI/2} 0 ${-M_PI/2}"/>
+  </joint>
 
-    <joint name="camera_optical_joint" type="fixed">
-        <parent link="camera_link"/>
-        <child link="camera_link_optical"/>
-        <origin xyz="0 0 0" rpy="${-pi/2} 0 ${-pi/2}"/>
-    </joint>
+  <link name="camera_link_optical"/>
 
-    <link name="camera_link_optical"></link>
+  <!-- Camera 2 -->
+  <joint name="camera2_joint" type="fixed">
+    <parent link="base_link"/> <!-- Changed parent to base_link -->
+    <child link="camera2_link"/>
+    <origin xyz="0.15 -0.14 0.25" rpy="0 0 0"/> <!-- Adjusted position -->
+  </joint>
 
+  <link name="camera2_link">
+    <visual>
+      <geometry><box size="0.010 0.03 0.03"/></geometry>
+      <material name="red"/>
+    </visual>
+  </link>
 
+  <joint name="camera2_optical_joint" type="fixed">
+    <parent link="camera2_link"/>
+    <child link="camera2_link_optical"/>
+    <origin xyz="0 0 0" rpy="${-M_PI/2} 0 ${-M_PI/2}"/>
+  </joint>
 
-    <gazebo reference="camera_link">
-        <material>Gazebo/Red</material>
+  <link name="camera2_link_optical"/>
 
-        <sensor name="camera" type="camera">
-            <pose> 0 0 0 0 0 0 </pose>
-            <visualize>true</visualize>
-            <update_rate>10</update_rate>
-            <camera>
-                <horizontal_fov>1.089</horizontal_fov>
-                <image>
-                    <format>R8G8B8</format>
-                    <width>640</width>
-                    <height>480</height>
-                </image>
-                <clip>
-                    <near>0.05</near>
-                    <far>8.0</far>
-                </clip>
-            </camera>
-            <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
-                <frame_name>camera_link_optical</frame_name>
-            </plugin>
-        </sensor>
-    </gazebo>
+  <!-- Gazebo Sensors -->
+  <gazebo reference="camera_link">
+    <material>Gazebo/Red</material>
+    <sensor name="camera" type="camera">
+      <pose>0 0 0 0 0 0</pose>
+      <update_rate>10</update_rate>
+      <camera>
+        <horizontal_fov>1.089</horizontal_fov>
+        <image><width>640</width><height>480</height></image>
+        <clip><near>0.05</near><far>8.0</far></clip>
+      </camera>
+      <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+        <frame_name>camera_link_optical</frame_name>
+      </plugin>
+    </sensor>
+  </gazebo>
 
-    <joint name="camera2_joint" type="fixed">
-        <parent link="chassis"/>
-        <child link="camera2_link"/>
-        <origin xyz="0.32 -0.1400242 0.25" rpy="0 0 0"/>
-    </joint>
-
-    <link name="camera2_link">
-        <visual>
-            <geometry>
-                <box size="0.010 0.03 0.03"/>
-            </geometry>
-            <material name="red"/>
-        </visual>
-    </link>
-
-
-    <joint name="camera2_optical_joint" type="fixed">
-        <parent link="camera2_link"/>
-        <child link="camera2_link_optical"/>
-        <origin xyz="0 0 0" rpy="${-pi/2} 0 ${-pi/2}"/>
-    </joint>
-
-    <link name="camera2_link_optical"></link>
-
-
-
-    <gazebo reference="camera2_link">
-        <material>Gazebo/Red</material>
-
-        <sensor name="camera2" type="camera">
-            <pose> 0 0 0 0 0 0 </pose>
-            <visualize>true</visualize>
-            <update_rate>10</update_rate>
-            <camera>
-                <horizontal_fov>1.089</horizontal_fov>
-                <image>
-                    <format>R8G8B8</format>
-                    <width>640</width>
-                    <height>480</height>
-                </image>
-                <clip>
-                    <near>0.05</near>
-                    <far>8.0</far>
-                </clip>
-            </camera>
-            <plugin name="camera2_controller" filename="libgazebo_ros_camera.so">
-                <frame_name>camera2_link_optical</frame_name>
-            </plugin>
-        </sensor>
-    </gazebo>
+  <gazebo reference="camera2_link">
+    <material>Gazebo/Red</material>
+    <sensor name="camera2" type="camera">
+      <pose>0 0 0 0 0 0</pose>
+      <update_rate>10</update_rate>
+      <camera>
+        <horizontal_fov>1.089</horizontal_fov>
+        <image><width>640</width><height>480</height></image>
+        <clip><near>0.05</near><far>8.0</far></clip>
+      </camera>
+      <plugin name="camera2_controller" filename="libgazebo_ros_camera.so">
+        <frame_name>camera2_link_optical</frame_name>
+      </plugin>
+    </sensor>
+  </gazebo>
 
 </robot>

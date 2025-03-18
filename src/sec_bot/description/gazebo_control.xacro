@@ -2,18 +2,19 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
   <gazebo>
-    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so"/> <!-- loads Gazebo control -->
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so"/>
 
-    <plugin name="diff_drive" filename="libgazebo_ros_diff_drive.so"> <!-- differential drive plugin -->
-      <update_rate>50</update_rate> <!-- sets simulation update rate -->
-      <left_joint>left_front_wheel_joint left_back_wheel_joint</left_joint> <!-- left wheels -->
-      <right_joint>right_front_wheel_joint right_back_wheel_joint</right_joint> <!-- right wheels -->
-      <wheel_separation>0.35</wheel_separation> <!-- distance between wheels -->
-      <wheel_diameter>0.08</wheel_diameter> <!-- wheel size -->
-      <max_wheel_torque>5</max_wheel_torque> <!-- sets max torque -->
-      <max_wheel_acceleration>3</max_wheel_acceleration> <!-- Max acceleration -->
-      <odometry_frame>odom</odometry_frame> <!-- sses 'odom' frame -->
-      <robot_base_frame>base_footprint</robot_base_frame> <!-- uses base footprint -->
+    <!-- Differential Drive Plugin (UPDATED FOR FOUR WHEELS!!!) -->
+    <plugin name="diff_drive" filename="libgazebo_ros_diff_drive.so">
+      <update_rate>50</update_rate>
+      <!-- Use only 1 joint per side (front wheels as representatives) -->
+      <left_joint>left_front_wheel_joint</left_joint>
+      <right_joint>right_front_wheel_joint</right_joint>
+      <wheel_separation>0.35</wheel_separation>
+      <wheel_diameter>0.08</wheel_diameter>
+      <max_wheel_torque>5</max_wheel_torque>
+      <odometry_frame>odom</odometry_frame>
+      <robot_base_frame>base_footprint</robot_base_frame>
     </plugin>
   </gazebo>
 

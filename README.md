@@ -17,6 +17,7 @@ sudo apt install software-properties-common -y && sudo add-apt-repository univer
 ```bash
 git clone https://github.com/peytonlynnbarnes/sec_bot.git
 cd sec_bot
+source /opt/ros/humble/setup.bash
 colcon build --symlink-install
 source install/setup.bash # make sure to source /opt/run/ros/humble/setup.bash
 ```

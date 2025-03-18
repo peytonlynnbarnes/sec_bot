@@ -12,9 +12,10 @@ from rclpy.callback_groups import ReentrantCallbackGroup
 from rclpy.executors import MultiThreadedExecutor
 from std_srvs.srv import Trigger
 
+
 class ImagePublisher(LifecycleNode):
     def __init__(self):
-        super().__init__('image_publisher')
+        super().__init__("image_publisher")
         self.bridge = CvBridge()
         self.cap = None
         self.static_image = None
@@ -23,37 +24,50 @@ class ImagePublisher(LifecycleNode):
         self.reconnect_delay = 1.0
         self.cam_lock = Lock()
         self.cb_group = ReentrantCallbackGroup()
-        
+
         # lifecycle state tracking
         self.activated = False
         self.configured = False
 
         # parameter declarations with validation ranges
-        self.declare_parameter('publish_rate', 30.0, 
+        self.declare_parameter(
+            "publish_rate",
+            30.0,
             Parameter.Descriptor(
                 type=Parameter.Type.DOUBLE,
-                floating_point_range=[Parameter.FloatingPointRange(1.0, 60.0, 1.0)]))
-        self.declare_parameter('image_path', '',
-            Parameter.Descriptor(type=Parameter.Type.STRING))
-        self.declare_parameter('camera_index', 0,
+                floating_point_range=[Parameter.FloatingPointRange(1.0, 60.0, 1.0)],
+            ),
+        )
+        self.declare_parameter(
+            "image_path", "", Parameter.Descriptor(type=Parameter.Type.STRING)
+        )
+        self.declare_parameter(
+            "camera_index",
+            0,
             Parameter.Descriptor(
                 type=Parameter.Type.INTEGER,
-                integer_range=[Parameter.IntegerRange(0, 16, 1)]))
-        self.declare_parameter('resize_width', -1,
+                integer_range=[Parameter.IntegerRange(0, 16, 1)],
+            ),
+        )
+        self.declare_parameter(
+            "resize_width",
+            -1,
             Parameter.Descriptor(
                 type=Parameter.Type.INTEGER,
-                integer_range=[Parameter.IntegerRange(-1, 7680, 1)]))
+                integer_range=[Parameter.IntegerRange(-1, 7680, 1)],
+            ),
+        )
 
         # lifecycle services
         self.restart_service = self.create_service(
-            Trigger, '~/restart', self.restart_callback,
-            callback_group=self.cb_group)
+            Trigger, "~/restart", self.restart_callback, callback_group=self.cb_group
+        )
 
     def restart_callback(self, request, response):
         """Enhanced restart handler with state safety"""
         try:
             self.get_logger().info("Initiating controlled restart...")
-            
+
             # deactivate if active
             if self.activated:
                 if not self.on_deactivate(State.PRIMARY_STATE_ACTIVE).successful:
@@ -76,24 +90,24 @@ class ImagePublisher(LifecycleNode):
 
             response.success = True
             response.message = "Restart completed successfully"
-            
+
         except Exception as e:
             self.get_logger().error(f"Controlled restart failed: {str(e)}")
             response.success = False
             response.message = f"Restart failed: {str(e)}"
             self.configured = False
             self.activated = False
-            
+
         return response
 
     def on_configure(self, state: State) -> TransitionCallbackReturn:
         self.get_logger().info("Configuring resources...")
         try:
             with self.cam_lock:
-                self.publish_rate = self.get_parameter('publish_rate').value
-                self.image_path = self.get_parameter('image_path').value
-                self.camera_index = self.get_parameter('camera_index').value
-                self.resize_width = self.get_parameter('resize_width').value
+                self.publish_rate = self.get_parameter("publish_rate").value
+                self.image_path = self.get_parameter("image_path").value
+                self.camera_index = self.get_parameter("camera_index").value
+                self.resize_width = self.get_parameter("resize_width").value
 
                 if self.resize_width < -1:
                     raise ValueError("Invalid resize_width (must be ≥ -1)")
@@ -125,11 +139,11 @@ class ImagePublisher(LifecycleNode):
                     if not self.cap.isOpened():
                         raise RuntimeError(f"Camera {self.camera_index} unavailable")
 
-                self.publisher = self.create_publisher(Image, '/camera/image_raw', 10)
+                self.publisher = self.create_publisher(Image, "/camera/image_raw", 10)
                 self.timer = self.create_timer(
-                    1.0 / self.publish_rate, 
+                    1.0 / self.publish_rate,
                     self.timer_callback,
-                    callback_group=self.cb_group
+                    callback_group=self.cb_group,
                 )
                 self.activated = True
                 self.failed_frames = 0
@@ -157,17 +171,23 @@ class ImagePublisher(LifecycleNode):
                         )
 
                         if self.failed_frames >= self.max_retries:
-                            self.get_logger().error("Camera failure detected. Reconnecting...")
-                            delay = min(2 ** self.failed_frames, 10)
-                            self.get_logger().info(f"Waiting {delay}s before reconnect...")
+                            self.get_logger().error(
+                                "Camera failure detected. Reconnecting..."
+                            )
+                            delay = min(2**self.failed_frames, 10)
+                            self.get_logger().info(
+                                f"Waiting {delay}s before reconnect..."
+                            )
                             time.sleep(delay)
-                            
+
                             self.cap.release()
                             self.cap = cv2.VideoCapture(self.camera_index)
-                            
+
                             if not self.cap.isOpened():
-                                self.get_logger().error("Reconnect failed. Retrying later...")
-                                self.failed_frames = self.max_retries  
+                                self.get_logger().error(
+                                    "Reconnect failed. Retrying later..."
+                                )
+                                self.failed_frames = self.max_retries
                             else:
                                 self.get_logger().info("Camera reconnected!")
                                 self.failed_frames = 0
@@ -186,11 +206,12 @@ class ImagePublisher(LifecycleNode):
             self.get_logger().error(f"Frame processing failure: {str(e)}")
             self.on_deactivate(self.get_current_state())
 
+
 def main(args=None):
     rclpy.init(args=args)
     executor = MultiThreadedExecutor()
     node = ImagePublisher()
-    
+
     try:
         executor.add_node(node)
         executor.spin()
@@ -204,6 +225,6 @@ def main(args=None):
         executor.shutdown()
         rclpy.shutdown()
 
-if __name__ == '__main__':
-    main()
 
+if __name__ == "__main__":
+    main()

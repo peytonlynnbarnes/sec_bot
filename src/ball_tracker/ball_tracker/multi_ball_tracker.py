@@ -12,11 +12,14 @@ bridge = CvBridge()
 frame_queue = queue.Queue(maxsize=3)
 cv2.setUseOptimized(True)
 
+
 class BallTrackerNode(Node):
     def __init__(self):
-        super().__init__('ball_tracker_node')
-        self.ball_pub = self.create_publisher(Point, '/ball_positions', 10)
-        self.image_sub = self.create_subscription(Image, '/camera/image_raw', self.image_callback, 10)
+        super().__init__("ball_tracker_node")
+        self.ball_pub = self.create_publisher(Point, "/ball_positions", 10)
+        self.image_sub = self.create_subscription(
+            Image, "/camera/image_raw", self.image_callback, 10
+        )
 
     def image_callback(self, msg):
         try:
@@ -31,7 +34,7 @@ class BallTrackerNode(Node):
         if frame_queue.empty():
             print("[DEBUG] Frame queue is empty, skipping detection.")
             return
-        
+
         frame_umat = frame_queue.get()
         hsv_umat = cv2.cvtColor(frame_umat, cv2.COLOR_BGR2HSV)
         blurred_hsv = cv2.GaussianBlur(hsv_umat, (5, 5), 0)
@@ -53,8 +56,12 @@ class BallTrackerNode(Node):
 
             if radius > 5:  # Ignore small noise
                 msg = Point()
-                msg.x = (x - frame_umat.shape[1] / 2) / frame_umat.shape[1]  # Normalize X position
-                msg.z = radius / frame_umat.shape[1]  # Use size as distance approximation
+                msg.x = (x - frame_umat.shape[1] / 2) / frame_umat.shape[
+                    1
+                ]  # Normalize X position
+                msg.z = (
+                    radius / frame_umat.shape[1]
+                )  # Use size as distance approximation
                 self.ball_pub.publish(msg)
                 print(f"[DEBUG] Published ball position: x={msg.x}, z={msg.z}")
             else:
@@ -74,5 +81,6 @@ def main(args=None):
     node.destroy_node()
     rclpy.shutdown()
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main()

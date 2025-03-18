@@ -11,11 +11,14 @@ bridge = CvBridge()
 frame_queue = queue.Queue(maxsize=3)
 cv2.setUseOptimized(True)
 
+
 class BallTrackerNode(Node):
     def __init__(self):
-        super().__init__('ball_tracker_node')
-        self.ball_pub = self.create_publisher(Point, '/ball_positions', 10)
-        self.image_sub = self.create_subscription(Image, '/camera/image_raw', self.image_callback, 10)
+        super().__init__("ball_tracker_node")
+        self.ball_pub = self.create_publisher(Point, "/ball_positions", 10)
+        self.image_sub = self.create_subscription(
+            Image, "/camera/image_raw", self.image_callback, 10
+        )
         self.current_target = None  # Track which ball we're following
 
     def image_callback(self, msg):
@@ -29,7 +32,7 @@ class BallTrackerNode(Node):
     def track_balls(self):
         if frame_queue.empty():
             return
-        
+
         frame = frame_queue.get()
         hsv_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
         blurred_hsv = cv2.GaussianBlur(hsv_frame, (5, 5), 0)
@@ -46,21 +49,27 @@ class BallTrackerNode(Node):
             if radius > 5:  # Ignore small noise
                 detected_balls.append((x, y, radius))
                 cv2.circle(frame, (int(x), int(y)), int(radius), (0, 255, 0), 2)
-        
+
         if detected_balls:
             # Sort balls by distance (largest radius = closest)
             detected_balls.sort(key=lambda b: -b[2])
-            
+
             if self.current_target:
                 # Stick to the closest ball unless it's lost
-                closest_ball = min(detected_balls, key=lambda b: abs(b[0] - self.current_target[0]))
+                closest_ball = min(
+                    detected_balls, key=lambda b: abs(b[0] - self.current_target[0])
+                )
             else:
                 closest_ball = detected_balls[0]
-            
+
             self.current_target = closest_ball  # Update target
             msg = Point()
-            msg.x = (closest_ball[0] - frame.shape[1] / 2) / frame.shape[1]  # Normalize X position
-            msg.z = closest_ball[2] / frame.shape[1]  # Use size as distance approximation
+            msg.x = (closest_ball[0] - frame.shape[1] / 2) / frame.shape[
+                1
+            ]  # Normalize X position
+            msg.z = (
+                closest_ball[2] / frame.shape[1]
+            )  # Use size as distance approximation
             self.ball_pub.publish(msg)
             print(f"[DEBUG] Tracking ball at x={msg.x}, z={msg.z}")
         else:
@@ -81,5 +90,6 @@ def main(args=None):
     node.destroy_node()
     rclpy.shutdown()
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main()

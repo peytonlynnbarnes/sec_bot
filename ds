@@ -1,0 +1,32 @@
+[33m50651d1[m[33m ([m[1;36mHEAD -> [m[1;32mpeyton-dev[m[33m)[m fixed ball_tracker and added ball_follower
+[33m7990765[m committed all files
+[33m644f832[m added ball_tracker file
+[33m459845c[m removed purple_tracker file
+[33m43cb15c[m got image pub/sub working
+[33m29922b7[m built purple tracker package
+[33mb4bfe5c[m added purple tracker
+[33mb916747[m updated txt file and created purple detecter
+[33m8562db0[m added cameras
+[33m36e3a9e[m[33m ([m[1;31morigin/peyton-dev2[m[33m, [m[1;32mlist[m[33m)[m added gazebo_control
+[33m4a1c7c0[m added gazebo_control
+[33m8aece6d[m added gazebo keyboard control
+[33m141b474[m adjusted urdf
+[33meddb2ac[m fixed wrapper by rebuilding
+[33m9eb89b0[m Merge branch 'main' of github.com:peytonlynnbarnes/sec_bot
+[33me20d114[m gazebo launch wrapper
+[33mcc14f39[m Update urdf_help.txt
+[33m5e0da58[m[33m ([m[1;31morigin/yousef-dev[m[33m)[m added inertial macros to urdf
+[33m983e78b[m added gazebo functionality to robot
+[33m2fdd422[m Finished up basic URDF to be modified later
+[33m36f53c6[m updating bot name
+[33ma5b6a88[m urdf help file
+[33m8dda765[m helpful commands for urdf
+[33m29e1a03[m Create urdf_help
+[33mc583e98[m please make this repo work
+[33m710c353[m fixed robot name
+[33m20cc579[m final repo repair
+[33mae86871[m fixing repo
+[33m296770e[m fixing git
+[33m5e8f774[m fixing git bug
+[33ma58fd1a[m first commit
+[33me225cf6[m first commit

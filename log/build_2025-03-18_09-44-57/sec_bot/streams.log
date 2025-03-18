@@ -1,0 +1,82 @@
+[0.192s] Invoking command in '/home/peyton/dev_ws/build/sec_bot': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble:/home/peyton/dev_ws/install/ball_tracker /usr/bin/cmake --build /home/peyton/dev_ws/build/sec_bot -- -j12 -l12
+[0.205s] -- Found ament_cmake: 1.3.11 (/opt/ros/humble/share/ament_cmake/cmake)
+[0.293s] -- Override CMake install command with custom implementation using symlinks instead of copying resources
+[0.298s] -- Found ament_lint_auto: 0.12.11 (/opt/ros/humble/share/ament_lint_auto/cmake)
+[0.347s] -- Added test 'copyright' to check source files copyright and LICENSE
+[0.351s] -- Added test 'flake8' to check Python code syntax and style conventions
+[0.352s] -- Added test 'lint_cmake' to check CMake code style
+[0.352s] -- Added test 'pep257' to check Python code against some of the docstring style conventions in PEP 257
+[0.355s] -- Added test 'xmllint' to check XML markup files
+[0.356s] -- Configuring done
+[0.358s] -- Generating done
+[0.359s] -- Build files have been written to: /home/peyton/dev_ws/build/sec_bot
+[0.373s] Invoked command in '/home/peyton/dev_ws/build/sec_bot' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble:/home/peyton/dev_ws/install/ball_tracker /usr/bin/cmake --build /home/peyton/dev_ws/build/sec_bot -- -j12 -l12
+[0.380s] Invoking command in '/home/peyton/dev_ws/build/sec_bot': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble:/home/peyton/dev_ws/install/ball_tracker /usr/bin/cmake --install /home/peyton/dev_ws/build/sec_bot
+[0.384s] -- Install configuration: ""
+[0.384s] -- Execute custom install script
+[0.384s] -- Up-to-date symlink: /home/peyton/dev_ws/install/sec_bot/share/sec_bot/config/empty.yaml
+[0.385s] -- Up-to-date symlink: /home/peyton/dev_ws/install/sec_bot/share/sec_bot/config/view_bot.rviz
+[0.385s] -- Up-to-date symlink: /home/peyton/dev_ws/install/sec_bot/share/sec_bot/description/build/.built_by
+[0.385s] [33mCMake Warning (dev) at ament_cmake_symlink_install/ament_cmake_symlink_install.cmake:62 (file):
+[0.385s]   Policy CMP0009 is not set: FILE GLOB_RECURSE calls should not follow
+[0.386s]   symlinks by default.  Run "cmake --help-policy CMP0009" for policy details.
+[0.386s]   Use the cmake_policy command to set the policy and suppress this warning.
+[0.386s] Call Stack (most recent call first):
+[0.386s]   ament_cmake_symlink_install/ament_cmake_symlink_install.cmake:314 (ament_cmake_symlink_install_directory)
+[0.386s]   cmake_install.cmake:46 (include)
+[0.386s] This warning is for project developers.  Use -Wno-dev to suppress it.
+[0.386s] [0m
+[0.386s] -- Up-to-date symlink: /home/peyton/dev_ws/install/sec_bot/share/sec_bot/description/build/COLCON_IGNORE
+[0.387s] -- Up-to-date symlink: /home/peyton/dev_ws/install/sec_bot/share/sec_bot/description/camera.xacro
+[0.387s] -- Up-to-date symlink: /home/peyton/dev_ws/install/sec_bot/share/sec_bot/description/config/robot_controllers.yaml
+[0.387s] -- Up-to-date symlink: /home/peyton/dev_ws/install/sec_bot/share/sec_bot/description/gazebo_control.xacro
+[0.387s] -- Up-to-date symlink: /home/peyton/dev_ws/install/sec_bot/share/sec_bot/description/inertial_macros.xacro
+[0.388s] -- Up-to-date symlink: /home/peyton/dev_ws/install/sec_bot/share/sec_bot/description/install/.colcon_install_layout
+[0.388s] -- Up-to-date symlink: /home/peyton/dev_ws/install/sec_bot/share/sec_bot/description/install/COLCON_IGNORE
+[0.388s] -- Up-to-date symlink: /home/peyton/dev_ws/install/sec_bot/share/sec_bot/description/install/_local_setup_util_ps1.py
+[0.388s] -- Up-to-date symlink: /home/peyton/dev_ws/install/sec_bot/share/sec_bot/description/install/_local_setup_util_sh.py
+[0.388s] -- Up-to-date symlink: /home/peyton/dev_ws/install/sec_bot/share/sec_bot/description/install/local_setup.bash
+[0.389s] -- Up-to-date symlink: /home/peyton/dev_ws/install/sec_bot/share/sec_bot/description/install/local_setup.ps1
+[0.389s] -- Up-to-date symlink: /home/peyton/dev_ws/install/sec_bot/share/sec_bot/description/install/local_setup.sh
+[0.389s] -- Up-to-date symlink: /home/peyton/dev_ws/install/sec_bot/share/sec_bot/description/install/local_setup.zsh
+[0.389s] -- Up-to-date symlink: /home/peyton/dev_ws/install/sec_bot/share/sec_bot/description/install/setup.bash
+[0.389s] -- Up-to-date symlink: /home/peyton/dev_ws/install/sec_bot/share/sec_bot/description/install/setup.ps1
+[0.389s] -- Up-to-date symlink: /home/peyton/dev_ws/install/sec_bot/share/sec_bot/description/install/setup.sh
+[0.389s] -- Up-to-date symlink: /home/peyton/dev_ws/install/sec_bot/share/sec_bot/description/install/setup.zsh
+[0.389s] -- Up-to-date symlink: /home/peyton/dev_ws/install/sec_bot/share/sec_bot/description/log/COLCON_IGNORE
+[0.389s] -- Up-to-date symlink: /home/peyton/dev_ws/install/sec_bot/share/sec_bot/description/log/build_2025-03-17_13-54-10/events.log
+[0.390s] -- Up-to-date symlink: /home/peyton/dev_ws/install/sec_bot/share/sec_bot/description/log/build_2025-03-17_13-54-10/logger_all.log
+[0.390s] -- Up-to-date symlink: /home/peyton/dev_ws/install/sec_bot/share/sec_bot/description/log/build_2025-03-17_14-15-08/events.log
+[0.390s] -- Up-to-date symlink: /home/peyton/dev_ws/install/sec_bot/share/sec_bot/description/log/build_2025-03-17_14-15-08/logger_all.log
+[0.390s] -- Up-to-date symlink: /home/peyton/dev_ws/install/sec_bot/share/sec_bot/description/log/build_2025-03-17_14-31-01/events.log
+[0.390s] -- Up-to-date symlink: /home/peyton/dev_ws/install/sec_bot/share/sec_bot/description/log/build_2025-03-17_14-31-01/logger_all.log
+[0.390s] -- Up-to-date symlink: /home/peyton/dev_ws/install/sec_bot/share/sec_bot/description/log/latest/events.log
+[0.390s] -- Up-to-date symlink: /home/peyton/dev_ws/install/sec_bot/share/sec_bot/description/log/latest/logger_all.log
+[0.390s] -- Up-to-date symlink: /home/peyton/dev_ws/install/sec_bot/share/sec_bot/description/log/latest_build/events.log
+[0.390s] -- Up-to-date symlink: /home/peyton/dev_ws/install/sec_bot/share/sec_bot/description/log/latest_build/logger_all.log
+[0.390s] -- Up-to-date symlink: /home/peyton/dev_ws/install/sec_bot/share/sec_bot/description/robot.urdf.xacro
+[0.390s] -- Up-to-date symlink: /home/peyton/dev_ws/install/sec_bot/share/sec_bot/description/robot_core.xacro
+[0.390s] -- Up-to-date symlink: /home/peyton/dev_ws/install/sec_bot/share/sec_bot/description/ros2_control.xacro
+[0.390s] -- Up-to-date symlink: /home/peyton/dev_ws/install/sec_bot/share/sec_bot/description/urdf_help.txt
+[0.390s] -- Up-to-date symlink: /home/peyton/dev_ws/install/sec_bot/share/sec_bot/launch/camera.launch.py
+[0.390s] -- Up-to-date symlink: /home/peyton/dev_ws/install/sec_bot/share/sec_bot/launch/launch_sim.launch.py
+[0.390s] -- Up-to-date symlink: /home/peyton/dev_ws/install/sec_bot/share/sec_bot/launch/rsp.launch.py
+[0.390s] -- Up-to-date symlink: /home/peyton/dev_ws/install/sec_bot/share/sec_bot/launch/sec_bot.launch
+[0.390s] -- Up-to-date symlink: /home/peyton/dev_ws/install/sec_bot/share/sec_bot/worlds/empty.world
+[0.390s] -- Up-to-date symlink: /home/peyton/dev_ws/install/sec_bot/share/sec_bot/worlds/purple_ball.world
+[0.390s] -- Up-to-date symlink: /home/peyton/dev_ws/install/sec_bot/share/ament_index/resource_index/package_run_dependencies/sec_bot
+[0.390s] -- Up-to-date symlink: /home/peyton/dev_ws/install/sec_bot/share/ament_index/resource_index/parent_prefix_path/sec_bot
+[0.391s] -- Up-to-date symlink: /home/peyton/dev_ws/install/sec_bot/share/sec_bot/environment/ament_prefix_path.sh
+[0.391s] -- Up-to-date symlink: /home/peyton/dev_ws/install/sec_bot/share/sec_bot/environment/ament_prefix_path.dsv
+[0.391s] -- Up-to-date symlink: /home/peyton/dev_ws/install/sec_bot/share/sec_bot/environment/path.sh
+[0.391s] -- Up-to-date symlink: /home/peyton/dev_ws/install/sec_bot/share/sec_bot/environment/path.dsv
+[0.391s] -- Up-to-date symlink: /home/peyton/dev_ws/install/sec_bot/share/sec_bot/local_setup.bash
+[0.391s] -- Up-to-date symlink: /home/peyton/dev_ws/install/sec_bot/share/sec_bot/local_setup.sh
+[0.391s] -- Up-to-date symlink: /home/peyton/dev_ws/install/sec_bot/share/sec_bot/local_setup.zsh
+[0.391s] -- Up-to-date symlink: /home/peyton/dev_ws/install/sec_bot/share/sec_bot/local_setup.dsv
+[0.391s] -- Symlinking: /home/peyton/dev_ws/install/sec_bot/share/sec_bot/package.dsv
+[0.396s] -- Up-to-date symlink: /home/peyton/dev_ws/install/sec_bot/share/ament_index/resource_index/packages/sec_bot
+[0.396s] -- Up-to-date symlink: /home/peyton/dev_ws/install/sec_bot/share/sec_bot/cmake/sec_botConfig.cmake
+[0.396s] -- Up-to-date symlink: /home/peyton/dev_ws/install/sec_bot/share/sec_bot/cmake/sec_botConfig-version.cmake
+[0.396s] -- Up-to-date symlink: /home/peyton/dev_ws/install/sec_bot/share/sec_bot/package.xml
+[0.398s] Invoked command in '/home/peyton/dev_ws/build/sec_bot' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble:/home/peyton/dev_ws/install/ball_tracker /usr/bin/cmake --install /home/peyton/dev_ws/build/sec_bot

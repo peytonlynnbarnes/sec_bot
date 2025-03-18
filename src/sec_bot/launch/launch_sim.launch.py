@@ -1,36 +1,27 @@
 import os
-
 from ament_index_python.packages import get_package_share_directory
-
-
 from launch import LaunchDescription
 from launch.actions import IncludeLaunchDescription, SetEnvironmentVariable
-from launch.conditions import IfCondition
 from launch.launch_description_sources import PythonLaunchDescriptionSource
-from launch.substitutions import LaunchConfiguration
-
 from launch_ros.actions import Node
 
 
 def generate_launch_description():
     package_name = "sec_bot"
 
+    # Define paths
     world_file = "empty.world"
     world_path = os.path.join(
-        get_package_share_directory(package_name), "worlds", world_file
+        get_package_share_directory(package_name), "worlds", world_file  # fixed syntax
     )
     gazebo_model_path = os.path.join(
         get_package_share_directory(package_name), "models"
     )
+
+    # set gazebo model path
     set_model_path = SetEnvironmentVariable("GAZEBO_MODEL_PATH", gazebo_model_path)
 
-    use_sim_time = LaunchConfiguration("use_sim_time")
-    # use_ros2_control = LaunchConfiguration('use_ros2_control')
-    # use_robot_localization = LaunchConfiguration('use_robot_localization')
-    # use_world_file = LaunchConfiguration('use_world_file')
-    # use_gazebo_gui = LaunchConfiguration('use_gazebo_gui')
-    world_file = LaunchConfiguration("world_file")
-
+    # include robot state publisher
     rsp = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             [
@@ -42,7 +33,7 @@ def generate_launch_description():
         launch_arguments={"use_sim_time": "true"}.items(),
     )
 
-    # Include the Gazebo launch file, provided by the gazebo_ros package
+    # launch gazebo with the specified world
     gazebo = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             [
@@ -53,13 +44,10 @@ def generate_launch_description():
                 )
             ]
         ),
-        # condition=IfCondition(LaunchConfiguration('use_world_file')),
-        # launch_arguments={
-        #     'extra_gazebo_args': '--ros-args --params-file ' + gazebo_params_path}.items()
+        launch_arguments={"world": world_path}.items(),  # critical fix here
     )
 
-    # Run the spawner node from the gazebo_ros package. The entity name doesn't
-    # really matter if you only have a single robot.
+    # spawn the robot
     spawn_entity = Node(
         package="gazebo_ros",
         executable="spawn_entity.py",
@@ -67,7 +55,6 @@ def generate_launch_description():
         output="screen",
     )
 
-    # Launch them all!
     return LaunchDescription(
         [
             set_model_path,

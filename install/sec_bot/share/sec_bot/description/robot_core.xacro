@@ -1,0 +1,96 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="robot">
+
+  <!-- Includes -->
+  <xacro:include filename="inertial_macros.xacro"/>
+  <xacro:include filename="gazebo_control.xacro"/>
+
+  <!-- Parameters -->
+  <xacro:property name="M_PI" value="3.1415926535897931" />
+  <xacro:property name="left_back_wheel_pos" value="-0.02 0.175 0"/>
+  <xacro:property name="right_back_wheel_pos" value="-0.02 -0.175 0"/>
+  <xacro:property name="left_front_wheel_pos" value="0.2 0.175 0"/>
+  <xacro:property name="right_front_wheel_pos" value="0.2 -0.175 0"/>
+
+  <!-- Materials -->
+  <material name="white"><color rgba="1 1 1 1"/></material>
+  <material name="blue"><color rgba="0.2 0.2 1 1"/></material>
+
+  <!-- Base Structure -->
+  <link name="base_footprint"/>
+  <joint name="base_footprint_joint" type="fixed">
+    <parent link="base_footprint"/>
+    <child link="base_link"/>
+    <origin xyz="0 0 0.05"/>
+  </joint>
+
+  <link name="base_link"/>
+
+  <!-- Chassis -->
+  <joint name="chassis_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="chassis"/>
+    <origin xyz="-0.1 0 0"/>
+  </joint>
+
+<link name="chassis">
+  <visual>
+    <geometry><box size="0.3 0.3 0.25"/></geometry>
+    <material name="white"/>
+  </visual>
+  <collision>
+    <geometry><box size="0.3 0.3 0.25"/></geometry>
+  </collision>
+
+  <xacro:inertial_box 
+    mass="0.5" 
+    x="0.3" 
+    y="0.3" 
+    z="0.25" 
+    origin_xyz='0 0 0'
+    origin_rpy='0 0 0'
+  />
+</link>
+
+  <!-- Wheels & Transmissions -->
+  <xacro:macro name="full_wheel" params="name parent origin rpy axis">
+    <joint name="${name}_joint" type="continuous">
+      <parent link="${parent}"/>
+      <child link="${name}"/>
+      <origin xyz="${origin}" rpy="${rpy}"/>
+      <axis xyz="${axis}"/>
+    </joint>
+
+    <link name="${name}">
+      <visual>
+        <geometry><cylinder radius="0.04" length="0.04"/></geometry>
+        <material name="blue"/>
+      </visual>
+      <collision>
+        <geometry><cylinder radius="0.04" length="0.04"/></geometry>
+      </collision>
+      <xacro:inertial_cylinder mass="0.1" radius="0.04" length="0.04"/>
+    </link>
+
+    <transmission name="${name}_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${name}_joint">
+        <hardwareInterface>VelocityJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="${name}_motor">
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+  </xacro:macro>
+
+  <!-- Instantiate Wheels -->
+  <xacro:full_wheel name="left_back_wheel" parent="base_link" 
+                    origin="${left_back_wheel_pos}" rpy="${-(M_PI/2)} 0 0" axis="0 0 1"/>
+  <xacro:full_wheel name="right_back_wheel" parent="base_link" 
+                    origin="${right_back_wheel_pos}" rpy="${M_PI/2} 0 0" axis="0 0 -1"/>
+  <xacro:full_wheel name="left_front_wheel" parent="base_link" 
+                    origin="${left_front_wheel_pos}" rpy="${-(M_PI/2)} 0 0" axis="0 0 1"/>
+  <xacro:full_wheel name="right_front_wheel" parent="base_link" 
+                    origin="${right_front_wheel_pos}" rpy="${M_PI/2} 0 0" axis="0 0 -1"/>
+
+</robot>

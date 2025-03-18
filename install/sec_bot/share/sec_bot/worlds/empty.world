@@ -1,1 +1,18 @@
-/home/ubuntu-vm/Desktop/sec_bot/src/sec_bot/worlds/empty.world
+<?xml version="1.0"?>
+<sdf version="1.5">
+  <world name="default">
+    <!-- A global light source -->
+    <include>
+      <uri>model://sun</uri>
+    </include>
+    <!-- Mining Mayhem Field -->
+<!--    <include>
+      <uri>model://mining_mayhem_field</uri>  <!-- Fixed URI -->
+<!--    </include> -->
+    <!-- A ground plane -->
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+  </world>
+</sdf>
+

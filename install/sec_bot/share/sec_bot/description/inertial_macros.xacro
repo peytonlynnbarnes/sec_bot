@@ -1,1 +1,42 @@
-/home/ubuntu-vm/Desktop/sec_bot/src/sec_bot/description/inertial_macros.xacro
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- missing red material lol -->
+
+  <material name="red">
+    <color rgba="1 0 0 1"/>  <!-- Red color (R=1, G=0, B=0, Alpha=1) -->
+  </material>
+
+  <!-- box inertial macro with explicit origin parameters -->
+  <xacro:macro name="inertial_box" 
+               params="mass:=1.0 x:=0.1 y:=0.1 z:=0.1 
+                       origin_xyz:='0 0 0' origin_rpy:='0 0 0'">
+    <inertial>
+      <origin xyz="${origin_xyz}" rpy="${origin_rpy}"/>
+      <mass value="${mass}"/>
+      <inertia 
+        ixx="${mass*(y*y + z*z)/12}" ixy="0" ixz="0"
+        iyy="${mass*(x*x + z*z)/12}" iyz="0" 
+        izz="${mass*(x*x + y*y)/12}"
+      />
+    </inertial>
+  </xacro:macro>
+
+  <!-- cylinder inertial macro with explicit origin parameters -->
+  <xacro:macro name="inertial_cylinder" 
+               params="mass:=1.0 radius:=0.1 length:=0.1 
+                       origin_xyz:='0 0 0' origin_rpy:='0 0 0'">
+    <inertial>
+      <origin xyz="${origin_xyz}" rpy="${origin_rpy}"/>
+      <mass value="${mass}"/>
+      <inertia 
+        ixx="${mass*(3*radius*radius + length*length)/12}" 
+        ixy="0" ixz="0"
+        iyy="${mass*(3*radius*radius + length*length)/12}" 
+        iyz="0"
+        izz="${mass*radius*radius/2}"
+      />
+    </inertial>
+  </xacro:macro>
+
+</robot>

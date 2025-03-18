@@ -1,1 +1,9 @@
-/home/ubuntu-vm/Desktop/sec_bot/src/sec_bot/launch/sec_bot.launch
+<?xml version="1.0"?>
+
+<launch>
+  <!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched -->
+  <include file="$(find gazebo_ros)/launch/empty.launch">
+    <arg name="world_name" value="$(find MYROBOT_gazebo)/worlds/empty.world"/>
+    <!-- more default parameters can be changed here -->
+  </include>
+</launch>

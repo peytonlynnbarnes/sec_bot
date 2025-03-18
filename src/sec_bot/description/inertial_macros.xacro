@@ -1,6 +1,12 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
+  <!-- missing red material lol -->
+
+  <material name="red">
+    <color rgba="1 0 0 1"/>  <!-- Red color (R=1, G=0, B=0, Alpha=1) -->
+  </material>
+
   <!-- box inertial macro with explicit origin parameters -->
   <xacro:macro name="inertial_box" 
                params="mass:=1.0 x:=0.1 y:=0.1 z:=0.1 
@@ -19,7 +25,7 @@
   <!-- cylinder inertial macro with explicit origin parameters -->
   <xacro:macro name="inertial_cylinder" 
                params="mass:=1.0 radius:=0.1 length:=0.1 
-                       origin_xyz:=0 0 0 origin_rpy:=0 0 0">
+                       origin_xyz:='0 0 0 origin_rpy:=0 0 0'">
     <inertial>
       <origin xyz="${origin_xyz}" rpy="${origin_rpy}"/>
       <mass value="${mass}"/>

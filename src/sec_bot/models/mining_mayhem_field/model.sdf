@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+
+<sdf version="1.5">
+  <model name="Mining_Mayhem_Field">
+    <pose>0 0 0.1 0 0 0</pose>
+    <static>true</static>
+    
+    <link name="Link">
+      <collision name="collision">
+        <geometry>
+          <mesh>
+            <uri>model://mining_mayhem_field/meshes/Mining_Mayhem_Field.stl</uri>
+            <scale>1 1 1</scale>
+          </mesh>
+        </geometry>
+      </collision>
+
+      <visual name="Visual">
+        <geometry>
+          <mesh>
+            <uri>model://mining_mayhem_field/meshes/Mining_Mayhem_Field.stl</uri>
+            <scale>1 1 1</scale>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+  </model>
+</sdf>

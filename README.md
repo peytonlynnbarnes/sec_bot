@@ -82,5 +82,4 @@ This package contains the ball tracking and following files as well as related l
   
 <ins> sim_cam.launch.py </ins>: launches image_subscriber that directly subscribes to /camera/image_raw  
   
-<ins> follow_ball.launch.py: </ins> launches follow_ball script  
-
+<ins> follow_ball.launch.py: </ins> launches follow_ball script

@@ -2,7 +2,7 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
   <gazebo>
-    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so"/> <!-- loads Gazebo control -->
+    <plugin filename="libgazebo_ros2_control.so" name="gazebo_ros2_control">
 
     <plugin name="diff_drive" filename="libgazebo_ros_diff_drive.so"> <!-- differential drive plugin -->
       <update_rate>50</update_rate> <!-- sets simulation update rate -->

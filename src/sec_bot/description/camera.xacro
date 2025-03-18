@@ -13,7 +13,11 @@
                 <box size="0.010 0.03 0.03"/>
             </geometry>
             <material name="red"/>
-        </visual>
+          </visual>
+          <inertial>
+              <mass value="0.001"/>
+              <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6"/>
+          </inertial>
     </link>
 
 

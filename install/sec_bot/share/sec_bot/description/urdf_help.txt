@@ -1,1 +1,1 @@
-/home/ubuntu-vm/Desktop/sec_bot/src/sec_bot/description/urdf_help.txt
+/home/user/Downloads/sec_bot/src/sec_bot/description/urdf_help.txt

@@ -1,1 +1,1 @@
-/home/ubuntu-vm/Desktop/sec_bot/build/sec_bot/ament_cmake_environment_hooks/local_setup.zsh
+/home/user/Downloads/sec_bot/build/sec_bot/ament_cmake_environment_hooks/local_setup.zsh

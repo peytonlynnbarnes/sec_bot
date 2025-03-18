@@ -1,0 +1,61 @@
+[0.010s] Invoking command in '/home/user/Downloads/sec_bot/build/sec_bot': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/user/sec_bot/install/ball_tracker:/home/user/Desktop/sec_bot/install/ball_tracker:/opt/ros/humble /usr/bin/cmake /home/user/Downloads/sec_bot/src/sec_bot -DCMAKE_INSTALL_PREFIX=/home/user/Downloads/sec_bot/install/sec_bot
+[0.078s] -- The C compiler identification is GNU 11.4.0
+[0.139s] -- The CXX compiler identification is GNU 11.4.0
+[0.147s] -- Detecting C compiler ABI info
+[0.228s] -- Detecting C compiler ABI info - done
+[0.236s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.236s] -- Detecting C compile features
+[0.236s] -- Detecting C compile features - done
+[0.239s] -- Detecting CXX compiler ABI info
+[0.327s] -- Detecting CXX compiler ABI info - done
+[0.334s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[0.334s] -- Detecting CXX compile features
+[0.334s] -- Detecting CXX compile features - done
+[0.337s] -- Found ament_cmake: 1.3.11 (/opt/ros/humble/share/ament_cmake/cmake)
+[0.501s] -- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+[0.591s] -- Found ament_lint_auto: 0.12.11 (/opt/ros/humble/share/ament_lint_auto/cmake)
+[0.671s] -- Added test 'copyright' to check source files copyright and LICENSE
+[0.676s] -- Added test 'flake8' to check Python code syntax and style conventions
+[0.677s] -- Added test 'lint_cmake' to check CMake code style
+[0.678s] -- Added test 'pep257' to check Python code against some of the docstring style conventions in PEP 257
+[0.681s] -- Added test 'xmllint' to check XML markup files
+[0.682s] -- Configuring done
+[0.685s] -- Generating done
+[0.687s] -- Build files have been written to: /home/user/Downloads/sec_bot/build/sec_bot
+[0.693s] Invoked command in '/home/user/Downloads/sec_bot/build/sec_bot' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/user/sec_bot/install/ball_tracker:/home/user/Desktop/sec_bot/install/ball_tracker:/opt/ros/humble /usr/bin/cmake /home/user/Downloads/sec_bot/src/sec_bot -DCMAKE_INSTALL_PREFIX=/home/user/Downloads/sec_bot/install/sec_bot
+[0.695s] Invoking command in '/home/user/Downloads/sec_bot/build/sec_bot': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/user/sec_bot/install/ball_tracker:/home/user/Desktop/sec_bot/install/ball_tracker:/opt/ros/humble /usr/bin/cmake --build /home/user/Downloads/sec_bot/build/sec_bot -- -j8 -l8
+[0.739s] Invoked command in '/home/user/Downloads/sec_bot/build/sec_bot' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/user/sec_bot/install/ball_tracker:/home/user/Desktop/sec_bot/install/ball_tracker:/opt/ros/humble /usr/bin/cmake --build /home/user/Downloads/sec_bot/build/sec_bot -- -j8 -l8
+[0.751s] Invoking command in '/home/user/Downloads/sec_bot/build/sec_bot': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/user/sec_bot/install/ball_tracker:/home/user/Desktop/sec_bot/install/ball_tracker:/opt/ros/humble /usr/bin/cmake --install /home/user/Downloads/sec_bot/build/sec_bot
+[0.760s] -- Install configuration: ""
+[0.760s] -- Up-to-date: /home/user/Downloads/sec_bot/install/sec_bot/share/sec_bot/config
+[0.760s] -- Installing: /home/user/Downloads/sec_bot/install/sec_bot/share/sec_bot/config/empty.yaml
+[0.761s] -- Up-to-date: /home/user/Downloads/sec_bot/install/sec_bot/share/sec_bot/description
+[0.761s] -- Installing: /home/user/Downloads/sec_bot/install/sec_bot/share/sec_bot/description/camera.xacro
+[0.761s] -- Installing: /home/user/Downloads/sec_bot/install/sec_bot/share/sec_bot/description/gazebo_control.xacro
+[0.761s] -- Installing: /home/user/Downloads/sec_bot/install/sec_bot/share/sec_bot/description/robot_core.xacro
+[0.761s] -- Installing: /home/user/Downloads/sec_bot/install/sec_bot/share/sec_bot/description/urdf_help.txt
+[0.761s] -- Installing: /home/user/Downloads/sec_bot/install/sec_bot/share/sec_bot/description/robot.urdf.xacro
+[0.761s] -- Installing: /home/user/Downloads/sec_bot/install/sec_bot/share/sec_bot/description/config
+[0.761s] -- Installing: /home/user/Downloads/sec_bot/install/sec_bot/share/sec_bot/description/config/robot_controllers.yaml
+[0.761s] -- Installing: /home/user/Downloads/sec_bot/install/sec_bot/share/sec_bot/description/inertial_macros.xacro
+[0.762s] -- Up-to-date: /home/user/Downloads/sec_bot/install/sec_bot/share/sec_bot/launch
+[0.762s] -- Installing: /home/user/Downloads/sec_bot/install/sec_bot/share/sec_bot/launch/launch_sim.launch.py
+[0.762s] -- Installing: /home/user/Downloads/sec_bot/install/sec_bot/share/sec_bot/launch/camera.launch.py
+[0.762s] -- Installing: /home/user/Downloads/sec_bot/install/sec_bot/share/sec_bot/launch/rsp.launch.py
+[0.762s] -- Installing: /home/user/Downloads/sec_bot/install/sec_bot/share/sec_bot/launch/sec_bot.launch
+[0.762s] -- Up-to-date: /home/user/Downloads/sec_bot/install/sec_bot/share/sec_bot/worlds
+[0.762s] -- Installing: /home/user/Downloads/sec_bot/install/sec_bot/share/sec_bot/worlds/empty.world
+[0.762s] -- Installing: /home/user/Downloads/sec_bot/install/sec_bot/share/ament_index/resource_index/package_run_dependencies/sec_bot
+[0.762s] -- Installing: /home/user/Downloads/sec_bot/install/sec_bot/share/ament_index/resource_index/parent_prefix_path/sec_bot
+[0.763s] -- Installing: /home/user/Downloads/sec_bot/install/sec_bot/share/sec_bot/environment/ament_prefix_path.dsv
+[0.763s] -- Installing: /home/user/Downloads/sec_bot/install/sec_bot/share/sec_bot/environment/path.dsv
+[0.763s] -- Installing: /home/user/Downloads/sec_bot/install/sec_bot/share/sec_bot/local_setup.bash
+[0.763s] -- Installing: /home/user/Downloads/sec_bot/install/sec_bot/share/sec_bot/local_setup.sh
+[0.764s] -- Installing: /home/user/Downloads/sec_bot/install/sec_bot/share/sec_bot/local_setup.zsh
+[0.764s] -- Installing: /home/user/Downloads/sec_bot/install/sec_bot/share/sec_bot/local_setup.dsv
+[0.764s] -- Installing: /home/user/Downloads/sec_bot/install/sec_bot/share/sec_bot/package.dsv
+[0.764s] -- Installing: /home/user/Downloads/sec_bot/install/sec_bot/share/ament_index/resource_index/packages/sec_bot
+[0.764s] -- Installing: /home/user/Downloads/sec_bot/install/sec_bot/share/sec_bot/cmake/sec_botConfig.cmake
+[0.764s] -- Installing: /home/user/Downloads/sec_bot/install/sec_bot/share/sec_bot/cmake/sec_botConfig-version.cmake
+[0.765s] -- Installing: /home/user/Downloads/sec_bot/install/sec_bot/share/sec_bot/package.xml
+[0.767s] Invoked command in '/home/user/Downloads/sec_bot/build/sec_bot' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/user/sec_bot/install/ball_tracker:/home/user/Desktop/sec_bot/install/ball_tracker:/opt/ros/humble /usr/bin/cmake --install /home/user/Downloads/sec_bot/build/sec_bot

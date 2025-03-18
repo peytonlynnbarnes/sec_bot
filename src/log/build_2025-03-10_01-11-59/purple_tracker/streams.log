@@ -1,0 +1,43 @@
+[0.770s] Invoking command in '/home/peyton/dev_ws/src/purple_tracker': PYTHONPATH=/home/peyton/dev_ws/src/build/purple_tracker/prefix_override:/home/peyton/.local/lib/python3.10/site-packages/colcon_core/task/python/colcon_distutils_commands:/home/peyton/dev_ws/src/install/purple_tracker/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../build/purple_tracker build --build-base /home/peyton/dev_ws/src/build/purple_tracker/build install --record /home/peyton/dev_ws/src/build/purple_tracker/install.log --single-version-externally-managed install_data
+[0.941s] running egg_info
+[0.941s] creating ../build/purple_tracker/purple_tracker.egg-info
+[0.942s] writing ../build/purple_tracker/purple_tracker.egg-info/PKG-INFO
+[0.943s] writing dependency_links to ../build/purple_tracker/purple_tracker.egg-info/dependency_links.txt
+[0.943s] writing entry points to ../build/purple_tracker/purple_tracker.egg-info/entry_points.txt
+[0.943s] writing requirements to ../build/purple_tracker/purple_tracker.egg-info/requires.txt
+[0.943s] writing top-level names to ../build/purple_tracker/purple_tracker.egg-info/top_level.txt
+[0.943s] writing manifest file '../build/purple_tracker/purple_tracker.egg-info/SOURCES.txt'
+[0.944s] reading manifest file '../build/purple_tracker/purple_tracker.egg-info/SOURCES.txt'
+[0.944s] adding license file 'LICENSE'
+[0.945s] writing manifest file '../build/purple_tracker/purple_tracker.egg-info/SOURCES.txt'
+[0.945s] running build
+[0.945s] running build_py
+[0.945s] creating /home/peyton/dev_ws/src/build/purple_tracker/build
+[0.945s] creating /home/peyton/dev_ws/src/build/purple_tracker/build/lib
+[0.946s] creating /home/peyton/dev_ws/src/build/purple_tracker/build/lib/purple_tracker
+[0.947s] copying purple_tracker/follow_ball.py -> /home/peyton/dev_ws/src/build/purple_tracker/build/lib/purple_tracker
+[0.949s] copying purple_tracker/__init__.py -> /home/peyton/dev_ws/src/build/purple_tracker/build/lib/purple_tracker
+[0.949s] copying purple_tracker/process_image.py -> /home/peyton/dev_ws/src/build/purple_tracker/build/lib/purple_tracker
+[0.949s] copying purple_tracker/ball_tracker.py -> /home/peyton/dev_ws/src/build/purple_tracker/build/lib/purple_tracker
+[0.949s] running install
+[0.950s] running install_lib
+[0.950s] creating /home/peyton/dev_ws/src/install/purple_tracker/lib/python3.10/site-packages/purple_tracker
+[0.951s] copying /home/peyton/dev_ws/src/build/purple_tracker/build/lib/purple_tracker/follow_ball.py -> /home/peyton/dev_ws/src/install/purple_tracker/lib/python3.10/site-packages/purple_tracker
+[0.952s] copying /home/peyton/dev_ws/src/build/purple_tracker/build/lib/purple_tracker/__init__.py -> /home/peyton/dev_ws/src/install/purple_tracker/lib/python3.10/site-packages/purple_tracker
+[0.952s] copying /home/peyton/dev_ws/src/build/purple_tracker/build/lib/purple_tracker/process_image.py -> /home/peyton/dev_ws/src/install/purple_tracker/lib/python3.10/site-packages/purple_tracker
+[0.952s] copying /home/peyton/dev_ws/src/build/purple_tracker/build/lib/purple_tracker/ball_tracker.py -> /home/peyton/dev_ws/src/install/purple_tracker/lib/python3.10/site-packages/purple_tracker
+[0.954s] byte-compiling /home/peyton/dev_ws/src/install/purple_tracker/lib/python3.10/site-packages/purple_tracker/follow_ball.py to follow_ball.cpython-310.pyc
+[0.956s] byte-compiling /home/peyton/dev_ws/src/install/purple_tracker/lib/python3.10/site-packages/purple_tracker/__init__.py to __init__.cpython-310.pyc
+[0.957s] byte-compiling /home/peyton/dev_ws/src/install/purple_tracker/lib/python3.10/site-packages/purple_tracker/process_image.py to process_image.cpython-310.pyc
+[0.957s] byte-compiling /home/peyton/dev_ws/src/install/purple_tracker/lib/python3.10/site-packages/purple_tracker/ball_tracker.py to ball_tracker.cpython-310.pyc
+[0.957s] running install_data
+[0.958s] creating /home/peyton/dev_ws/src/install/purple_tracker/share/ament_index
+[0.958s] creating /home/peyton/dev_ws/src/install/purple_tracker/share/ament_index/resource_index
+[0.958s] creating /home/peyton/dev_ws/src/install/purple_tracker/share/ament_index/resource_index/packages
+[0.958s] copying resource/purple_tracker -> /home/peyton/dev_ws/src/install/purple_tracker/share/ament_index/resource_index/packages
+[0.959s] copying package.xml -> /home/peyton/dev_ws/src/install/purple_tracker/share/purple_tracker
+[0.959s] running install_egg_info
+[0.961s] Copying ../build/purple_tracker/purple_tracker.egg-info to /home/peyton/dev_ws/src/install/purple_tracker/lib/python3.10/site-packages/purple_tracker-0.0.0-py3.10.egg-info
+[0.962s] running install_scripts
+[0.978s] writing list of installed files to '/home/peyton/dev_ws/src/build/purple_tracker/install.log'
+[0.996s] Invoked command in '/home/peyton/dev_ws/src/purple_tracker' returned '0': PYTHONPATH=/home/peyton/dev_ws/src/build/purple_tracker/prefix_override:/home/peyton/.local/lib/python3.10/site-packages/colcon_core/task/python/colcon_distutils_commands:/home/peyton/dev_ws/src/install/purple_tracker/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../build/purple_tracker build --build-base /home/peyton/dev_ws/src/build/purple_tracker/build install --record /home/peyton/dev_ws/src/build/purple_tracker/install.log --single-version-externally-managed install_data

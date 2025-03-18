@@ -1,0 +1,36 @@
+[0.204s] Invoking command in '/home/peyton/dev_ws/src/build/sec_bot': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/peyton/dev_ws/src/build/sec_bot -- -j12 -l12
+[0.290s] Invoked command in '/home/peyton/dev_ws/src/build/sec_bot' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/peyton/dev_ws/src/build/sec_bot -- -j12 -l12
+[0.297s] Invoking command in '/home/peyton/dev_ws/src/build/sec_bot': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/peyton/dev_ws/src/build/sec_bot
+[0.302s] -- Install configuration: ""
+[0.303s] -- Up-to-date: /home/peyton/dev_ws/src/install/sec_bot/share/sec_bot/config
+[0.303s] -- Up-to-date: /home/peyton/dev_ws/src/install/sec_bot/share/sec_bot/config/empty.yaml
+[0.303s] -- Up-to-date: /home/peyton/dev_ws/src/install/sec_bot/share/sec_bot/config/view_bot.rviz
+[0.303s] -- Up-to-date: /home/peyton/dev_ws/src/install/sec_bot/share/sec_bot/description
+[0.303s] -- Up-to-date: /home/peyton/dev_ws/src/install/sec_bot/share/sec_bot/description/robot.urdf.xacro
+[0.303s] -- Up-to-date: /home/peyton/dev_ws/src/install/sec_bot/share/sec_bot/description/gazebo_control.xacro
+[0.303s] -- Up-to-date: /home/peyton/dev_ws/src/install/sec_bot/share/sec_bot/description/inertial_macros.xacro
+[0.303s] -- Up-to-date: /home/peyton/dev_ws/src/install/sec_bot/share/sec_bot/description/camera.xacro
+[0.304s] -- Up-to-date: /home/peyton/dev_ws/src/install/sec_bot/share/sec_bot/description/urdf_help.txt
+[0.304s] -- Up-to-date: /home/peyton/dev_ws/src/install/sec_bot/share/sec_bot/description/robot_core.xacro
+[0.304s] -- Up-to-date: /home/peyton/dev_ws/src/install/sec_bot/share/sec_bot/launch
+[0.304s] -- Up-to-date: /home/peyton/dev_ws/src/install/sec_bot/share/sec_bot/launch/rsp.launch.py
+[0.304s] -- Installing: /home/peyton/dev_ws/src/install/sec_bot/share/sec_bot/launch/ball_tracker_launch.py
+[0.304s] -- Up-to-date: /home/peyton/dev_ws/src/install/sec_bot/share/sec_bot/launch/launch_sim.launch.py
+[0.304s] -- Up-to-date: /home/peyton/dev_ws/src/install/sec_bot/share/sec_bot/worlds
+[0.304s] -- Up-to-date: /home/peyton/dev_ws/src/install/sec_bot/share/sec_bot/worlds/empty.world
+[0.304s] -- Up-to-date: /home/peyton/dev_ws/src/install/sec_bot/share/ament_index/resource_index/package_run_dependencies/sec_bot
+[0.304s] -- Up-to-date: /home/peyton/dev_ws/src/install/sec_bot/share/ament_index/resource_index/parent_prefix_path/sec_bot
+[0.304s] -- Up-to-date: /home/peyton/dev_ws/src/install/sec_bot/share/sec_bot/environment/ament_prefix_path.sh
+[0.305s] -- Up-to-date: /home/peyton/dev_ws/src/install/sec_bot/share/sec_bot/environment/ament_prefix_path.dsv
+[0.305s] -- Up-to-date: /home/peyton/dev_ws/src/install/sec_bot/share/sec_bot/environment/path.sh
+[0.305s] -- Up-to-date: /home/peyton/dev_ws/src/install/sec_bot/share/sec_bot/environment/path.dsv
+[0.305s] -- Up-to-date: /home/peyton/dev_ws/src/install/sec_bot/share/sec_bot/local_setup.bash
+[0.306s] -- Up-to-date: /home/peyton/dev_ws/src/install/sec_bot/share/sec_bot/local_setup.sh
+[0.306s] -- Up-to-date: /home/peyton/dev_ws/src/install/sec_bot/share/sec_bot/local_setup.zsh
+[0.306s] -- Up-to-date: /home/peyton/dev_ws/src/install/sec_bot/share/sec_bot/local_setup.dsv
+[0.306s] -- Up-to-date: /home/peyton/dev_ws/src/install/sec_bot/share/sec_bot/package.dsv
+[0.307s] -- Up-to-date: /home/peyton/dev_ws/src/install/sec_bot/share/ament_index/resource_index/packages/sec_bot
+[0.307s] -- Up-to-date: /home/peyton/dev_ws/src/install/sec_bot/share/sec_bot/cmake/sec_botConfig.cmake
+[0.307s] -- Up-to-date: /home/peyton/dev_ws/src/install/sec_bot/share/sec_bot/cmake/sec_botConfig-version.cmake
+[0.307s] -- Up-to-date: /home/peyton/dev_ws/src/install/sec_bot/share/sec_bot/package.xml
+[0.307s] Invoked command in '/home/peyton/dev_ws/src/build/sec_bot' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/peyton/dev_ws/src/build/sec_bot

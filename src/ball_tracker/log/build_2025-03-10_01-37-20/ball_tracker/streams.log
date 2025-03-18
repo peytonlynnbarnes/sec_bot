@@ -1,0 +1,47 @@
+[0.506s] Invoking command in '/home/peyton/dev_ws/src/ball_tracker': PYTHONPATH=/home/peyton/dev_ws/src/ball_tracker/build/ball_tracker/prefix_override:/home/peyton/.local/lib/python3.10/site-packages/colcon_core/task/python/colcon_distutils_commands:/home/peyton/dev_ws/src/ball_tracker/install/ball_tracker/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base build/ball_tracker build --build-base /home/peyton/dev_ws/src/ball_tracker/build/ball_tracker/build install --record /home/peyton/dev_ws/src/ball_tracker/build/ball_tracker/install.log --single-version-externally-managed install_data
+[0.686s] running egg_info
+[0.686s] creating build/ball_tracker/ball_tracker.egg-info
+[0.686s] writing build/ball_tracker/ball_tracker.egg-info/PKG-INFO
+[0.687s] writing dependency_links to build/ball_tracker/ball_tracker.egg-info/dependency_links.txt
+[0.687s] writing entry points to build/ball_tracker/ball_tracker.egg-info/entry_points.txt
+[0.687s] writing requirements to build/ball_tracker/ball_tracker.egg-info/requires.txt
+[0.687s] writing top-level names to build/ball_tracker/ball_tracker.egg-info/top_level.txt
+[0.687s] writing manifest file 'build/ball_tracker/ball_tracker.egg-info/SOURCES.txt'
+[0.689s] reading manifest file 'build/ball_tracker/ball_tracker.egg-info/SOURCES.txt'
+[0.689s] adding license file 'LICENSE'
+[0.689s] writing manifest file 'build/ball_tracker/ball_tracker.egg-info/SOURCES.txt'
+[0.689s] running build
+[0.690s] running build_py
+[0.690s] creating /home/peyton/dev_ws/src/ball_tracker/build/ball_tracker/build
+[0.690s] creating /home/peyton/dev_ws/src/ball_tracker/build/ball_tracker/build/lib
+[0.690s] creating /home/peyton/dev_ws/src/ball_tracker/build/ball_tracker/build/lib/ball_tracker
+[0.690s] copying ball_tracker/follow_ball.py -> /home/peyton/dev_ws/src/ball_tracker/build/ball_tracker/build/lib/ball_tracker
+[0.691s] copying ball_tracker/__init__.py -> /home/peyton/dev_ws/src/ball_tracker/build/ball_tracker/build/lib/ball_tracker
+[0.691s] copying ball_tracker/detect_ball_3d.py -> /home/peyton/dev_ws/src/ball_tracker/build/ball_tracker/build/lib/ball_tracker
+[0.692s] copying ball_tracker/detect_ball.py -> /home/peyton/dev_ws/src/ball_tracker/build/ball_tracker/build/lib/ball_tracker
+[0.692s] copying ball_tracker/process_image.py -> /home/peyton/dev_ws/src/ball_tracker/build/ball_tracker/build/lib/ball_tracker
+[0.692s] running install
+[0.693s] running install_lib
+[0.694s] creating /home/peyton/dev_ws/src/ball_tracker/install/ball_tracker/lib/python3.10/site-packages/ball_tracker
+[0.694s] copying /home/peyton/dev_ws/src/ball_tracker/build/ball_tracker/build/lib/ball_tracker/follow_ball.py -> /home/peyton/dev_ws/src/ball_tracker/install/ball_tracker/lib/python3.10/site-packages/ball_tracker
+[0.694s] copying /home/peyton/dev_ws/src/ball_tracker/build/ball_tracker/build/lib/ball_tracker/__init__.py -> /home/peyton/dev_ws/src/ball_tracker/install/ball_tracker/lib/python3.10/site-packages/ball_tracker
+[0.694s] copying /home/peyton/dev_ws/src/ball_tracker/build/ball_tracker/build/lib/ball_tracker/detect_ball_3d.py -> /home/peyton/dev_ws/src/ball_tracker/install/ball_tracker/lib/python3.10/site-packages/ball_tracker
+[0.694s] copying /home/peyton/dev_ws/src/ball_tracker/build/ball_tracker/build/lib/ball_tracker/detect_ball.py -> /home/peyton/dev_ws/src/ball_tracker/install/ball_tracker/lib/python3.10/site-packages/ball_tracker
+[0.694s] copying /home/peyton/dev_ws/src/ball_tracker/build/ball_tracker/build/lib/ball_tracker/process_image.py -> /home/peyton/dev_ws/src/ball_tracker/install/ball_tracker/lib/python3.10/site-packages/ball_tracker
+[0.695s] byte-compiling /home/peyton/dev_ws/src/ball_tracker/install/ball_tracker/lib/python3.10/site-packages/ball_tracker/follow_ball.py to follow_ball.cpython-310.pyc
+[0.695s] byte-compiling /home/peyton/dev_ws/src/ball_tracker/install/ball_tracker/lib/python3.10/site-packages/ball_tracker/__init__.py to __init__.cpython-310.pyc
+[0.696s] byte-compiling /home/peyton/dev_ws/src/ball_tracker/install/ball_tracker/lib/python3.10/site-packages/ball_tracker/detect_ball_3d.py to detect_ball_3d.cpython-310.pyc
+[0.696s] byte-compiling /home/peyton/dev_ws/src/ball_tracker/install/ball_tracker/lib/python3.10/site-packages/ball_tracker/detect_ball.py to detect_ball.cpython-310.pyc
+[0.697s] byte-compiling /home/peyton/dev_ws/src/ball_tracker/install/ball_tracker/lib/python3.10/site-packages/ball_tracker/process_image.py to process_image.cpython-310.pyc
+[0.697s] running install_data
+[0.698s] creating /home/peyton/dev_ws/src/ball_tracker/install/ball_tracker/share/ament_index
+[0.698s] creating /home/peyton/dev_ws/src/ball_tracker/install/ball_tracker/share/ament_index/resource_index
+[0.698s] creating /home/peyton/dev_ws/src/ball_tracker/install/ball_tracker/share/ament_index/resource_index/packages
+[0.698s] copying resource/ball_tracker -> /home/peyton/dev_ws/src/ball_tracker/install/ball_tracker/share/ament_index/resource_index/packages
+[0.698s] copying package.xml -> /home/peyton/dev_ws/src/ball_tracker/install/ball_tracker/share/ball_tracker
+[0.698s] running install_egg_info
+[0.699s] Copying build/ball_tracker/ball_tracker.egg-info to /home/peyton/dev_ws/src/ball_tracker/install/ball_tracker/lib/python3.10/site-packages/ball_tracker-0.0.0-py3.10.egg-info
+[0.700s] running install_scripts
+[0.715s] Installing my_node script to /home/peyton/dev_ws/src/ball_tracker/install/ball_tracker/lib/ball_tracker
+[0.715s] writing list of installed files to '/home/peyton/dev_ws/src/ball_tracker/build/ball_tracker/install.log'
+[0.737s] Invoked command in '/home/peyton/dev_ws/src/ball_tracker' returned '0': PYTHONPATH=/home/peyton/dev_ws/src/ball_tracker/build/ball_tracker/prefix_override:/home/peyton/.local/lib/python3.10/site-packages/colcon_core/task/python/colcon_distutils_commands:/home/peyton/dev_ws/src/ball_tracker/install/ball_tracker/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base build/ball_tracker build --build-base /home/peyton/dev_ws/src/ball_tracker/build/ball_tracker/build install --record /home/peyton/dev_ws/src/ball_tracker/build/ball_tracker/install.log --single-version-externally-managed install_data

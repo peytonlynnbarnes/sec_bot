@@ -1,0 +1,6 @@
+Invoking command in '/home/peyton/dev_ws/src/sec_bot/build/sec_bot': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /home/peyton/dev_ws/src/sec_bot -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/peyton/dev_ws/src/sec_bot/install/sec_bot
+Invoked command in '/home/peyton/dev_ws/src/sec_bot/build/sec_bot' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /home/peyton/dev_ws/src/sec_bot -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/peyton/dev_ws/src/sec_bot/install/sec_bot
+Invoking command in '/home/peyton/dev_ws/src/sec_bot/build/sec_bot': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/peyton/dev_ws/src/sec_bot/build/sec_bot -- -j12 -l12
+Invoked command in '/home/peyton/dev_ws/src/sec_bot/build/sec_bot' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/peyton/dev_ws/src/sec_bot/build/sec_bot -- -j12 -l12
+Invoking command in '/home/peyton/dev_ws/src/sec_bot/build/sec_bot': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/peyton/dev_ws/src/sec_bot/build/sec_bot
+Invoked command in '/home/peyton/dev_ws/src/sec_bot/build/sec_bot' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/peyton/dev_ws/src/sec_bot/build/sec_bot

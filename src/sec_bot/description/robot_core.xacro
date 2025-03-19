@@ -30,7 +30,7 @@
   <joint name="chassis_joint" type="fixed">
     <parent link="base_link"/>
     <child link="chassis"/>
-    <origin xyz="5 0 0"/>
+    <origin xyz="-0.1 0 0"/>
   </joint>
 
 <link name="chassis">
@@ -44,7 +44,7 @@
 
   <xacro:inertial_box 
     mass="0.5" 
-    x="0.3" 
+    x="6" 
     y="0.3" 
     z="0.15" 
     origin_xyz='0.15 0 0.075'

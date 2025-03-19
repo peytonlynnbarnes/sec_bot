@@ -4,7 +4,7 @@
     <!-- Define PI if not already defined -->
     <xacro:property name="PI" value="3.1415926535897931" />
 
-    <material name="red">
+    <material name="gaezbo_red">
       <color rgba="1 0 0 1"/>
     </material>
 
@@ -20,7 +20,7 @@
             <geometry>
                 <box size="0.010 0.03 0.03"/>
             </geometry>
-            <material name="red"/>
+            <material name="gazebo_red"/>
         </visual>
         <collision>
             <geometry>
@@ -77,7 +77,7 @@
             <geometry>
                 <box size="0.010 0.03 0.03"/>
             </geometry>
-            <material name="red"/>
+            <material name="gazebo_red"/>
         </visual>
         <collision>
             <geometry>

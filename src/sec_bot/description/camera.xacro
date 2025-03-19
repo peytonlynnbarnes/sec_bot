@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" >
 
-    <material name="red">
+    <material name="camera_red">
       <color rgba="1 0 0 1"/>
     </material>
 
@@ -17,7 +17,7 @@
             <geometry>
                 <box size="0.010 0.03 0.03"/>
             </geometry>
-            <material name="red"/>
+            <material name="camera_red"/>
         </visual>
     </link>
 
@@ -68,7 +68,7 @@
             <geometry>
                 <box size="0.010 0.03 0.03"/>
             </geometry>
-            <material name="red"/>
+            <material name="camera_red"/>
         </visual>
     </link>
 

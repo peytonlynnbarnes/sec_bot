@@ -33,4 +33,15 @@
     </inertial>
   </xacro:macro>
 
+  <!-- sphere inertial macro with explicit origin parameters -->
+  <xacro:macro name="inertial_sphere" params="mass radius *origin">
+      <inertial>
+          <xacro:insert_block name="origin"/>
+          <mass value="${mass}" />
+          <inertia ixx="${(2/5) * mass * (radius*radius)}" ixy="0.0" ixz="0.0"
+                  iyy="${(2/5) * mass * (radius*radius)}" iyz="0.0"
+                  izz="${(2/5) * mass * (radius*radius)}" />
+      </inertial>
+    </xacro:macro>  
+
 </robot>

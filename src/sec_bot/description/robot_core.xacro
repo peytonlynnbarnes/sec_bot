@@ -40,22 +40,19 @@
 
   <link name="chassis">
     <visual>
+      <origin xyz="0 0 0.125"/>  <!-- Center the visual on the Z-axis -->
       <geometry><box size="0.3 0.3 0.25"/></geometry>
       <material name="white"/>
     </visual>
     <collision>
+      <origin xyz="0 0 0.125"/>  <!-- Center the collision on the Z-axis -->
       <geometry><box size="0.3 0.3 0.25"/></geometry>
     </collision>
-
-    <xacro:inertial_box 
-      mass="0.5" 
-      x="0.3" 
-      y="0.3" 
-      z="0.15" 
-      origin_xyz='0.15 0 0.075'
-      origin_rpy='0 0 0'
-      />
-
+    <inertial>
+      <mass value="1.0"/>
+      <origin xyz="0 0 0.125"/>  <!-- Center the inertial on the Z-axis -->
+      <inertia ixx="0.015" ixy="0" ixz="0" iyy="0.0375" iyz="0" izz="0.0375"/>
+    </inertial>
   </link>
 
   <!-- Wheels & Transmissions -->

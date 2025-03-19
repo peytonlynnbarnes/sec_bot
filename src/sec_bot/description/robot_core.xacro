@@ -100,4 +100,39 @@
   <xacro:full_wheel name="right_front_wheel" parent="chassis" 
     origin="${right_front_wheel_pos}" rpy="${M_PI/2} 0 0"/>
 
+  <!-- Add this to your robot_core.xacro file -->
+  <gazebo reference="chassis">
+    <material>Gazebo/White</material>
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <selfCollide>true</selfCollide>
+  </gazebo>
+
+  <gazebo reference="left_back_wheel">
+    <material>Gazebo/Blue</material>
+    <mu1>1.0</mu1>
+    <mu2>1.0</mu2>
+    <selfCollide>true</selfCollide>
+  </gazebo>
+
+  <gazebo reference="right_back_wheel">
+    <material>Gazebo/Blue</material>
+    <mu1>1.0</mu1>
+    <mu2>1.0</mu2>
+    <selfCollide>true</selfCollide>
+  </gazebo>
+
+  <gazebo reference="left_front_wheel">
+    <material>Gazebo/Blue</material>
+    <mu1>1.0</mu1>
+    <mu2>1.0</mu2>
+    <selfCollide>true</selfCollide>
+  </gazebo>
+
+  <gazebo reference="right_front_wheel">
+    <material>Gazebo/Blue</material>
+    <mu1>1.0</mu1>
+    <mu2>1.0</mu2>
+    <selfCollide>true</selfCollide>
+  </gazebo>
 </robot>

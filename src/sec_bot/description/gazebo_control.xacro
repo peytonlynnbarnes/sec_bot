@@ -27,8 +27,8 @@
         right_back_wheel_joint
       </right_joint>
 
-      <!-- Wheel Definitions -->
-      <wheel_seperation>0.2800484</wheel_seperation>
+      <!-- Wheel Definitions - corrected to match visual dimensions -->
+      <wheel_seperation>0.35</wheel_seperation>
       <wheel_diameter>0.1651</wheel_diameter>
 
       <!-- Limits -->

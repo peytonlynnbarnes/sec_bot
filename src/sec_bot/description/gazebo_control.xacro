@@ -1,49 +1,125 @@
 <?xml version="1.0"?>
-<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" >
 
-  <gazebo>
-    <!-- ROS 2 control Gazebo plugin -->
-    <plugin name="gazebo_ros2_control" filename="libgazebo_ros2_control.so">
+    <!-- Define pi if not already defined -->
+    <xacro:property name="pi" value="3.1415926535897931" />
 
-      <!-- Path to controller configuration YAML -->
-      <!-- <parameters>$(find sec_bot)/config/controllers.yaml</parameters> -->
+    <material name="red">
+      <color rgba="1 0 0 1"/>
+    </material>
 
-      <!-- 2 wheels per side -->
-      <num_wheel_pairs>2</num_wheel_pairs>
+    <!-- Left Camera: Positioned on top-left corner of chassis -->
+    <joint name="camera_joint" type="fixed">
+        <parent link="chassis"/>
+        <child link="camera_link"/>
+        <origin xyz="0.12 0.12 0.25" rpy="0 0 0"/>  <!-- Moved to top-left of chassis -->
+    </joint>
 
-      <!-- Left Wheels -->
-      <left_joint>
-        left_front_wheel_joint
-      </left_joint>
-      <left_joint>
-        left_back_wheel_joint
-      </left_joint>
+    <link name="camera_link">
+        <visual>
+            <geometry>
+                <box size="0.010 0.03 0.03"/>
+            </geometry>
+            <material name="red"/>
+        </visual>
+        <collision>
+            <geometry>
+                <box size="0.010 0.03 0.03"/>
+            </geometry>
+        </collision>
+        <inertial>
+            <mass value="0.05"/>
+            <inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.0001" iyz="0" izz="0.0001"/>
+        </inertial>
+    </link>
 
-      <!-- Right Wheels -->
-      <right_joint>
-        right_front_wheel_joint
-      </right_joint>
-      <right_joint>
-        right_back_wheel_joint
-      </right_joint>
+    <joint name="camera_optical_joint" type="fixed">
+        <parent link="camera_link"/>
+        <child link="camera_link_optical"/>
+        <origin xyz="0 0 0" rpy="${-pi/2} 0 ${-pi/2}"/>
+    </joint>
 
-      <!-- Wheel Definitions - corrected to match visual dimensions -->
-      <wheel_seperation>0.35</wheel_seperation>
-      <wheel_diameter>0.1651</wheel_diameter>
+    <link name="camera_link_optical"></link>
 
-      <!-- Limits -->
-      <max_wheel_torque>200</max_wheel_torque>
-      <max_wheel_acceleration>10</max_wheel_acceleration>
+    <gazebo reference="camera_link">
+        <material>Gazebo/Red</material>
+        <sensor name="camera" type="camera">
+            <pose> 0 0 0 0 0 0 </pose>
+            <visualize>true</visualize>
+            <update_rate>10</update_rate>
+            <camera>
+                <horizontal_fov>1.089</horizontal_fov>
+                <image>
+                    <format>R8G8B8</format>
+                    <width>640</width>
+                    <height>480</height>
+                </image>
+                <clip>
+                    <near>0.05</near>
+                    <far>8.0</far>
+                </clip>
+            </camera>
+            <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+                <frame_name>camera_link_optical</frame_name>
+            </plugin>
+        </sensor>
+    </gazebo>
 
-      <!-- Output -->
-      <odometry_frame>odom</odometry_frame>
-      <robot_base_frame>base_link</robot_base_frame>
+    <!-- Right Camera: Positioned on top-right corner of chassis -->
+    <joint name="camera2_joint" type="fixed">
+        <parent link="chassis"/>
+        <child link="camera2_link"/>
+        <origin xyz="0.12 -0.12 0.25" rpy="0 0 0"/>  <!-- Moved to top-right of chassis -->
+    </joint>
 
-      <publish_odom>true</publish_odom>
-      <publish_odom_tf>true</publish_odom_tf>
-      <publish_wheel_tf>true</publish_wheel_tf>
+    <link name="camera2_link">
+        <visual>
+            <geometry>
+                <box size="0.010 0.03 0.03"/>
+            </geometry>
+            <material name="red"/>
+        </visual>
+        <collision>
+            <geometry>
+                <box size="0.010 0.03 0.03"/>
+            </geometry>
+        </collision>
+        <inertial>
+            <mass value="0.05"/>
+            <inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.0001" iyz="0" izz="0.0001"/>
+        </inertial>
+    </link>
 
-    </plugin>
-  </gazebo>
+    <joint name="camera2_optical_joint" type="fixed">
+        <parent link="camera2_link"/>
+        <child link="camera2_link_optical"/>
+        <origin xyz="0 0 0" rpy="${-pi/2} 0 ${-pi/2}"/>
+    </joint>
+
+    <link name="camera2_link_optical"></link>
+
+    <gazebo reference="camera2_link">
+        <material>Gazebo/Red</material>
+        <sensor name="camera2" type="camera">
+            <pose> 0 0 0 0 0 0 </pose>
+            <visualize>true</visualize>
+            <update_rate>10</update_rate>
+            <camera>
+                <horizontal_fov>1.089</horizontal_fov>
+                <image>
+                    <format>R8G8B8</format>
+                    <width>640</width>
+                    <height>480</height>
+                </image>
+                <clip>
+                    <near>0.05</near>
+                    <far>8.0</far>
+                </clip>
+            </camera>
+            <plugin name="camera2_controller" filename="libgazebo_ros_camera.so">
+                <frame_name>camera2_link_optical</frame_name>
+            </plugin>
+        </sensor>
+    </gazebo>
 
 </robot>

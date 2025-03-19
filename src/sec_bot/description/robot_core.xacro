@@ -4,14 +4,15 @@
   <!-- Includes -->
   <xacro:include filename="inertial_macros.xacro"/>
   <xacro:include filename="gazebo_control.xacro"/>
+  <xacro:include filename="camera.xacro"/>  <!-- Include the camera file -->
 
   <!-- Parameters -->
   <xacro:property name="M_PI" value="3.1415926535897931" />
-  <!-- Corrected wheel positions to match image -->
-  <xacro:property name="left_back_wheel_pos" value="-0.15 0.175 0"/>
-  <xacro:property name="right_back_wheel_pos" value="-0.15 -0.175 0"/>
-  <xacro:property name="left_front_wheel_pos" value="0.15 0.175 0"/>
-  <xacro:property name="right_front_wheel_pos" value="0.15 -0.175 0"/>
+  <!-- Wheel positions adjusted to show all 4 wheels -->
+  <xacro:property name="left_back_wheel_pos" value="-0.1 0.175 0"/>
+  <xacro:property name="right_back_wheel_pos" value="-0.1 -0.175 0"/>
+  <xacro:property name="left_front_wheel_pos" value="0.1 0.175 0"/>
+  <xacro:property name="right_front_wheel_pos" value="0.1 -0.175 0"/>
 
   <!-- Materials -->
   <material name="white"><color rgba="1 1 1 1"/></material>

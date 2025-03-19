@@ -46,8 +46,8 @@
     mass="0.5" 
     x="0.3" 
     y="0.3" 
-    z="0.25" 
-    origin_xyz='0 0 0.125'
+    z="0.15" 
+    origin_xyz='0.15 0 0.075'
     origin_rpy='0 0 0'
   />
 </link>

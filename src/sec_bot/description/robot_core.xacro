@@ -24,20 +24,7 @@
     <origin xyz="0 0 0.05"/>
   </joint> -->
 
-  <link name="base_link">
-    <visual>
-      <geometry><box size="0.01 0.01 0.01"/></geometry> <!-- Small placeholder -->
-    </visual>
-    <collision>
-      <geometry><box size="0.01 0.01 0.01"/></geometry>
-    </collision>
-    <xacro:inertial_box 
-      mass="0.01"
-      x="0.01" y="0.01" z="0.01" 
-      origin_xyz="0 0 0" 
-      origin_rpy="0 0 0"
-    />
-  </link>
+  <link name="base_link"/>
 
   <!-- Chassis -->
   <joint name="chassis_joint" type="fixed">

@@ -24,42 +24,47 @@
     <origin xyz="0 0 0.05"/>
   </joint> -->
 
-  <link name="base_link"/>
+  <link name="base_link">
+    <!-- Add an empty but valid inertial element -->
+    <inertial>
+      <mass value="0.001"/>
+      <inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.0001" iyz="0" izz="0.0001"/>
+    </inertial>
+  </link>
 
-  <!-- Chassis -->
   <joint name="chassis_joint" type="fixed">
     <parent link="base_link"/>
     <child link="chassis"/>
-    <origin xyz="-0.1 0 0"/>
+    <origin xyz="-0.1 0 0.05"/>  <!-- Raise it slightly above ground -->
   </joint>
 
-<link name="chassis">
-  <visual>
-    <geometry><box size="0.3 0.3 0.25"/></geometry>
-    <material name="white"/>
-  </visual>
-  <collision>
-    <geometry><box size="0.3 0.3 0.25"/></geometry>
-  </collision>
+  <link name="chassis">
+    <visual>
+      <geometry><box size="0.3 0.3 0.25"/></geometry>
+      <material name="white"/>
+    </visual>
+    <collision>
+      <geometry><box size="0.3 0.3 0.25"/></geometry>
+    </collision>
 
-  <xacro:inertial_box 
-    mass="0.5" 
-    x="0.3" 
-    y="0.3" 
-    z="0.15" 
-    origin_xyz='0.15 0 0.075'
-    origin_rpy='0 0 0'
-    />
+    <xacro:inertial_box 
+      mass="0.5" 
+      x="0.3" 
+      y="0.3" 
+      z="0.15" 
+      origin_xyz='0.15 0 0.075'
+      origin_rpy='0 0 0'
+      />
 
-</link>
+  </link>
 
   <!-- Wheels & Transmissions -->
   <xacro:macro name="full_wheel" params="name parent origin rpy">
     <joint name="${name}_joint" type="continuous">
-      <parent link="${parent}"/>
-      <child link="${name}"/>
-      <origin xyz="${origin}" rpy="${rpy}"/>
-      <axis xyz="0 0 1"/>  <!-- Use a proper unit vector for rotation axis -->
+        <parent link="${parent}"/>
+        <child link="${name}"/>
+        <origin xyz="${origin}" rpy="${rpy}"/>
+        <axis xyz="0 1 0"/>  <!-- This is for wheels that rotate around Y axis -->
     </joint>
 
     <link name="${name}">

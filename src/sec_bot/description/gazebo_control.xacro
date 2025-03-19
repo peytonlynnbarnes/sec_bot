@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" >
 
-    <!-- Define pi if not already defined -->
-    <xacro:property name="pi" value="3.1415926535897931" />
+    <!-- Define PI if not already defined -->
+    <xacro:property name="PI" value="3.1415926535897931" />
 
     <material name="red">
       <color rgba="1 0 0 1"/>
@@ -36,7 +36,7 @@
     <joint name="camera_optical_joint" type="fixed">
         <parent link="camera_link"/>
         <child link="camera_link_optical"/>
-        <origin xyz="0 0 0" rpy="${-pi/2} 0 ${-pi/2}"/>
+        <origin xyz="0 0 0" rpy="${-PI/2} 0 ${-PI/2}"/>
     </joint>
 
     <link name="camera_link_optical"></link>
@@ -93,7 +93,7 @@
     <joint name="camera2_optical_joint" type="fixed">
         <parent link="camera2_link"/>
         <child link="camera2_link_optical"/>
-        <origin xyz="0 0 0" rpy="${-pi/2} 0 ${-pi/2}"/>
+        <origin xyz="0 0 0" rpy="${-PI/2} 0 ${-PI/2}"/>
     </joint>
 
     <link name="camera2_link_optical"></link>

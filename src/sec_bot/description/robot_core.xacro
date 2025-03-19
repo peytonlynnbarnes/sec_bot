@@ -47,7 +47,7 @@
     x="0.3" 
     y="0.3" 
     z="0.25" 
-    origin_xyz='0 0 0.125'
+    origin_xyz='0 0 0'
     origin_rpy='0 0 0'
   />
 </link>

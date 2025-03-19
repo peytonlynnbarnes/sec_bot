@@ -4,8 +4,45 @@
   <gazebo>
     <!-- ROS 2 control Gazebo plugin -->
     <plugin name="gazebo_ros2_control" filename="libgazebo_ros2_control.so">
+
       <!-- Path to controller configuration YAML -->
-      <parameters>$(find sec_bot)/config/controllers.yaml</parameters>
+      <!-- <parameters>$(find sec_bot)/config/controllers.yaml</parameters> -->
+
+      <!-- 2 wheels per side -->
+      <num_wheel_pairs>2</num_wheel_pairs>
+
+      <!-- Left Wheels -->
+      <left_joint>
+        left_front_wheel_joint
+      </left_joint>
+      <left_joint>
+        left_back_wheel_joint
+      </left_joint>
+
+      <!-- Right Wheels -->
+      <right_joint>
+        right_front_wheel_joint
+      </right_joint>
+      <right_joint>
+        right_back_wheel_joint
+      </right_joint>
+
+      <!-- Wheel Definitions -->
+      <wheel_seperation>0.2800484</wheel_seperation>
+      <wheel_diameter>0.1651</wheel_diameter>
+
+      <!-- Limits -->
+      <max_wheel_torque>200</max_wheel_torque>
+      <max_wheel_acceleration>10</max_wheel_acceleration>
+
+      <!-- Output -->
+      <odometry_frame>odom</odometry_frame>
+      <robot_base_frame>base_link</robot_base_frame>
+
+      <publish_odom>true</publish_odom>
+      <publish_odom_tf>true</publish_odom_tf>
+      <publish_wheel_tf>true</publish_wheel_tf>
+
     </plugin>
   </gazebo>
 

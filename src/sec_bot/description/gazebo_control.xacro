@@ -4,7 +4,7 @@
     <!-- Define PI if not already defined -->
     <xacro:property name="PI" value="3.1415926535897931" />
 
-    <material name="gaezbo_red">
+    <material name="gazebo_red">
       <color rgba="1 0 0 1"/>
     </material>
 

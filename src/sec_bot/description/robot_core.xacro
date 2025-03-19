@@ -91,12 +91,13 @@
 
   <!-- Instantiate Wheels -->
   <xacro:full_wheel name="left_back_wheel" parent="chassis" 
-                    origin="${left_back_wheel_pos}" rpy="${-(M_PI/2)} 0 0"/>
+    origin="${left_back_wheel_pos}" rpy="${-(M_PI/2} 0 0"/>
   <xacro:full_wheel name="right_back_wheel" parent="chassis" 
-                    origin="${right_back_wheel_pos}" rpy="${M_PI/2} 0 0"/>
+    origin="${right_back_wheel_pos}" rpy="${M_PI/2} 0 0"/>
+
   <xacro:full_wheel name="left_front_wheel" parent="chassis" 
-                    origin="${left_front_wheel_pos}" rpy="${-(M_PI/2)} 0 0"/>
+    origin="${left_front_wheel_pos}" rpy="${-(M_PI/2)} 0 0"/>
   <xacro:full_wheel name="right_front_wheel" parent="chassis" 
-                    origin="${right_front_wheel_pos}" rpy="${M_PI/2} 0 0"/>
+    origin="${right_front_wheel_pos}" rpy="${M_PI/2} 0 0"/>
 
 </robot>

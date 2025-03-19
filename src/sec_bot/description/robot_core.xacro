@@ -54,12 +54,12 @@
 </link>
 
   <!-- Wheels & Transmissions -->
-  <xacro:macro name="full_wheel" params="name parent origin rpy axis">
+  <xacro:macro name="full_wheel" params="name parent origin rpy">
     <joint name="${name}_joint" type="continuous">
       <parent link="${parent}"/>
       <child link="${name}"/>
       <origin xyz="${origin}" rpy="${rpy}"/>
-      <axis xyz="${axis}"/>
+      <axis xyz="0 0 1"/>  <!-- Use a proper unit vector for rotation axis -->
     </joint>
 
     <link name="${name}">

@@ -17,12 +17,12 @@
   <material name="blue"><color rgba="0.2 0.2 1 1"/></material>
 
   <!-- Base Structure -->
-  <link name="base_footprint"/>
+  <!--- <link name="base_footprint"/>
   <joint name="base_footprint_joint" type="fixed">
     <parent link="base_footprint"/>
     <child link="base_link"/>
     <origin xyz="0 0 0.05"/>
-  </joint>
+  </joint> -->
 
   <link name="base_link"/>
 

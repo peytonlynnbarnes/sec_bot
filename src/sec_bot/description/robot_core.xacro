@@ -7,25 +7,18 @@
 
   <!-- Parameters -->
   <xacro:property name="M_PI" value="3.1415926535897931" />
-  <xacro:property name="left_back_wheel_pos" value="-0.02 0.175 0"/>
-  <xacro:property name="right_back_wheel_pos" value="-0.02 -0.175 0"/>
-  <xacro:property name="left_front_wheel_pos" value="0.2 0.175 0"/>
-  <xacro:property name="right_front_wheel_pos" value="0.2 -0.175 0"/>
+  <!-- Corrected wheel positions to match image -->
+  <xacro:property name="left_back_wheel_pos" value="-0.15 0.175 0"/>
+  <xacro:property name="right_back_wheel_pos" value="-0.15 -0.175 0"/>
+  <xacro:property name="left_front_wheel_pos" value="0.15 0.175 0"/>
+  <xacro:property name="right_front_wheel_pos" value="0.15 -0.175 0"/>
 
   <!-- Materials -->
   <material name="white"><color rgba="1 1 1 1"/></material>
   <material name="blue"><color rgba="0.2 0.2 1 1"/></material>
 
   <!-- Base Structure -->
-  <!--- <link name="base_footprint"/>
-  <joint name="base_footprint_joint" type="fixed">
-    <parent link="base_footprint"/>
-    <child link="base_link"/>
-    <origin xyz="0 0 0.05"/>
-  </joint> -->
-
   <link name="base_link">
-    <!-- Add an empty but valid inertial element -->
     <inertial>
       <mass value="0.001"/>
       <inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.0001" iyz="0" izz="0.0001"/>
@@ -35,22 +28,22 @@
   <joint name="chassis_joint" type="fixed">
     <parent link="base_link"/>
     <child link="chassis"/>
-    <origin xyz="-0.1 0 0.05"/>  <!-- Raise it slightly above ground -->
+    <origin xyz="0 0 0.05"/>  <!-- Centered position to match image -->
   </joint>
 
   <link name="chassis">
     <visual>
-      <origin xyz="0 0 0.125"/>  <!-- Center the visual on the Z-axis -->
+      <origin xyz="0 0 0.125"/>
       <geometry><box size="0.3 0.3 0.25"/></geometry>
       <material name="white"/>
     </visual>
     <collision>
-      <origin xyz="0 0 0.125"/>  <!-- Center the collision on the Z-axis -->
+      <origin xyz="0 0 0.125"/>
       <geometry><box size="0.3 0.3 0.25"/></geometry>
     </collision>
     <inertial>
       <mass value="1.0"/>
-      <origin xyz="0 0 0.125"/>  <!-- Center the inertial on the Z-axis -->
+      <origin xyz="0 0 0.125"/>
       <inertia ixx="0.015" ixy="0" ixz="0" iyy="0.0375" iyz="0" izz="0.0375"/>
     </inertial>
   </link>
@@ -66,19 +59,20 @@
 
     <link name="${name}">
       <visual>
-        <geometry><cylinder radius="0.04" length="0.04"/></geometry>
+        <geometry><cylinder radius="0.08255" length="0.04"/>
+        </geometry>
         <material name="blue"/>
       </visual>
       <collision>
-        <geometry><cylinder radius="0.04" length="0.04"/></geometry>
+        <geometry><cylinder radius="0.08255" length="0.04"/></geometry>
       </collision>
-      <xacro:inertial_cylinder mass="0.1" radius="0.04" length="0.04"/>
+      <xacro:inertial_cylinder mass="0.1" radius="0.08255" length="0.04"/>
     </link>
 
     <transmission name="${name}_trans">
       <type>transmission_interface/SimpleTransmission</type>
       <joint name="${name}_joint">
-        <hardwareInterface>VelocityJointInterface</hardwareInterface>
+        <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
       </joint>
       <actuator name="${name}_motor">
         <mechanicalReduction>1</mechanicalReduction>
@@ -97,7 +91,7 @@
   <xacro:full_wheel name="right_front_wheel" parent="chassis" 
     origin="${right_front_wheel_pos}" rpy="${M_PI/2} 0 0"/>
 
-  <!-- Add this to your robot_core.xacro file -->
+  <!-- Gazebo-specific properties -->
   <gazebo reference="chassis">
     <material>Gazebo/White</material>
     <mu1>0.2</mu1>

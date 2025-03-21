@@ -1,0 +1,419 @@
+[0.000000] (-) TimerEvent: {}
+[0.000557] (-) JobUnselected: {'identifier': 'ball_tracker'}
+[0.000752] (-) JobUnselected: {'identifier': 'pangolin'}
+[0.001133] (-) JobUnselected: {'identifier': 'sec_bot'}
+[0.001242] (ORB_SLAM2) JobQueued: {'identifier': 'ORB_SLAM2', 'dependencies': OrderedDict()}
+[0.001323] (ORB_SLAM2) JobStarted: {'identifier': 'ORB_SLAM2'}
+[0.009758] (ORB_SLAM2) JobProgress: {'identifier': 'ORB_SLAM2', 'progress': 'cmake'}
+[0.010945] (ORB_SLAM2) Command: {'cmd': ['/usr/bin/cmake', '/home/peyton/ros_ws/sec_bot/src/orbslam2', '-DCMAKE_BUILD_TYPE=Release', '-DOpenCV_DIR=/usr/lib/x86_64-linux-gnu/cmake/opencv4', '-DCMAKE_PREFIX_PATH=/usr/local/lib/cmake', '-DCMAKE_INSTALL_PREFIX=/home/peyton/ros_ws/install/ORB_SLAM2'], 'cwd': '/home/peyton/ros_ws/build/ORB_SLAM2', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'peyton'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('WT_PROFILE_ID', '{4ff56d04-d9cf-57ea-bae2-ad396374e7e3}'), ('HOME', '/home/peyton'), ('OLDPWD', '/home/peyton/ros_ws/sec_bot/src/Pangolin/build'), ('ROS_PYTHON_VERSION', '3'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('WSL_DISTRO_NAME', 'Ubuntu-22.04'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/home/peyton/ros_ws/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'peyton'), ('NAME', 'Nyxxine'), ('WSL_INTEROP', '/run/WSL/26068_interop'), ('PULSE_SERVER', 'unix:/mnt/wslg/PulseServer'), ('_', '/home/peyton/.local/bin/colcon'), ('ROS_VERSION', '2'), ('TERM', 'xterm-256color'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/ros/humble/bin:/home/peyton/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/Program Files/NVIDIA Corporation/NVIDIA NvDLISR:/mnt/c/Program Files/dotnet/:/mnt/c/Users/peyto/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/peyto/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/c/msys64/ucrt64/bin:/mnt/c/Users/peyto/AppData/Local/Packages/PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0/LocalCache/local-packages/Python312/site-packages:/snap/bin'), ('WT_SESSION', '3d912b3d-5ccf-46e7-a58c-6ee5ec3925a8'), ('XDG_RUNTIME_DIR', '/run/user/1000/'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('AMENT_PREFIX_PATH', '/home/peyton/ros_ws/install/sec_bot:/home/peyton/ros_ws/install/ball_tracker:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('OpenCV_DIR', '/usr/lib/x86_64-linux-gnu/cmake/opencv4'), ('PWD', '/home/peyton/ros_ws/build/ORB_SLAM2'), ('XDG_DATA_DIRS', '/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/peyton/ros_ws/build/ball_tracker:/home/peyton/ros_ws/install/ball_tracker/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('WSL2_GUI_APPS_ENABLED', '1'), ('HOSTTYPE', 'x86_64'), ('CMAKE_PREFIX_PATH', '/home/peyton/ros_ws/install/sec_bot'), ('WSLENV', 'WT_SESSION:WT_PROFILE_ID:')]), 'shell': False}
+[0.020328] (ORB_SLAM2) StderrLine: {'line': b'\x1b[0mCMake Deprecation Warning at CMakeLists.txt:1 (cmake_minimum_required):\n'}
+[0.020593] (ORB_SLAM2) StderrLine: {'line': b'  Compatibility with CMake < 2.8.12 will be removed from a future version of\n'}
+[0.020691] (ORB_SLAM2) StderrLine: {'line': b'  CMake.\n'}
+[0.020777] (ORB_SLAM2) StderrLine: {'line': b'\n'}
+[0.020878] (ORB_SLAM2) StderrLine: {'line': b'  Update the VERSION argument <min> value or use a ...<max> suffix to tell\n'}
+[0.020960] (ORB_SLAM2) StderrLine: {'line': b'  CMake that the project does not need compatibility with older versions.\n'}
+[0.021039] (ORB_SLAM2) StderrLine: {'line': b'\n'}
+[0.021088] (ORB_SLAM2) StderrLine: {'line': b'\x1b[0m\n'}
+[0.098804] (-) TimerEvent: {}
+[0.120883] (ORB_SLAM2) StdoutLine: {'line': b'-- The C compiler identification is GNU 11.4.0\n'}
+[0.198944] (-) TimerEvent: {}
+[0.299323] (-) TimerEvent: {}
+[0.399787] (-) TimerEvent: {}
+[0.472836] (ORB_SLAM2) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 11.4.0\n'}
+[0.500066] (-) TimerEvent: {}
+[0.600659] (-) TimerEvent: {}
+[0.701093] (-) TimerEvent: {}
+[0.723118] (ORB_SLAM2) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[0.801227] (-) TimerEvent: {}
+[0.837003] (ORB_SLAM2) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[0.843965] (ORB_SLAM2) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc - skipped\n'}
+[0.844330] (ORB_SLAM2) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[0.844533] (ORB_SLAM2) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[0.847622] (ORB_SLAM2) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[0.901390] (-) TimerEvent: {}
+[0.965396] (ORB_SLAM2) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[0.974217] (ORB_SLAM2) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ - skipped\n'}
+[0.974632] (ORB_SLAM2) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[0.975210] (ORB_SLAM2) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[0.976257] (ORB_SLAM2) StderrLine: {'line': b'\x1b[0mBuild type: Release\x1b[0m\n'}
+[0.977414] (ORB_SLAM2) StdoutLine: {'line': b'-- Performing Test COMPILER_SUPPORTS_CXX11\n'}
+[1.001687] (-) TimerEvent: {}
+[1.102443] (-) TimerEvent: {}
+[1.103702] (ORB_SLAM2) StdoutLine: {'line': b'-- Performing Test COMPILER_SUPPORTS_CXX11 - Success\n'}
+[1.104364] (ORB_SLAM2) StdoutLine: {'line': b'-- Performing Test COMPILER_SUPPORTS_CXX0X\n'}
+[1.202570] (-) TimerEvent: {}
+[1.235990] (ORB_SLAM2) StdoutLine: {'line': b'-- Performing Test COMPILER_SUPPORTS_CXX0X - Success\n'}
+[1.236414] (ORB_SLAM2) StdoutLine: {'line': b'-- Using flag -std=c++11.\n'}
+[1.243824] (ORB_SLAM2) StdoutLine: {'line': b'-- Found OpenCV: /usr (found version "4.5.4") \n'}
+[1.244043] (ORB_SLAM2) StdoutLine: {'line': b'-- Found OpenCV version: 4.5.4\n'}
+[1.302703] (-) TimerEvent: {}
+[1.335619] (ORB_SLAM2) StdoutLine: {'line': b'-- Found Eigen3: /usr/include/eigen3 (Required is at least version "2.91.0") \n'}
+[1.338013] (ORB_SLAM2) StdoutLine: {'line': b'-- Looking for pthread.h\n'}
+[1.402847] (-) TimerEvent: {}
+[1.490974] (ORB_SLAM2) StdoutLine: {'line': b'-- Looking for pthread.h - found\n'}
+[1.491386] (ORB_SLAM2) StdoutLine: {'line': b'-- Performing Test CMAKE_HAVE_LIBC_PTHREAD\n'}
+[1.502974] (-) TimerEvent: {}
+[1.603523] (-) TimerEvent: {}
+[1.611112] (ORB_SLAM2) StdoutLine: {'line': b'-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success\n'}
+[1.611869] (ORB_SLAM2) StdoutLine: {'line': b'-- Found Threads: TRUE  \n'}
+[1.703665] (-) TimerEvent: {}
+[1.804064] (-) TimerEvent: {}
+[1.904448] (-) TimerEvent: {}
+[2.004858] (-) TimerEvent: {}
+[2.013186] (ORB_SLAM2) StdoutLine: {'line': b'-- Found OpenGL: /usr/lib/x86_64-linux-gnu/libOpenGL.so  found components: OpenGL \n'}
+[2.014180] (ORB_SLAM2) StdoutLine: {'line': b'-- Configuring done\n'}
+[2.018202] (ORB_SLAM2) StderrLine: {'line': b'\x1b[33mCMake Warning (dev) at CMakeLists.txt:52 (add_library):\n'}
+[2.018421] (ORB_SLAM2) StderrLine: {'line': b'  Policy CMP0028 is not set: Double colon in target name means ALIAS or\n'}
+[2.018526] (ORB_SLAM2) StderrLine: {'line': b'  IMPORTED target.  Run "cmake --help-policy CMP0028" for policy details.\n'}
+[2.018609] (ORB_SLAM2) StderrLine: {'line': b'  Use the cmake_policy command to set the policy and suppress this warning.\n'}
+[2.018802] (ORB_SLAM2) StderrLine: {'line': b'\n'}
+[2.018985] (ORB_SLAM2) StderrLine: {'line': b'  Target "ORB_SLAM2" links to target "Eigen3::Eigen" but the target was not\n'}
+[2.019303] (ORB_SLAM2) StderrLine: {'line': b'  found.  Perhaps a find_package() call is missing for an IMPORTED target, or\n'}
+[2.019491] (ORB_SLAM2) StderrLine: {'line': b'  an ALIAS target is missing?\n'}
+[2.020605] (ORB_SLAM2) StderrLine: {'line': b'This warning is for project developers.  Use -Wno-dev to suppress it.\n'}
+[2.021176] (ORB_SLAM2) StderrLine: {'line': b'\x1b[0m\n'}
+[2.021284] (ORB_SLAM2) StderrLine: {'line': b'\x1b[33mCMake Warning (dev) at CMakeLists.txt:52 (add_library):\n'}
+[2.021353] (ORB_SLAM2) StderrLine: {'line': b'  Policy CMP0028 is not set: Double colon in target name means ALIAS or\n'}
+[2.021421] (ORB_SLAM2) StderrLine: {'line': b'  IMPORTED target.  Run "cmake --help-policy CMP0028" for policy details.\n'}
+[2.021479] (ORB_SLAM2) StderrLine: {'line': b'  Use the cmake_policy command to set the policy and suppress this warning.\n'}
+[2.021539] (ORB_SLAM2) StderrLine: {'line': b'\n'}
+[2.021609] (ORB_SLAM2) StderrLine: {'line': b'  Target "ORB_SLAM2" links to target "Eigen3::Eigen" but the target was not\n'}
+[2.021684] (ORB_SLAM2) StderrLine: {'line': b'  found.  Perhaps a find_package() call is missing for an IMPORTED target, or\n'}
+[2.021753] (ORB_SLAM2) StderrLine: {'line': b'  an ALIAS target is missing?\n'}
+[2.021826] (ORB_SLAM2) StderrLine: {'line': b'This warning is for project developers.  Use -Wno-dev to suppress it.\n'}
+[2.021901] (ORB_SLAM2) StderrLine: {'line': b'\x1b[0m\n'}
+[2.021975] (ORB_SLAM2) StderrLine: {'line': b'\x1b[33mCMake Warning (dev) at CMakeLists.txt:52 (add_library):\n'}
+[2.022052] (ORB_SLAM2) StderrLine: {'line': b'  Policy CMP0028 is not set: Double colon in target name means ALIAS or\n'}
+[2.022129] (ORB_SLAM2) StderrLine: {'line': b'  IMPORTED target.  Run "cmake --help-policy CMP0028" for policy details.\n'}
+[2.022212] (ORB_SLAM2) StderrLine: {'line': b'  Use the cmake_policy command to set the policy and suppress this warning.\n'}
+[2.022297] (ORB_SLAM2) StderrLine: {'line': b'\n'}
+[2.022384] (ORB_SLAM2) StderrLine: {'line': b'  Target "ORB_SLAM2" links to target "Eigen3::Eigen" but the target was not\n'}
+[2.022460] (ORB_SLAM2) StderrLine: {'line': b'  found.  Perhaps a find_package() call is missing for an IMPORTED target, or\n'}
+[2.022528] (ORB_SLAM2) StderrLine: {'line': b'  an ALIAS target is missing?\n'}
+[2.022595] (ORB_SLAM2) StderrLine: {'line': b'This warning is for project developers.  Use -Wno-dev to suppress it.\n'}
+[2.022659] (ORB_SLAM2) StderrLine: {'line': b'\x1b[0m\n'}
+[2.022764] (ORB_SLAM2) StderrLine: {'line': b'\x1b[33mCMake Warning (dev) at CMakeLists.txt:86 (add_executable):\n'}
+[2.022864] (ORB_SLAM2) StderrLine: {'line': b'  Policy CMP0028 is not set: Double colon in target name means ALIAS or\n'}
+[2.022936] (ORB_SLAM2) StderrLine: {'line': b'  IMPORTED target.  Run "cmake --help-policy CMP0028" for policy details.\n'}
+[2.023015] (ORB_SLAM2) StderrLine: {'line': b'  Use the cmake_policy command to set the policy and suppress this warning.\n'}
+[2.023081] (ORB_SLAM2) StderrLine: {'line': b'\n'}
+[2.023184] (ORB_SLAM2) StderrLine: {'line': b'  Target "rgbd_tum" links to target "Eigen3::Eigen" but the target was not\n'}
+[2.023267] (ORB_SLAM2) StderrLine: {'line': b'  found.  Perhaps a find_package() call is missing for an IMPORTED target, or\n'}
+[2.023336] (ORB_SLAM2) StderrLine: {'line': b'  an ALIAS target is missing?\n'}
+[2.023404] (ORB_SLAM2) StderrLine: {'line': b'This warning is for project developers.  Use -Wno-dev to suppress it.\n'}
+[2.023471] (ORB_SLAM2) StderrLine: {'line': b'\x1b[0m\n'}
+[2.023538] (ORB_SLAM2) StderrLine: {'line': b'\x1b[33mCMake Warning (dev) at CMakeLists.txt:86 (add_executable):\n'}
+[2.023603] (ORB_SLAM2) StderrLine: {'line': b'  Policy CMP0028 is not set: Double colon in target name means ALIAS or\n'}
+[2.023673] (ORB_SLAM2) StderrLine: {'line': b'  IMPORTED target.  Run "cmake --help-policy CMP0028" for policy details.\n'}
+[2.023743] (ORB_SLAM2) StderrLine: {'line': b'  Use the cmake_policy command to set the policy and suppress this warning.\n'}
+[2.023810] (ORB_SLAM2) StderrLine: {'line': b'\n'}
+[2.023883] (ORB_SLAM2) StderrLine: {'line': b'  Target "rgbd_tum" links to target "Eigen3::Eigen" but the target was not\n'}
+[2.023955] (ORB_SLAM2) StderrLine: {'line': b'  found.  Perhaps a find_package() call is missing for an IMPORTED target, or\n'}
+[2.024041] (ORB_SLAM2) StderrLine: {'line': b'  an ALIAS target is missing?\n'}
+[2.024111] (ORB_SLAM2) StderrLine: {'line': b'This warning is for project developers.  Use -Wno-dev to suppress it.\n'}
+[2.024180] (ORB_SLAM2) StderrLine: {'line': b'\x1b[0m\n'}
+[2.024246] (ORB_SLAM2) StderrLine: {'line': b'\x1b[33mCMake Warning (dev) at CMakeLists.txt:86 (add_executable):\n'}
+[2.024313] (ORB_SLAM2) StderrLine: {'line': b'  Policy CMP0028 is not set: Double colon in target name means ALIAS or\n'}
+[2.024382] (ORB_SLAM2) StderrLine: {'line': b'  IMPORTED target.  Run "cmake --help-policy CMP0028" for policy details.\n'}
+[2.024452] (ORB_SLAM2) StderrLine: {'line': b'  Use the cmake_policy command to set the policy and suppress this warning.\n'}
+[2.024523] (ORB_SLAM2) StderrLine: {'line': b'\n'}
+[2.024587] (ORB_SLAM2) StderrLine: {'line': b'  Target "rgbd_tum" links to target "Eigen3::Eigen" but the target was not\n'}
+[2.024649] (ORB_SLAM2) StderrLine: {'line': b'  found.  Perhaps a find_package() call is missing for an IMPORTED target, or\n'}
+[2.024695] (ORB_SLAM2) StderrLine: {'line': b'  an ALIAS target is missing?\n'}
+[2.024739] (ORB_SLAM2) StderrLine: {'line': b'This warning is for project developers.  Use -Wno-dev to suppress it.\n'}
+[2.024783] (ORB_SLAM2) StderrLine: {'line': b'\x1b[0m\n'}
+[2.024825] (ORB_SLAM2) StderrLine: {'line': b'\x1b[33mCMake Warning (dev) at CMakeLists.txt:92 (add_executable):\n'}
+[2.024867] (ORB_SLAM2) StderrLine: {'line': b'  Policy CMP0028 is not set: Double colon in target name means ALIAS or\n'}
+[2.024908] (ORB_SLAM2) StderrLine: {'line': b'  IMPORTED target.  Run "cmake --help-policy CMP0028" for policy details.\n'}
+[2.024949] (ORB_SLAM2) StderrLine: {'line': b'  Use the cmake_policy command to set the policy and suppress this warning.\n'}
+[2.024991] (ORB_SLAM2) StderrLine: {'line': b'\n'}
+[2.025033] (ORB_SLAM2) StderrLine: {'line': b'  Target "stereo_kitti" links to target "Eigen3::Eigen" but the target was\n'}
+[2.025076] (ORB_SLAM2) StderrLine: {'line': b'  not found.  Perhaps a find_package() call is missing for an IMPORTED\n'}
+[2.025119] (ORB_SLAM2) StderrLine: {'line': b'  target, or an ALIAS target is missing?\n'}
+[2.025187] (ORB_SLAM2) StderrLine: {'line': b'This warning is for project developers.  Use -Wno-dev to suppress it.\n'}
+[2.025250] (ORB_SLAM2) StderrLine: {'line': b'\x1b[0m\n'}
+[2.025294] (ORB_SLAM2) StderrLine: {'line': b'\x1b[33mCMake Warning (dev) at CMakeLists.txt:92 (add_executable):\n'}
+[2.025337] (ORB_SLAM2) StderrLine: {'line': b'  Policy CMP0028 is not set: Double colon in target name means ALIAS or\n'}
+[2.025384] (ORB_SLAM2) StderrLine: {'line': b'  IMPORTED target.  Run "cmake --help-policy CMP0028" for policy details.\n'}
+[2.025426] (ORB_SLAM2) StderrLine: {'line': b'  Use the cmake_policy command to set the policy and suppress this warning.\n'}
+[2.025467] (ORB_SLAM2) StderrLine: {'line': b'\n'}
+[2.025510] (ORB_SLAM2) StderrLine: {'line': b'  Target "stereo_kitti" links to target "Eigen3::Eigen" but the target was\n'}
+[2.025553] (ORB_SLAM2) StderrLine: {'line': b'  not found.  Perhaps a find_package() call is missing for an IMPORTED\n'}
+[2.025595] (ORB_SLAM2) StderrLine: {'line': b'  target, or an ALIAS target is missing?\n'}
+[2.025638] (ORB_SLAM2) StderrLine: {'line': b'This warning is for project developers.  Use -Wno-dev to suppress it.\n'}
+[2.025681] (ORB_SLAM2) StderrLine: {'line': b'\x1b[0m\n'}
+[2.025722] (ORB_SLAM2) StderrLine: {'line': b'\x1b[33mCMake Warning (dev) at CMakeLists.txt:92 (add_executable):\n'}
+[2.025765] (ORB_SLAM2) StderrLine: {'line': b'  Policy CMP0028 is not set: Double colon in target name means ALIAS or\n'}
+[2.025809] (ORB_SLAM2) StderrLine: {'line': b'  IMPORTED target.  Run "cmake --help-policy CMP0028" for policy details.\n'}
+[2.025851] (ORB_SLAM2) StderrLine: {'line': b'  Use the cmake_policy command to set the policy and suppress this warning.\n'}
+[2.025896] (ORB_SLAM2) StderrLine: {'line': b'\n'}
+[2.025940] (ORB_SLAM2) StderrLine: {'line': b'  Target "stereo_kitti" links to target "Eigen3::Eigen" but the target was\n'}
+[2.025985] (ORB_SLAM2) StderrLine: {'line': b'  not found.  Perhaps a find_package() call is missing for an IMPORTED\n'}
+[2.026029] (ORB_SLAM2) StderrLine: {'line': b'  target, or an ALIAS target is missing?\n'}
+[2.026073] (ORB_SLAM2) StderrLine: {'line': b'This warning is for project developers.  Use -Wno-dev to suppress it.\n'}
+[2.026115] (ORB_SLAM2) StderrLine: {'line': b'\x1b[0m\n'}
+[2.026156] (ORB_SLAM2) StderrLine: {'line': b'\x1b[33mCMake Warning (dev) at CMakeLists.txt:96 (add_executable):\n'}
+[2.026200] (ORB_SLAM2) StderrLine: {'line': b'  Policy CMP0028 is not set: Double colon in target name means ALIAS or\n'}
+[2.026242] (ORB_SLAM2) StderrLine: {'line': b'  IMPORTED target.  Run "cmake --help-policy CMP0028" for policy details.\n'}
+[2.026285] (ORB_SLAM2) StderrLine: {'line': b'  Use the cmake_policy command to set the policy and suppress this warning.\n'}
+[2.026329] (ORB_SLAM2) StderrLine: {'line': b'\n'}
+[2.026372] (ORB_SLAM2) StderrLine: {'line': b'  Target "stereo_euroc" links to target "Eigen3::Eigen" but the target was\n'}
+[2.026421] (ORB_SLAM2) StderrLine: {'line': b'  not found.  Perhaps a find_package() call is missing for an IMPORTED\n'}
+[2.026466] (ORB_SLAM2) StderrLine: {'line': b'  target, or an ALIAS target is missing?\n'}
+[2.026513] (ORB_SLAM2) StderrLine: {'line': b'This warning is for project developers.  Use -Wno-dev to suppress it.\n'}
+[2.026561] (ORB_SLAM2) StderrLine: {'line': b'\x1b[0m\n'}
+[2.026608] (ORB_SLAM2) StderrLine: {'line': b'\x1b[33mCMake Warning (dev) at CMakeLists.txt:96 (add_executable):\n'}
+[2.026654] (ORB_SLAM2) StderrLine: {'line': b'  Policy CMP0028 is not set: Double colon in target name means ALIAS or\n'}
+[2.026697] (ORB_SLAM2) StderrLine: {'line': b'  IMPORTED target.  Run "cmake --help-policy CMP0028" for policy details.\n'}
+[2.026740] (ORB_SLAM2) StderrLine: {'line': b'  Use the cmake_policy command to set the policy and suppress this warning.\n'}
+[2.026782] (ORB_SLAM2) StderrLine: {'line': b'\n'}
+[2.026822] (ORB_SLAM2) StderrLine: {'line': b'  Target "stereo_euroc" links to target "Eigen3::Eigen" but the target was\n'}
+[2.026864] (ORB_SLAM2) StderrLine: {'line': b'  not found.  Perhaps a find_package() call is missing for an IMPORTED\n'}
+[2.026904] (ORB_SLAM2) StderrLine: {'line': b'  target, or an ALIAS target is missing?\n'}
+[2.026949] (ORB_SLAM2) StderrLine: {'line': b'This warning is for project developers.  Use -Wno-dev to suppress it.\n'}
+[2.027022] (ORB_SLAM2) StderrLine: {'line': b'\x1b[0m\n'}
+[2.027095] (ORB_SLAM2) StderrLine: {'line': b'\x1b[33mCMake Warning (dev) at CMakeLists.txt:96 (add_executable):\n'}
+[2.027149] (ORB_SLAM2) StderrLine: {'line': b'  Policy CMP0028 is not set: Double colon in target name means ALIAS or\n'}
+[2.027259] (ORB_SLAM2) StderrLine: {'line': b'  IMPORTED target.  Run "cmake --help-policy CMP0028" for policy details.\n'}
+[2.027364] (ORB_SLAM2) StderrLine: {'line': b'  Use the cmake_policy command to set the policy and suppress this warning.\n'}
+[2.027427] (ORB_SLAM2) StderrLine: {'line': b'\n'}
+[2.027490] (ORB_SLAM2) StderrLine: {'line': b'  Target "stereo_euroc" links to target "Eigen3::Eigen" but the target was\n'}
+[2.027555] (ORB_SLAM2) StderrLine: {'line': b'  not found.  Perhaps a find_package() call is missing for an IMPORTED\n'}
+[2.027619] (ORB_SLAM2) StderrLine: {'line': b'  target, or an ALIAS target is missing?\n'}
+[2.027683] (ORB_SLAM2) StderrLine: {'line': b'This warning is for project developers.  Use -Wno-dev to suppress it.\n'}
+[2.027746] (ORB_SLAM2) StderrLine: {'line': b'\x1b[0m\n'}
+[2.027813] (ORB_SLAM2) StderrLine: {'line': b'\x1b[33mCMake Warning (dev) at CMakeLists.txt:103 (add_executable):\n'}
+[2.027880] (ORB_SLAM2) StderrLine: {'line': b'  Policy CMP0028 is not set: Double colon in target name means ALIAS or\n'}
+[2.027956] (ORB_SLAM2) StderrLine: {'line': b'  IMPORTED target.  Run "cmake --help-policy CMP0028" for policy details.\n'}
+[2.028025] (ORB_SLAM2) StderrLine: {'line': b'  Use the cmake_policy command to set the policy and suppress this warning.\n'}
+[2.028096] (ORB_SLAM2) StderrLine: {'line': b'\n'}
+[2.029386] (ORB_SLAM2) StderrLine: {'line': b'  Target "mono_tum" links to target "Eigen3::Eigen" but the target was not\n'}
+[2.029734] (ORB_SLAM2) StderrLine: {'line': b'  found.  Perhaps a find_package() call is missing for an IMPORTED target, or\n'}
+[2.029866] (ORB_SLAM2) StderrLine: {'line': b'  an ALIAS target is missing?\n'}
+[2.029945] (ORB_SLAM2) StderrLine: {'line': b'This warning is for project developers.  Use -Wno-dev to suppress it.\n'}
+[2.030039] (ORB_SLAM2) StderrLine: {'line': b'\x1b[0m\n'}
+[2.030115] (ORB_SLAM2) StderrLine: {'line': b'\x1b[33mCMake Warning (dev) at CMakeLists.txt:103 (add_executable):\n'}
+[2.030165] (ORB_SLAM2) StderrLine: {'line': b'  Policy CMP0028 is not set: Double colon in target name means ALIAS or\n'}
+[2.030211] (ORB_SLAM2) StderrLine: {'line': b'  IMPORTED target.  Run "cmake --help-policy CMP0028" for policy details.\n'}
+[2.030256] (ORB_SLAM2) StderrLine: {'line': b'  Use the cmake_policy command to set the policy and suppress this warning.\n'}
+[2.030303] (ORB_SLAM2) StderrLine: {'line': b'\n'}
+[2.030365] (ORB_SLAM2) StderrLine: {'line': b'  Target "mono_tum" links to target "Eigen3::Eigen" but the target was not\n'}
+[2.030427] (ORB_SLAM2) StderrLine: {'line': b'  found.  Perhaps a find_package() call is missing for an IMPORTED target, or\n'}
+[2.030473] (ORB_SLAM2) StderrLine: {'line': b'  an ALIAS target is missing?\n'}
+[2.030518] (ORB_SLAM2) StderrLine: {'line': b'This warning is for project developers.  Use -Wno-dev to suppress it.\n'}
+[2.030563] (ORB_SLAM2) StderrLine: {'line': b'\x1b[0m\n'}
+[2.030608] (ORB_SLAM2) StderrLine: {'line': b'\x1b[33mCMake Warning (dev) at CMakeLists.txt:103 (add_executable):\n'}
+[2.030654] (ORB_SLAM2) StderrLine: {'line': b'  Policy CMP0028 is not set: Double colon in target name means ALIAS or\n'}
+[2.030723] (ORB_SLAM2) StderrLine: {'line': b'  IMPORTED target.  Run "cmake --help-policy CMP0028" for policy details.\n'}
+[2.030794] (ORB_SLAM2) StderrLine: {'line': b'  Use the cmake_policy command to set the policy and suppress this warning.\n'}
+[2.030850] (ORB_SLAM2) StderrLine: {'line': b'\n'}
+[2.030912] (ORB_SLAM2) StderrLine: {'line': b'  Target "mono_tum" links to target "Eigen3::Eigen" but the target was not\n'}
+[2.030958] (ORB_SLAM2) StderrLine: {'line': b'  found.  Perhaps a find_package() call is missing for an IMPORTED target, or\n'}
+[2.031007] (ORB_SLAM2) StderrLine: {'line': b'  an ALIAS target is missing?\n'}
+[2.031054] (ORB_SLAM2) StderrLine: {'line': b'This warning is for project developers.  Use -Wno-dev to suppress it.\n'}
+[2.031103] (ORB_SLAM2) StderrLine: {'line': b'\x1b[0m\n'}
+[2.031154] (ORB_SLAM2) StderrLine: {'line': b'\x1b[33mCMake Warning (dev) at CMakeLists.txt:107 (add_executable):\n'}
+[2.031196] (ORB_SLAM2) StderrLine: {'line': b'  Policy CMP0028 is not set: Double colon in target name means ALIAS or\n'}
+[2.031237] (ORB_SLAM2) StderrLine: {'line': b'  IMPORTED target.  Run "cmake --help-policy CMP0028" for policy details.\n'}
+[2.031278] (ORB_SLAM2) StderrLine: {'line': b'  Use the cmake_policy command to set the policy and suppress this warning.\n'}
+[2.031320] (ORB_SLAM2) StderrLine: {'line': b'\n'}
+[2.031370] (ORB_SLAM2) StderrLine: {'line': b'  Target "mono_kitti" links to target "Eigen3::Eigen" but the target was not\n'}
+[2.031443] (ORB_SLAM2) StderrLine: {'line': b'  found.  Perhaps a find_package() call is missing for an IMPORTED target, or\n'}
+[2.031497] (ORB_SLAM2) StderrLine: {'line': b'  an ALIAS target is missing?\n'}
+[2.031542] (ORB_SLAM2) StderrLine: {'line': b'This warning is for project developers.  Use -Wno-dev to suppress it.\n'}
+[2.031588] (ORB_SLAM2) StderrLine: {'line': b'\x1b[0m\n'}
+[2.031629] (ORB_SLAM2) StderrLine: {'line': b'\x1b[33mCMake Warning (dev) at CMakeLists.txt:107 (add_executable):\n'}
+[2.031670] (ORB_SLAM2) StderrLine: {'line': b'  Policy CMP0028 is not set: Double colon in target name means ALIAS or\n'}
+[2.031713] (ORB_SLAM2) StderrLine: {'line': b'  IMPORTED target.  Run "cmake --help-policy CMP0028" for policy details.\n'}
+[2.031754] (ORB_SLAM2) StderrLine: {'line': b'  Use the cmake_policy command to set the policy and suppress this warning.\n'}
+[2.031800] (ORB_SLAM2) StderrLine: {'line': b'\n'}
+[2.031843] (ORB_SLAM2) StderrLine: {'line': b'  Target "mono_kitti" links to target "Eigen3::Eigen" but the target was not\n'}
+[2.031887] (ORB_SLAM2) StderrLine: {'line': b'  found.  Perhaps a find_package() call is missing for an IMPORTED target, or\n'}
+[2.031929] (ORB_SLAM2) StderrLine: {'line': b'  an ALIAS target is missing?\n'}
+[2.031971] (ORB_SLAM2) StderrLine: {'line': b'This warning is for project developers.  Use -Wno-dev to suppress it.\n'}
+[2.032013] (ORB_SLAM2) StderrLine: {'line': b'\x1b[0m\n'}
+[2.032095] (ORB_SLAM2) StderrLine: {'line': b'\x1b[33mCMake Warning (dev) at CMakeLists.txt:107 (add_executable):\n'}
+[2.032148] (ORB_SLAM2) StderrLine: {'line': b'  Policy CMP0028 is not set: Double colon in target name means ALIAS or\n'}
+[2.032193] (ORB_SLAM2) StderrLine: {'line': b'  IMPORTED target.  Run "cmake --help-policy CMP0028" for policy details.\n'}
+[2.032235] (ORB_SLAM2) StderrLine: {'line': b'  Use the cmake_policy command to set the policy and suppress this warning.\n'}
+[2.032278] (ORB_SLAM2) StderrLine: {'line': b'\n'}
+[2.032318] (ORB_SLAM2) StderrLine: {'line': b'  Target "mono_kitti" links to target "Eigen3::Eigen" but the target was not\n'}
+[2.032360] (ORB_SLAM2) StderrLine: {'line': b'  found.  Perhaps a find_package() call is missing for an IMPORTED target, or\n'}
+[2.032403] (ORB_SLAM2) StderrLine: {'line': b'  an ALIAS target is missing?\n'}
+[2.032445] (ORB_SLAM2) StderrLine: {'line': b'This warning is for project developers.  Use -Wno-dev to suppress it.\n'}
+[2.032489] (ORB_SLAM2) StderrLine: {'line': b'\x1b[0m\n'}
+[2.032531] (ORB_SLAM2) StderrLine: {'line': b'\x1b[33mCMake Warning (dev) at CMakeLists.txt:111 (add_executable):\n'}
+[2.032573] (ORB_SLAM2) StderrLine: {'line': b'  Policy CMP0028 is not set: Double colon in target name means ALIAS or\n'}
+[2.032614] (ORB_SLAM2) StderrLine: {'line': b'  IMPORTED target.  Run "cmake --help-policy CMP0028" for policy details.\n'}
+[2.032656] (ORB_SLAM2) StderrLine: {'line': b'  Use the cmake_policy command to set the policy and suppress this warning.\n'}
+[2.032699] (ORB_SLAM2) StderrLine: {'line': b'\n'}
+[2.032817] (ORB_SLAM2) StderrLine: {'line': b'  Target "mono_euroc" links to target "Eigen3::Eigen" but the target was not\n'}
+[2.032868] (ORB_SLAM2) StderrLine: {'line': b'  found.  Perhaps a find_package() call is missing for an IMPORTED target, or\n'}
+[2.032912] (ORB_SLAM2) StderrLine: {'line': b'  an ALIAS target is missing?\n'}
+[2.032954] (ORB_SLAM2) StderrLine: {'line': b'This warning is for project developers.  Use -Wno-dev to suppress it.\n'}
+[2.033005] (ORB_SLAM2) StderrLine: {'line': b'\x1b[0m\n'}
+[2.033206] (ORB_SLAM2) StderrLine: {'line': b'\x1b[33mCMake Warning (dev) at CMakeLists.txt:111 (add_executable):\n'}
+[2.033294] (ORB_SLAM2) StderrLine: {'line': b'  Policy CMP0028 is not set: Double colon in target name means ALIAS or\n'}
+[2.033358] (ORB_SLAM2) StderrLine: {'line': b'  IMPORTED target.  Run "cmake --help-policy CMP0028" for policy details.\n'}
+[2.033437] (ORB_SLAM2) StderrLine: {'line': b'  Use the cmake_policy command to set the policy and suppress this warning.\n'}
+[2.033517] (ORB_SLAM2) StderrLine: {'line': b'\n'}
+[2.033588] (ORB_SLAM2) StderrLine: {'line': b'  Target "mono_euroc" links to target "Eigen3::Eigen" but the target was not\n'}
+[2.033659] (ORB_SLAM2) StderrLine: {'line': b'  found.  Perhaps a find_package() call is missing for an IMPORTED target, or\n'}
+[2.033739] (ORB_SLAM2) StderrLine: {'line': b'  an ALIAS target is missing?\n'}
+[2.033815] (ORB_SLAM2) StderrLine: {'line': b'This warning is for project developers.  Use -Wno-dev to suppress it.\n'}
+[2.033898] (ORB_SLAM2) StderrLine: {'line': b'\x1b[0m\n'}
+[2.033975] (ORB_SLAM2) StderrLine: {'line': b'\x1b[33mCMake Warning (dev) at CMakeLists.txt:111 (add_executable):\n'}
+[2.034082] (ORB_SLAM2) StderrLine: {'line': b'  Policy CMP0028 is not set: Double colon in target name means ALIAS or\n'}
+[2.034179] (ORB_SLAM2) StderrLine: {'line': b'  IMPORTED target.  Run "cmake --help-policy CMP0028" for policy details.\n'}
+[2.034261] (ORB_SLAM2) StderrLine: {'line': b'  Use the cmake_policy command to set the policy and suppress this warning.\n'}
+[2.034343] (ORB_SLAM2) StderrLine: {'line': b'\n'}
+[2.034430] (ORB_SLAM2) StderrLine: {'line': b'  Target "mono_euroc" links to target "Eigen3::Eigen" but the target was not\n'}
+[2.034507] (ORB_SLAM2) StderrLine: {'line': b'  found.  Perhaps a find_package() call is missing for an IMPORTED target, or\n'}
+[2.034582] (ORB_SLAM2) StderrLine: {'line': b'  an ALIAS target is missing?\n'}
+[2.034669] (ORB_SLAM2) StderrLine: {'line': b'This warning is for project developers.  Use -Wno-dev to suppress it.\n'}
+[2.034751] (ORB_SLAM2) StderrLine: {'line': b'\x1b[0m\n'}
+[2.053346] (ORB_SLAM2) StdoutLine: {'line': b'-- Generating done\n'}
+[2.061739] (ORB_SLAM2) StdoutLine: {'line': b'-- Build files have been written to: /home/peyton/ros_ws/build/ORB_SLAM2\n'}
+[2.066498] (ORB_SLAM2) CommandEnded: {'returncode': 0}
+[2.068592] (ORB_SLAM2) JobProgress: {'identifier': 'ORB_SLAM2', 'progress': 'build'}
+[2.068819] (ORB_SLAM2) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/peyton/ros_ws/build/ORB_SLAM2', '--', '-j12', '-l12'], 'cwd': '/home/peyton/ros_ws/build/ORB_SLAM2', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'peyton'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('WT_PROFILE_ID', '{4ff56d04-d9cf-57ea-bae2-ad396374e7e3}'), ('HOME', '/home/peyton'), ('OLDPWD', '/home/peyton/ros_ws/sec_bot/src/Pangolin/build'), ('ROS_PYTHON_VERSION', '3'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('WSL_DISTRO_NAME', 'Ubuntu-22.04'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/home/peyton/ros_ws/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'peyton'), ('NAME', 'Nyxxine'), ('WSL_INTEROP', '/run/WSL/26068_interop'), ('PULSE_SERVER', 'unix:/mnt/wslg/PulseServer'), ('_', '/home/peyton/.local/bin/colcon'), ('ROS_VERSION', '2'), ('TERM', 'xterm-256color'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/ros/humble/bin:/home/peyton/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/Program Files/NVIDIA Corporation/NVIDIA NvDLISR:/mnt/c/Program Files/dotnet/:/mnt/c/Users/peyto/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/peyto/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/c/msys64/ucrt64/bin:/mnt/c/Users/peyto/AppData/Local/Packages/PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0/LocalCache/local-packages/Python312/site-packages:/snap/bin'), ('WT_SESSION', '3d912b3d-5ccf-46e7-a58c-6ee5ec3925a8'), ('XDG_RUNTIME_DIR', '/run/user/1000/'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('AMENT_PREFIX_PATH', '/home/peyton/ros_ws/install/sec_bot:/home/peyton/ros_ws/install/ball_tracker:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('OpenCV_DIR', '/usr/lib/x86_64-linux-gnu/cmake/opencv4'), ('PWD', '/home/peyton/ros_ws/build/ORB_SLAM2'), ('XDG_DATA_DIRS', '/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/peyton/ros_ws/build/ball_tracker:/home/peyton/ros_ws/install/ball_tracker/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('WSL2_GUI_APPS_ENABLED', '1'), ('HOSTTYPE', 'x86_64'), ('CMAKE_PREFIX_PATH', '/home/peyton/ros_ws/install/sec_bot'), ('WSLENV', 'WT_SESSION:WT_PROFILE_ID:')]), 'shell': False}
+[2.104987] (-) TimerEvent: {}
+[2.107368] (ORB_SLAM2) StdoutLine: {'line': b'[  3%] \x1b[32mBuilding CXX object CMakeFiles/ORB_SLAM2.dir/src/System.cc.o\x1b[0m\n'}
+[2.107696] (ORB_SLAM2) StdoutLine: {'line': b'[  6%] \x1b[32mBuilding CXX object CMakeFiles/ORB_SLAM2.dir/src/LoopClosing.cc.o\x1b[0m\n'}
+[2.107919] (ORB_SLAM2) StdoutLine: {'line': b'[  9%] \x1b[32mBuilding CXX object CMakeFiles/ORB_SLAM2.dir/src/Tracking.cc.o\x1b[0m\n'}
+[2.108049] (ORB_SLAM2) StdoutLine: {'line': b'[ 12%] \x1b[32mBuilding CXX object CMakeFiles/ORB_SLAM2.dir/src/ORBmatcher.cc.o\x1b[0m\n'}
+[2.109277] (ORB_SLAM2) StdoutLine: {'line': b'[ 21%] \x1b[32mBuilding CXX object CMakeFiles/ORB_SLAM2.dir/src/FrameDrawer.cc.o\x1b[0m\n'}
+[2.114386] (ORB_SLAM2) StdoutLine: {'line': b'[ 21%] \x1b[32mBuilding CXX object CMakeFiles/ORB_SLAM2.dir/src/Converter.cc.o\x1b[0m\n'}
+[2.114708] (ORB_SLAM2) StdoutLine: {'line': b'[ 25%] \x1b[32mBuilding CXX object CMakeFiles/ORB_SLAM2.dir/src/KeyFrame.cc.o\x1b[0m\n'}
+[2.114848] (ORB_SLAM2) StdoutLine: {'line': b'[ 34%] \x1b[32mBuilding CXX object CMakeFiles/ORB_SLAM2.dir/src/MapDrawer.cc.o\x1b[0m\n'}
+[2.114941] (ORB_SLAM2) StdoutLine: {'line': b'[ 34%] \x1b[32mBuilding CXX object CMakeFiles/ORB_SLAM2.dir/src/LocalMapping.cc.o\x1b[0m\n'}
+[2.115022] (ORB_SLAM2) StdoutLine: {'line': b'[ 34%] \x1b[32mBuilding CXX object CMakeFiles/ORB_SLAM2.dir/src/MapPoint.cc.o\x1b[0m\n'}
+[2.115161] (ORB_SLAM2) StdoutLine: {'line': b'[ 34%] \x1b[32mBuilding CXX object CMakeFiles/ORB_SLAM2.dir/src/ORBextractor.cc.o\x1b[0m\n'}
+[2.120459] (ORB_SLAM2) StdoutLine: {'line': b'[ 37%] \x1b[32mBuilding CXX object CMakeFiles/ORB_SLAM2.dir/src/Map.cc.o\x1b[0m\n'}
+[2.205133] (-) TimerEvent: {}
+[2.305598] (-) TimerEvent: {}
+[2.406276] (ORB_SLAM2) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/home/peyton/ros_ws/sec_bot/src/orbslam2/include/Frame.h:31\x1b[m\x1b[K,\n'}
+[2.406554] (-) TimerEvent: {}
+[2.406722] (ORB_SLAM2) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/peyton/ros_ws/sec_bot/src/orbslam2/include/MapPoint.h:25\x1b[m\x1b[K,\n'}
+[2.406855] (ORB_SLAM2) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/peyton/ros_ws/sec_bot/src/orbslam2/include/KeyFrame.h:24\x1b[m\x1b[K,\n'}
+[2.407028] (ORB_SLAM2) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/peyton/ros_ws/sec_bot/src/orbslam2/src/KeyFrame.cc:21\x1b[m\x1b[K:\n'}
+[2.407132] (ORB_SLAM2) StderrLine: {'line': b'\x1b[01m\x1b[K/home/peyton/ros_ws/sec_bot/src/orbslam2/include/ORBextractor.h:26:10:\x1b[m\x1b[K \x1b[01;31m\x1b[Kfatal error: \x1b[m\x1b[Kopencv/cv.h: No such file or directory\n'}
+[2.407244] (ORB_SLAM2) StderrLine: {'line': b'   26 | #include \x1b[01;31m\x1b[K<opencv/cv.h>\x1b[m\x1b[K\n'}
+[2.407340] (ORB_SLAM2) StderrLine: {'line': b'      |          \x1b[01;31m\x1b[K^~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[2.407432] (ORB_SLAM2) StderrLine: {'line': b'compilation terminated.\n'}
+[2.407677] (ORB_SLAM2) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/home/peyton/ros_ws/sec_bot/src/orbslam2/include/KeyFrame.h:28\x1b[m\x1b[K,\n'}
+[2.407891] (ORB_SLAM2) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/peyton/ros_ws/sec_bot/src/orbslam2/include/MapPoint.h:24\x1b[m\x1b[K,\n'}
+[2.408029] (ORB_SLAM2) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/peyton/ros_ws/sec_bot/src/orbslam2/include/Map.h:24\x1b[m\x1b[K,\n'}
+[2.408129] (ORB_SLAM2) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/peyton/ros_ws/sec_bot/src/orbslam2/include/MapDrawer.h:24\x1b[m\x1b[K,\n'}
+[2.408222] (ORB_SLAM2) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/peyton/ros_ws/sec_bot/src/orbslam2/src/MapDrawer.cc:21\x1b[m\x1b[K:\n'}
+[2.408315] (ORB_SLAM2) StderrLine: {'line': b'\x1b[01m\x1b[K/home/peyton/ros_ws/sec_bot/src/orbslam2/include/ORBextractor.h:26:10:\x1b[m\x1b[K \x1b[01;31m\x1b[Kfatal error: \x1b[m\x1b[Kopencv/cv.h: No such file or directory\n'}
+[2.408448] (ORB_SLAM2) StderrLine: {'line': b'   26 | #include \x1b[01;31m\x1b[K<opencv/cv.h>\x1b[m\x1b[K\n'}
+[2.408587] (ORB_SLAM2) StderrLine: {'line': b'      |          \x1b[01;31m\x1b[K^~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[2.408685] (ORB_SLAM2) StderrLine: {'line': b'compilation terminated.\n'}
+[2.415705] (ORB_SLAM2) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/home/peyton/ros_ws/sec_bot/src/orbslam2/include/Frame.h:31\x1b[m\x1b[K,\n'}
+[2.416027] (ORB_SLAM2) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/peyton/ros_ws/sec_bot/src/orbslam2/include/MapPoint.h:25\x1b[m\x1b[K,\n'}
+[2.416174] (ORB_SLAM2) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/peyton/ros_ws/sec_bot/src/orbslam2/include/KeyFrame.h:24\x1b[m\x1b[K,\n'}
+[2.416333] (ORB_SLAM2) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/peyton/ros_ws/sec_bot/src/orbslam2/include/LoopClosing.h:24\x1b[m\x1b[K,\n'}
+[2.416468] (ORB_SLAM2) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/peyton/ros_ws/sec_bot/src/orbslam2/src/LoopClosing.cc:21\x1b[m\x1b[K:\n'}
+[2.416583] (ORB_SLAM2) StderrLine: {'line': b'\x1b[01m\x1b[K/home/peyton/ros_ws/sec_bot/src/orbslam2/include/ORBextractor.h:26:10:\x1b[m\x1b[K \x1b[01;31m\x1b[Kfatal error: \x1b[m\x1b[Kopencv/cv.h: No such file or directory\n'}
+[2.416695] (ORB_SLAM2) StderrLine: {'line': b'   26 | #include \x1b[01;31m\x1b[K<opencv/cv.h>\x1b[m\x1b[K\n'}
+[2.417068] (ORB_SLAM2) StderrLine: {'line': b'      |          \x1b[01;31m\x1b[K^~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[2.417204] (ORB_SLAM2) StderrLine: {'line': b'compilation terminated.\n'}
+[2.420122] (ORB_SLAM2) StderrLine: {'line': b'gmake[2]: *** [CMakeFiles/ORB_SLAM2.dir/build.make:230: CMakeFiles/ORB_SLAM2.dir/src/MapDrawer.cc.o] Error 1\n'}
+[2.420380] (ORB_SLAM2) StderrLine: {'line': b'gmake[2]: *** Waiting for unfinished jobs....\n'}
+[2.420520] (ORB_SLAM2) StderrLine: {'line': b'gmake[2]: *** [CMakeFiles/ORB_SLAM2.dir/build.make:202: CMakeFiles/ORB_SLAM2.dir/src/KeyFrame.cc.o] Error 1\n'}
+[2.420626] (ORB_SLAM2) StderrLine: {'line': b'gmake[2]: *** [CMakeFiles/ORB_SLAM2.dir/build.make:118: CMakeFiles/ORB_SLAM2.dir/src/LoopClosing.cc.o] Error 1\n'}
+[2.424820] (ORB_SLAM2) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/home/peyton/ros_ws/sec_bot/src/orbslam2/include/Frame.h:31\x1b[m\x1b[K,\n'}
+[2.425186] (ORB_SLAM2) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/peyton/ros_ws/sec_bot/src/orbslam2/include/MapPoint.h:25\x1b[m\x1b[K,\n'}
+[2.425325] (ORB_SLAM2) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/peyton/ros_ws/sec_bot/src/orbslam2/include/KeyFrame.h:24\x1b[m\x1b[K,\n'}
+[2.425427] (ORB_SLAM2) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/peyton/ros_ws/sec_bot/src/orbslam2/include/LocalMapping.h:24\x1b[m\x1b[K,\n'}
+[2.425525] (ORB_SLAM2) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/peyton/ros_ws/sec_bot/src/orbslam2/src/LocalMapping.cc:21\x1b[m\x1b[K:\n'}
+[2.425642] (ORB_SLAM2) StderrLine: {'line': b'\x1b[01m\x1b[K/home/peyton/ros_ws/sec_bot/src/orbslam2/include/ORBextractor.h:26:10:\x1b[m\x1b[K \x1b[01;31m\x1b[Kfatal error: \x1b[m\x1b[Kopencv/cv.h: No such file or directory\n'}
+[2.425757] (ORB_SLAM2) StderrLine: {'line': b'   26 | #include \x1b[01;31m\x1b[K<opencv/cv.h>\x1b[m\x1b[K\n'}
+[2.425858] (ORB_SLAM2) StderrLine: {'line': b'      |          \x1b[01;31m\x1b[K^~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[2.425964] (ORB_SLAM2) StderrLine: {'line': b'compilation terminated.\n'}
+[2.429398] (ORB_SLAM2) StderrLine: {'line': b'gmake[2]: *** [CMakeFiles/ORB_SLAM2.dir/build.make:104: CMakeFiles/ORB_SLAM2.dir/src/LocalMapping.cc.o] Error 1\n'}
+[2.429902] (ORB_SLAM2) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/home/peyton/ros_ws/sec_bot/src/orbslam2/include/KeyFrame.h:28\x1b[m\x1b[K,\n'}
+[2.430039] (ORB_SLAM2) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/peyton/ros_ws/sec_bot/src/orbslam2/include/MapPoint.h:24\x1b[m\x1b[K,\n'}
+[2.430152] (ORB_SLAM2) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/peyton/ros_ws/sec_bot/src/orbslam2/include/Map.h:24\x1b[m\x1b[K,\n'}
+[2.430250] (ORB_SLAM2) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/peyton/ros_ws/sec_bot/src/orbslam2/src/Map.cc:21\x1b[m\x1b[K:\n'}
+[2.430396] (ORB_SLAM2) StderrLine: {'line': b'\x1b[01m\x1b[K/home/peyton/ros_ws/sec_bot/src/orbslam2/include/ORBextractor.h:26:10:\x1b[m\x1b[K \x1b[01;31m\x1b[Kfatal error: \x1b[m\x1b[Kopencv/cv.h: No such file or directory\n'}
+[2.430495] (ORB_SLAM2) StderrLine: {'line': b'   26 | #include \x1b[01;31m\x1b[K<opencv/cv.h>\x1b[m\x1b[K\n'}
+[2.430583] (ORB_SLAM2) StderrLine: {'line': b'      |          \x1b[01;31m\x1b[K^~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[2.430669] (ORB_SLAM2) StderrLine: {'line': b'compilation terminated.\n'}
+[2.432995] (ORB_SLAM2) StderrLine: {'line': b'gmake[2]: *** [CMakeFiles/ORB_SLAM2.dir/build.make:216: CMakeFiles/ORB_SLAM2.dir/src/Map.cc.o] Error 1\n'}
+[2.435654] (ORB_SLAM2) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/home/peyton/ros_ws/sec_bot/src/orbslam2/include/KeyFrame.h:28\x1b[m\x1b[K,\n'}
+[2.435935] (ORB_SLAM2) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/peyton/ros_ws/sec_bot/src/orbslam2/include/MapPoint.h:24\x1b[m\x1b[K,\n'}
+[2.436040] (ORB_SLAM2) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/peyton/ros_ws/sec_bot/src/orbslam2/src/MapPoint.cc:21\x1b[m\x1b[K:\n'}
+[2.436125] (ORB_SLAM2) StderrLine: {'line': b'\x1b[01m\x1b[K/home/peyton/ros_ws/sec_bot/src/orbslam2/include/ORBextractor.h:26:10:\x1b[m\x1b[K \x1b[01;31m\x1b[Kfatal error: \x1b[m\x1b[Kopencv/cv.h: No such file or directory\n'}
+[2.436226] (ORB_SLAM2) StderrLine: {'line': b'   26 | #include \x1b[01;31m\x1b[K<opencv/cv.h>\x1b[m\x1b[K\n'}
+[2.436310] (ORB_SLAM2) StderrLine: {'line': b'      |          \x1b[01;31m\x1b[K^~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[2.436393] (ORB_SLAM2) StderrLine: {'line': b'compilation terminated.\n'}
+[2.438037] (ORB_SLAM2) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/home/peyton/ros_ws/sec_bot/src/orbslam2/include/KeyFrame.h:28\x1b[m\x1b[K,\n'}
+[2.438464] (ORB_SLAM2) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/peyton/ros_ws/sec_bot/src/orbslam2/include/MapPoint.h:24\x1b[m\x1b[K,\n'}
+[2.438684] (ORB_SLAM2) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/peyton/ros_ws/sec_bot/src/orbslam2/include/FrameDrawer.h:25\x1b[m\x1b[K,\n'}
+[2.438779] (ORB_SLAM2) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/peyton/ros_ws/sec_bot/src/orbslam2/include/Viewer.h:25\x1b[m\x1b[K,\n'}
+[2.438862] (ORB_SLAM2) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/peyton/ros_ws/sec_bot/src/orbslam2/include/Tracking.h:28\x1b[m\x1b[K,\n'}
+[2.438944] (ORB_SLAM2) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/peyton/ros_ws/sec_bot/src/orbslam2/include/System.h:29\x1b[m\x1b[K,\n'}
+[2.439027] (ORB_SLAM2) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/peyton/ros_ws/sec_bot/src/orbslam2/src/System.cc:23\x1b[m\x1b[K:\n'}
+[2.439108] (ORB_SLAM2) StderrLine: {'line': b'\x1b[01m\x1b[K/home/peyton/ros_ws/sec_bot/src/orbslam2/include/ORBextractor.h:26:10:\x1b[m\x1b[K \x1b[01;31m\x1b[Kfatal error: \x1b[m\x1b[Kopencv/cv.h: No such file or directory\n'}
+[2.439196] (ORB_SLAM2) StderrLine: {'line': b'   26 | #include \x1b[01;31m\x1b[K<opencv/cv.h>\x1b[m\x1b[K\n'}
+[2.439281] (ORB_SLAM2) StderrLine: {'line': b'      |          \x1b[01;31m\x1b[K^~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[2.439388] (ORB_SLAM2) StderrLine: {'line': b'compilation terminated.\n'}
+[2.440542] (ORB_SLAM2) StderrLine: {'line': b'gmake[2]: *** [CMakeFiles/ORB_SLAM2.dir/build.make:188: CMakeFiles/ORB_SLAM2.dir/src/MapPoint.cc.o] Error 1\n'}
+[2.442713] (ORB_SLAM2) StderrLine: {'line': b'gmake[2]: *** [CMakeFiles/ORB_SLAM2.dir/build.make:76: CMakeFiles/ORB_SLAM2.dir/src/System.cc.o] Error 1\n'}
+[2.458797] (ORB_SLAM2) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/home/peyton/ros_ws/sec_bot/src/orbslam2/include/KeyFrame.h:28\x1b[m\x1b[K,\n'}
+[2.459127] (ORB_SLAM2) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/peyton/ros_ws/sec_bot/src/orbslam2/include/MapPoint.h:24\x1b[m\x1b[K,\n'}
+[2.459235] (ORB_SLAM2) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/peyton/ros_ws/sec_bot/src/orbslam2/include/ORBmatcher.h:29\x1b[m\x1b[K,\n'}
+[2.459319] (ORB_SLAM2) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/peyton/ros_ws/sec_bot/src/orbslam2/src/ORBmatcher.cc:21\x1b[m\x1b[K:\n'}
+[2.459401] (ORB_SLAM2) StderrLine: {'line': b'\x1b[01m\x1b[K/home/peyton/ros_ws/sec_bot/src/orbslam2/include/ORBextractor.h:26:10:\x1b[m\x1b[K \x1b[01;31m\x1b[Kfatal error: \x1b[m\x1b[Kopencv/cv.h: No such file or directory\n'}
+[2.459837] (ORB_SLAM2) StderrLine: {'line': b'   26 | #include \x1b[01;31m\x1b[K<opencv/cv.h>\x1b[m\x1b[K\n'}
+[2.459965] (ORB_SLAM2) StderrLine: {'line': b'      |          \x1b[01;31m\x1b[K^~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[2.460049] (ORB_SLAM2) StderrLine: {'line': b'compilation terminated.\n'}
+[2.460130] (ORB_SLAM2) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/home/peyton/ros_ws/sec_bot/src/orbslam2/include/KeyFrame.h:28\x1b[m\x1b[K,\n'}
+[2.460223] (ORB_SLAM2) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/peyton/ros_ws/sec_bot/src/orbslam2/include/MapPoint.h:24\x1b[m\x1b[K,\n'}
+[2.460423] (ORB_SLAM2) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/peyton/ros_ws/sec_bot/src/orbslam2/include/Map.h:24\x1b[m\x1b[K,\n'}
+[2.460819] (ORB_SLAM2) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/peyton/ros_ws/sec_bot/src/orbslam2/include/MapDrawer.h:24\x1b[m\x1b[K,\n'}
+[2.460952] (ORB_SLAM2) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/peyton/ros_ws/sec_bot/src/orbslam2/include/Viewer.h:26\x1b[m\x1b[K,\n'}
+[2.461051] (ORB_SLAM2) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/peyton/ros_ws/sec_bot/src/orbslam2/include/Tracking.h:28\x1b[m\x1b[K,\n'}
+[2.461145] (ORB_SLAM2) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/peyton/ros_ws/sec_bot/src/orbslam2/include/FrameDrawer.h:24\x1b[m\x1b[K,\n'}
+[2.461240] (ORB_SLAM2) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/peyton/ros_ws/sec_bot/src/orbslam2/src/FrameDrawer.cc:21\x1b[m\x1b[K:\n'}
+[2.461332] (ORB_SLAM2) StderrLine: {'line': b'\x1b[01m\x1b[K/home/peyton/ros_ws/sec_bot/src/orbslam2/include/ORBextractor.h:26:10:\x1b[m\x1b[K \x1b[01;31m\x1b[Kfatal error: \x1b[m\x1b[Kopencv/cv.h: No such file or directory\n'}
+[2.461480] (ORB_SLAM2) StderrLine: {'line': b'   26 | #include \x1b[01;31m\x1b[K<opencv/cv.h>\x1b[m\x1b[K\n'}
+[2.461584] (ORB_SLAM2) StderrLine: {'line': b'      |          \x1b[01;31m\x1b[K^~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[2.461678] (ORB_SLAM2) StderrLine: {'line': b'compilation terminated.\n'}
+[2.461775] (ORB_SLAM2) StderrLine: {'line': b'gmake[2]: *** [CMakeFiles/ORB_SLAM2.dir/build.make:146: CMakeFiles/ORB_SLAM2.dir/src/ORBmatcher.cc.o] Error 1\n'}
+[2.461876] (ORB_SLAM2) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/home/peyton/ros_ws/sec_bot/src/orbslam2/include/KeyFrame.h:28\x1b[m\x1b[K,\n'}
+[2.461971] (ORB_SLAM2) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/peyton/ros_ws/sec_bot/src/orbslam2/include/MapPoint.h:24\x1b[m\x1b[K,\n'}
+[2.462072] (ORB_SLAM2) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/peyton/ros_ws/sec_bot/src/orbslam2/include/FrameDrawer.h:25\x1b[m\x1b[K,\n'}
+[2.462216] (ORB_SLAM2) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/peyton/ros_ws/sec_bot/src/orbslam2/include/Viewer.h:25\x1b[m\x1b[K,\n'}
+[2.462401] (ORB_SLAM2) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/peyton/ros_ws/sec_bot/src/orbslam2/include/Tracking.h:28\x1b[m\x1b[K,\n'}
+[2.462577] (ORB_SLAM2) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/peyton/ros_ws/sec_bot/src/orbslam2/src/Tracking.cc:22\x1b[m\x1b[K:\n'}
+[2.462922] (ORB_SLAM2) StderrLine: {'line': b'\x1b[01m\x1b[K/home/peyton/ros_ws/sec_bot/src/orbslam2/include/ORBextractor.h:26:10:\x1b[m\x1b[K \x1b[01;31m\x1b[Kfatal error: \x1b[m\x1b[Kopencv/cv.h: No such file or directory\n'}
+[2.463016] (ORB_SLAM2) StderrLine: {'line': b'   26 | #include \x1b[01;31m\x1b[K<opencv/cv.h>\x1b[m\x1b[K\n'}
+[2.463074] (ORB_SLAM2) StderrLine: {'line': b'      |          \x1b[01;31m\x1b[K^~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[2.463254] (ORB_SLAM2) StderrLine: {'line': b'compilation terminated.\n'}
+[2.463320] (ORB_SLAM2) StderrLine: {'line': b'gmake[2]: *** [CMakeFiles/ORB_SLAM2.dir/build.make:160: CMakeFiles/ORB_SLAM2.dir/src/FrameDrawer.cc.o] Error 1\n'}
+[2.463374] (ORB_SLAM2) StderrLine: {'line': b'gmake[2]: *** [CMakeFiles/ORB_SLAM2.dir/build.make:90: CMakeFiles/ORB_SLAM2.dir/src/Tracking.cc.o] Error 1\n'}
+[2.469286] (ORB_SLAM2) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/home/peyton/ros_ws/sec_bot/src/orbslam2/src/ORBextractor.cc:63\x1b[m\x1b[K:\n'}
+[2.469746] (ORB_SLAM2) StderrLine: {'line': b'\x1b[01m\x1b[K/home/peyton/ros_ws/sec_bot/src/orbslam2/include/ORBextractor.h:26:10:\x1b[m\x1b[K \x1b[01;31m\x1b[Kfatal error: \x1b[m\x1b[Kopencv/cv.h: No such file or directory\n'}
+[2.469961] (ORB_SLAM2) StderrLine: {'line': b'   26 | #include \x1b[01;31m\x1b[K<opencv/cv.h>\x1b[m\x1b[K\n'}
+[2.470117] (ORB_SLAM2) StderrLine: {'line': b'      |          \x1b[01;31m\x1b[K^~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[2.470199] (ORB_SLAM2) StderrLine: {'line': b'compilation terminated.\n'}
+[2.470810] (ORB_SLAM2) StderrLine: {'line': b'gmake[2]: *** [CMakeFiles/ORB_SLAM2.dir/build.make:132: CMakeFiles/ORB_SLAM2.dir/src/ORBextractor.cc.o] Error 1\n'}
+[2.506759] (-) TimerEvent: {}
+[2.557799] (ORB_SLAM2) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/home/peyton/ros_ws/sec_bot/src/orbslam2/Thirdparty/g2o/g2o/types/../core/optimizable_graph.h:37\x1b[m\x1b[K,\n'}
+[2.558125] (ORB_SLAM2) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/peyton/ros_ws/sec_bot/src/orbslam2/Thirdparty/g2o/g2o/types/../core/base_vertex.h:30\x1b[m\x1b[K,\n'}
+[2.558228] (ORB_SLAM2) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/peyton/ros_ws/sec_bot/src/orbslam2/Thirdparty/g2o/g2o/types/types_six_dof_expmap.h:37\x1b[m\x1b[K,\n'}
+[2.558295] (ORB_SLAM2) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/peyton/ros_ws/sec_bot/src/orbslam2/include/Converter.h:27\x1b[m\x1b[K,\n'}
+[2.558358] (ORB_SLAM2) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/peyton/ros_ws/sec_bot/src/orbslam2/src/Converter.cc:22\x1b[m\x1b[K:\n'}
+[2.558428] (ORB_SLAM2) StderrLine: {'line': b'\x1b[01m\x1b[K/home/peyton/ros_ws/sec_bot/src/orbslam2/Thirdparty/g2o/g2o/types/../core/openmp_mutex.h:30:10:\x1b[m\x1b[K \x1b[01;31m\x1b[Kfatal error: \x1b[m\x1b[K../../config.h: No such file or directory\n'}
+[2.558499] (ORB_SLAM2) StderrLine: {'line': b'   30 | #include \x1b[01;31m\x1b[K"../../config.h"\x1b[m\x1b[K\n'}
+[2.558568] (ORB_SLAM2) StderrLine: {'line': b'      |          \x1b[01;31m\x1b[K^~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[2.558665] (ORB_SLAM2) StderrLine: {'line': b'compilation terminated.\n'}
+[2.560534] (ORB_SLAM2) StderrLine: {'line': b'gmake[2]: *** [CMakeFiles/ORB_SLAM2.dir/build.make:174: CMakeFiles/ORB_SLAM2.dir/src/Converter.cc.o] Error 1\n'}
+[2.560990] (ORB_SLAM2) StderrLine: {'line': b'gmake[1]: *** [CMakeFiles/Makefile2:95: CMakeFiles/ORB_SLAM2.dir/all] Error 2\n'}
+[2.561163] (ORB_SLAM2) StderrLine: {'line': b'gmake: *** [Makefile:91: all] Error 2\n'}
+[2.563245] (ORB_SLAM2) CommandEnded: {'returncode': 2}
+[2.563776] (ORB_SLAM2) JobEnded: {'identifier': 'ORB_SLAM2', 'rc': 2}
+[2.574278] (-) EventReactorShutdown: {}

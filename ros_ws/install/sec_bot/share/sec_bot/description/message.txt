@@ -1,0 +1,1 @@
+/home/peyton/ros_ws/sec_bot/src/sec_bot/description/message.txt

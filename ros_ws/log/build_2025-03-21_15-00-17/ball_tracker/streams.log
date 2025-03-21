@@ -1,0 +1,21 @@
+[1.320s] Invoking command in '/home/peyton/ros_ws/build/ball_tracker': PYTHONPATH=/home/peyton/ros_ws/build/ball_tracker/prefix_override:/home/peyton/.local/lib/python3.10/site-packages/colcon_core/task/python/colcon_distutils_commands:/home/peyton/ros_ws/install/ball_tracker/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/peyton/ros_ws/build/ball_tracker/build --no-deps symlink_data
+[1.840s] running develop
+[2.202s] running egg_info
+[2.202s] writing ball_tracker.egg-info/PKG-INFO
+[2.203s] writing dependency_links to ball_tracker.egg-info/dependency_links.txt
+[2.204s] writing entry points to ball_tracker.egg-info/entry_points.txt
+[2.204s] writing requirements to ball_tracker.egg-info/requires.txt
+[2.204s] writing top-level names to ball_tracker.egg-info/top_level.txt
+[2.208s] reading manifest file 'ball_tracker.egg-info/SOURCES.txt'
+[2.210s] writing manifest file 'ball_tracker.egg-info/SOURCES.txt'
+[2.217s] running build_ext
+[2.217s] Creating /home/peyton/ros_ws/install/ball_tracker/lib/python3.10/site-packages/ball-tracker.egg-link (link to .)
+[2.219s] Installing follow_ball script to /home/peyton/ros_ws/install/ball_tracker/lib/ball_tracker
+[2.220s] Installing image_publisher script to /home/peyton/ros_ws/install/ball_tracker/lib/ball_tracker
+[2.220s] Installing image_subscriber script to /home/peyton/ros_ws/install/ball_tracker/lib/ball_tracker
+[2.220s] Installing multi_ball_tracker script to /home/peyton/ros_ws/install/ball_tracker/lib/ball_tracker
+[2.221s] Installing sim_multi_ball_tracker script to /home/peyton/ros_ws/install/ball_tracker/lib/ball_tracker
+[2.221s] 
+[2.221s] Installed /home/peyton/ros_ws/build/ball_tracker
+[2.221s] running symlink_data
+[2.309s] Invoked command in '/home/peyton/ros_ws/build/ball_tracker' returned '0': PYTHONPATH=/home/peyton/ros_ws/build/ball_tracker/prefix_override:/home/peyton/.local/lib/python3.10/site-packages/colcon_core/task/python/colcon_distutils_commands:/home/peyton/ros_ws/install/ball_tracker/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/peyton/ros_ws/build/ball_tracker/build --no-deps symlink_data

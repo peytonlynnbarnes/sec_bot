@@ -1,0 +1,36 @@
+[0.706s] Invoking command in '/home/peyton/ros_ws/build/ball_tracker': PYTHONPATH=/home/peyton/ros_ws/build/ball_tracker/prefix_override:/home/peyton/.local/lib/python3.10/site-packages/colcon_core/task/python/colcon_distutils_commands:/home/peyton/ros_ws/install/ball_tracker/lib/python3.10/site-packages: /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/peyton/ros_ws/build/ball_tracker/build --no-deps symlink_data
+[0.879s] running develop
+[0.958s] running egg_info
+[0.958s] creating ball_tracker.egg-info
+[0.958s] writing ball_tracker.egg-info/PKG-INFO
+[0.959s] writing dependency_links to ball_tracker.egg-info/dependency_links.txt
+[0.959s] writing entry points to ball_tracker.egg-info/entry_points.txt
+[0.959s] writing requirements to ball_tracker.egg-info/requires.txt
+[0.960s] writing top-level names to ball_tracker.egg-info/top_level.txt
+[0.960s] writing manifest file 'ball_tracker.egg-info/SOURCES.txt'
+[0.961s] reading manifest file 'ball_tracker.egg-info/SOURCES.txt'
+[0.962s] writing manifest file 'ball_tracker.egg-info/SOURCES.txt'
+[0.963s] running build_ext
+[0.963s] Creating /home/peyton/ros_ws/install/ball_tracker/lib/python3.10/site-packages/ball-tracker.egg-link (link to .)
+[0.964s] Installing follow_ball script to /home/peyton/ros_ws/install/ball_tracker/lib/ball_tracker
+[0.964s] Installing image_publisher script to /home/peyton/ros_ws/install/ball_tracker/lib/ball_tracker
+[0.964s] Installing image_subscriber script to /home/peyton/ros_ws/install/ball_tracker/lib/ball_tracker
+[0.964s] Installing multi_ball_tracker script to /home/peyton/ros_ws/install/ball_tracker/lib/ball_tracker
+[0.965s] Installing sim_multi_ball_tracker script to /home/peyton/ros_ws/install/ball_tracker/lib/ball_tracker
+[0.965s] 
+[0.965s] Installed /home/peyton/ros_ws/build/ball_tracker
+[0.965s] running symlink_data
+[0.965s] creating /home/peyton/ros_ws/install/ball_tracker/share/ament_index
+[0.965s] creating /home/peyton/ros_ws/install/ball_tracker/share/ament_index/resource_index
+[0.965s] creating /home/peyton/ros_ws/install/ball_tracker/share/ament_index/resource_index/packages
+[0.965s] symbolically linking /home/peyton/ros_ws/build/ball_tracker/resource/ball_tracker -> /home/peyton/ros_ws/install/ball_tracker/share/ament_index/resource_index/packages
+[0.966s] symbolically linking /home/peyton/ros_ws/build/ball_tracker/package.xml -> /home/peyton/ros_ws/install/ball_tracker/share/ball_tracker
+[0.966s] creating /home/peyton/ros_ws/install/ball_tracker/share/ball_tracker/launch
+[0.966s] symbolically linking /home/peyton/ros_ws/build/ball_tracker/launch/camera.launch.py -> /home/peyton/ros_ws/install/ball_tracker/share/ball_tracker/launch
+[0.966s] symbolically linking /home/peyton/ros_ws/build/ball_tracker/launch/sim_cam.launch.py -> /home/peyton/ros_ws/install/ball_tracker/share/ball_tracker/launch
+[0.966s] symbolically linking /home/peyton/ros_ws/build/ball_tracker/launch/follow_ball.launch.py -> /home/peyton/ros_ws/install/ball_tracker/share/ball_tracker/launch
+[0.966s] creating /home/peyton/ros_ws/install/ball_tracker/share/ball_tracker/config
+[0.967s] symbolically linking /home/peyton/ros_ws/build/ball_tracker/config/RGB-D.yaml -> /home/peyton/ros_ws/install/ball_tracker/share/ball_tracker/config
+[0.967s] creating /home/peyton/ros_ws/install/ball_tracker/share/ball_tracker/config/Vocabulary
+[0.967s] symbolically linking /home/peyton/ros_ws/build/ball_tracker/config/Vocabulary/ORBvoc.txt -> /home/peyton/ros_ws/install/ball_tracker/share/ball_tracker/config/Vocabulary
+[0.989s] Invoked command in '/home/peyton/ros_ws/build/ball_tracker' returned '0': PYTHONPATH=/home/peyton/ros_ws/build/ball_tracker/prefix_override:/home/peyton/.local/lib/python3.10/site-packages/colcon_core/task/python/colcon_distutils_commands:/home/peyton/ros_ws/install/ball_tracker/lib/python3.10/site-packages: /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/peyton/ros_ws/build/ball_tracker/build --no-deps symlink_data

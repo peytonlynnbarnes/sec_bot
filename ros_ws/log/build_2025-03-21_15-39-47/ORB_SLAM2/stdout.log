@@ -1,0 +1,41 @@
+-- The C compiler identification is GNU 11.4.0
+-- The CXX compiler identification is GNU 11.4.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Performing Test COMPILER_SUPPORTS_CXX11
+-- Performing Test COMPILER_SUPPORTS_CXX11 - Success
+-- Performing Test COMPILER_SUPPORTS_CXX0X
+-- Performing Test COMPILER_SUPPORTS_CXX0X - Success
+-- Using flag -std=c++11.
+-- Found OpenCV: /usr (found version "4.5.4") 
+-- Found OpenCV version: 4.5.4
+-- Found Eigen3: /usr/include/eigen3 (Required is at least version "2.91.0") 
+-- Looking for pthread.h
+-- Looking for pthread.h - found
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+-- Found Threads: TRUE  
+-- Found OpenGL: /usr/lib/x86_64-linux-gnu/libOpenGL.so  found components: OpenGL 
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/peyton/ros_ws/build/ORB_SLAM2
+[  3%] [32mBuilding CXX object CMakeFiles/ORB_SLAM2.dir/src/System.cc.o[0m
+[  6%] [32mBuilding CXX object CMakeFiles/ORB_SLAM2.dir/src/LoopClosing.cc.o[0m
+[  9%] [32mBuilding CXX object CMakeFiles/ORB_SLAM2.dir/src/Tracking.cc.o[0m
+[ 12%] [32mBuilding CXX object CMakeFiles/ORB_SLAM2.dir/src/ORBmatcher.cc.o[0m
+[ 21%] [32mBuilding CXX object CMakeFiles/ORB_SLAM2.dir/src/FrameDrawer.cc.o[0m
+[ 21%] [32mBuilding CXX object CMakeFiles/ORB_SLAM2.dir/src/Converter.cc.o[0m
+[ 25%] [32mBuilding CXX object CMakeFiles/ORB_SLAM2.dir/src/KeyFrame.cc.o[0m
+[ 34%] [32mBuilding CXX object CMakeFiles/ORB_SLAM2.dir/src/MapDrawer.cc.o[0m
+[ 34%] [32mBuilding CXX object CMakeFiles/ORB_SLAM2.dir/src/LocalMapping.cc.o[0m
+[ 34%] [32mBuilding CXX object CMakeFiles/ORB_SLAM2.dir/src/MapPoint.cc.o[0m
+[ 34%] [32mBuilding CXX object CMakeFiles/ORB_SLAM2.dir/src/ORBextractor.cc.o[0m
+[ 37%] [32mBuilding CXX object CMakeFiles/ORB_SLAM2.dir/src/Map.cc.o[0m

@@ -1,0 +1,2 @@
+Invoking command in '/home/peyton/ros_ws/build/sec_bot': /usr/bin/cmake /home/peyton/ros_ws/sec_bot/src/sec_bot -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/peyton/ros_ws/install/sec_bot
+Invoked command in '/home/peyton/ros_ws/build/sec_bot' returned '1': /usr/bin/cmake /home/peyton/ros_ws/sec_bot/src/sec_bot -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/peyton/ros_ws/install/sec_bot

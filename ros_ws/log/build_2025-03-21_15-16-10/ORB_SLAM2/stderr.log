@@ -1,0 +1,26 @@
+[0mCMake Deprecation Warning at CMakeLists.txt:1 (cmake_minimum_required):
+  Compatibility with CMake < 2.8.12 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value or use a ...<max> suffix to tell
+  CMake that the project does not need compatibility with older versions.
+
+[0m
+[0mBuild type: Release[0m
+[31mCMake Error at CMakeLists.txt:40 (find_package):
+  By not providing "FindPangolin.cmake" in CMAKE_MODULE_PATH this project has
+  asked CMake to find a package configuration file provided by "Pangolin",
+  but CMake did not find one.
+
+  Could not find a package configuration file provided by "Pangolin" with any
+  of the following names:
+
+    PangolinConfig.cmake
+    pangolin-config.cmake
+
+  Add the installation prefix of "Pangolin" to CMAKE_PREFIX_PATH or set
+  "Pangolin_DIR" to a directory containing one of the above files.  If
+  "Pangolin" provides a separate development package or SDK, be sure it has
+  been installed.
+
+[0m

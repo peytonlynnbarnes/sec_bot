@@ -1,0 +1,27 @@
+[0.014s] Invoking command in '/home/peyton/ros_ws/build/ORB_SLAM2': /usr/bin/cmake /home/peyton/ros_ws/sec_bot/src/orbslam2 -DCMAKE_BUILD_TYPE=Release -DOpenCV_DIR=/usr/lib/x86_64-linux-gnu/cmake/opencv4 -DCMAKE_PREFIX_PATH=/usr/local/lib/cmake -DCMAKE_INSTALL_PREFIX=/home/peyton/ros_ws/install/ORB_SLAM2
+[0.018s] [0mCMake Deprecation Warning at CMakeLists.txt:1 (cmake_minimum_required):
+[0.018s]   Compatibility with CMake < 2.8.12 will be removed from a future version of
+[0.018s]   CMake.
+[0.018s] 
+[0.018s]   Update the VERSION argument <min> value or use a ...<max> suffix to tell
+[0.019s]   CMake that the project does not need compatibility with older versions.
+[0.019s] 
+[0.019s] [0m
+[0.023s] [0mBuild type: Release[0m
+[0.024s] -- Using flag -std=c++11.
+[0.033s] -- Found OpenCV version: 4.5.4
+[0.035s] [31mCMake Error at CMakeLists.txt:41 (find_package):
+[0.035s]   Found package configuration file:
+[0.035s] 
+[0.035s]     /usr/local/lib/cmake/Pangolin/PangolinConfig.cmake
+[0.035s] 
+[0.035s]   but it set Pangolin_FOUND to FALSE so package "Pangolin" is considered to
+[0.035s]   be NOT FOUND.  Reason given by package:
+[0.035s] 
+[0.035s]   Pangolin could not be found because dependency Eigen3 could not be found.
+[0.035s] 
+[0.036s] 
+[0.036s] [0m
+[0.036s] -- Configuring incomplete, errors occurred!
+[0.036s] See also "/home/peyton/ros_ws/build/ORB_SLAM2/CMakeFiles/CMakeOutput.log".
+[0.038s] Invoked command in '/home/peyton/ros_ws/build/ORB_SLAM2' returned '1': /usr/bin/cmake /home/peyton/ros_ws/sec_bot/src/orbslam2 -DCMAKE_BUILD_TYPE=Release -DOpenCV_DIR=/usr/lib/x86_64-linux-gnu/cmake/opencv4 -DCMAKE_PREFIX_PATH=/usr/local/lib/cmake -DCMAKE_INSTALL_PREFIX=/home/peyton/ros_ws/install/ORB_SLAM2

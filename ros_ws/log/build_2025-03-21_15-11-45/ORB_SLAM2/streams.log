@@ -1,0 +1,18 @@
+[0.016s] Invoking command in '/home/peyton/ros_ws/build/ORB_SLAM2': /usr/bin/cmake /home/peyton/ros_ws/sec_bot/src/orbslam2 -DCMAKE_BUILD_TYPE=Release -DOpenCV_DIR=/usr/lib/x86_64-linux-gnu/cmake/opencv4 -DCMAKE_INSTALL_PREFIX=/home/peyton/ros_ws/install/ORB_SLAM2
+[0.024s] [0mCMake Deprecation Warning at CMakeLists.txt:1 (cmake_minimum_required):
+[0.025s]   Compatibility with CMake < 2.8.12 will be removed from a future version of
+[0.025s]   CMake.
+[0.025s] 
+[0.025s]   Update the VERSION argument <min> value or use a ...<max> suffix to tell
+[0.025s]   CMake that the project does not need compatibility with older versions.
+[0.025s] 
+[0.025s] [0m
+[0.032s] [0mBuild type: Release[0m
+[0.035s] -- Using flag -std=c++11.
+[2.680s] [31mCMake Error at CMakeLists.txt:35 (message):
+[2.680s]   OpenCV > 2.4.3 not found.
+[2.680s] 
+[2.680s] [0m
+[2.680s] -- Configuring incomplete, errors occurred!
+[2.680s] See also "/home/peyton/ros_ws/build/ORB_SLAM2/CMakeFiles/CMakeOutput.log".
+[2.683s] Invoked command in '/home/peyton/ros_ws/build/ORB_SLAM2' returned '1': /usr/bin/cmake /home/peyton/ros_ws/sec_bot/src/orbslam2 -DCMAKE_BUILD_TYPE=Release -DOpenCV_DIR=/usr/lib/x86_64-linux-gnu/cmake/opencv4 -DCMAKE_INSTALL_PREFIX=/home/peyton/ros_ws/install/ORB_SLAM2

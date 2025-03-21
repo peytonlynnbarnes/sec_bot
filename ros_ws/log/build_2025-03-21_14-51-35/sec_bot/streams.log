@@ -1,0 +1,33 @@
+[0.174s] Invoking command in '/home/peyton/ros_ws/build/sec_bot': /usr/bin/cmake /home/peyton/ros_ws/sec_bot/src/sec_bot -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/peyton/ros_ws/install/sec_bot
+[0.470s] -- The C compiler identification is GNU 11.4.0
+[0.726s] -- The CXX compiler identification is GNU 11.4.0
+[0.875s] -- Detecting C compiler ABI info
+[0.976s] -- Detecting C compiler ABI info - done
+[0.982s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.982s] -- Detecting C compile features
+[0.983s] -- Detecting C compile features - done
+[0.987s] -- Detecting CXX compiler ABI info
+[1.080s] -- Detecting CXX compiler ABI info - done
+[1.086s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[1.086s] -- Detecting CXX compile features
+[1.086s] -- Detecting CXX compile features - done
+[1.761s] [31mCMake Error at CMakeLists.txt:19 (find_package):
+[1.761s]   By not providing "Findament_cmake.cmake" in CMAKE_MODULE_PATH this project
+[1.761s]   has asked CMake to find a package configuration file provided by
+[1.761s]   "ament_cmake", but CMake did not find one.
+[1.761s] 
+[1.761s]   Could not find a package configuration file provided by "ament_cmake" with
+[1.761s]   any of the following names:
+[1.761s] 
+[1.761s]     ament_cmakeConfig.cmake
+[1.761s]     ament_cmake-config.cmake
+[1.761s] 
+[1.761s]   Add the installation prefix of "ament_cmake" to CMAKE_PREFIX_PATH or set
+[1.761s]   "ament_cmake_DIR" to a directory containing one of the above files.  If
+[1.761s]   "ament_cmake" provides a separate development package or SDK, be sure it
+[1.762s]   has been installed.
+[1.762s] 
+[1.762s] [0m
+[1.762s] -- Configuring incomplete, errors occurred!
+[1.762s] See also "/home/peyton/ros_ws/build/sec_bot/CMakeFiles/CMakeOutput.log".
+[1.763s] Invoked command in '/home/peyton/ros_ws/build/sec_bot' returned '1': /usr/bin/cmake /home/peyton/ros_ws/sec_bot/src/sec_bot -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/peyton/ros_ws/install/sec_bot

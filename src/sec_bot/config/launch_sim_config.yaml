@@ -1,4 +1,10 @@
-- ros_topic_name: /fake
-  gz_topic_name: /fake
-  ros_type_name: std_msgs/msg/String
-  gz_type_name: gz.msgs.StringMsg
+- topic: "robot_description"
+  name: "my_bot"
+  bridge_name: "robot_description_bridge"
+  x: "0.0"
+  y: "0.0"
+  z: "0.1"
+  R: "0.0"
+  P: "0.0"
+  Y: "0.0"
+  allow_renaming: "false"

@@ -1,1 +1,0 @@
-/home/peyton/ros_ws/sec_bot/src/sec_bot/launch/launch_sim.launch.py

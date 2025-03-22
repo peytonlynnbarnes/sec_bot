@@ -1,4 +1,0 @@
-Invoking command in '/home/peyton/ros_ws/build/sec_bot': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/peyton/ros_ws/install/ball_tracker:/opt/ros/humble /usr/bin/cmake --build /home/peyton/ros_ws/build/sec_bot -- -j12 -l12
-Invoked command in '/home/peyton/ros_ws/build/sec_bot' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/peyton/ros_ws/install/ball_tracker:/opt/ros/humble /usr/bin/cmake --build /home/peyton/ros_ws/build/sec_bot -- -j12 -l12
-Invoking command in '/home/peyton/ros_ws/build/sec_bot': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/peyton/ros_ws/install/ball_tracker:/opt/ros/humble /usr/bin/cmake --install /home/peyton/ros_ws/build/sec_bot
-Invoked command in '/home/peyton/ros_ws/build/sec_bot' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/peyton/ros_ws/install/ball_tracker:/opt/ros/humble /usr/bin/cmake --install /home/peyton/ros_ws/build/sec_bot

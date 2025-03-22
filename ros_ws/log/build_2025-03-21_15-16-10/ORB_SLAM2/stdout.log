@@ -1,6 +1,0 @@
--- Using flag -std=c++11.
--- Found OpenCV: /usr (found version "4.5.4") 
--- Found OpenCV version: 4.5.4
--- Found Eigen3: /usr/include/eigen3 (Required is at least version "3.1.0") 
--- Configuring incomplete, errors occurred!
-See also "/home/peyton/ros_ws/build/ORB_SLAM2/CMakeFiles/CMakeOutput.log".

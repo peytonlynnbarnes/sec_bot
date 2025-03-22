@@ -1,0 +1,246 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="robot">
+
+  <!-- Define ALL materials here -->
+  <material name="white"><color rgba="1 1 1 1"/></material>
+  <material name="blue"><color rgba="0.2 0.2 1 1"/></material>
+  <material name="camera_red"><color rgba="1 0 0 1"/></material>
+
+  <!-- Includes -->
+  <xacro:include filename="inertial_macros.xacro"/>
+  
+  <!-- Parameters -->
+  <xacro:property name="M_PI" value="3.1415926535897931" />
+  <!-- Wheel positions adjusted to show all 4 wheels -->
+  <xacro:property name="left_back_wheel_pos" value="-0.1 0.175 0"/>
+  <xacro:property name="right_back_wheel_pos" value="-0.1 -0.175 0"/>
+  <xacro:property name="left_front_wheel_pos" value="0.1 0.175 0"/>
+  <xacro:property name="right_front_wheel_pos" value="0.1 -0.175 0"/>
+
+  <!-- Base Structure -->
+  <link name="base_link">
+    <inertial>
+      <mass value="0.001"/>
+      <inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.0001" iyz="0" izz="0.0001"/>
+    </inertial>
+  </link>
+
+  <joint name="chassis_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="chassis"/>
+    <origin xyz="0 0 0.05"/>  <!-- Centered position to match image -->
+  </joint>
+
+  <link name="chassis">
+    <visual>
+      <origin xyz="0 0 0.125"/>
+      <geometry><box size="0.3 0.3 0.25"/></geometry>
+      <material name="white"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0.125"/>
+      <geometry><box size="0.3 0.3 0.25"/></geometry>
+    </collision>
+    <inertial>
+      <mass value="1.0"/>
+      <origin xyz="0 0 0.125"/>
+      <inertia ixx="0.015" ixy="0" ixz="0" iyy="0.0375" iyz="0" izz="0.0375"/>
+    </inertial>
+  </link>
+
+  <!-- Wheels & Transmissions -->
+  <xacro:macro name="full_wheel" params="name parent origin rpy">
+    <joint name="${name}_joint" type="continuous">
+        <parent link="${parent}"/>
+        <child link="${name}"/>
+        <origin xyz="${origin}" rpy="${rpy}"/>
+        <axis xyz="0 1 0"/>  <!-- This is for wheels that rotate around Y axis -->
+    </joint>
+
+    <link name="${name}">
+      <visual>
+        <geometry><cylinder radius="0.08255" length="0.04"/>
+        </geometry>
+        <material name="blue"/>
+      </visual>
+      <collision>
+        <geometry><cylinder radius="0.08255" length="0.04"/></geometry>
+      </collision>
+      <xacro:inertial_cylinder mass="0.1" radius="0.08255" length="0.04"/>
+    </link>
+
+    <transmission name="${name}_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${name}_joint">
+        <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="${name}_motor">
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+  </xacro:macro>
+
+  <!-- Instantiate Wheels -->
+  <xacro:full_wheel name="left_back_wheel" parent="chassis" 
+    origin="${left_back_wheel_pos}" rpy="${-(M_PI/2)} 0 0"/>
+  <xacro:full_wheel name="right_back_wheel" parent="chassis" 
+    origin="${right_back_wheel_pos}" rpy="${M_PI/2} 0 0"/>
+
+  <xacro:full_wheel name="left_front_wheel" parent="chassis" 
+    origin="${left_front_wheel_pos}" rpy="${-(M_PI/2)} 0 0"/>
+  <xacro:full_wheel name="right_front_wheel" parent="chassis" 
+    origin="${right_front_wheel_pos}" rpy="${M_PI/2} 0 0"/>
+
+  <!-- Gazebo-specific properties -->
+  <gazebo reference="chassis">
+    <material>Gazebo/White</material>
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <selfCollide>true</selfCollide>
+  </gazebo>
+
+  <gazebo reference="left_back_wheel">
+    <material>Gazebo/Blue</material>
+    <mu1>1.0</mu1>
+    <mu2>1.0</mu2>
+    <selfCollide>true</selfCollide>
+  </gazebo>
+
+  <gazebo reference="right_back_wheel">
+    <material>Gazebo/Blue</material>
+    <mu1>1.0</mu1>
+    <mu2>1.0</mu2>
+    <selfCollide>true</selfCollide>
+  </gazebo>
+
+  <gazebo reference="left_front_wheel">
+    <material>Gazebo/Blue</material>
+    <mu1>1.0</mu1>
+    <mu2>1.0</mu2>
+    <selfCollide>true</selfCollide>
+  </gazebo>
+
+  <gazebo reference="right_front_wheel">
+    <material>Gazebo/Blue</material>
+    <mu1>1.0</mu1>
+    <mu2>1.0</mu2>
+    <selfCollide>true</selfCollide>
+  </gazebo>
+
+  <!-- Camera definitions -->
+  <!-- Left Camera -->
+  <joint name="camera_joint" type="fixed">
+    <parent link="chassis"/>
+    <child link="camera_link"/>
+    <origin xyz="0.12 0.12 0.25" rpy="0 0 0"/>
+  </joint>
+
+  <link name="camera_link">
+    <visual>
+      <geometry>
+        <box size="0.010 0.03 0.03"/>
+      </geometry>
+      <material name="camera_red"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.010 0.03 0.03"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.05"/>
+      <inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.0001" iyz="0" izz="0.0001"/>
+    </inertial>
+  </link>
+
+  <joint name="camera_optical_joint" type="fixed">
+    <parent link="camera_link"/>
+    <child link="camera_link_optical"/>
+    <origin xyz="0 0 0" rpy="${-M_PI/2} 0 ${-M_PI/2}"/>
+  </joint>
+
+  <link name="camera_link_optical"></link>
+
+  <!-- Right Camera -->
+  <joint name="camera2_joint" type="fixed">
+    <parent link="chassis"/>
+    <child link="camera2_link"/>
+    <origin xyz="0.12 -0.12 0.25" rpy="0 0 0"/>
+  </joint>
+
+  <link name="camera2_link">
+    <visual>
+      <geometry>
+        <box size="0.010 0.03 0.03"/>
+      </geometry>
+      <material name="camera_red"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.010 0.03 0.03"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.05"/>
+      <inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.0001" iyz="0" izz="0.0001"/>
+    </inertial>
+  </link>
+
+  <joint name="camera2_optical_joint" type="fixed">
+    <parent link="camera2_link"/>
+    <child link="camera2_link_optical"/>
+    <origin xyz="0 0 0" rpy="${-M_PI/2} 0 ${-M_PI/2}"/>
+  </joint>
+
+  <link name="camera2_link_optical"></link>
+
+  <!-- Gazebo camera plugins -->
+  <gazebo reference="camera_link">
+    <material>Gazebo/Red</material>
+    <sensor name="camera" type="camera">
+      <pose> 0 0 0 0 0 0 </pose>
+      <visualize>true</visualize>
+      <update_rate>10</update_rate>
+      <camera>
+        <horizontal_fov>1.089</horizontal_fov>
+        <image>
+          <format>R8G8B8</format>
+          <width>640</width>
+          <height>480</height>
+        </image>
+        <clip>
+          <near>0.05</near>
+          <far>8.0</far>
+        </clip>
+      </camera>
+      <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+        <frame_name>camera_link_optical</frame_name>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+  <gazebo reference="camera2_link">
+    <material>Gazebo/Red</material>
+    <sensor name="camera2" type="camera">
+      <pose> 0 0 0 0 0 0 </pose>
+      <visualize>true</visualize>
+      <update_rate>10</update_rate>
+      <camera>
+        <horizontal_fov>1.089</horizontal_fov>
+        <image>
+          <format>R8G8B8</format>
+          <width>640</width>
+          <height>480</height>
+        </image>
+        <clip>
+          <near>0.05</near>
+          <far>8.0</far>
+        </clip>
+      </camera>
+      <plugin name="camera2_controller" filename="libgazebo_ros_camera.so">
+        <frame_name>camera2_link_optical</frame_name>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+</robot>

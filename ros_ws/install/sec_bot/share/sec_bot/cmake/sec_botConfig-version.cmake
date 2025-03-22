@@ -1,1 +1,0 @@
-/home/peyton/ros_ws/build/sec_bot/ament_cmake_core/sec_botConfig-version.cmake

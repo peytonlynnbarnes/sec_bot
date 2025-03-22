@@ -1,2 +1,0 @@
-Invoking command in '/home/peyton/ros_ws/build/ORB_SLAM2': /usr/bin/cmake --build /home/peyton/ros_ws/build/ORB_SLAM2 -- -j12 -l12
-Invoked command in '/home/peyton/ros_ws/build/ORB_SLAM2' returned '2': /usr/bin/cmake --build /home/peyton/ros_ws/build/ORB_SLAM2 -- -j12 -l12

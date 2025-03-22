@@ -1,4 +1,4 @@
-- ros_topic_name: /cmd_vel
-  gz_topic_name: /model/my_bot/cmd_vel
-  ros_type_name: geometry_msgs/msg/Twist
-  gz_type_name: gz.msgs.Twist
+- ros_topic_name: /fake
+  gz_topic_name: /fake
+  ros_type_name: std_msgs/msg/String
+  gz_type_name: gz.msgs.StringMsg

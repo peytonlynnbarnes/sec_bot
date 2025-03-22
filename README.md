@@ -18,8 +18,15 @@ sudo curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(. /etc/os-release && echo $UBUNTU_CODENAME) main" | sudo tee /etc/apt/sources.list.d/ros2.list > /dev/null &&
 sudo apt update -y && 
 sudo apt upgrade -y &&
-sudo apt install ros-jazzy-desktop ros-dev-tools ros-jazzy-xacro ros-jazzy-ros2-control ros-jazzy-ros2-controllers -y &&
-sudo apt-get install ros-jazzy-ros-gz python3-opencv -y &&
+sudo apt install ros-jazzy-desktop ros-dev-tools ros-jazzy-xacro -y &&
+sudo apt-get install python3-opencv -y &&
+sudo apt-get update &&
+sudo apt-get install curl lsb-release gnupg &&
+sudo curl https://packages.osrfoundation.org/gazebo.gpg --output /usr/share/keyrings/pkgs-osrf-archive-keyring.gpg &&
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/pkgs-osrf-archive-keyring.gpg] http://packages.osrfoundation.org/gazebo/ubuntu-stable $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/gazebo-stable.list > /dev/null &&
+sudo apt-get update &&
+sudo apt-get install gz-harmonic && 
+sudo apt-get install ros-jazzy-ros-gz
 ```
 
 ### **Install & Build the Package**

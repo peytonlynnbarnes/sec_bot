@@ -6,3 +6,5 @@
   R: 0.0
   P: 0.0
   Y: 0.0
+  ros_type_name: "Jazzy" 
+  gz_type_name: "Harmonic"

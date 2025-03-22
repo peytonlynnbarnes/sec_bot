@@ -29,7 +29,7 @@ class AStarPlanner:
 
     def heuristic(self, a, b):
         dx, dy = abs(a[0] - b[0]), abs(a[1] - b[1])
-        return max(dx, dy) + (sqrt(2) - 1) * min(dx, dy)  # Optimized heuristic
+        return max(dx, dy) + (sqrt(2) - 1) * min(dx, dy)
 
     def plan(self, start, goal):
         open_heap = []
@@ -76,7 +76,9 @@ class FollowBall(Node):
                 ('search_speed', 0.5),
                 ('fov', 1.0),
                 ('map_resolution', 0.05),
-                ('ball_scale_factor', 0.05)
+                ('ball_scale_factor', 0.05),
+                ('stereo_baseline', 0.12),      # NEW: Stereo baseline parameter
+                ('focal_length', 525.0)         # NEW: Focal length from camera calib
             ])
         
         self.tf_buffer = Buffer()
@@ -96,9 +98,17 @@ class FollowBall(Node):
         self.search_attempt_counter = 0
 
     def ball_callback(self, msg):
-        self.ball_position = msg
-        # Reset search mode when new ball detected
-        self.search_mode_start_time = None  
+        baseline = self.get_parameter('stereo_baseline').value
+        focal_length = self.get_parameter('focal_length').value
+        
+        if msg.x != 0:
+            depth = (focal_length * baseline) / msg.x
+        else:
+            depth = 0.0
+            
+        self.ball_position = Point(x=msg.y, y=msg.z, z=depth)
+        
+        self.search_mode_start_time = None
         self.search_attempt_counter = 0
 
     def map_callback(self, msg):
@@ -109,7 +119,6 @@ class FollowBall(Node):
             transform = self.tf_buffer.lookup_transform(
                 'map', 'base_link', rclpy.time.Time(),
                 timeout=rclpy.duration.Duration(seconds=1.0)
-            )
             x = transform.transform.translation.x
             y = transform.transform.translation.y
             quat = transform.transform.rotation
@@ -124,8 +133,7 @@ class FollowBall(Node):
 
     def is_valid_cell(self, x, y):
         grid_array = np.array(self.current_map.data, dtype=np.int8).reshape(
-            (self.current_map.info.height, self.current_map.info.width)
-        )
+            (self.current_map.info.height, self.current_map.info.width))
         return (0 <= x < self.current_map.info.width and 
                 0 <= y < self.current_map.info.height and 
                 grid_array[y, x] <= 50)
@@ -139,10 +147,10 @@ class FollowBall(Node):
 
         fov = self.get_parameter('fov').value
         scale_factor = self.get_parameter('ball_scale_factor').value
-        angle = self.ball_position.x * fov
-        distance = scale_factor / self.ball_position.z if self.ball_position.z != 0 else 0.0
         
-        # Ramp down speed near ball
+        distance = self.ball_position.z * scale_factor
+        angle = self.ball_position.x * fov
+
         stop_dist = self.get_parameter('stop_distance').value
         if distance < stop_dist:
             speed_multiplier = max(0.3, (distance / stop_dist)**2)
@@ -200,7 +208,6 @@ class FollowBall(Node):
                 self.cmd_vel_pub.publish(twist)
                 return
             
-            # Dynamic exploration pattern
             twist = Twist()
             twist.linear.x = 0.1 * (1 + self.search_attempt_counter % 3)
             twist.angular.z = 0.5 * (-1 if self.search_attempt_counter % 2 else 1)

@@ -25,7 +25,11 @@ pip install opencv-python-headless
 ### **Install & Build the Package**
 ```bash
 git clone https://github.com/peytonlynnbarnes/sec_bot.git
-cd sec_bot
+cd sec_bot/src/ball_tracker/config/Vocabulary
+wget https://github.com/raulmur/ORB_SLAM2/raw/refs/heads/master/Vocabulary/ORBvoc.txt.tar.gz
+tar xf ORBvoc.txt.tar.gz
+rm -rf ORBvoc.txt.tar.gz
+cd ../../../..
 source /opt/ros/humble/setup.bash
 colcon build --symlink-install
 source install/setup.bash # make sure to source /opt/run/ros/humble/setup.bash

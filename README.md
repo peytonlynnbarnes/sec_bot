@@ -30,7 +30,7 @@ wget https://github.com/raulmur/ORB_SLAM2/raw/refs/heads/master/Vocabulary/ORBvo
 tar xf ORBvoc.txt.tar.gz
 rm -rf ORBvoc.txt.tar.gz
 cd ../../../..
-source /opt/ros/humble/setup.bash
+source /opt/ros/jazzy/setup.bash
 colcon build --symlink-install
 source install/setup.bash # make sure to source /opt/run/ros/humble/setup.bash
 ```

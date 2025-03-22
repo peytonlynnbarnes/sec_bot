@@ -1,4 +1,6 @@
-- use_sim_time: true
+- name: my_bot
+  bridge_name: robot_description_bridge
+  topic: robot_description
   allow_renaming: false
   x: 0.0
   y: 0.0
@@ -6,5 +8,3 @@
   R: 0.0
   P: 0.0
   Y: 0.0
-  ros_type_name: "Jazzy" 
-  gz_type_name: "Harmonic"

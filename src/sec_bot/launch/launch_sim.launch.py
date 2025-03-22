@@ -55,7 +55,7 @@ def generate_launch_description():
         launch_arguments={
             "topic": "robot_description",
             "name": "my_bot",
-            "bridge_name": "robot_description_bridge",
+            "bridge_name": "launch_sim_config.yaml",
         }.items(),
     )
 

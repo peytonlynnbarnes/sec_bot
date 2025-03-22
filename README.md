@@ -24,7 +24,7 @@ sudo apt-get install ros-jazzy-ros-gz python3-opencv -y &&
 
 ### **Install & Build the Package**
 ```bash
-git clone https://github.com/peytonlynnbarnes/sec_bot.git
+git clone https://github.com/peytonlynnbarnes/sec_bot.git --branch broken-sim
 cd sec_bot/src/ball_tracker/config/Vocabulary
 wget https://github.com/raulmur/ORB_SLAM2/raw/refs/heads/master/Vocabulary/ORBvoc.txt.tar.gz
 tar xf ORBvoc.txt.tar.gz

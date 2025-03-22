@@ -17,7 +17,7 @@ sudo apt install curl python3-pip -y &&
 sudo curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg &&
 sudo apt update && 
 sudo apt upgrade &&
-sudo apt install ros-jazzy-desktop ros-dev-tools ros-jazzy-xacro ros-jazzy-gazebo-ros-pkgs -y
+sudo apt install ros-jazzy-desktop ros-dev-tools ros-jazzy-xacro ros-jazzy-gazebo-ros-pkgs -y &&
 pip install --upgrade pip &&
 pip install opencv-python-headless
 ```

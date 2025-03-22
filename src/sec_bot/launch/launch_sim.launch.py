@@ -53,12 +53,16 @@ def generate_launch_description():
             ]
         ),
         launch_arguments={
+            "topic": "robot_description",
+            "name": "my_bot",
             "bridge_name": "robot_description_bridge",
-            "config_file": os.path.join(
-                get_package_share_directory("sec_bot"),
-                "config",
-                "launch_sim_config.yaml",
-            ),
+            "x": "0.0",
+            "y": "0.0",
+            "z": "0.1",
+            "R": "0.0",
+            "P": "0.0",
+            "Y": "0.0",
+            "allow_renaming": "false",
         }.items(),
     )
 

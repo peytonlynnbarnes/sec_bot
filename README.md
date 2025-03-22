@@ -20,13 +20,13 @@ sudo apt update -y &&
 sudo apt upgrade -y &&
 sudo apt install ros-jazzy-desktop ros-dev-tools ros-jazzy-xacro -y &&
 sudo apt-get install python3-opencv -y &&
-sudo apt-get update &&
-sudo apt-get install curl lsb-release gnupg &&
+sudo apt-get update -y &&
+sudo apt-get install curl lsb-release gnupg -y &&
 sudo curl https://packages.osrfoundation.org/gazebo.gpg --output /usr/share/keyrings/pkgs-osrf-archive-keyring.gpg &&
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/pkgs-osrf-archive-keyring.gpg] http://packages.osrfoundation.org/gazebo/ubuntu-stable $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/gazebo-stable.list > /dev/null &&
-sudo apt-get update &&
-sudo apt-get install gz-harmonic && 
-sudo apt-get install ros-jazzy-ros-gz
+sudo apt-get update -y &&
+sudo apt-get install gz-harmonic -y && 
+sudo apt-get install ros-jazzy-ros-gz -y
 ```
 
 ### **Install & Build the Package**

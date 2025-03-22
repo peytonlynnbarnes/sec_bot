@@ -1,8 +1,8 @@
 # Usage 
 ### **Dependencies**
 Make sure you have the following installed:
-- **Ubuntu 22.04**
-- **ROS 2** (Humble)
+- **Ubuntu 24.04**
+- **ROS 2** (Jazzy)
 - **Python 3.8+**
 - **OpenCV** 
 - **cv_bridge** (ROS2 image conversion)
@@ -10,7 +10,16 @@ Make sure you have the following installed:
 
 To install all of the dependencies use the following script by copying this:
 ```
-sudo apt install software-properties-common -y && sudo add-apt-repository universe && sudo apt update -y && sudo apt install curl python3-pip -y && sudo curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg && echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(. /etc/os-release && echo $UBUNTU_CODENAME) main" | sudo tee /etc/apt/sources.list.d/ros2.list > /dev/null && sudo sh -c 'echo "deb [arch=amd64,arm64] http://repo.ros2.org/ubuntu/main `lsb_release -cs` main" > /etc/apt/sources.list.d/ros2-latest.list' && curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo apt-key add - && sudo apt update && sudo apt upgrade && sudo apt install ros-humble-desktop ros-dev-tools ros-humble-xacro ros-humble-gazebo-ros-pkgs git -y && pip install --upgrade pip && pip install opencv-python-headless
+sudo apt install software-properties-common -y &&
+sudo add-apt-repository universe &&
+sudo apt update -y &&
+sudo apt install curl python3-pip -y &&
+sudo curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg &&
+sudo apt update && 
+sudo apt upgrade &&
+sudo apt install ros-jazzy-desktop ros-dev-tools ros-jazzy-xacro ros-jazzy-gazebo-ros-pkgs -y
+pip install --upgrade pip &&
+pip install opencv-python-headless
 ```
 
 ### **Install & Build the Package**

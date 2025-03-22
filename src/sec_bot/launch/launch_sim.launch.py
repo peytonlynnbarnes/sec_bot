@@ -55,7 +55,10 @@ def generate_launch_description():
         launch_arguments={
             "topic": "robot_description",
             "name": "my_bot",
-            "bridge_name": "launch_sim_config.yaml",
+            "bridge_name": "robot_description_bridge",
+            "config_file": os.path.join(
+                get_package_share_directory("sec_bot"), "config", "launch_sim_config.yaml"
+            ),
         }.items(),
     )
 

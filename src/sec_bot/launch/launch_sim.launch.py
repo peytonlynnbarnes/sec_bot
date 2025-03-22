@@ -52,6 +52,7 @@ def generate_launch_description():
                 )
             ]
         ),
+        launch_arguments={"topic": "robot_description", "name": "my_bot"}.items(),
     )
 
     # Launch them all!

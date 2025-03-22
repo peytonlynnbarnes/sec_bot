@@ -1,4 +1,6 @@
 - topic: "robot_description"
+  ros_type_name: "std_msgs/msg/String"
+  gz_type_name: "ignition.msgs.StringMsg"
   name: "my_bot"
   bridge_name: "robot_description_bridge"
   x: "0.0"

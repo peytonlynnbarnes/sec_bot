@@ -21,7 +21,7 @@ def generate_launch_description():
 
     tracker_launch = IncludeLaunchDescription(
                 PythonLaunchDescriptionSource([os.path.join(
-                    get_package_share_directory('sec_bot'), 'launch', 'ball_tracker.launch.py')]),
+                    get_package_share_directory('sec_bot'), 'launch', 'ball_tracker_launch.py')]),
                     launch_arguments={'params_file': params_path,
                                     'image_topic': '/camera/image_raw',
                                     'cmd_vel_topic': '/cmd_vel_tracker',

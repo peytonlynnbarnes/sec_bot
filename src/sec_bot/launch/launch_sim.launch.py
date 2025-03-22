@@ -35,7 +35,7 @@ def generate_launch_description():
                 os.path.join(
                     get_package_share_directory("ros_gz_sim"),
                     "launch",
-                    "z_sim.launch.py",
+                    "gz_sim.launch.py",
                 )
             ]
         ),

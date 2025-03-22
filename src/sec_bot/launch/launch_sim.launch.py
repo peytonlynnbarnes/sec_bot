@@ -53,6 +53,7 @@ def generate_launch_description():
             ]
         ),
         launch_arguments={
+            "bridge_name": "robot_description_bridge",
             "config_file": os.path.join(
                 get_package_share_directory("sec_bot"),
                 "config",

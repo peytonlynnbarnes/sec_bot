@@ -42,10 +42,9 @@ def generate_launch_description():
         PythonLaunchDescriptionSource(
             [
                 os.path.join(
-                    get_package_prefix("ball_tracker"),
-                    "lib",
-                    "ball_tracker",
-                    "image_subscriber",
+                    get_package_share_directory("ball_tracker"),
+                    "launch",
+                    "sim_cam.launch.py",
                 )
             ]
         ),

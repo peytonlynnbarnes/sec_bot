@@ -14,7 +14,7 @@ from std_srvs.srv import Trigger
 
 
 class ImagePublisher(LifecycleNode):
-def __init__(self):
+    def __init__(self):
         super().__init__("image_publisher")
         self.bridge = CvBridge()
         self.cap = None

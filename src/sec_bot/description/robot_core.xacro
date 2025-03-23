@@ -8,10 +8,9 @@
 
   <!-- Includes -->
   <xacro:include filename="inertial_macros.xacro"/>
-  
+
   <!-- Parameters -->
   <xacro:property name="M_PI" value="3.1415926535897931" />
-  <!-- Wheel positions adjusted to show all 4 wheels -->
   <xacro:property name="left_back_wheel_pos" value="-0.1 0.175 0"/>
   <xacro:property name="right_back_wheel_pos" value="-0.1 -0.175 0"/>
   <xacro:property name="left_front_wheel_pos" value="0.1 0.175 0"/>
@@ -28,7 +27,7 @@
   <joint name="chassis_joint" type="fixed">
     <parent link="base_link"/>
     <child link="chassis"/>
-    <origin xyz="0 0 0.05"/>  <!-- Centered position to match image -->
+    <origin xyz="0 0 0.05"/>
   </joint>
 
   <link name="chassis">
@@ -48,19 +47,18 @@
     </inertial>
   </link>
 
-  <!-- Wheels & Transmissions -->
+  <!-- Wheel Macro -->
   <xacro:macro name="full_wheel" params="name parent origin rpy">
     <joint name="${name}_joint" type="continuous">
-        <parent link="${parent}"/>
-        <child link="${name}"/>
-        <origin xyz="${origin}" rpy="${rpy}"/>
-        <axis xyz="0 1 0"/>  <!-- This is for wheels that rotate around Y axis -->
+      <parent link="${parent}"/>
+      <child link="${name}"/>
+      <origin xyz="${origin}" rpy="${rpy}"/>
+      <axis xyz="0 1 0"/>
     </joint>
 
     <link name="${name}">
       <visual>
-        <geometry><cylinder radius="0.08255" length="0.04"/>
-        </geometry>
+        <geometry><cylinder radius="0.08255" length="0.04"/></geometry>
         <material name="blue"/>
       </visual>
       <collision>
@@ -81,17 +79,12 @@
   </xacro:macro>
 
   <!-- Instantiate Wheels -->
-  <xacro:full_wheel name="left_back_wheel" parent="chassis" 
-    origin="${left_back_wheel_pos}" rpy="${-(M_PI/2)} 0 0"/>
-  <xacro:full_wheel name="right_back_wheel" parent="chassis" 
-    origin="${right_back_wheel_pos}" rpy="${M_PI/2} 0 0"/>
+  <xacro:full_wheel name="left_back_wheel" parent="chassis" origin="${left_back_wheel_pos}" rpy="${-(M_PI/2)} 0 0"/>
+  <xacro:full_wheel name="right_back_wheel" parent="chassis" origin="${right_back_wheel_pos}" rpy="${M_PI/2} 0 0"/>
+  <xacro:full_wheel name="left_front_wheel" parent="chassis" origin="${left_front_wheel_pos}" rpy="${-(M_PI/2)} 0 0"/>
+  <xacro:full_wheel name="right_front_wheel" parent="chassis" origin="${right_front_wheel_pos}" rpy="${M_PI/2} 0 0"/>
 
-  <xacro:full_wheel name="left_front_wheel" parent="chassis" 
-    origin="${left_front_wheel_pos}" rpy="${-(M_PI/2)} 0 0"/>
-  <xacro:full_wheel name="right_front_wheel" parent="chassis" 
-    origin="${right_front_wheel_pos}" rpy="${M_PI/2} 0 0"/>
-
-  <!-- Gazebo-specific properties -->
+  <!-- Gazebo Visuals -->
   <gazebo reference="chassis">
     <material>Gazebo/White</material>
     <mu1>0.2</mu1>
@@ -127,7 +120,7 @@
     <selfCollide>true</selfCollide>
   </gazebo>
 
-  <!-- Camera definitions -->
+  <!-- Cameras -->
   <!-- Left Camera -->
   <joint name="camera_joint" type="fixed">
     <parent link="chassis"/>
@@ -137,15 +130,11 @@
 
   <link name="camera_link">
     <visual>
-      <geometry>
-        <box size="0.010 0.03 0.03"/>
-      </geometry>
+      <geometry><box size="0.010 0.03 0.03"/></geometry>
       <material name="camera_red"/>
     </visual>
     <collision>
-      <geometry>
-        <box size="0.010 0.03 0.03"/>
-      </geometry>
+      <geometry><box size="0.010 0.03 0.03"/></geometry>
     </collision>
     <inertial>
       <mass value="0.05"/>
@@ -159,7 +148,7 @@
     <origin xyz="0 0 0" rpy="${-M_PI/2} 0 ${-M_PI/2}"/>
   </joint>
 
-  <link name="camera_link_optical"></link>
+  <link name="camera_link_optical"/>
 
   <!-- Right Camera -->
   <joint name="camera2_joint" type="fixed">
@@ -170,15 +159,11 @@
 
   <link name="camera2_link">
     <visual>
-      <geometry>
-        <box size="0.010 0.03 0.03"/>
-      </geometry>
+      <geometry><box size="0.010 0.03 0.03"/></geometry>
       <material name="camera_red"/>
     </visual>
     <collision>
-      <geometry>
-        <box size="0.010 0.03 0.03"/>
-      </geometry>
+      <geometry><box size="0.010 0.03 0.03"/></geometry>
     </collision>
     <inertial>
       <mass value="0.05"/>
@@ -192,14 +177,13 @@
     <origin xyz="0 0 0" rpy="${-M_PI/2} 0 ${-M_PI/2}"/>
   </joint>
 
-  <link name="camera2_link_optical"></link>
+  <link name="camera2_link_optical"/>
 
-  <!-- Gazebo camera plugins -->
+  <!-- Gazebo Harmonic Camera Sensors -->
   <gazebo reference="camera_link">
     <material>Gazebo/Red</material>
-    <sensor name="camera" type="camera">
-      <pose> 0 0 0 0 0 0 </pose>
-      <visualize>true</visualize>
+    <sensor name="camera_sensor" type="camera">
+      <pose>0 0 0 0 0 0</pose>
       <update_rate>10</update_rate>
       <camera>
         <horizontal_fov>1.089</horizontal_fov>
@@ -213,17 +197,15 @@
           <far>8.0</far>
         </clip>
       </camera>
-      <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
-        <frame_name>camera_link_optical</frame_name>
-      </plugin>
+      <always_on>true</always_on>
+      <visualize>true</visualize>
     </sensor>
   </gazebo>
 
   <gazebo reference="camera2_link">
     <material>Gazebo/Red</material>
-    <sensor name="camera2" type="camera">
-      <pose> 0 0 0 0 0 0 </pose>
-      <visualize>true</visualize>
+    <sensor name="camera2_sensor" type="camera">
+      <pose>0 0 0 0 0 0</pose>
       <update_rate>10</update_rate>
       <camera>
         <horizontal_fov>1.089</horizontal_fov>
@@ -237,9 +219,8 @@
           <far>8.0</far>
         </clip>
       </camera>
-      <plugin name="camera2_controller" filename="libgazebo_ros_camera.so">
-        <frame_name>camera2_link_optical</frame_name>
-      </plugin>
+      <always_on>true</always_on>
+      <visualize>true</visualize>
     </sensor>
   </gazebo>
 

@@ -26,7 +26,16 @@ sudo curl https://packages.osrfoundation.org/gazebo.gpg --output /usr/share/keyr
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/pkgs-osrf-archive-keyring.gpg] http://packages.osrfoundation.org/gazebo/ubuntu-stable $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/gazebo-stable.list > /dev/null &&
 sudo apt-get update -y &&
 sudo apt-get install gz-harmonic -y && 
-sudo apt-get install ros-jazzy-ros-gz -y
+sudo apt-get install ros-jazzy-ros-gz -y &&
+sudo apt update -y &&
+sudo apt install -y build-essential cmake libeigen3-dev libglew-dev libpython3-dev python3-numpy ffmpeg libavcodec-dev libavformat-dev libswscale-dev &&
+git clone --recursive https://github.com/stevenlovegrove/Pangolin.git &&
+cd Pangolin &&
+mkdir build &&
+cd build &&
+cmake .. &&
+make -j$(nproc) &&
+sudo make install &&
 ```
 
 ### **Install & Build the Package**

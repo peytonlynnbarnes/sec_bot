@@ -11,7 +11,7 @@ from lifecycle_msgs.msg import Transition
 from rclpy.callback_groups import ReentrantCallbackGroup
 from rclpy.executors import MultiThreadedExecutor
 from std_srvs.srv import Trigger
-
+from rcl_interfaces.msg import ParameterDescriptor, FloatingPointRange, IntegerRange
 
 class ImagePublisher(LifecycleNode):
     def __init__(self):

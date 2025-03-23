@@ -1,6 +1,6 @@
 import rclpy
 from rclpy.node import Node
-from geometry_msgs.msg import Point, Twist, PoseStamped
+from geometry_msgs.msg import Point, Twist
 from nav_msgs.msg import OccupancyGrid
 from tf2_ros import TransformListener, Buffer
 import math
@@ -9,6 +9,7 @@ import numpy as np
 import heapq
 
 class AStarPlanner:
+    # This class doesn't need changes as it's algorithm-based, not ROS-specific
     def __init__(self, grid, width, height):
         self.grid = np.array(grid, dtype=np.int8).reshape((height, width))
         self.width = width
@@ -77,22 +78,21 @@ class FollowBall(Node):
                 ('fov', 1.0),
                 ('map_resolution', 0.05),
                 ('ball_scale_factor', 0.05),
-                ('orbslam_focal_length', 525.0),    # ORB-SLAM3 camera parameter
-                ('keypoint_threshold', 100),        # Min keypoints for reliable tracking
-                ('slam_lost_timeout', 3.0)          # Time to wait before declaring SLAM lost
+                ('stereo_baseline', 0.12),
+                ('focal_length', 525.0),
+                # Add parameters for frame IDs - these might need to be changed for ORB-SLAM3
+                ('map_frame', 'map'),         # NEW: Parameter for map frame
+                ('robot_frame', 'base_link')  # NEW: Parameter for robot frame
             ])
         
         self.tf_buffer = Buffer()
         self.tf_listener = TransformListener(self.tf_buffer, self)
         self.cmd_vel_pub = self.create_publisher(Twist, '/cmd_vel', 10)
-        
-        # Subscribe to ORB-SLAM3 topics
-        self.create_subscription(PoseStamped, '/orbslam3/camera_pose', self.slam_pose_callback, 10)
         self.create_subscription(Point, '/ball_positions', self.ball_callback, 10)
-        self.create_subscription(OccupancyGrid, '/map', self.map_callback, 10)
         
-        # Optional: Subscribe to keypoint count if ORB-SLAM3 publishes it
-        self.create_subscription(Point, '/orbslam3/tracking_status', self.tracking_status_callback, 10)
+        # Update the map topic to match what ORB-SLAM3 publishes
+        # This might need to be changed depending on the actual topic from ros2_orb_slam3
+        self.create_subscription(OccupancyGrid, '/orb_slam3/map', self.map_callback, 10)
         
         self.ball_position = None
         self.current_map = None
@@ -103,54 +103,19 @@ class FollowBall(Node):
         self.last_plan_time = self.get_clock().now()
         self.search_mode_start_time = None
         self.search_attempt_counter = 0
-        self.slam_tracking_quality = "GOOD"  # Default tracking status
-        self.last_slam_update = self.get_clock().now()
-        self.keypoint_count = 0
-
-    def tracking_status_callback(self, msg):
-        # Assuming ORB-SLAM3 publishes tracking status as a Point message
-        # x: keypoint count, y: status code (1=GOOD, 2=POOR, 0=LOST)
-        self.keypoint_count = int(msg.x)
-        status_code = int(msg.y)
         
-        if status_code == 1:
-            self.slam_tracking_quality = "GOOD"
-        elif status_code == 2:
-            self.slam_tracking_quality = "POOR"
-        else:
-            self.slam_tracking_quality = "LOST"
-            
-        self.last_slam_update = self.get_clock().now()
-
-    def slam_pose_callback(self, msg):
-        # Extract pose from ORB-SLAM3
-        x = msg.pose.position.x
-        y = msg.pose.position.y
-        
-        # Extract orientation from quaternion
-        qx = msg.pose.orientation.x
-        qy = msg.pose.orientation.y
-        qz = msg.pose.orientation.z
-        qw = msg.pose.orientation.w
-        
-        # Convert quaternion to yaw (theta)
-        theta = 2 * math.atan2(qz, qw)
-        
-        self.robot_pose = (x, y, theta)
-        self.last_slam_update = self.get_clock().now()
+        # Get frame IDs from parameters
+        self.map_frame = self.get_parameter('map_frame').value
+        self.robot_frame = self.get_parameter('robot_frame').value
 
     def ball_callback(self, msg):
-        # Process ball position from stereo or RGB-D camera
-        # For ORB-SLAM3, the depth might come directly from the camera
-        focal_length = self.get_parameter('orbslam_focal_length').value
+        baseline = self.get_parameter('stereo_baseline').value
+        focal_length = self.get_parameter('focal_length').value
         
-        # Assuming depth is already available from RGB-D camera
-        if hasattr(msg, 'z') and msg.z > 0:
-            depth = msg.z
+        if msg.x != 0:
+            depth = (focal_length * baseline) / msg.x
         else:
-            # Fallback to estimating depth if needed
-            # Note: This is a simplified approach and may need adjustment
-            depth = focal_length / max(0.001, abs(msg.x))
+            depth = 0.0
             
         self.ball_position = Point(x=msg.y, y=msg.z, z=depth)
         
@@ -160,30 +125,23 @@ class FollowBall(Node):
     def map_callback(self, msg):
         self.current_map = msg
 
-<<<<<<< HEAD
-    def is_slam_reliable(self):
-        # Check if SLAM is providing reliable tracking
-        current_time = self.get_clock().now()
-        time_since_last_update = (current_time - self.last_slam_update).nanoseconds / 1e9
-        
-        # Check if we've received recent updates and tracking is decent
-        if (time_since_last_update < self.get_parameter('slam_lost_timeout').value and
-            (self.slam_tracking_quality != "LOST" or 
-             self.keypoint_count >= self.get_parameter('keypoint_threshold').value)):
-=======
     def get_robot_pose(self):
         try:
             transform = self.tf_buffer.lookup_transform(
-                'map', 'base_link', rclpy.time.Time(),
+                self.map_frame, self.robot_frame, rclpy.time.Time(),
                 timeout=rclpy.duration.Duration(seconds=1.0))
+            
             x = transform.transform.translation.x
             y = transform.transform.translation.y
             quat = transform.transform.rotation
             theta = 2 * math.atan2(quat.z, quat.w)
             self.robot_pose = (x, y, theta)
->>>>>>> da07fbb765e565fa59e6376723547bae19bdc4cc
             return True
-        return False
+        except Exception as e:
+            self.get_logger().warn(f"Transform error: {str(e)} - Stopping robot")
+            twist = Twist()
+            self.cmd_vel_pub.publish(twist)
+            return False
 
     def is_valid_cell(self, x, y):
         grid_array = np.array(self.current_map.data, dtype=np.int8).reshape(
@@ -193,10 +151,7 @@ class FollowBall(Node):
                 grid_array[y, x] <= 50)
 
     def navigation_loop(self):
-        if not self.is_slam_reliable():
-            self.get_logger().warn("ORB-SLAM3 tracking unreliable - stopping robot")
-            twist = Twist()
-            self.cmd_vel_pub.publish(twist)
+        if not self.get_robot_pose():
             return
             
         if None in (self.robot_pose, self.ball_position, self.current_map):
@@ -280,15 +235,10 @@ class FollowBall(Node):
         target_angle = atan2(dy, dx)
         angle_error = (target_angle - self.robot_pose[2] + math.pi) % (2 * math.pi) - math.pi
 
-        # Reduce speed when SLAM tracking is not optimal
-        tracking_factor = 1.0
-        if self.slam_tracking_quality == "POOR":
-            tracking_factor = 0.7
-        
         twist = Twist()
         twist.linear.x = min(
-            self.get_parameter('base_speed').value * speed_multiplier * tracking_factor,
-            self.get_parameter('max_speed').value * distance * tracking_factor
+            self.get_parameter('base_speed').value * speed_multiplier,
+            self.get_parameter('max_speed').value * distance
         )
         twist.angular.z = max(-1.5, min(1.5, 
             self.get_parameter('angular_gain').value * angle_error * distance
@@ -299,11 +249,6 @@ class FollowBall(Node):
 def main(args=None):
     rclpy.init(args=args)
     node = FollowBall()
-    
-    # Create a timer for the navigation loop
-    timer_period = 0.1  # seconds
-    timer = node.create_timer(timer_period, node.navigation_loop)
-    
     rclpy.spin(node)
     node.destroy_node()
     rclpy.shutdown()

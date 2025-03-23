@@ -118,7 +118,7 @@ class FollowBall(Node):
         try:
             transform = self.tf_buffer.lookup_transform(
                 'map', 'base_link', rclpy.time.Time(),
-                timeout=rclpy.duration.Duration(seconds=1.0)
+                timeout=rclpy.duration.Duration(seconds=1.0))
             x = transform.transform.translation.x
             y = transform.transform.translation.y
             quat = transform.transform.rotation

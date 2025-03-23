@@ -40,7 +40,14 @@ def generate_launch_description():
 
     tracker_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
-            [os.path.joiget_package_prefix('ball_tracker'), "lib", "ball_tracker", "image_subscriber.py")]
+            [
+                os.path.join(
+                    get_package_prefix("ball_tracker"),
+                    "lib",
+                    "ball_tracker",
+                    "image_subscriber.py",
+                )
+            ]
         ),
         launch_arguments={
             "params_file": params_path,

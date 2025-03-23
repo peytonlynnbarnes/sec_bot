@@ -45,7 +45,7 @@ def generate_launch_description():
                     get_package_prefix("ball_tracker"),
                     "lib",
                     "ball_tracker",
-                    "image_subscriber.py",
+                    "image_subscriber",
                 )
             ]
         ),

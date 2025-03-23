@@ -8,7 +8,7 @@ def generate_launch_description():
     return LaunchDescription(
         [
             Node(
-                package="orb_slam2_ros",
+                package="ball_tracker",
                 executable="stereo_node",
                 name="orb_slam2",
                 parameters=[

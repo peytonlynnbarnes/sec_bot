@@ -7,6 +7,8 @@
 #include <sensor_msgs/msg/image.hpp>
 #include <cv_bridge/cv_bridge.hpp>
 #include <opencv2/opencv.hpp>
+#include <tf2_ros/transform_broadcaster.hpp>
+#include <geometry_msgs/msg/transform_stamped.hpp>
 #include "System.h"
 #include <memory>
 #include <string>
@@ -40,6 +42,8 @@ private:
     rclcpp::Subscription<sensor_msgs::msg::Image>::SharedPtr subImgMsg_subscription_;
     rclcpp::Subscription<std_msgs::msg::Float64>::SharedPtr subTimestepMsg_subscription_;
 
+    std::shared_ptr<tf2_ros::TransformBroadcaster> tf_broadcaster_;
+
     ORB_SLAM3::System::eSensor sensorType;
     bool enablePangolinWindow = true;
     bool enableOpenCVWindow = false;
@@ -69,6 +73,8 @@ private:
     rclcpp::Subscription<std_msgs::msg::Float64>::SharedPtr subTimestepMsg_subscription_;
 
     cv::Mat leftImg, rightImg;
+
+    std::shared_ptr<tf2_ros::TransformBroadcaster> tf_broadcaster_;
 
     ORB_SLAM3::System::eSensor sensorType;
     bool enablePangolinWindow = true;

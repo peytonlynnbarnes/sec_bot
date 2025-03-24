@@ -25,6 +25,7 @@ find_package(OpenCV 4.2 REQUIRED)
 find_package(Eigen3 3.3.0 REQUIRED) # Matched with Sophus
 find_package(Pangolin REQUIRED)
 find_package(image_transport REQUIRED)
+find_package(tf2_ros REQUIRED)  # Added
 
 
 # Header file locations [C++ node]
@@ -57,9 +58,10 @@ set(THIS_PACKAGE_INCLUDE_DEPENDS
   OpenCV
   Eigen3
   Pangolin
+  tf2_ros  # Added
 )
 
-#* ORB SLAM3 as a shared library
+# ORB SLAM3 as a shared library
 # Whenever you add a new .h, .hpp or .cc, .cpp file in the ros2_orb_slam3/orb_slam3/include and os2_orb_slam3/orb_slam3/src directories, make sure to add them here as shown below
 add_library(orb_slam3_lib SHARED
   orb_slam3/src/System.cc

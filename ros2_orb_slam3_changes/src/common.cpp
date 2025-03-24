@@ -1,4 +1,6 @@
 #include "ros2_orb_slam3/common.hpp"
+#include <tf2_ros/transform_broadcaster.h>
+#include <geometry_msgs/msg/transform_stamped.hpp>
 
 // ========== MONOCULAR MODE IMPLEMENTATION ==========
 
@@ -32,6 +34,9 @@ MonocularMode::MonocularMode() : Node("mono_node_cpp") {
     subImgMsg_subscription_ = this->create_subscription<sensor_msgs::msg::Image>(subImgMsgName, 1, std::bind(&MonocularMode::Img_callback, this, _1));
     subTimestepMsg_subscription_ = this->create_subscription<std_msgs::msg::Float64>(subTimestepMsgName, 1, std::bind(&MonocularMode::Timestep_callback, this, _1));
 
+    // Initializes TF Broadcaster
+    tf_broadcaster_ = std::make_shared<tf2_ros::TransformBroadcaster>(this);
+    
     RCLCPP_INFO(this->get_logger(), "Waiting to finish handshake ......");
 }
 
@@ -80,8 +85,31 @@ void MonocularMode::Img_callback(const sensor_msgs::msg::Image &msg) {
         return;
     }
 
-    if (pAgent)
-        pAgent->TrackMonocular(cv_ptr->image, timeStep);
+    if (pAgent) {
+        // Track and get pose
+        Sophus::SE3f Tcw = pAgent->TrackMonocular(cv_ptr->image, timeStep);
+
+        // Publish TF if tracking is valid
+        if (!Tcw.matrix().isIdentity()) {
+            Eigen::Quaternionf q(Tcw.rotationMatrix());
+            Eigen::Vector3f t = Tcw.translation();
+
+            geometry_msgs::msg::TransformStamped transform;
+            transform.header.stamp = this->get_clock()->now();
+            transform.header.frame_id = "map";
+            transform.child_frame_id = "base_link";
+
+            transform.transform.translation.x = t.x();
+            transform.transform.translation.y = t.y();
+            transform.transform.translation.z = t.z();
+            transform.transform.rotation.x = q.x();
+            transform.transform.rotation.y = q.y();
+            transform.transform.rotation.z = q.z();
+            transform.transform.rotation.w = q.w();
+
+            tf_broadcaster_->sendTransform(transform);
+        }
+    }
 }
 
 // ========== STEREO MODE IMPLEMENTATION ==========
@@ -107,6 +135,9 @@ StereoMode::StereoMode() : Node("stereo_node_cpp") {
         settingsFilePath = homeDir + "/ros2_ws/ros2_test/src/ros2_orb_slam3/orb_slam3/config/Stereo/";
     }
 
+    // Initializes TF Broadcaster
+    tf_broadcaster_ = std::make_shared<tf2_ros::TransformBroadcaster>(this);
+    
     initializeParams();
     initializeVSLAM();
     RCLCPP_INFO(this->get_logger(), "StereoMode node initialized");
@@ -169,5 +200,28 @@ void StereoMode::RightImg_callback(const sensor_msgs::msg::Image &msg) {
 
 void StereoMode::runStereo() {
     if (!pAgent || timeStep <= 0) return;
-    pAgent->TrackStereo(leftImg, rightImg, timeStep);
+    
+    // Track and get pose
+    Sophus::SE3f Tcw = pAgent->TrackStereo(leftImg, rightImg, timeStep);
+
+    // Publish TF if tracking is valid
+    if (!Tcw.matrix().isIdentity()) {
+        Eigen::Quaternionf q(Tcw.rotationMatrix());
+        Eigen::Vector3f t = Tcw.translation();
+
+        geometry_msgs::msg::TransformStamped transform;
+        transform.header.stamp = this->get_clock()->now();
+        transform.header.frame_id = "map";
+        transform.child_frame_id = "base_link";
+
+        transform.transform.translation.x = t.x();
+        transform.transform.translation.y = t.y();
+        transform.transform.translation.z = t.z();
+        transform.transform.rotation.x = q.x();
+        transform.transform.rotation.y = q.y();
+        transform.transform.rotation.z = q.z();
+        transform.transform.rotation.w = q.w();
+
+        tf_broadcaster_->sendTransform(transform);
+    }
 }

@@ -37,7 +37,7 @@ def generate_robot_description(context, *args, **kwargs):
 
 def generate_launch_description():
     pkg_share = get_package_share_directory("sec_bot")
-    world_path = os.path.join(pkg_share, "worlds", "your_world.sdf")
+    world_path = os.path.join(pkg_share, "worlds", "purple_ball.world")
 
     return LaunchDescription(
         [

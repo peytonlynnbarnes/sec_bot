@@ -37,12 +37,24 @@ def generate_robot_description(context, *args, **kwargs):
 
 def generate_launch_description():
     pkg_share = get_package_share_directory("sec_bot")
-    world_path = os.path.join(pkg_share, "worlds", "purple_ball.world")
+    # Use the purple_ball.world file from the package's worlds folder.
+    # If you want to use a Xacro version of the world file, rename it to have a .xacro extension.
+    world_file = os.path.join(pkg_share, "worlds", "purple_ball.world")
+
+    # Check if the world file is a Xacro file by its extension; if so, process it.
+    if world_file.endswith(".xacro"):
+        doc = xacro.process_file(world_file)
+        world_str = doc.toprettyxml(indent="  ")
+        # Write the compiled world file to a temporary location.
+        tmp_world_path = "/tmp/purple_ball.world"
+        with open(tmp_world_path, "w") as f:
+            f.write(world_str)
+        world_file = tmp_world_path
 
     return LaunchDescription(
         [
             DeclareLaunchArgument(
-                "world", default_value=world_path, description="World file"
+                "world", default_value=world_file, description="World file"
             ),
             IncludeLaunchDescription(
                 PythonLaunchDescriptionSource(

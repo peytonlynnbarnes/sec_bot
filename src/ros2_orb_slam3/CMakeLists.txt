@@ -23,6 +23,7 @@ find_package(Eigen3 REQUIRED)
 find_package(Pangolin REQUIRED)
 find_package(image_transport REQUIRED)
 find_package(tf2_ros REQUIRED)
+find_package(geometry_msgs REQUIRED)
 
 # ==== Include directories ====
 include_directories(include)
@@ -53,11 +54,12 @@ set(THIS_PACKAGE_INCLUDE_DEPENDS
   Eigen3
   Pangolin
   tf2_ros
+  geometry_msgs
 )
 
 # ==== ORB-SLAM3 shared library ====
 add_library(orb_slam3_lib SHARED
-  # Source
+  # Source files remain the same as in original CMakeLists.txt
   orb_slam3/src/System.cc
   orb_slam3/src/Tracking.cc
   orb_slam3/src/LocalMapping.cc
@@ -122,7 +124,6 @@ add_library(orb_slam3_lib SHARED
 
 ament_target_dependencies(orb_slam3_lib
   ${THIS_PACKAGE_INCLUDE_DEPENDS}
-  tf2_ros
 )
 
 target_link_libraries(orb_slam3_lib
@@ -143,7 +144,6 @@ add_executable(mono_node_cpp
 
 ament_target_dependencies(mono_node_cpp
   PUBLIC ${THIS_PACKAGE_INCLUDE_DEPENDS}
-  tf2_ros
 )
 
 target_link_libraries(mono_node_cpp
@@ -157,7 +157,6 @@ add_executable(stereo_node_cpp
 
 ament_target_dependencies(stereo_node_cpp
   PUBLIC ${THIS_PACKAGE_INCLUDE_DEPENDS}
-  tf2_ros
 )
 
 target_link_libraries(stereo_node_cpp

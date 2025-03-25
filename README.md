@@ -52,7 +52,7 @@ rm -rf ORBvoc.txt.tar.gz
 cd ../../../..
 source /opt/ros/jazzy/setup.bash
 colcon build --symlink-install
-source install/setup.bash # make sure to source /opt/run/ros/humble/setup.bash
+source install/setup.bash 
 ```
 ### Launch Simulation
 To run the simulation run the following 4 commands in separate terminals. (Don't forget to ```bash source install/setup.bash``` in all terminals)

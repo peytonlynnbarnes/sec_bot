@@ -19,7 +19,10 @@
 #include <opencv2/highgui.hpp>
 #include <opencv2/imgproc.hpp>
 
-// Global flag for clean shutdown on SIGINT
+// Include Sophus for SE3f types and conversion
+#include <sophus/se3.hpp>
+
+// Global flag for clean shutdown on SIGINT.
 volatile bool g_running = true;
 void signalHandler(int signum)
 {
@@ -46,10 +49,7 @@ int main(int argc, char **argv)
     // Main processing loop.
     while (g_running)
     {
-        // --------------------------------------------------------------------
         // Acquire stereo images.
-        // In a complete application you should replace the following with
-        // code that reads images from your stereo camera.
         cv::Mat leftImg  = cv::imread("left.png",  cv::IMREAD_GRAYSCALE);
         cv::Mat rightImg = cv::imread("right.png", cv::IMREAD_GRAYSCALE);
 
@@ -59,14 +59,16 @@ int main(int argc, char **argv)
             break;
         }
 
-        // --------------------------------------------------------------------
         // Process the stereo images.
-        // The timestamp here is a placeholder; in practice, supply the accurate capture time.
-        cv::Mat Tcw = SLAM.TrackStereo(leftImg, rightImg, static_cast<double>(cv::getTickCount()));
+        // Note: TrackStereo now returns a Sophus::SE3f object.
+        Sophus::SE3f Tcw = SLAM.TrackStereo(leftImg, rightImg, static_cast<double>(cv::getTickCount()));
 
-        // Optional: show the image (or the results of tracking)
+        // If you need a cv::Mat representation, you can convert it:
+        // cv::Mat TcwMat = cv::Mat(Tcw.matrix());
+
+        // Optional: show the left image.
         cv::imshow("Left Image", leftImg);
-        if (cv::waitKey(30) == 27) // exit if ESC is pressed
+        if (cv::waitKey(30) == 27) // exit if ESC is pressed.
             break;
     }
 

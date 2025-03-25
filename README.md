@@ -9,41 +9,44 @@ Make sure you have the following installed:
 - **numpy**
 
 To install all of the dependencies use the following script by copying this:
-```
-sudo apt install software-properties-common -y &&
-sudo add-apt-repository universe &&
-sudo apt update -y &&
-sudo apt install curl -y &&
-sudo curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg &&
-echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(. /etc/os-release && echo $UBUNTU_CODENAME) main" | sudo tee /etc/apt/sources.list.d/ros2.list > /dev/null &&
-sudo apt update -y && 
-sudo apt upgrade -y &&
-sudo apt install ros-jazzy-desktop ros-dev-tools ros-jazzy-xacro -y &&
-sudo apt-get install python3-opencv -y &&
-sudo apt-get update -y &&
-sudo apt-get install curl lsb-release gnupg -y &&
-sudo curl https://packages.osrfoundation.org/gazebo.gpg --output /usr/share/keyrings/pkgs-osrf-archive-keyring.gpg &&
-echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/pkgs-osrf-archive-keyring.gpg] http://packages.osrfoundation.org/gazebo/ubuntu-stable $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/gazebo-stable.list > /dev/null &&
-sudo apt-get update -y &&
-sudo apt-get install gz-harmonic -y && 
-sudo apt-get install ros-jazzy-ros-gz -y &&
-sudo apt update -y &&
-sudo apt install -y build-essential cmake libeigen3-dev libglew-dev libpython3-dev python3-numpy ffmpeg libavcodec-dev libavformat-dev libswscale-dev &&
-git clone --recursive https://github.com/stevenlovegrove/Pangolin.git &&
-cd Pangolin &&
-mkdir build &&
-cd build &&
-sudo apt install pipx &&
-pipx install wheel &&
-pipx ensurepath &&
-cmake .. &&
-make -j$(nproc) &&
+```bash
+sudo apt install software-properties-common -y
+sudo add-apt-repository universe 
+sudo apt update -y
+sudo apt install curl -y
+sudo curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(. /etc/os-release && echo $UBUNTU_CODENAME) main" | sudo tee /etc/apt/sources.list.d/ros2.list > /dev/null
+sudo apt update -y
+sudo apt upgrade -y
+sudo apt install ros-jazzy-desktop ros-dev-tools ros-jazzy-xacro -y
+sudo apt-get install python3-opencv -y
+sudo apt-get update -y
+sudo apt-get install curl lsb-release gnupg -y
+sudo curl https://packages.osrfoundation.org/gazebo.gpg --output /usr/share/keyrings/pkgs-osrf-archive-keyring.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/pkgs-osrf-archive-keyring.gpg] http://packages.osrfoundation.org/gazebo/ubuntu-stable $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/gazebo-stable.list > /dev/null
+sudo apt-get update -y
+sudo apt-get install gz-harmonic -y
+sudo apt-get install ros-jazzy-ros-gz -y
+sudo apt update -y
+sudo apt install -y build-essential cmake libeigen3-dev libglew-dev libpython3-dev python3-numpy ffmpeg libavcodec-dev libavformat-dev libswscale-dev
+git clone --recursive https://github.com/stevenlovegrove/Pangolin.git
+cd Pangolin
+mkdir build
+cd build
+sudo apt install pipx
+pipx install wheel
+pipx ensurepath
+cmake ..
+make -j$(nproc)
 sudo make install
 ```
 
 ### **Install & Build the Package**
 ```bash
 git clone https://github.com/peytonlynnbarnes/sec_bot.git --branch jazzy-stuff
+cd src/
+git clone https://github.com/Mechazo11/ros2_orb_slam3.git
+cd ..
 cd sec_bot/src/ball_tracker/config/Vocabulary
 wget https://github.com/raulmur/ORB_SLAM2/raw/refs/heads/master/Vocabulary/ORBvoc.txt.tar.gz
 tar xf ORBvoc.txt.tar.gz

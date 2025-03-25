@@ -19,7 +19,7 @@
 #include <opencv2/highgui.hpp>
 #include <opencv2/imgproc.hpp>
 
-// Include Sophus for SE3f types and conversion
+// Include Sophus for SE3f types and conversion.
 #include <sophus/se3.hpp>
 
 // Global flag for clean shutdown on SIGINT.
@@ -63,8 +63,8 @@ int main(int argc, char **argv)
         // Note: TrackStereo now returns a Sophus::SE3f object.
         Sophus::SE3f Tcw = SLAM.TrackStereo(leftImg, rightImg, static_cast<double>(cv::getTickCount()));
 
-        // If you need a cv::Mat representation, you can convert it:
-        // cv::Mat TcwMat = cv::Mat(Tcw.matrix());
+        // Use the transformation (e.g., print the pose transformation matrix).
+        std::cout << "Current Pose:\n" << Tcw.matrix() << std::endl;
 
         // Optional: show the left image.
         cv::imshow("Left Image", leftImg);

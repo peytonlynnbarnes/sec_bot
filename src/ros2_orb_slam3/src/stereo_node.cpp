@@ -54,7 +54,6 @@ StereoMode::StereoMode() : Node("stereo_node_cpp") {
 
 StereoMode::~StereoMode() {
   pAgent->Shutdown();
-  pass;
 }
 
 void StereoMode::experimentSetting_callback(const std_msgs::msg::String &msg) {

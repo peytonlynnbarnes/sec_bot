@@ -44,10 +44,10 @@ sudo make install
 ### **Install & Build the Package**
 ```bash
 git clone https://github.com/peytonlynnbarnes/sec_bot.git --branch jazzy-stuff
-cd src/
+cd sec_bot/src
 git clone https://github.com/Mechazo11/ros2_orb_slam3.git
 cd ..
-cd sec_bot/src/ball_tracker/config/Vocabulary
+cd src/ball_tracker/config/Vocabulary
 wget https://github.com/raulmur/ORB_SLAM2/raw/refs/heads/master/Vocabulary/ORBvoc.txt.tar.gz
 tar xf ORBvoc.txt.tar.gz
 rm -rf ORBvoc.txt.tar.gz

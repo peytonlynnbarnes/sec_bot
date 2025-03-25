@@ -12,6 +12,9 @@ Make sure you have the following installed:
 
 This project is a robot created using ROS2 by the IEEE SEC 2025 Hardware Competition Team designed to use a camera and motor controllers to track and follow purple dice on a field, as well as pick up 2 boxes to sort the dice into.
 
+# install
+
+Use docker, procedure can be found in /doc
 
 ## sec_bot package
 
@@ -53,8 +56,7 @@ This package contains the ball tracking and following files as well as related l
   
 <ins> follow_ball.launch.py: </ins> launches follow_ball script
 
-### Old install instructions
-To install all of the dependencies, use docker. the following script by copying this:
+# Old install instructions
 ```bash
 sudo apt install software-properties-common -y
 sudo add-apt-repository universe 
@@ -88,7 +90,7 @@ sudo make install
 sudo ln -sf /usr/lib/x86_64-linux-gnu/libopencv_core.so.4.6.0 /usr/lib/x86_64-linux-gnu/libopencv_core.so.4.5d
 ```
 
-### **Install & Build the Package**
+### ** (old) Install & Build the Package**
 ```bash
 git clone https://github.com/peytonlynnbarnes/sec_bot.git --branch jazzy-stuff
 cd sec_bot/src/ball_tracker/config/Vocabulary
@@ -100,7 +102,7 @@ source /opt/ros/jazzy/setup.bash
 colcon build --symlink-install
 source install/setup.bash # make sure to source /opt/run/ros/humble/setup.bash
 ```
-### Launch Simulation
+### (old) Launch Simulation
 To run the simulation run the following 4 commands in separate terminals. (Don't forget to ```bash source install/setup.bash``` in all terminals)
 ```bash
 # runs Gazebo simulation, robot state publisher, and spawn entity for ease in testing.

@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <sdf version="1.6">
-  <world name="default">
+  <world name="purple_ball">
     <!-- Add a standard ground plane with collisions -->
    <model name="my_ground_plane">
       <static>true</static>

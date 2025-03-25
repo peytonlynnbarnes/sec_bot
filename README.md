@@ -52,11 +52,11 @@ sudo ln -sf /usr/lib/x86_64-linux-gnu/libopencv_core.so.4.6.0 /usr/lib/x86_64-li
 ### **Install & Build the Package**
 ```bash
 git clone https://github.com/peytonlynnbarnes/sec_bot.git --branch jazzy-stuff
-cd sec_bot/src/ball_tracker/config/Vocabulary
-wget https://github.com/raulmur/ORB_SLAM2/raw/refs/heads/master/Vocabulary/ORBvoc.txt.tar.gz
-tar xf ORBvoc.txt.tar.gz
-rm -rf ORBvoc.txt.tar.gz
-cd ../../../..
+cd sec_bot/src
+```
+Follow install instructions for: https://github.com/Mechazo11/ros2_orb_slam3
+Make sure folder ros2_orb_slam3 is in src folder. 
+```bash
 source /opt/ros/jazzy/setup.bash
 colcon build --symlink-install
 source install/setup.bash 

@@ -2,7 +2,7 @@
 #include "ros2_orb_slam3/common.hpp"
 
 //* Constructor
-StereoMode::StereoMode() : Node("stereo_node_cpp"), pAgent(nullptr)
+StereoMode::StereoMode() : Node("stereo_node_cpp")
 {
     homeDir = getenv("HOME");
 
@@ -17,7 +17,7 @@ StereoMode::StereoMode() : Node("stereo_node_cpp"), pAgent(nullptr)
     vocFilePath = this->get_parameter("voc_file_arg").as_string();
     settingsFilePath = this->get_parameter("settings_file_path_arg").as_string();
 
-    if (vocFilePath == "file_not_set" || settingsFilePath == "file_path_not_set")
+    if (vocFilePath == "file_not_set" || settingsFilePath == "file_not_set")
     {
         vocFilePath = homeDir + "/" + packagePath + "orb_slam3/Vocabulary/ORBvoc.txt.bin";
         settingsFilePath = homeDir + "/" + packagePath + "orb_slam3/config/Stereo/";
@@ -43,11 +43,8 @@ StereoMode::StereoMode() : Node("stereo_node_cpp"), pAgent(nullptr)
 
 StereoMode::~StereoMode()
 {
-    if (pAgent) {
-        pAgent->Shutdown();
-        delete pAgent;
-        pAgent = nullptr;
-    }
+    pAgent->Shutdown();
+    pass;
 }
 
 void StereoMode::experimentSetting_callback(const std_msgs::msg::String& msg)
@@ -65,7 +62,7 @@ void StereoMode::experimentSetting_callback(const std_msgs::msg::String& msg)
 
 void StereoMode::initializeVSLAM(std::string& configString)
 {
-    if (vocFilePath == "file_not_set" || settingsFilePath == "file_path_not_set")
+    if (vocFilePath == "file_not_set" || settingsFilePath == "file_not_set")
     {
         RCLCPP_ERROR(get_logger(), "Please provide valid voc_file and settings_file paths");
         rclcpp::shutdown();

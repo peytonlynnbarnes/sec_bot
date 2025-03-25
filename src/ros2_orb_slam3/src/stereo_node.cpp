@@ -1,9 +1,9 @@
 // stereo_node.cpp
 // ---------------------------------------------------------------------
 // IMPORTANT: To avoid multiple definition linker errors, ensure that 
-// only one file provides the implementation of StereoMode. For example,
-// if common.cpp also defines StereoMode’s member functions, remove it
-// from your build or conditionally compile one of them.
+// only one file provides the implementation of StereoMode.
+// For example, if common.cpp also defines StereoMode’s member functions,
+// remove it from your build or conditionally compile one of them.
 // ---------------------------------------------------------------------
 
 #include "ros2_orb_slam3/common.hpp"

@@ -8,7 +8,53 @@ Make sure you have the following installed:
 - **cv_bridge** (ROS2 image conversion)
 - **numpy**
 
-To install all of the dependencies use the following script by copying this:
+# sec_bot Description  
+
+This project is a robot created using ROS2 by the IEEE SEC 2025 Hardware Competition Team designed to use a camera and motor controllers to track and follow purple dice on a field, as well as pick up 2 boxes to sort the dice into.
+
+
+## sec_bot package
+
+This package contains the robot description as well as related launch files.
+### URDF Robot Description  
+  
+<ins> inertial_macros </ins>: This contains inertial macros for the robot_core including inertial_box, inertial_cylinder, and inertial_sphere.  
+  
+<ins> robot_core </ins>: This contains the simulated robot's parameters and structure.  
+  
+<ins> gazebo_control </ins>  This contains differential drive parameters for the robot to move in Gazebo. 
+  
+<ins> camera.xacro </ins>  This contains the camera specifications for the simulated camera in Gazebo. 
+
+### Launch Files 
+   
+<ins> rsp.launch.py </ins>: Launches robot state publisher 
+  
+<ins> launch_sim.launch.py  </ins>: Runs Gazebo simulation, robot state publisher, and spawn entity for ease in testing.
+
+## ball_tracker package 
+This package contains the ball tracking and following files as well as related launch files.  
+
+### Executables
+<ins> image_publisher </ins>: publishes images from camera to ros topic.
+<ins> image_subscriber </ins>: subscribes to topic to receive and process images.
+  
+<ins> multi_ball_tracker </ins>: uses OpenCV to mask processed images and publish coordinates of purple objects. Publishes to /ball_position topic and subscribes to camera/image_raw topic.  
+  
+<ins> sim_multi_ball_tracker </ins>: uses OpenCV to mask processed images and publish coordinates of purple objects. Publishes to /ball_position topic and subscribes to simulated camera/image_raw topic.  
+  
+<ins> follow_ball </ins>: receives ball position from /ball_position topic and publishes robot liner and angular speed to /cmd_vel to follow ball.   
+
+### Launch Files
+  
+<ins> camera.launch.py </ins>: launches image_publisher and image_subscriber nodes
+  
+<ins> sim_cam.launch.py </ins>: launches image_subscriber that directly subscribes to /camera/image_raw  
+  
+<ins> follow_ball.launch.py: </ins> launches follow_ball script
+
+### Old install instructions
+To install all of the dependencies, use docker. the following script by copying this:
 ```bash
 sudo apt install software-properties-common -y
 sudo add-apt-repository universe 
@@ -72,48 +118,3 @@ ros2 run ball_tracker sim_multi_ball_tracker
 # runs script that subscribes to /ball_position and publishes to /cmd_vel to follow ball
 ros2 launch ball_tracker follow_ball.launch.py
 ```
-
-# sec_bot Description  
-
-This project is a robot created using ROS2 by the IEEE SEC 2025 Hardware Competition Team designed to use a camera and motor controllers to track and follow purple dice on a field, as well as pick up 2 boxes to sort the dice into.
-
-
-## sec_bot package
-
-This package contains the robot description as well as related launch files.
-### URDF Robot Description  
-  
-<ins> inertial_macros </ins>: This contains inertial macros for the robot_core including inertial_box, inertial_cylinder, and inertial_sphere.  
-  
-<ins> robot_core </ins>: This contains the simulated robot's parameters and structure.  
-  
-<ins> gazebo_control </ins>  This contains differential drive parameters for the robot to move in Gazebo. 
-  
-<ins> camera.xacro </ins>  This contains the camera specifications for the simulated camera in Gazebo. 
-
-### Launch Files 
-   
-<ins> rsp.launch.py </ins>: Launches robot state publisher 
-  
-<ins> launch_sim.launch.py  </ins>: Runs Gazebo simulation, robot state publisher, and spawn entity for ease in testing.
-
-## ball_tracker package 
-This package contains the ball tracking and following files as well as related launch files.  
-
-### Executables
-<ins> image_publisher </ins>: publishes images from camera to ros topic.
-<ins> image_subscriber </ins>: subscribes to topic to receive and process images.
-  
-<ins> multi_ball_tracker </ins>: uses OpenCV to mask processed images and publish coordinates of purple objects. Publishes to /ball_position topic and subscribes to camera/image_raw topic.  
-  
-<ins> sim_multi_ball_tracker </ins>: uses OpenCV to mask processed images and publish coordinates of purple objects. Publishes to /ball_position topic and subscribes to simulated camera/image_raw topic.  
-  
-<ins> follow_ball </ins>: receives ball position from /ball_position topic and publishes robot liner and angular speed to /cmd_vel to follow ball.   
-
-### Launch Files
-  
-<ins> camera.launch.py </ins>: launches image_publisher and image_subscriber nodes
-  
-<ins> sim_cam.launch.py </ins>: launches image_subscriber that directly subscribes to /camera/image_raw  
-  
-<ins> follow_ball.launch.py: </ins> launches follow_ball script

@@ -1,14 +1,23 @@
-# Use Ubuntu 24.04 as base image
+# syntax = docker/dockerfile:1.2
 FROM ubuntu:24.04
 
 # Avoid prompts from apt
 ENV DEBIAN_FRONTEND=noninteractive
 
+# Set up pip cache directory
+ENV PIP_CACHE_DIR=/var/cache/buildkit/pip
+RUN mkdir -p $PIP_CACHE_DIR
+
+# Remove Docker's default apt-get cleanup configuration
+RUN rm -f /etc/apt/apt.conf.d/docker-clean
+
 # Set working directory
 WORKDIR /sec_bot
 
-# Install system dependencies
-RUN apt-get update && apt-get install -y \
+# System base dependencies with BuildKit cache mount
+RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
+    apt-get update && \
+    apt-get install -y \
     sudo \
     software-properties-common \
     curl \
@@ -16,22 +25,26 @@ RUN apt-get update && apt-get install -y \
     git \
     build-essential \
     cmake \
-    python3-pip \
-    pipx \
     lsb-release \
     gnupg \
-    libepoxy-dev
+    libepoxy-dev \
+    python3-pip \
+    pipx
 
 # Add ROS2 repository
-RUN curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg && \
+RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
+    curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg && \
     echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(. /etc/os-release && echo $UBUNTU_CODENAME) main" | tee /etc/apt/sources.list.d/ros2.list > /dev/null
 
 # Add Gazebo repository
-RUN curl https://packages.osrfoundation.org/gazebo.gpg --output /usr/share/keyrings/pkgs-osrf-archive-keyring.gpg && \
+RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
+    curl https://packages.osrfoundation.org/gazebo.gpg --output /usr/share/keyrings/pkgs-osrf-archive-keyring.gpg && \
     echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/pkgs-osrf-archive-keyring.gpg] http://packages.osrfoundation.org/gazebo/ubuntu-stable $(lsb_release -cs) main" | tee /etc/apt/sources.list.d/gazebo-stable.list > /dev/null
 
 # Install ROS2 Jazzy and dependencies
-RUN apt-get update && apt-get install -y \
+RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
+    apt-get update && \
+    apt-get install -y \
     ros-jazzy-desktop \
     ros-dev-tools \
     ros-jazzy-xacro \
@@ -47,8 +60,9 @@ RUN apt-get update && apt-get install -y \
     libswscale-dev \
     libeigen3-dev
 
-# Install pipx tools
-RUN pipx install wheel && \
+# Install pipx tools with pip cache
+RUN --mount=type=cache,target=$PIP_CACHE_DIR \
+    pipx install wheel && \
     pipx ensurepath
 
 # Clone and build Pangolin
@@ -60,8 +74,8 @@ RUN git clone --recursive https://github.com/stevenlovegrove/Pangolin.git && \
     make -j$(nproc) && \
     make install
 
-# Clone SEC Bot repository
-RUN git clone https://github.com/peytonlynnbarnes/sec_bot.git --branch jazzy-stuff
+# Copy local repository into the container
+COPY sec_bot/ /sec_bot/
 
 # Set up working directory
 WORKDIR /sec_bot

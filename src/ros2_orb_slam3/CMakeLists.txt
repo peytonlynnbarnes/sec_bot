@@ -154,6 +154,7 @@ target_link_libraries(mono_node_cpp
 
 # ==== Stereo Node ====
 add_executable(stereo_node_cpp
+  src/stereo_node.cpp
   src/common.cpp
 )
 

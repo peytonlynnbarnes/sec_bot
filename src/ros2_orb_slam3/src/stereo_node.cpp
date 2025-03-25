@@ -1,151 +1,77 @@
 // stereo_node.cpp
-// ---------------------------------------------------------------------
-// IMPORTANT: To avoid multiple definition linker errors, ensure that 
-// only one file provides the implementation of StereoMode.
-// For example, if common.cpp also defines StereoMode’s member functions,
-// remove it from your build or conditionally compile one of them.
-// ---------------------------------------------------------------------
-
-#include "ros2_orb_slam3/common.hpp"
-
-#include <cstdlib>
-#include <memory>
+#include <iostream>
+#include <signal.h>
 #include <string>
-#include <rclcpp/rclcpp.hpp>
-#include <std_msgs/msg/string.hpp>
-#include <std_msgs/msg/float64.hpp>
-#include <sensor_msgs/msg/image.hpp>
-#include <cv_bridge/cv_bridge.h>
-#include <opencv2/opencv.hpp>
-#include <ORB_SLAM3/System.h>
-#include <sophus/se3.hpp>
-#include <functional>
 
-//* Constructor
-StereoMode::StereoMode() : Node("stereo_node_cpp") {
-  homeDir = getenv("HOME");
+// Suppress warnings from third-party headers.
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Woverloaded-virtual"
+#pragma GCC diagnostic ignored "-Wsign-compare"
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+#pragma GCC diagnostic ignored "-Wreorder"
 
-  RCLCPP_INFO(this->get_logger(), "\nORB-SLAM3 Stereo Node Started");
+// Include ORB_SLAM3 system header (and its dependencies).
+#include "System.h"
 
-  // Declare parameters
-  this->declare_parameter("node_name_arg", "not_given");
-  this->declare_parameter("voc_file_arg", "file_not_set");
-  this->declare_parameter("settings_file_path_arg", "file_path_not_set");
+#pragma GCC diagnostic pop
 
-  nodeName = this->get_parameter("node_name_arg").as_string();
-  vocFilePath = this->get_parameter("voc_file_arg").as_string();
-  settingsFilePath = this->get_parameter("settings_file_path_arg").as_string();
+#include <opencv2/core.hpp>
+#include <opencv2/highgui.hpp>
+#include <opencv2/imgproc.hpp>
 
-  if (vocFilePath == "file_not_set" || settingsFilePath == "file_path_not_set") {
-    vocFilePath = homeDir + "/" + packagePath + "orb_slam3/Vocabulary/ORBvoc.txt.bin";
-    settingsFilePath = homeDir + "/" + packagePath + "orb_slam3/config/Stereo/";
-  }
-
-  RCLCPP_INFO(this->get_logger(), "nodeName: %s", nodeName.c_str());
-  RCLCPP_INFO(this->get_logger(), "voc_file: %s", vocFilePath.c_str());
-
-  subexperimentconfigName = "/stereo_py_driver/experiment_settings";
-  pubconfigackName = "/stereo_py_driver/exp_settings_ack";
-  subLeftImgMsgName = "/stereo_py_driver/left_img_msg";
-  subRightImgMsgName = "/stereo_py_driver/right_img_msg";
-  subTimestepMsgName = "/stereo_py_driver/timestep_msg";
-
-  expConfig_subscription_ = this->create_subscription<std_msgs::msg::String>(
-      subexperimentconfigName, 1,
-      std::bind(&StereoMode::experimentSetting_callback, this, std::placeholders::_1));
-  configAck_publisher_ = this->create_publisher<std_msgs::msg::String>(pubconfigackName, 10);
-  subLeftImgMsg_subscription_ = this->create_subscription<sensor_msgs::msg::Image>(
-      subLeftImgMsgName, 1,
-      std::bind(&StereoMode::LeftImg_callback, this, std::placeholders::_1));
-  subRightImgMsg_subscription_ = this->create_subscription<sensor_msgs::msg::Image>(
-      subRightImgMsgName, 1,
-      std::bind(&StereoMode::RightImg_callback, this, std::placeholders::_1));
-  subTimestepMsg_subscription_ = this->create_subscription<std_msgs::msg::Float64>(
-      subTimestepMsgName, 1,
-      std::bind(&StereoMode::Timestep_callback, this, std::placeholders::_1));
-
-  RCLCPP_INFO(this->get_logger(), "Waiting to finish handshake ......");
+// Global flag for clean shutdown on SIGINT
+volatile bool g_running = true;
+void signalHandler(int signum)
+{
+    g_running = false;
 }
 
-StereoMode::~StereoMode() {
-  if(pAgent) {
-    pAgent->Shutdown();
-  }
-}
+int main(int argc, char **argv)
+{
+    // Register SIGINT handler.
+    signal(SIGINT, signalHandler);
 
-void StereoMode::experimentSetting_callback(const std_msgs::msg::String &msg) {
-  bSettingsFromPython = true;
-  experimentConfig = msg.data;
-  RCLCPP_INFO(this->get_logger(), "Configuration YAML file name: %s", experimentConfig.c_str());
+    if (argc < 3) {
+        std::cerr << "Usage: stereo_node <vocabulary_file> <settings_file>" << std::endl;
+        return 1;
+    }
 
-  auto message = std_msgs::msg::String();
-  message.data = "ACK";
-  configAck_publisher_->publish(message);
+    std::string vocabFile   = argv[1];
+    std::string settingsFile = argv[2];
 
-  initializeVSLAM(experimentConfig);
-}
+    // Create the ORB_SLAM3 system in stereo mode.
+    // (The last boolean parameter controls whether to use viewer.)
+    ORB_SLAM3::System SLAM(vocabFile, settingsFile, ORB_SLAM3::System::STEREO, true);
 
-void StereoMode::initializeVSLAM(std::string &configString) {
-  if (vocFilePath == "file_not_set" || settingsFilePath == "file_path_not_set") {
-    RCLCPP_ERROR(get_logger(), "Please provide valid voc_file and settings_file paths");
-    rclcpp::shutdown();
-    return;
-  }
+    // Main processing loop.
+    while (g_running)
+    {
+        // --------------------------------------------------------------------
+        // Acquire stereo images.
+        // In a complete application you should replace the following with
+        // code that reads images from your stereo camera.
+        cv::Mat leftImg  = cv::imread("left.png",  cv::IMREAD_GRAYSCALE);
+        cv::Mat rightImg = cv::imread("right.png", cv::IMREAD_GRAYSCALE);
 
-  settingsFilePath += configString + ".yaml";
-  RCLCPP_INFO(this->get_logger(), "Path to settings file: %s", settingsFilePath.c_str());
+        if (leftImg.empty() || rightImg.empty())
+        {
+            std::cerr << "Error: Could not load input images." << std::endl;
+            break;
+        }
 
-  sensorType = ORB_SLAM3::System::STEREO;
-  enablePangolinWindow = true;
-  enableOpenCVWindow = true;
+        // --------------------------------------------------------------------
+        // Process the stereo images.
+        // The timestamp here is a placeholder; in practice, supply the accurate capture time.
+        cv::Mat Tcw = SLAM.TrackStereo(leftImg, rightImg, static_cast<double>(cv::getTickCount()));
 
-  pAgent = std::make_shared<ORB_SLAM3::System>(
-      vocFilePath, settingsFilePath, sensorType, enablePangolinWindow);
-  std::cout << "StereoMode node initialized" << std::endl;
-}
+        // Optional: show the image (or the results of tracking)
+        cv::imshow("Left Image", leftImg);
+        if (cv::waitKey(30) == 27) // exit if ESC is pressed
+            break;
+    }
 
-void StereoMode::Timestep_callback(const std_msgs::msg::Float64 &time_msg) {
-  timeStep = time_msg.data;
-}
+    // Shutdown and release resources.
+    SLAM.Shutdown();
 
-void StereoMode::LeftImg_callback(const sensor_msgs::msg::Image &msg) {
-  try {
-    leftImg = cv_bridge::toCvCopy(msg)->image;
-  } catch (cv_bridge::Exception &e) {
-    RCLCPP_ERROR(this->get_logger(), "Left image cv_bridge error");
-    return;
-  }
-
-  if (!rightImg.empty())
-    runStereo();
-}
-
-void StereoMode::RightImg_callback(const sensor_msgs::msg::Image &msg) {
-  try {
-    rightImg = cv_bridge::toCvCopy(msg)->image;
-  } catch (cv_bridge::Exception &e) {
-    RCLCPP_ERROR(this->get_logger(), "Right image cv_bridge error");
-    return;
-  }
-
-  if (!leftImg.empty())
-    runStereo();
-}
-
-void StereoMode::runStereo() {
-  if (!pAgent || timeStep <= 0)
-    return;
-
-  Sophus::SE3f Tcw = pAgent->TrackStereo(leftImg, rightImg, timeStep);
-  (void)Tcw;  // Suppress "set but not used" warning
-  // Optional: add post-processing, publishing, etc.
-}
-
-//* main
-int main(int argc, char **argv) {
-  rclcpp::init(argc, argv);
-  auto node = std::make_shared<StereoMode>();
-  rclcpp::spin(node);
-  rclcpp::shutdown();
-  return 0;
+    return 0;
 }

@@ -2,34 +2,9 @@
 <sdf version="1.6">
   <world name="purple_ball">
     <!-- Add a standard ground plane with collisions -->
-   <model name="my_ground_plane">
-      <static>true</static>
-      <link name="link">
-        <collision name="collision">
-          <geometry>
-            <plane>
-              <normal>0 0 1</normal>
-              <size>100 100</size>
-            </plane>
-          </geometry>
-        </collision>
-        <visual name="visual">
-          <geometry>
-            <plane>
-              <normal>0 0 1</normal>
-              <size>100 100</size>
-            </plane>
-          </geometry>
-          <material>
-            <script>
-              <!-- This is just a typical Gazebo material reference -->
-              <uri>file://media/materials/scripts/gazebo.material</uri>
-              <name>Gazebo/White</name>
-            </script>
-          </material>
-        </visual>
-      </link>
-    </model>
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
 
     <!-- Optionally, include a sun for lighting -->
     <include>

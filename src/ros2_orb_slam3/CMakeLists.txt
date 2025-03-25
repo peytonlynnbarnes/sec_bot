@@ -6,7 +6,6 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -O3")
 
-# Add custom module path
 LIST(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake_modules)
 
 # ==== Dependencies ====
@@ -26,31 +25,24 @@ find_package(image_transport REQUIRED)
 find_package(tf2_ros REQUIRED)
 find_package(geometry_msgs REQUIRED)
 
-# ==== Directories and Paths ====
-# Ensure absolute paths are used
-get_filename_component(PROJECT_ABS_PATH "${PROJECT_SOURCE_DIR}" ABSOLUTE)
+# ==== Include directories ====
+include_directories(include)
+include_directories(${EIGEN3_INCLUDE_DIRS})
+include_directories(${Pangolin_INCLUDE_DIRS})
+include_directories(${OpenCV_INCLUDE_DIRS})
+include_directories(${cv_bridge_INCLUDE_DIRS})
 
-# ==== Include Directories ====
 include_directories(
-  include
-  ${EIGEN3_INCLUDE_DIRS}
-  ${Pangolin_INCLUDE_DIRS}
-  ${OpenCV_INCLUDE_DIRS}
-  ${cv_bridge_INCLUDE_DIRS}
-)
-
-# Additional ORB-SLAM3 specific include directories
-include_directories(
-  ${PROJECT_ABS_PATH}
-  ${PROJECT_ABS_PATH}/orb_slam3
-  ${PROJECT_ABS_PATH}/orb_slam3/include
-  ${PROJECT_ABS_PATH}/orb_slam3/include/CameraModels
-  ${PROJECT_ABS_PATH}/orb_slam3/Thirdparty
-  ${PROJECT_ABS_PATH}/orb_slam3/Thirdparty/Sophus
+  ${PROJECT_SOURCE_DIR}
+  ${PROJECT_SOURCE_DIR}/orb_slam3
+  ${PROJECT_SOURCE_DIR}/orb_slam3/include
+  ${PROJECT_SOURCE_DIR}/orb_slam3/include/CameraModels
+  ${PROJECT_SOURCE_DIR}/orb_slam3/Thirdparty
+  ${PROJECT_SOURCE_DIR}/orb_slam3/Thirdparty/Sophus
   ${ament_INCLUDE_DIRS}
 )
 
-# ==== Transitive Dependencies ====
+# ==== Transitive dependency list ====
 set(THIS_PACKAGE_INCLUDE_DEPENDS
   rclcpp
   rclpy
@@ -65,22 +57,9 @@ set(THIS_PACKAGE_INCLUDE_DEPENDS
   geometry_msgs
 )
 
-# ==== Third-Party Libraries ====
-# Check and set paths for third-party libraries
-set(DBOW2_LIB "${PROJECT_ABS_PATH}/orb_slam3/Thirdparty/DBoW2/lib/libDBoW2.so")
-set(G2O_LIB "${PROJECT_ABS_PATH}/orb_slam3/Thirdparty/g2o/lib/libg2o.so")
-
-# Verify library existence
-if(NOT EXISTS "${DBOW2_LIB}")
-  message(FATAL_ERROR "DBoW2 library not found at ${DBOW2_LIB}")
-endif()
-
-if(NOT EXISTS "${G2O_LIB}")
-  message(FATAL_ERROR "g2o library not found at ${G2O_LIB}")
-endif()
-
-# ==== ORB-SLAM3 Shared Library ====
+# ==== ORB-SLAM3 shared library ====
 add_library(orb_slam3_lib SHARED
+  # Source files remain the same as in original CMakeLists.txt
   orb_slam3/src/System.cc
   orb_slam3/src/Tracking.cc
   orb_slam3/src/LocalMapping.cc
@@ -109,22 +88,52 @@ add_library(orb_slam3_lib SHARED
   orb_slam3/src/TwoViewReconstruction.cc
   orb_slam3/src/Config.cc
   orb_slam3/src/Settings.cc
+
+  # Headers
+  orb_slam3/include/System.h
+  orb_slam3/include/Tracking.h
+  orb_slam3/include/LocalMapping.h
+  orb_slam3/include/LoopClosing.h
+  orb_slam3/include/ORBextractor.h
+  orb_slam3/include/ORBmatcher.h
+  orb_slam3/include/FrameDrawer.h
+  orb_slam3/include/Converter.h
+  orb_slam3/include/MapPoint.h
+  orb_slam3/include/KeyFrame.h
+  orb_slam3/include/Atlas.h
+  orb_slam3/include/Map.h
+  orb_slam3/include/MapDrawer.h
+  orb_slam3/include/Optimizer.h
+  orb_slam3/include/Frame.h
+  orb_slam3/include/KeyFrameDatabase.h
+  orb_slam3/include/Sim3Solver.h
+  orb_slam3/include/Viewer.h
+  orb_slam3/include/ImuTypes.h
+  orb_slam3/include/G2oTypes.h
+  orb_slam3/include/CameraModels/GeometricCamera.h
+  orb_slam3/include/CameraModels/Pinhole.h
+  orb_slam3/include/CameraModels/KannalaBrandt8.h
+  orb_slam3/include/OptimizableTypes.h
+  orb_slam3/include/MLPnPsolver.h
+  orb_slam3/include/GeometricTools.h
+  orb_slam3/include/TwoViewReconstruction.h
+  orb_slam3/include/SerializationUtils.h
+  orb_slam3/include/Config.h
+  orb_slam3/include/Settings.h
 )
 
-# Link dependencies to ORB-SLAM3 library
 ament_target_dependencies(orb_slam3_lib
   ${THIS_PACKAGE_INCLUDE_DEPENDS}
 )
 
-# Link external libraries
 target_link_libraries(orb_slam3_lib
   ${OpenCV_LIBS}
   ${Pangolin_LIBRARIES}
-  ${DBOW2_LIB}
-  ${G2O_LIB}
-  boost_system
-  boost_serialization
-  crypto 
+  ${PROJECT_SOURCE_DIR}/orb_slam3/Thirdparty/DBoW2/lib/libDBoW2.so
+  ${PROJECT_SOURCE_DIR}/orb_slam3/Thirdparty/g2o/lib/libg2o.so
+  -lboost_system
+  -lboost_serialization
+  -lcrypto 
 )
 
 # ==== Mono Node ====
@@ -134,34 +143,28 @@ add_executable(mono_node_cpp
 )
 
 ament_target_dependencies(mono_node_cpp
-  ${THIS_PACKAGE_INCLUDE_DEPENDS}
+  PUBLIC ${THIS_PACKAGE_INCLUDE_DEPENDS}
 )
 
 target_link_libraries(mono_node_cpp
-  orb_slam3_lib
+  PUBLIC orb_slam3_lib
 )
 
 # ==== Stereo Node ====
 add_executable(stereo_node_cpp
   src/common.cpp
-  src/stereo_node.cpp  # Added stereo_node.cpp
 )
 
 ament_target_dependencies(stereo_node_cpp
-  ${THIS_PACKAGE_INCLUDE_DEPENDS}
+  PUBLIC ${THIS_PACKAGE_INCLUDE_DEPENDS}
 )
 
 target_link_libraries(stereo_node_cpp
-  orb_slam3_lib
-  ${DBOW2_LIB}
-  ${G2O_LIB}
+  PUBLIC orb_slam3_lib
 )
 
 # ==== Install Targets ====
-install(TARGETS 
-  mono_node_cpp 
-  stereo_node_cpp 
-  orb_slam3_lib
+install(TARGETS mono_node_cpp stereo_node_cpp orb_slam3_lib
   ARCHIVE DESTINATION lib
   LIBRARY DESTINATION lib
   RUNTIME DESTINATION lib/${PROJECT_NAME}
@@ -173,8 +176,8 @@ install(DIRECTORY include/ DESTINATION include)
 
 # ==== Install Thirdparty .so files ====
 install(FILES
-  ${DBOW2_LIB}
-  ${G2O_LIB}
+  ${PROJECT_SOURCE_DIR}/orb_slam3/Thirdparty/DBoW2/lib/libDBoW2.so
+  ${PROJECT_SOURCE_DIR}/orb_slam3/Thirdparty/g2o/lib/libg2o.so
   DESTINATION lib
 )
 
@@ -184,7 +187,7 @@ install(PROGRAMS
   DESTINATION lib/${PROJECT_NAME}
 )
 
-# ==== Export Dependencies ====
+# ==== Export to downstream ====
 ament_export_include_directories(include)
 ament_export_dependencies(${THIS_PACKAGE_INCLUDE_DEPENDS})
 ament_package()

@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  sec_bot:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    image: sec_bot
+    privileged: true
+    network_mode: host
+    volumes:
+      - /dev:/dev
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - ./:/sec_bot  # Mount project directory for development
+    environment:
+      - DISPLAY=${DISPLAY}
+    devices:
+      - "/dev/ttyACM0:/dev/ttyACM0"  # Microcontroller device mapping
+    stdin_open: true  # Keep STDIN open for interactive shell
+    tty: true  # Allocate a pseudo-TTY
+    command: /bin/bash  # Start with bash shell

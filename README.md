@@ -8,79 +8,39 @@ Make sure you have the following installed:
 - **cv_bridge** (ROS2 image conversion)
 - **numpy**
 
-# sec_bot Description  
 
-This project is a robot created using ROS2 by the IEEE SEC 2025 Hardware Competition Team designed to use a camera and motor controllers to track and follow purple dice on a field, as well as pick up 2 boxes to sort the dice into.
-
-# install
-
-Use docker, procedure can be found in /doc
-
-## sec_bot package
-
-This package contains the robot description as well as related launch files.
-### URDF Robot Description  
-  
-<ins> inertial_macros </ins>: This contains inertial macros for the robot_core including inertial_box, inertial_cylinder, and inertial_sphere.  
-  
-<ins> robot_core </ins>: This contains the simulated robot's parameters and structure.  
-  
-<ins> gazebo_control </ins>  This contains differential drive parameters for the robot to move in Gazebo. 
-  
-<ins> camera.xacro </ins>  This contains the camera specifications for the simulated camera in Gazebo. 
-
-### Launch Files 
-   
-<ins> rsp.launch.py </ins>: Launches robot state publisher 
-  
-<ins> launch_sim.launch.py  </ins>: Runs Gazebo simulation, robot state publisher, and spawn entity for ease in testing.
-
-## ball_tracker package 
-This package contains the ball tracking and following files as well as related launch files.  
-
-### Executables
-<ins> image_publisher </ins>: publishes images from camera to ros topic.
-<ins> image_subscriber </ins>: subscribes to topic to receive and process images.
-  
-<ins> multi_ball_tracker </ins>: uses OpenCV to mask processed images and publish coordinates of purple objects. Publishes to /ball_position topic and subscribes to camera/image_raw topic.  
-  
-<ins> sim_multi_ball_tracker </ins>: uses OpenCV to mask processed images and publish coordinates of purple objects. Publishes to /ball_position topic and subscribes to simulated camera/image_raw topic.  
-  
-<ins> follow_ball </ins>: receives ball position from /ball_position topic and publishes robot liner and angular speed to /cmd_vel to follow ball.   
-
-### Launch Files
-  
-<ins> camera.launch.py </ins>: launches image_publisher and image_subscriber nodes
-  
-<ins> sim_cam.launch.py </ins>: launches image_subscriber that directly subscribes to /camera/image_raw  
-  
-<ins> follow_ball.launch.py: </ins> launches follow_ball script
-
-# Old install instructions
+To install all of the dependencies use the following bash script by copying this into your terminal:
 ```bash
+# installing ros2 dependencies (making sure they are installed)
 sudo apt install software-properties-common -y
 sudo add-apt-repository universe 
 sudo apt update -y
 sudo apt install curl -y
+# installing ros2 jazzy
 sudo curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(. /etc/os-release && echo $UBUNTU_CODENAME) main" | sudo tee /etc/apt/sources.list.d/ros2.list > /dev/null
 sudo apt update -y
 sudo apt upgrade -y
 sudo apt install ros-jazzy-desktop ros-dev-tools ros-jazzy-xacro -y
+# installing opencv for cameras
 sudo apt-get install python3-opencv -y
 sudo apt-get update -y
+# installing gazebo dependancies
 sudo apt-get install curl lsb-release gnupg -y
+# installing gazebo for simulation
 sudo curl https://packages.osrfoundation.org/gazebo.gpg --output /usr/share/keyrings/pkgs-osrf-archive-keyring.gpg
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/pkgs-osrf-archive-keyring.gpg] http://packages.osrfoundation.org/gazebo/ubuntu-stable $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/gazebo-stable.list > /dev/null
 sudo apt-get update -y
 sudo apt-get install gz-harmonic -y
 sudo apt-get install ros-jazzy-ros-gz -y
+# installing pangolin for orb slam3
 sudo apt update -y
 sudo apt install -y build-essential cmake libeigen3-dev libglew-dev libpython3-dev python3-numpy ffmpeg libavcodec-dev libavformat-dev libswscale-dev
 git clone --recursive https://github.com/stevenlovegrove/Pangolin.git
 cd Pangolin
 mkdir build
 cd build
+# installing the rest of orb slam 3 dependencies
 sudo apt install pipx
 pipx install wheel
 pipx ensurepath
@@ -93,14 +53,14 @@ sudo ln -sf /usr/lib/x86_64-linux-gnu/libopencv_core.so.4.6.0 /usr/lib/x86_64-li
 ### ** (old) Install & Build the Package**
 ```bash
 git clone https://github.com/peytonlynnbarnes/sec_bot.git --branch jazzy-stuff
-cd sec_bot/src/ball_tracker/config/Vocabulary
-wget https://github.com/raulmur/ORB_SLAM2/raw/refs/heads/master/Vocabulary/ORBvoc.txt.tar.gz
-tar xf ORBvoc.txt.tar.gz
-rm -rf ORBvoc.txt.tar.gz
-cd ../../../..
+cd sec_bot/src
+```
+Follow install instructions for: https://github.com/Mechazo11/ros2_orb_slam3
+Make sure folder ros2_orb_slam3 is in src folder. 
+```bash
 source /opt/ros/jazzy/setup.bash
 colcon build --symlink-install
-source install/setup.bash # make sure to source /opt/run/ros/humble/setup.bash
+source install/setup.bash 
 ```
 ### (old) Launch Simulation
 To run the simulation run the following 4 commands in separate terminals. (Don't forget to ```bash source install/setup.bash``` in all terminals)

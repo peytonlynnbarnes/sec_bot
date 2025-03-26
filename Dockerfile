@@ -8,10 +8,10 @@ ENV DEBIAN_FRONTEND=noninteractive
 ENV PIP_CACHE_DIR=/var/cache/buildkit/pip
 ENV MICROROS_WS=/microros_ws
 ENV PANGOLIN_CACHE=/pangolin_cache
-ENV ORB_SLAM_VOCAB_CACHE=/orb_slam_vocab_cache
+ENV ORB_SLAM3_CACHE=/orb_slam3_cache
 
 # Create necessary directories
-RUN mkdir -p $PIP_CACHE_DIR $MICROROS_WS $PANGOLIN_CACHE $ORB_SLAM_VOCAB_CACHE
+RUN mkdir -p $PIP_CACHE_DIR $MICROROS_WS $PANGOLIN_CACHE $ORB_SLAM3_CACHE
 
 # Remove Docker's default apt-get cleanup configuration
 RUN rm -f /etc/apt/apt.conf.d/docker-clean
@@ -67,7 +67,11 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     libswscale-dev \
     libeigen3-dev \
     python3-colcon-common-extensions \
-    python3-vcstool
+    python3-vcstool \
+    libglew-dev \
+    libxkbcommon-dev \
+    libwayland-dev \
+    libglu1-mesa-dev
 
 # Create a virtual environment and install pip tools
 RUN python3 -m venv /opt/venv && \
@@ -83,8 +87,6 @@ WORKDIR $MICROROS_WS
 
 # Fetch micro-ROS dependencies with caching
 RUN --mount=type=cache,id=microros-cache,target=/microros_ws/src,sharing=locked \
-   # git clone -b jazzy https://github.com/micro-ROS/micro_ros_setup.git src/micro_ros_setup && \
-    #vcs import src < src/micro_ros_setup/dependencies.repos && \
     apt-get update && \
     rosdep init && \
     rosdep update && \
@@ -112,34 +114,29 @@ RUN cp -R $PANGOLIN_CACHE/Pangolin . && \
     make -j$(nproc) && \
     make install
 
-# Prepare ORB SLAM Vocabulary cache
-WORKDIR $ORB_SLAM_VOCAB_CACHE
-RUN wget https://github.com/raulmur/ORB_SLAM2/raw/refs/heads/master/Vocabulary/ORBvoc.txt.tar.gz && \
-    tar xf ORBvoc.txt.tar.gz
-
-# Create symbolic link for OpenCV
-RUN find /usr/lib -name "libopencv_core.so*"
-RUN ls /usr/lib/x86_64-linux-gnu/libopencv_core.so*
-RUN ln -sf /usr/lib/x86_64-linux-gnu/libopencv_core.so.4.6.0 /usr/lib/x86_64-linux-gnu/libopencv_core.so.4.5d
-
 # Copy local repository into the container
-WORKDIR /sec_bot
 COPY . /sec_bot/
 
-# Copy cached ORB SLAM Vocabulary
-RUN mkdir -p src/ball_tracker/config/Vocabulary && \
-    cp $ORB_SLAM_VOCAB_CACHE/ORBvoc.txt src/ball_tracker/config/Vocabulary/
-
-
-
-# Source ROS2 and micro-ROS setups, then build the project
-RUN /bin/bash -c "source /opt/ros/jazzy/setup.bash && \
-    source $MICROROS_WS/install/local_setup.bash && \
+ENV ROS_WS=/sec_bot/ros2_ws
+# Set up ROS2 workspace
+WORKDIR $ROS_WS
+RUN mkdir -p $ROS_WS/src && \
+    /bin/bash -c "source /opt/ros/jazzy/setup.bash && \
+    cp -R /sec_bot/src/* $ROS_WS/src/ && \
+    rosdep install -r --from-paths src --ignore-src -y --rosdistro jazzy && \
     colcon build --symlink-install"
 
-# Set up entrypoint script
-COPY entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
+# Create an entrypoint script to source ROS2 setup
+RUN echo '#!/bin/bash\n\
+source /opt/ros/jazzy/setup.bash\n\
+source $ROS_WS/install/setup.bash\n\
+exec "$@"' > /entrypoint.sh && \
+    chmod +x /entrypoint.sh
+
+# Set up entrypoint and default command
+COPY entrypoint.sh /custom_entrypoint.sh
+RUN chmod +x /custom_entrypoint.sh
 
 # Set default command
 ENTRYPOINT ["/entrypoint.sh"]
+CMD ["/bin/bash"]

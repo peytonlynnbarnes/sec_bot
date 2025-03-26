@@ -1,11 +1,16 @@
 #!/bin/bash
-source /opt/ros/jazzy/setup.bash
-source /sec_bot/install/setup.bash
+set -e
 
-# Default command (can be overridden)
+# Source ROS 2 installation
+source /opt/ros/jazzy/setup.bash
+
+# Source micro-ROS workspace
+source /microros_ws/install/local_setup.bash
+
+# If no command is provided, start a bash shell
 if [ $# -eq 0 ]; then
-    echo "Container started. Use docker exec to run specific ROS2 commands."
-    tail -f /dev/null  # Keep container running
+    exec bash
 else
+    # Otherwise, execute the provided command
     exec "$@"
 fi

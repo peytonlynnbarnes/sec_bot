@@ -1,4 +1,4 @@
-# SEC Bot - Docker Deployment
+# SEC Bot - Docker Deployment with Micro-ROS
 
 ## Prerequisites
 - Docker
@@ -8,10 +8,14 @@
 
 ### Build the Docker Image
 ```bash
-docker build -t sec_bot .
+DOCKER_BUILDKIT=1 docker build -t sec_bot .
+
+
 ```
+**Note:** Using `DOCKER_BUILDKIT=1` enables advanced caching and build features.
 
 ### Run the Container
+#### Basic Interactive Shell
 ```bash
 docker run -it --privileged \
     --network host \
@@ -19,6 +23,18 @@ docker run -it --privileged \
     -v /tmp/.X11-unix:/tmp/.X11-unix \
     -e DISPLAY=$DISPLAY \
     sec_bot
+```
+
+#### Run Micro-ROS Agent
+```bash
+# Replace /dev/ttyACM0 with your microcontroller's serial port
+docker run -it --privileged \
+    --network host \
+    -v /dev:/dev \
+    -v /tmp/.X11-unix:/tmp/.X11-unix \
+    -e DISPLAY=$DISPLAY \
+    sec_bot \
+    ros2 run micro_ros_agent micro_ros_agent serial --dev /dev/ttyACM0
 ```
 
 ## Advanced Configuration
@@ -37,6 +53,8 @@ services:
       - /tmp/.X11-unix:/tmp/.X11-unix
     environment:
       - DISPLAY=$DISPLAY
+    devices:
+      - "/dev/ttyACM0:/dev/ttyACM0"  # Add microcontroller device
 ```
 
 Run with:
@@ -47,7 +65,19 @@ docker-compose up
 ## Accessing the Container
 - The container starts an interactive bash shell
 - Source ROS2 setup: `source /opt/ros/jazzy/setup.bash`
+- Source micro-ROS setup: `source /microros_ws/install/local_setup.bash`
 - Source project setup: `source /sec_bot/install/setup.bash`
+
+## Micro-ROS Commands
+Inside the container, run micro-ROS components:
+
+```bash
+# Start Micro-ROS Agent
+ros2 run micro_ros_agent micro_ros_agent serial --dev /dev/ttyACM0
+
+# List available micro-ROS nodes
+ros2 run micro_ros_setup list_nodes
+```
 
 ## Simulation Commands
 Inside the container, run simulation components:
@@ -70,3 +100,10 @@ ros2 launch ball_tracker follow_ball.launch.py
 - Ensure X11 forwarding is enabled
 - Check Docker and container permissions
 - Verify host system graphics drivers
+- Confirm microcontroller serial port connection
+- Verify micro-ROS agent communication
+
+## Micro-ROS Development
+- The Docker image includes full micro-ROS setup
+- Develop and build micro-ROS applications in the `/microros_ws` directory
+- Use `colcon build` to compile micro-ROS packages

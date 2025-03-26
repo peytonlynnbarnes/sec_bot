@@ -114,6 +114,25 @@ RUN cp -R $PANGOLIN_CACHE/Pangolin . && \
     make -j$(nproc) && \
     make install
 
+# Install any other dependencies
+RUN --mount=type=cache,target=$PIP_CACHE_DIR \
+    apt-get update && \
+    apt-get install -y \
+    python3-dev \
+    python3-setuptools \
+    python3-wheel \
+    python3-pip \
+    && \
+    . /opt/venv/bin/activate && \
+    pip install --upgrade pip setuptools wheel && \
+    pip install \
+    catkin-pkg \
+    rosdep \
+    vcstool \
+    colcon-common-extensions \
+    rospkg \
+    empy
+
 # Copy local repository into the container
 COPY . /sec_bot/
 

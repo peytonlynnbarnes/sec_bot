@@ -8,7 +8,7 @@
 
 ### Build the Docker Image
 ```bash
-DOCKER_BUILDKIT=1 docker build -t sec_bot .
+sudo DOCKER_BUILDKIT=1 docker build --memory 6g -t sec_bot .
 
 
 ```

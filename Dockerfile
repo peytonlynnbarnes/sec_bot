@@ -9,9 +9,10 @@ ENV PIP_CACHE_DIR=/var/cache/buildkit/pip
 ENV MICROROS_WS=/microros_ws
 ENV PANGOLIN_CACHE=/pangolin_cache
 ENV ORB_SLAM3_CACHE=/orb_slam3_cache
+ENV ROS_WS=/ros2_ws
 
 # Create necessary directories
-RUN mkdir -p $PIP_CACHE_DIR $MICROROS_WS $PANGOLIN_CACHE $ORB_SLAM3_CACHE
+RUN mkdir -p $PIP_CACHE_DIR $MICROROS_WS $PANGOLIN_CACHE $ORB_SLAM3_CACHE $ROS_WS
 
 # Remove Docker's default apt-get cleanup configuration
 RUN rm -f /etc/apt/apt.conf.d/docker-clean
@@ -114,7 +115,7 @@ RUN cp -R $PANGOLIN_CACHE/Pangolin . && \
     make -j$(nproc) && \
     make install
 
-# Install any other dependencies
+# Install additional dependencies
 RUN --mount=type=cache,target=$PIP_CACHE_DIR \
     apt-get update && \
     apt-get install -y \
@@ -131,25 +132,68 @@ RUN --mount=type=cache,target=$PIP_CACHE_DIR \
     vcstool \
     colcon-common-extensions \
     rospkg \
-    empy
+    empy \
+    numpy \
+    opencv-python
 
-# Copy local repository into the container
-COPY . /sec_bot/
-
-ENV ROS_WS=/sec_bot/ros2_ws
-# Set up ROS2 workspace
+# Prepare ROS2 workspace
 WORKDIR $ROS_WS
-RUN mkdir -p $ROS_WS/src && \
+
+# Create separate build stage for ros2_orb_slam3 - will only rebuild if source changes
+RUN mkdir -p src/ros2_orb_slam3
+COPY src/ros2_orb_slam3 src/ros2_orb_slam3/
+RUN --mount=type=cache,target=$ROS_WS/src/ros2_orb_slam3/build \
     /bin/bash -c "source /opt/ros/jazzy/setup.bash && \
-    cp -R /sec_bot/src/* $ROS_WS/src/ && \
+    colcon build --symlink-install --packages-select ros2_orb_slam3"
+
+# Install camera dependencies (after orbslam, so won't take a long time to build)
+RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
+    apt-get update && \
+    apt-get install -y \
+    v4l-utils \
+    libv4l-dev \
+    ros-jazzy-v4l2-camera \
+    python3-opencv \
+    libcap-dev \
+    libopencv-dev
+
+RUN --mount=type=cache,target=$PIP_CACHE_DIR \
+    . /opt/venv/bin/activate && \
+    pip install \
+    v4l2-python3 \
+    picamera2 \
+    opencv-python
+
+# Fix NumPy version and rebuild compatibility
+RUN --mount=type=cache,target=$PIP_CACHE_DIR \
+    . /opt/venv/bin/activate && \
+    pip uninstall -y numpy && \
+    pip install "numpy<2.0" pybind11>=2.12 && \
+    pip install opencv-python-headless
+
+# Reinstall or rebuild NumPy-dependent packages
+RUN /bin/bash -c "\
+    source /opt/ros/jazzy/setup.bash && \
+    source $ROS_WS/install/setup.bash && \
+    pip install --upgrade numpy opencv-python && \
+    pip install --upgrade cv-bridge && \
+    colcon build --packages-select ball_tracker --cmake-clean-cache"
+
+# Copy and build other packages that change more frequently
+COPY src/ball_tracker src/ball_tracker/
+COPY src/sec_bot src/sec_bot/
+
+# Build remaining packages
+RUN /bin/bash -c "source /opt/ros/jazzy/setup.bash && \
+    source $ROS_WS/install/setup.bash && \
     rosdep install -r --from-paths src --ignore-src -y --rosdistro jazzy && \
-    colcon build --symlink-install"
+    colcon build --symlink-install --packages-select ball_tracker sec_bot"
 
 # Create an entrypoint script to source ROS2 setup
 RUN echo '#!/bin/bash\n\
-source /opt/ros/jazzy/setup.bash\n\
-source $ROS_WS/install/setup.bash\n\
-exec "$@"' > /entrypoint.sh && \
+    source /opt/ros/jazzy/setup.bash\n\
+    source $ROS_WS/install/setup.bash\n\
+    exec "$@"' > /entrypoint.sh && \
     chmod +x /entrypoint.sh
 
 # Set up entrypoint and default command

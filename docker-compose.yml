@@ -1,21 +1,30 @@
 version: '3.8'
-
 services:
   sec_bot:
-    build: 
+    build:
       context: .
       dockerfile: Dockerfile
-    image: sec_bot
+    image: sec_bot_image
+    container_name: sec_bot_container
     privileged: true
     network_mode: host
     volumes:
-      - /dev:/dev
+      # Persist ROS workspace
+      - ros_workspace:/ros2_ws/src
+      # Mount project directory for development
+      - ./:/sec_bot
+      # Allow X11 forwarding for GUI apps
       - /tmp/.X11-unix:/tmp/.X11-unix
-      - ./:/sec_bot  # Mount project directory for development
+      # Device access
+      - /dev:/dev
     environment:
       - DISPLAY=${DISPLAY}
+      - ROS_DOMAIN_ID=42
     devices:
-      - "/dev/ttyACM0:/dev/ttyACM0"  # Microcontroller device mapping
-    stdin_open: true  # Keep STDIN open for interactive shell
-    tty: true  # Allocate a pseudo-TTY
-    command: /bin/bash  # Start with bash shell
+      - "/dev/ttyACM0:/dev/ttyACM0" # Microcontroller device mapping
+    stdin_open: true
+    tty: true
+    command: /bin/bash
+
+volumes:
+  ros_workspace:

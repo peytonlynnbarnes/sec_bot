@@ -23,11 +23,9 @@ def generate_launch_description():
                 arguments=[
                     PathJoinSubstitution(
                         [FindPackageShare("ball_tracker"), "config/stereo.yaml"]
-                    ),
-                    "--ros-args",
-                    "-r",
-                    "/orb_slam3/map:=/map",
+                    )
                 ],
+                remappings=[("/orb_slam3/map", "/map")],
                 parameters=[
                     {
                         "vocabulary_file_path": PathJoinSubstitution(

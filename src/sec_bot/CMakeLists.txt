@@ -35,4 +35,9 @@ endif()
 install(DIRECTORY config description launch worlds
   DESTINATION share/${PROJECT_NAME})
 
+install(
+  DIRECTORY models/
+  DESTINATION share/${PROJECT_NAME}/models
+)
+
 ament_package()

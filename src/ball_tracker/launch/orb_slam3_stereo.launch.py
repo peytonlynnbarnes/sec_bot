@@ -19,6 +19,7 @@ def generate_launch_description():
             executable='stereo_node_cpp',
             name='orb_slam3_stereo',    
             output='screen',
+            arguments=['--ros-args', '-r', '/orb_slam3/map:=/map'],
             parameters=[{
                 'vocabulary_file_path': PathJoinSubstitution([
                     FindPackageShare('ball_tracker'),
@@ -33,8 +34,5 @@ def generate_launch_description():
                 'left_image_topic': '/camera/left/image_raw',
                 'right_image_topic': '/camera/right/image_raw'
             }],
-            remappings=[
-                ('/orb_slam3/map', '/map')
-            ]
         )
     ])

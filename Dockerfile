@@ -164,6 +164,21 @@ RUN --mount=type=cache,target=$PIP_CACHE_DIR \
     picamera2 \
     opencv-python
 
+# Fix NumPy version and rebuild compatibility
+RUN --mount=type=cache,target=$PIP_CACHE_DIR \
+    . /opt/venv/bin/activate && \
+    pip uninstall -y numpy && \
+    pip install "numpy<2.0" pybind11>=2.12 && \
+    pip install opencv-python-headless
+
+# Reinstall or rebuild NumPy-dependent packages
+RUN /bin/bash -c "\
+    source /opt/ros/jazzy/setup.bash && \
+    source $ROS_WS/install/setup.bash && \
+    pip install --upgrade numpy opencv-python && \
+    pip install --upgrade cv-bridge && \
+    colcon build --packages-select ball_tracker --cmake-clean-cache"
+
 # Copy and build other packages that change more frequently
 COPY src/ball_tracker src/ball_tracker/
 COPY src/sec_bot src/sec_bot/

@@ -41,6 +41,8 @@ def generate_launch_description():
     # If you want to use a Xacro version of the world file, rename it to have a .xacro extension.
     world_file = os.path.join(pkg_share, "worlds", "purple_ball.world")
 
+    print(f"World file: {world_file}")
+    
     # Check if the world file is a Xacro file by its extension; if so, process it.
     if world_file.endswith(".xacro"):
         doc = xacro.process_file(world_file)

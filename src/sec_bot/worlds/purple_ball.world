@@ -3,12 +3,7 @@
   <world name="purple_ball">
     <!-- Add a standard ground plane with collisions -->
     <include>
-      <uri>model://ground_plane</uri>
-    </include>
-
-    <!-- Optionally, include a sun for lighting -->
-    <include>
-      <uri>model://sun</uri>
+      <uri>model://${HOME}/.gazebo/models/ground_plane/model.sdf</uri>
     </include>
 
     <!-- Your purple ball model remains as is (if you need it) -->

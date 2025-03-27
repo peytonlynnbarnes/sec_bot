@@ -35,7 +35,7 @@ sudo apt-get install gz-harmonic -y
 sudo apt-get install ros-jazzy-ros-gz -y
 # installing pangolin for orb slam3
 sudo apt update -y
-sudo apt install -y build-essential cmake libeigen3-dev libglew-dev libpython3-dev python3-numpy ffmpeg libavcodec-dev libavformat-dev libswscale-dev
+sudo apt install -y build-essential cmake libeigen3-dev libglew-dev libpython3-dev python3-numpy ffmpeg libavcodec-dev libavformat-dev libswscale-dev python3-full python3-wheel
 git clone --recursive https://github.com/stevenlovegrove/Pangolin.git
 cd Pangolin
 mkdir build

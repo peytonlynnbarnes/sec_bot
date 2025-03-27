@@ -30,7 +30,7 @@ def generate_launch_description():
         # Left image publisher
         Node(
             package='ball_tracker',
-            executable='image_publisher.py',
+            executable='image_publisher',
             name='left_cam',
             parameters=[{
                 'publish_rate': 30.0,
@@ -43,7 +43,7 @@ def generate_launch_description():
         # Right image publisher
         Node(
             package='ball_tracker',
-            executable='image_publisher.py',
+            executable='image_publisher',
             name='right_cam',
             parameters=[{
                 'publish_rate': 30.0,
@@ -56,7 +56,7 @@ def generate_launch_description():
         # Ball tracker
         Node(
             package='ball_tracker',
-            executable='sim_multi_ball_tracker.py',
+            executable='sim_multi_ball_tracker',
             name='ball_tracker',
             parameters=[{'use_sim_time': use_sim_time}]
         ),

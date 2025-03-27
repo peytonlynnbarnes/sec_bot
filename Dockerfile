@@ -80,25 +80,7 @@ RUN python3 -m venv /opt/venv && \
     pip install --cache-dir=$PIP_CACHE_DIR wheel setuptools pipx && \
     pipx ensurepath
 
-# Stage 2: install microros
-# Set up PATH to include virtual environment
-ENV PATH="/opt/venv/bin:$PATH"
-
-# Prepare micro-ROS workspace
-WORKDIR $MICROROS_WS
-
-# Fetch micro-ROS dependencies with caching
-RUN --mount=type=cache,id=microros-cache,target=/microros_ws/src,sharing=locked \
-    apt-get update && \
-    rosdep init && \
-    rosdep update && \
-    rosdep install --from-paths src --ignore-src -y
-
-# Build micro-ROS tools with caching
-RUN --mount=type=cache,id=microros-build-cache,target=/microros_ws/build \
-    . /opt/ros/jazzy/setup.sh && \
-    colcon build && \
-    . install/local_setup.sh
+# Stage 2: Install microros not here anymore!
 
 # Prepare Pangolin cache
 WORKDIR $PANGOLIN_CACHE
@@ -150,8 +132,18 @@ RUN --mount=type=cache,target=$ROS_WS/src/ros2_orb_slam3/build \
     /bin/bash -c "source /opt/ros/jazzy/setup.bash && \
     colcon build --symlink-install --packages-select ros2_orb_slam3"
 
+# Stage 6: micro-ROS setup (moved after ORBSLAM3)
+WORKDIR $MICROROS_WS/src
+RUN git clone https://github.com/micro-ROS/micro_ros_agent.git
 
-# Stage 6: more dependncies
+WORKDIR $MICROROS_WS
+RUN --mount=type=cache,id=microros-build-cache,target=/microros_ws/build \
+    /bin/bash -c "source /opt/ros/jazzy/setup.bash && \
+    rosdep install --from-paths src --ignore-src -y && \
+    colcon build --packages-select micro_ros_agent && \
+    . install/local_setup.sh"
+
+# Stage 7: more dependncies
 # Install camera dependencies (after orbslam, so won't take a long time to build)
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     apt-get update && \
@@ -170,7 +162,7 @@ RUN --mount=type=cache,target=$PIP_CACHE_DIR \
     picamera2 \
     opencv-python
 
-# Stage 7: numpy version compability
+# Stage 8: numpy version compability
 # Fix NumPy version, rebuild compatibility, and ensure dependent modules are consistent
 RUN --mount=type=cache,target=$PIP_CACHE_DIR \
     . /opt/venv/bin/activate && \
@@ -180,7 +172,7 @@ RUN --mount=type=cache,target=$PIP_CACHE_DIR \
     source $ROS_WS/install/setup.bash && \
     colcon build --packages-select ball_tracker --cmake-clean-cache"
 
-# Stage 8: build other packages
+# Stage 9: build other packages
 # Copy and build other packages that change more frequently
 COPY src/ball_tracker src/ball_tracker/
 COPY src/sec_bot src/sec_bot/

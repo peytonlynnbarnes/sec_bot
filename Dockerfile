@@ -132,16 +132,44 @@ RUN --mount=type=cache,target=$ROS_WS/src/ros2_orb_slam3/build \
     /bin/bash -c "source /opt/ros/jazzy/setup.bash && \
     colcon build --symlink-install --packages-select ros2_orb_slam3"
 
-# Stage 6: micro-ROS setup (moved after ORBSLAM3)
-WORKDIR $MICROROS_WS/src
-RUN git clone https://github.com/micro-ROS/micro_ros_agent.git
-
+# Stage 6: Install micro-ROS
 WORKDIR $MICROROS_WS
-RUN --mount=type=cache,id=microros-build-cache,target=/microros_ws/build \
-    /bin/bash -c "source /opt/ros/jazzy/setup.bash && \
-    rosdep install --from-paths src --ignore-src -y && \
-    colcon build --packages-select micro_ros_agent && \
-    . install/local_setup.sh"
+RUN mkdir -p src && \
+    git clone -b jazzy https://github.com/micro-ROS/micro_ros_setup.git src/micro_ros_setup
+
+# Initialize rosdep before updating dependencies
+RUN sudo rosdep init && \
+    rosdep update
+
+# Build micro-ROS tools and source them
+RUN /bin/bash -c "source /opt/ros/jazzy/setup.bash && \
+    cd $MICROROS_WS && \
+    colcon build && \
+    source install/local_setup.bash"
+
+# Create firmware workspace with explicit host platform
+RUN /bin/bash -c "source /opt/ros/jazzy/setup.bash && \
+    source $MICROROS_WS/install/local_setup.bash && \
+    cd $MICROROS_WS && \
+    ros2 run micro_ros_setup create_firmware_ws.sh host"
+
+# Build firmware with more verbose output and error handling
+RUN /bin/bash -c "source /opt/ros/jazzy/setup.bash && \
+    source $MICROROS_WS/install/local_setup.bash && \
+    cd $MICROROS_WS && \
+    ros2 run micro_ros_setup build_firmware.sh"
+
+# Create micro-ROS agent workspace
+RUN /bin/bash -c "source /opt/ros/jazzy/setup.bash && \
+    source $MICROROS_WS/install/local_setup.bash && \
+    cd $MICROROS_WS && \
+    ros2 run micro_ros_setup create_agent_ws.sh"
+
+# Build micro-ROS agent with verbose output
+RUN /bin/bash -c "source /opt/ros/jazzy/setup.bash && \
+    source $MICROROS_WS/install/local_setup.bash && \
+    cd $MICROROS_WS && \
+    ros2 run micro_ros_setup build_agent.sh"
 
 # Stage 7: more dependncies
 # Install camera dependencies (after orbslam, so won't take a long time to build)

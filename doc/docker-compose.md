@@ -52,11 +52,18 @@ nano /sec_bot/src/ball_tracker/some_file.py
 ```
 
 ### Multi-Terminal Simulation Workflow
+
+- Source ROS2 setup: `source /opt/ros/jazzy/setup.bash`
+- Addt ROS2 setup: `source /ros2_ws/install/setup.bash`
+- Source micro-ROS setup: `source /microros_ws/install/local_setup.bash`
+- OLD DO NOT USE Source project setup: `source /sec_bot/install/setup.bash`
+
 Terminal 1: Start Container and Gazebo
 ```bash
 docker-compose exec sec_bot \
   bash -c "source /opt/ros/jazzy/setup.bash && \
            source /ros2_ws/install/setup.bash && \
+          source /microros_ws/install/local_setup.bash && \
            ros2 launch sec_bot launch_sim.launch.py"
 ```
 
@@ -64,7 +71,8 @@ Terminal 2: Camera Subscriber
 ```bash
 docker-compose exec sec_bot \
   bash -c "source /opt/ros/jazzy/setup.bash && \
-           source /ros2_ws/install/setup.bash && \
+          source /ros2_ws/install/setup.bash && \
+          source /microros_ws/install/local_setup.bash && \
            ros2 launch ball_tracker sim_cam.launch.py"
 ```
 
@@ -72,7 +80,9 @@ Terminal 3: Ball Tracking
 ```bash
 docker-compose exec sec_bot \
   bash -c "source /opt/ros/jazzy/setup.bash && \
-           source /ros2_ws/install/setup.bash && \
+          source /ros2_ws/install/setup.bash && \
+          source /microros_ws/install/local_setup.bash && \
+          source /sec_bot/install/setup.bash && \
            ros2 run ball_tracker sim_multi_ball_tracker"
 ```
 
@@ -80,8 +90,10 @@ Terminal 4: Ball Following
 ```bash
 docker-compose exec sec_bot \
   bash -c "source /opt/ros/jazzy/setup.bash && \
-           source /ros2_ws/install/setup.bash && \
-           ros2 launch ball_tracker follow_ball.launch.py"
+          source /ros2_ws/install/setup.bash && \
+          source /microros_ws/install/local_setup.bash && \
+          source /sec_bot/install/setup.bash && \
+          ros2 launch ball_tracker follow_ball.launch.py"
 ```
 
 ## Managing the Container
@@ -93,6 +105,8 @@ docker-compose build
 
 # Start the container
 docker-compose up -d
+and then  
+docker attach sec_bot_container
 ```
 
 ### Stop Container
@@ -114,8 +128,6 @@ docker-compose up -d
 ## Micro-ROS Commands
 ```bash
 # Inside container
-source /opt/ros/jazzy/setup.bash
-source /ros2_ws/install/setup.bash
 ros2 run micro_ros_agent micro_ros_agent serial --dev /dev/ttyACM0
 ros2 run micro_ros_setup list_nodes
 ```
@@ -137,5 +149,14 @@ ros2 run micro_ros_setup list_nodes
 docker-compose exec sec_bot bash -c "\
     source /opt/ros/jazzy/setup.bash && \
     source /ros2_ws/install/setup.bash && \
+    source /microros_ws/install/local_setup.bash && \
+    source /sec_bot/install/setup.bash && \
     /bin/bash"
+
+or
+
+source /opt/ros/jazzy/setup.bash && \
+    source /ros2_ws/install/setup.bash && \
+    source /microros_ws/install/local_setup.bash && \
+    source /sec_bot/install/setup.bash
 ```

@@ -148,10 +148,13 @@ RUN --mount=type=cache,target=$ROS_WS/src/ros2_orb_slam3/build \
 
 # Install camera dependencies (after orbslam, so won't take a long time to build)
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
+    apt-get update && \
+    apt-get install -y \
     v4l-utils \
     libv4l-dev \
     ros-jazzy-v4l2-camera \
     python3-opencv \
+    libcap-dev \
     libopencv-dev
 
 RUN --mount=type=cache,target=$PIP_CACHE_DIR \

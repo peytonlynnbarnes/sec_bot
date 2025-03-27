@@ -222,6 +222,8 @@ RUN echo '#!/bin/bash\n\
 COPY entrypoint.sh /custom_entrypoint.sh
 RUN chmod +x /custom_entrypoint.sh
 
+RUN ln -sf /usr/lib/x86_64-linux-gnu/libopencv_core.so.4.6.0 /usr/lib/x86_64-linux-gnu/libopencv_core.so.4.5d
+
 # Set default command
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["/bin/bash"]

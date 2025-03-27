@@ -80,24 +80,7 @@ RUN python3 -m venv /opt/venv && \
     pip install --cache-dir=$PIP_CACHE_DIR wheel setuptools pipx && \
     pipx ensurepath
 
-# Set up PATH to include virtual environment
-ENV PATH="/opt/venv/bin:$PATH"
-
-# Prepare micro-ROS workspace
-WORKDIR $MICROROS_WS
-
-# Fetch micro-ROS dependencies with caching
-RUN --mount=type=cache,id=microros-cache,target=/microros_ws/src,sharing=locked \
-    apt-get update && \
-    rosdep init && \
-    rosdep update && \
-    rosdep install --from-paths src --ignore-src -y
-
-# Build micro-ROS tools with caching
-RUN --mount=type=cache,id=microros-build-cache,target=/microros_ws/build \
-    . /opt/ros/jazzy/setup.sh && \
-    colcon build && \
-    . install/local_setup.sh
+# Stage 2: Install microros not here anymore!
 
 # Prepare Pangolin cache
 WORKDIR $PANGOLIN_CACHE
@@ -106,6 +89,7 @@ RUN git clone --recursive https://github.com/stevenlovegrove/Pangolin.git
 # Switch back to sec_bot workspace
 WORKDIR /sec_bot
 
+# Stage 3: install Pangolin
 # Build Pangolin from cached source
 RUN cp -R $PANGOLIN_CACHE/Pangolin . && \
     cd Pangolin && \
@@ -115,6 +99,7 @@ RUN cp -R $PANGOLIN_CACHE/Pangolin . && \
     make -j$(nproc) && \
     make install
 
+# Stage 4: install more dependenceis pre-orbslam3
 # Install additional dependencies
 RUN --mount=type=cache,target=$PIP_CACHE_DIR \
     apt-get update && \
@@ -139,6 +124,7 @@ RUN --mount=type=cache,target=$PIP_CACHE_DIR \
 # Prepare ROS2 workspace
 WORKDIR $ROS_WS
 
+# Stage 5: build orbslam 3
 # Create separate build stage for ros2_orb_slam3 - will only rebuild if source changes
 RUN mkdir -p src/ros2_orb_slam3
 COPY src/ros2_orb_slam3 src/ros2_orb_slam3/
@@ -146,6 +132,46 @@ RUN --mount=type=cache,target=$ROS_WS/src/ros2_orb_slam3/build \
     /bin/bash -c "source /opt/ros/jazzy/setup.bash && \
     colcon build --symlink-install --packages-select ros2_orb_slam3"
 
+# Stage 6: Install micro-ROS
+WORKDIR $MICROROS_WS
+RUN mkdir -p src && \
+    git clone -b jazzy https://github.com/micro-ROS/micro_ros_setup.git src/micro_ros_setup
+
+# Initialize rosdep before updating dependencies
+RUN sudo rosdep init && \
+    rosdep update
+
+# Build micro-ROS tools and source them
+RUN /bin/bash -c "source /opt/ros/jazzy/setup.bash && \
+    cd $MICROROS_WS && \
+    colcon build && \
+    source install/local_setup.bash"
+
+# Create firmware workspace with explicit host platform
+RUN /bin/bash -c "source /opt/ros/jazzy/setup.bash && \
+    source $MICROROS_WS/install/local_setup.bash && \
+    cd $MICROROS_WS && \
+    ros2 run micro_ros_setup create_firmware_ws.sh host"
+
+# Build firmware with more verbose output and error handling
+RUN /bin/bash -c "source /opt/ros/jazzy/setup.bash && \
+    source $MICROROS_WS/install/local_setup.bash && \
+    cd $MICROROS_WS && \
+    ros2 run micro_ros_setup build_firmware.sh"
+
+# Create micro-ROS agent workspace
+RUN /bin/bash -c "source /opt/ros/jazzy/setup.bash && \
+    source $MICROROS_WS/install/local_setup.bash && \
+    cd $MICROROS_WS && \
+    ros2 run micro_ros_setup create_agent_ws.sh"
+
+# Build micro-ROS agent with verbose output
+RUN /bin/bash -c "source /opt/ros/jazzy/setup.bash && \
+    source $MICROROS_WS/install/local_setup.bash && \
+    cd $MICROROS_WS && \
+    ros2 run micro_ros_setup build_agent.sh"
+
+# Stage 7: more dependncies
 # Install camera dependencies (after orbslam, so won't take a long time to build)
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     apt-get update && \
@@ -164,21 +190,17 @@ RUN --mount=type=cache,target=$PIP_CACHE_DIR \
     picamera2 \
     opencv-python
 
-# Fix NumPy version and rebuild compatibility
+# Stage 8: numpy version compability
+# Fix NumPy version, rebuild compatibility, and ensure dependent modules are consistent
 RUN --mount=type=cache,target=$PIP_CACHE_DIR \
     . /opt/venv/bin/activate && \
     pip uninstall -y numpy && \
-    pip install "numpy<2.0" pybind11>=2.12 && \
-    pip install opencv-python-headless
-
-# Reinstall or rebuild NumPy-dependent packages
-RUN /bin/bash -c "\
-    source /opt/ros/jazzy/setup.bash && \
+    pip install --cache-dir=$PIP_CACHE_DIR "numpy<2.0" pybind11>=2.12 opencv-python opencv-python-headless cv-bridge && \
+    /bin/bash -c "source /opt/ros/jazzy/setup.bash && \
     source $ROS_WS/install/setup.bash && \
-    pip install --upgrade numpy opencv-python && \
-    pip install --upgrade cv-bridge && \
     colcon build --packages-select ball_tracker --cmake-clean-cache"
 
+# Stage 9: build other packages
 # Copy and build other packages that change more frequently
 COPY src/ball_tracker src/ball_tracker/
 COPY src/sec_bot src/sec_bot/

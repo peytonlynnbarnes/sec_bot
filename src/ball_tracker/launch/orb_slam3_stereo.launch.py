@@ -31,7 +31,7 @@ def generate_launch_description():
                         "vocabulary_file_path": PathJoinSubstitution(
                             [
                                 FindPackageShare("ball_tracker"),
-                                "config/Vocabulary/ORBvoc.txt",
+                                "config/Vocabulary/ORBvoc.txt.bin",
                             ]
                         ),
                         "use_viewer": True,

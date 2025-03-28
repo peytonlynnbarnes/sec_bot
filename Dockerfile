@@ -66,13 +66,19 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     libavcodec-dev \
     libavformat-dev \
     libswscale-dev \
-    libeigen3-dev \
+    # libeigen3-dev \
     python3-colcon-common-extensions \
     python3-vcstool \
     libglew-dev \
     libxkbcommon-dev \
     libwayland-dev \
     libglu1-mesa-dev
+
+# Install Eigen first to ensure correct version and avoid conflicts
+RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
+    apt-get update && \
+    apt-get install -y \
+    libeigen3-dev
 
 # Create a virtual environment and install pip tools
 RUN python3 -m venv /opt/venv && \

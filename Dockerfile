@@ -59,12 +59,6 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     curl https://packages.osrfoundation.org/gazebo.gpg --output /usr/share/keyrings/pkgs-osrf-archive-keyring.gpg && \
     echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/pkgs-osrf-archive-keyring.gpg] http://packages.osrfoundation.org/gazebo/ubuntu-stable $(lsb_release -cs) main" | tee /etc/apt/sources.list.d/gazebo-stable.list > /dev/null
 
-# Install Eigen first to ensure correct version and avoid conflicts
-RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
-    apt-get update && \
-    apt-get install -y \
-    libeigen3-dev
-
 # Install ROS2 Humble and dependencies (changed from Jazzy)
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     apt-get update && \
@@ -110,63 +104,8 @@ RUN mkdir -p /usr/include/cv_bridge && \
     cp -r /opt/ros/humble/include/cv_bridge/* /usr/include/cv_bridge/ && \
     ln -sf /opt/ros/humble/include/cv_bridge/cv_bridge/cv_bridge.h /usr/include/cv_bridge/cv_bridge.hpp
 
-# Prepare Pangolin cache
-WORKDIR $PANGOLIN_CACHE
-RUN git clone --recursive https://github.com/stevenlovegrove/Pangolin.git
-
-# Switch back to sec_bot workspace
-WORKDIR /sec_bot
-
-# Stage 3: install Pangolin
-# Build Pangolin from cached source
-RUN cp -R $PANGOLIN_CACHE/Pangolin . && \
-    cd Pangolin && \
-    mkdir build && \
-    cd build && \
-    cmake .. && \
-    make -j$(nproc) && \
-    make install
-
-# Stage 4: install more dependencies pre-orbslam3
-# Install additional dependencies
-RUN --mount=type=cache,target=$PIP_CACHE_DIR \
-    apt-get update && \
-    apt-get install -y \
-    python3-dev \
-    python3-setuptools \
-    python3-wheel \
-    python3-pip \
-    && \
-    . /opt/venv/bin/activate && \
-    pip install --upgrade pip setuptools wheel && \
-    pip install \
-    catkin-pkg \
-    rosdep \
-    vcstool \
-    colcon-common-extensions \
-    rospkg \
-    empy \
-    numpy \
-    opencv-python
-
 # Prepare ROS2 workspace
 WORKDIR $ROS_WS
-
-# Stage 5: build orbslam 3
-# Create separate build stage for ros2_orb_slam3 - will only rebuild if source changes
-RUN mkdir -p src/ros2_orb_slam3
-COPY src/ros2_orb_slam3 src/ros2_orb_slam3/
-
-# Apply patch for cv_bridge include if needed
-RUN if [ -f src/ros2_orb_slam3/include/ros2_orb_slam3/common.hpp ]; then \
-    sed -i 's|#include <cv_bridge/cv_bridge.hpp>|#include <cv_bridge/cv_bridge.h>|g' src/ros2_orb_slam3/include/ros2_orb_slam3/common.hpp; \
-    fi
-
-RUN --mount=type=cache,target=$ROS_WS/src/ros2_orb_slam3/build \
-    /bin/bash -c "source /opt/ros/humble/setup.bash && \
-    export CPLUS_INCLUDE_PATH=/opt/ros/humble/include:$CPLUS_INCLUDE_PATH && \
-    colcon build --symlink-install --packages-select ros2_orb_slam3 --cmake-args \
-    -DCMAKE_CXX_FLAGS='-I/opt/ros/humble/include -I/usr/include/eigen3'"
 
 # Stage 6: Install micro-ROS - pre-install dependencies to avoid network issues
 RUN apt-get update && apt-get install -y --no-install-recommends \

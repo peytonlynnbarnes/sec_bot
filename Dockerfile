@@ -199,45 +199,25 @@ RUN --mount=type=cache,target=$PIP_CACHE_DIR \
     picamera2 \
     opencv-python
 
-# Stage 8: numpy version compability
+# Stage 8: numpy version compability - FIX: Remove sourcing of non-existent setup.bash
 # Fix NumPy version, rebuild compatibility, and ensure dependent modules are consistent
 RUN --mount=type=cache,target=$PIP_CACHE_DIR \
     . /opt/venv/bin/activate && \
     pip uninstall -y numpy && \
-    pip install --cache-dir=$PIP_CACHE_DIR "numpy<2.0" pybind11>=2.12 opencv-python opencv-python-headless cv-bridge && \
-    /bin/bash -c "source /opt/ros/humble/setup.bash && \
-    source $ROS_WS/install/setup.bash && \
-    export CPLUS_INCLUDE_PATH=/opt/ros/humble/include:$CPLUS_INCLUDE_PATH && \
-    colcon build --packages-select ball_tracker --cmake-clean-cache --cmake-args \
-    -DCMAKE_CXX_FLAGS='-I/opt/ros/humble/include -I/usr/include/eigen3'"
+    pip install --cache-dir=$PIP_CACHE_DIR "numpy<2.0" pybind11>=2.12 opencv-python opencv-python-headless cv-bridge
 
-# Stage 9: build other packages
-# Copy and build other packages that change more frequently
+# Stage 9: Copy source files first
+# Copy source files before building
+WORKDIR $ROS_WS
 COPY src/ball_tracker src/ball_tracker/
 COPY src/sec_bot src/sec_bot/
 
-# Build remaining packages
+# Stage 10: Build the packages - now that source code is available
 RUN /bin/bash -c "source /opt/ros/humble/setup.bash && \
-    source $ROS_WS/install/setup.bash && \
     export CPLUS_INCLUDE_PATH=/opt/ros/humble/include:$CPLUS_INCLUDE_PATH && \
+    cd $ROS_WS && \
     rosdep install -r --from-paths src --ignore-src -y --rosdistro humble && \
     colcon build --symlink-install --packages-select ball_tracker sec_bot --cmake-args \
     -DCMAKE_CXX_FLAGS='-I/opt/ros/humble/include -I/usr/include/eigen3'"
 
-# Create an entrypoint script to source ROS2 setup
-RUN echo '#!/bin/bash\n\
-    source /opt/ros/humble/setup.bash\n\
-    source $ROS_WS/install/setup.bash\n\
-    exec "$@"' > /entrypoint.sh && \
-    chmod +x /entrypoint.sh
-
-# Set up entrypoint and default command
-COPY entrypoint.sh /custom_entrypoint.sh
-RUN chmod +x /custom_entrypoint.sh
-
-# OpenCV library linking - adjusted for Ubuntu 22.04 version
-RUN ln -sf /usr/lib/x86_64-linux-gnu/libopencv_core.so.4.5.4d /usr/lib/x86_64-linux-gnu/libopencv_core.so.4.5d
-
-# Set default command
-ENTRYPOINT ["/entrypoint.sh"]
-CMD ["/bin/bash"]
+# Create an entrypoint script to source ROS2 setup](#) ▋

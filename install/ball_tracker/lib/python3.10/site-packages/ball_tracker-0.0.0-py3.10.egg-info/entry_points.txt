@@ -1,0 +1,7 @@
+[console_scripts]
+follow_ball = ball_tracker.follow_ball:main
+image_publisher = ball_tracker.image_publisher:main
+image_subscriber = ball_tracker.image_subscriber:main
+multi_ball_tracker = ball_tracker.multi_ball_tracker:main
+sim_multi_ball_tracker = ball_tracker.sim_multi_ball_tracker:main
+

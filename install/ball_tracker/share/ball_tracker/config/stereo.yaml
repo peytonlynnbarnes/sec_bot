@@ -1,0 +1,25 @@
+%YAML:1.0
+
+Camera.fx: 525.0
+Camera.fy: 525.0
+Camera.cx: 319.5
+Camera.cy: 239.5
+Camera.k1: 0.0
+Camera.k2: 0.0
+Camera.p1: 0.0
+Camera.p2: 0.0
+Camera.width: 640
+Camera.height: 480
+Camera.fps: 30.0
+Camera.RGB: 1              
+Camera.bf: 63.0             
+Camera.ThDepth: 35.0        
+
+ORBextractor.nFeatures: 1000
+ORBextractor.scaleFactor: 1.2
+ORBextractor.nLevels: 8
+ORBextractor.iniThFAST: 20
+ORBextractor.minThFAST: 7
+
+Stereo.Tolerance: 0.05       
+Stereo.b: 0.12

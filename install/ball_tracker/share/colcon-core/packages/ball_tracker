@@ -1,0 +1,1 @@
+cv_bridge:geometry_msgs:image_transport:libdbow3:libeigen3-dev:libg2o:libopencv-dev:message_filters:nav_msgs:orb_slam3_ros:pangolin:rclcpp:rclpy:sensor_msgs:tf2_ros:vision_msgs

@@ -1,5 +1,5 @@
 # syntax = docker/dockerfile:1.2
-FROM ubuntu:24.04
+FROM ubuntu:22.04
 
 # Avoid prompts from apt
 ENV DEBIAN_FRONTEND=noninteractive
@@ -49,14 +49,14 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     curl https://packages.osrfoundation.org/gazebo.gpg --output /usr/share/keyrings/pkgs-osrf-archive-keyring.gpg && \
     echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/pkgs-osrf-archive-keyring.gpg] http://packages.osrfoundation.org/gazebo/ubuntu-stable $(lsb_release -cs) main" | tee /etc/apt/sources.list.d/gazebo-stable.list > /dev/null
 
-# Install ROS2 Jazzy and dependencies
+# Install ROS2 Humble and dependencies (changed from Jazzy)
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     apt-get update && \
     apt-get install -y \
-    ros-jazzy-desktop \
+    ros-humble-desktop \
     ros-dev-tools \
-    ros-jazzy-xacro \
-    ros-jazzy-ros-gz \
+    ros-humble-xacro \
+    ros-humble-ros-gz \
     python3-opencv \
     libopencv-dev \
     libglew-dev \
@@ -80,8 +80,6 @@ RUN python3 -m venv /opt/venv && \
     pip install --cache-dir=$PIP_CACHE_DIR wheel setuptools pipx && \
     pipx ensurepath
 
-# Stage 2: Install microros not here anymore!
-
 # Prepare Pangolin cache
 WORKDIR $PANGOLIN_CACHE
 RUN git clone --recursive https://github.com/stevenlovegrove/Pangolin.git
@@ -99,7 +97,7 @@ RUN cp -R $PANGOLIN_CACHE/Pangolin . && \
     make -j$(nproc) && \
     make install
 
-# Stage 4: install more dependenceis pre-orbslam3
+# Stage 4: install more dependencies pre-orbslam3
 # Install additional dependencies
 RUN --mount=type=cache,target=$PIP_CACHE_DIR \
     apt-get update && \
@@ -129,56 +127,56 @@ WORKDIR $ROS_WS
 RUN mkdir -p src/ros2_orb_slam3
 COPY src/ros2_orb_slam3 src/ros2_orb_slam3/
 RUN --mount=type=cache,target=$ROS_WS/src/ros2_orb_slam3/build \
-    /bin/bash -c "source /opt/ros/jazzy/setup.bash && \
+    /bin/bash -c "source /opt/ros/humble/setup.bash && \
     colcon build --symlink-install --packages-select ros2_orb_slam3"
 
 # Stage 6: Install micro-ROS
 WORKDIR $MICROROS_WS
 RUN mkdir -p src && \
-    git clone -b jazzy https://github.com/micro-ROS/micro_ros_setup.git src/micro_ros_setup
+    git clone -b humble https://github.com/micro-ROS/micro_ros_setup.git src/micro_ros_setup
 
 # Initialize rosdep before updating dependencies
 RUN sudo rosdep init && \
     rosdep update
 
 # Build micro-ROS tools and source them
-RUN /bin/bash -c "source /opt/ros/jazzy/setup.bash && \
+RUN /bin/bash -c "source /opt/ros/humble/setup.bash && \
     cd $MICROROS_WS && \
     colcon build && \
     source install/local_setup.bash"
 
 # Create firmware workspace with explicit host platform
-RUN /bin/bash -c "source /opt/ros/jazzy/setup.bash && \
+RUN /bin/bash -c "source /opt/ros/humble/setup.bash && \
     source $MICROROS_WS/install/local_setup.bash && \
     cd $MICROROS_WS && \
     ros2 run micro_ros_setup create_firmware_ws.sh host"
 
 # Build firmware with more verbose output and error handling
-RUN /bin/bash -c "source /opt/ros/jazzy/setup.bash && \
+RUN /bin/bash -c "source /opt/ros/humble/setup.bash && \
     source $MICROROS_WS/install/local_setup.bash && \
     cd $MICROROS_WS && \
     ros2 run micro_ros_setup build_firmware.sh"
 
 # Create micro-ROS agent workspace
-RUN /bin/bash -c "source /opt/ros/jazzy/setup.bash && \
+RUN /bin/bash -c "source /opt/ros/humble/setup.bash && \
     source $MICROROS_WS/install/local_setup.bash && \
     cd $MICROROS_WS && \
     ros2 run micro_ros_setup create_agent_ws.sh"
 
 # Build micro-ROS agent with verbose output
-RUN /bin/bash -c "source /opt/ros/jazzy/setup.bash && \
+RUN /bin/bash -c "source /opt/ros/humble/setup.bash && \
     source $MICROROS_WS/install/local_setup.bash && \
     cd $MICROROS_WS && \
     ros2 run micro_ros_setup build_agent.sh"
 
-# Stage 7: more dependncies
+# Stage 7: more dependencies
 # Install camera dependencies (after orbslam, so won't take a long time to build)
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     apt-get update && \
     apt-get install -y \
     v4l-utils \
     libv4l-dev \
-    ros-jazzy-v4l2-camera \
+    ros-humble-v4l2-camera \
     python3-opencv \
     libcap-dev \
     libopencv-dev
@@ -196,7 +194,7 @@ RUN --mount=type=cache,target=$PIP_CACHE_DIR \
     . /opt/venv/bin/activate && \
     pip uninstall -y numpy && \
     pip install --cache-dir=$PIP_CACHE_DIR "numpy<2.0" pybind11>=2.12 opencv-python opencv-python-headless cv-bridge && \
-    /bin/bash -c "source /opt/ros/jazzy/setup.bash && \
+    /bin/bash -c "source /opt/ros/humble/setup.bash && \
     source $ROS_WS/install/setup.bash && \
     colcon build --packages-select ball_tracker --cmake-clean-cache"
 
@@ -206,14 +204,14 @@ COPY src/ball_tracker src/ball_tracker/
 COPY src/sec_bot src/sec_bot/
 
 # Build remaining packages
-RUN /bin/bash -c "source /opt/ros/jazzy/setup.bash && \
+RUN /bin/bash -c "source /opt/ros/humble/setup.bash && \
     source $ROS_WS/install/setup.bash && \
-    rosdep install -r --from-paths src --ignore-src -y --rosdistro jazzy && \
+    rosdep install -r --from-paths src --ignore-src -y --rosdistro humble && \
     colcon build --symlink-install --packages-select ball_tracker sec_bot"
 
 # Create an entrypoint script to source ROS2 setup
 RUN echo '#!/bin/bash\n\
-    source /opt/ros/jazzy/setup.bash\n\
+    source /opt/ros/humble/setup.bash\n\
     source $ROS_WS/install/setup.bash\n\
     exec "$@"' > /entrypoint.sh && \
     chmod +x /entrypoint.sh
@@ -222,7 +220,8 @@ RUN echo '#!/bin/bash\n\
 COPY entrypoint.sh /custom_entrypoint.sh
 RUN chmod +x /custom_entrypoint.sh
 
-RUN ln -sf /usr/lib/x86_64-linux-gnu/libopencv_core.so.4.6.0 /usr/lib/x86_64-linux-gnu/libopencv_core.so.4.5d
+# OpenCV library linking - adjusted for Ubuntu 22.04 version
+RUN ln -sf /usr/lib/x86_64-linux-gnu/libopencv_core.so.4.5.4 /usr/lib/x86_64-linux-gnu/libopencv_core.so.4.5d
 
 # Set default command
 ENTRYPOINT ["/entrypoint.sh"]

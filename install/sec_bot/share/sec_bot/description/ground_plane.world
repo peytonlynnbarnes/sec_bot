@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="ground_plane">
+
+  <!-- A single link that represents a large, thin box. -->
+  <link name="ground_plane_link">
+    <!-- Inertial properties (must be non-zero to avoid simulation issues) -->
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.1"/>
+      <inertia ixx="0.0001" ixy="0.0" ixz="0.0" iyy="0.0001" iyz="0.0" izz="0.0001"/>
+    </inertial>
+
+    <!-- Visual element for the floor -->
+    <visual>
+      <!-- Offset slightly so the top of the box is at z=0 -->
+      <origin xyz="0 0 -0.005" rpy="0 0 0"/>
+      <geometry>
+        <!-- 100m x 100m plane, 1cm thick -->
+        <box size="100 100 0.01"/>
+      </geometry>
+      <material name="white">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
+
+    <!-- Collision geometry matching the visual -->
+    <collision>
+      <origin xyz="0 0 -0.005" rpy="0 0 0"/>
+      <geometry>
+        <box size="100 100 0.01"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- 
+    A fixed joint to "world" so this link does not move.
+    In pure URDF, "world" is not an actual link, but Gazebo
+    typically interprets a parent of "world" as the environment.
+  -->
+  <joint name="ground_plane_fixed_joint" type="fixed">
+    <parent link="world"/>
+    <child link="ground_plane_link"/>
+  </joint>
+
+</robot>

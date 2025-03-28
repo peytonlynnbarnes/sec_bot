@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<sdf version="1.6">
+  <world name="purple_ball">
+    <!-- Add a standard ground plane with collisions -->
+    <include>
+      <uri>model://${HOME}/.gazebo/models/ground_plane/model.sdf</uri>
+    </include>
+
+    <!-- Your purple ball model remains as is (if you need it) -->
+    <model name="purple_ball">
+      <static>false</static>
+      <link name="ball_link">
+        <pose>0 0 0.5 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <sphere>
+              <radius>0.2</radius>
+            </sphere>
+          </geometry>
+          <material>
+            <ambient>0.5 0 0.5 1</ambient>
+            <diffuse>0.5 0 0.5 1</diffuse>
+          </material>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <sphere>
+              <radius>0.2</radius>
+            </sphere>
+          </geometry>
+        </collision>
+      </link>
+    </model>
+  </world>
+</sdf>

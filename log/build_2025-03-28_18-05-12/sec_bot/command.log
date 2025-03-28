@@ -1,0 +1,6 @@
+Invoking command in '/home/jackn/kms/build/sec_bot': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/jackn/kms/install/ball_tracker:/opt/ros/humble /usr/bin/cmake /home/jackn/kms/src/sec_bot -DCMAKE_INSTALL_PREFIX=/home/jackn/kms/install/sec_bot
+Invoked command in '/home/jackn/kms/build/sec_bot' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/jackn/kms/install/ball_tracker:/opt/ros/humble /usr/bin/cmake /home/jackn/kms/src/sec_bot -DCMAKE_INSTALL_PREFIX=/home/jackn/kms/install/sec_bot
+Invoking command in '/home/jackn/kms/build/sec_bot': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/jackn/kms/install/ball_tracker:/opt/ros/humble /usr/bin/cmake --build /home/jackn/kms/build/sec_bot -- -j16 -l16
+Invoked command in '/home/jackn/kms/build/sec_bot' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/jackn/kms/install/ball_tracker:/opt/ros/humble /usr/bin/cmake --build /home/jackn/kms/build/sec_bot -- -j16 -l16
+Invoking command in '/home/jackn/kms/build/sec_bot': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/jackn/kms/install/ball_tracker:/opt/ros/humble /usr/bin/cmake --install /home/jackn/kms/build/sec_bot
+Invoked command in '/home/jackn/kms/build/sec_bot' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/jackn/kms/install/ball_tracker:/opt/ros/humble /usr/bin/cmake --install /home/jackn/kms/build/sec_bot

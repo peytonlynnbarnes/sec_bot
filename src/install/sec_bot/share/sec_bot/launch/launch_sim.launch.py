@@ -1,1 +1,0 @@
-/home/peyton/dev_ws/src/sec_bot/launch/launch_sim.launch.py

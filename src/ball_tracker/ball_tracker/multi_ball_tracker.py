@@ -55,15 +55,16 @@ class BallTrack:
         self.kf.processNoiseCov = 1e-3 * np.eye(4, dtype=np.float32)
         self.kf.measurementNoiseCov = 5e-2 * np.eye(2, dtype=np.float32)
         self.kf.statePost = np.array([[initial_pos[0]], [initial_pos[1]], [0], [0]], dtype=np.float32)
-        self.prediction = initial_pos
+        self.prediction = np.array([[initial_pos[0]], [initial_pos[1]]], dtype=np.float32)
         self.history = deque(maxlen=15)
         self.last_seen = cv2.getTickCount()
         self.radius = initial_radius
 
     def update(self, measurement, radius):
         self.kf.correct(np.array(measurement, dtype=np.float32))
-        self.prediction = self.kf.predict()
-        self.history.append((int(self.prediction[0][0]), int(self.prediction[1][0])))
+        pred = self.kf.predict()
+        self.prediction = pred
+        self.history.append((int(pred[0]), int(pred[1])))
         self.last_seen = cv2.getTickCount()
         self.radius = radius
 
@@ -80,28 +81,23 @@ class MultiBallTrackerNode(Node):
         self.tracks = {}
         self.next_id = 0
         self.MAX_DISTANCE = 60
-        self.TRACK_TIMEOUT = 1.5 * cv2.getTickCount()
+        self.TRACK_TIMEOUT = 1.5 * cv2.getTickFrequency()
         self.color_calibrator = ColorCalibrator()
         self.get_logger().info("Multi Ball Tracker Node Initialized.")
 
     def image_callback(self, msg):
         try:
             frame = self.bridge.imgmsg_to_cv2(msg, desired_encoding="bgr8")
+            self.process_frame(frame)
         except Exception as e:
             self.get_logger().error(f"Error converting image: {e}")
-            return
-        self.process_frame(frame)
 
     def process_frame(self, frame):
         hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
         lower_purple, upper_purple = self.color_calibrator.update_color_range(hsv)
         blurred_hsv = cv2.GaussianBlur(hsv, (5, 5), 0)
         color_mask = cv2.inRange(blurred_hsv, lower_purple, upper_purple)
-        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-        blurred_gray = cv2.GaussianBlur(gray, (5, 5), 0)
-        _, thresh_gray = cv2.threshold(blurred_gray, 60, 255, cv2.THRESH_BINARY)
-        combined_mask = cv2.bitwise_and(color_mask, thresh_gray)
-        mask_clean = cv2.erode(combined_mask, None, iterations=1)
+        mask_clean = cv2.erode(color_mask, None, iterations=1)
         mask_clean = cv2.dilate(mask_clean, None, iterations=2)
         contours, _ = cv2.findContours(mask_clean, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
         current_detections = []
@@ -118,7 +114,7 @@ class MultiBallTrackerNode(Node):
             best_match = None
             min_dist = float('inf')
             for track_id, track in self.tracks.items():
-                pred = (track.prediction[0][0], track.prediction[1][0])
+                pred = (float(track.prediction[0]), float(track.prediction[1]))
                 distance = np.linalg.norm(np.array(detection) - np.array(pred))
                 if distance < self.MAX_DISTANCE and distance < min_dist:
                     min_dist = distance
@@ -131,31 +127,31 @@ class MultiBallTrackerNode(Node):
                 updated_tracks.add(self.next_id)
                 self.next_id += 1
         current_tick = cv2.getTickCount()
-        stale_tracks = [tid for tid, t in self.tracks.items() if (current_tick - t.last_seen) > self.TRACK_TIMEOUT]
+        stale_tracks = [tid for tid, t in self.tracks.items() if (current_tick - t.last_seen) / cv2.getTickFrequency() > 1.5]
         for tid in stale_tracks:
             del self.tracks[tid]
         debug_frame = frame.copy()
         for track_id, track in self.tracks.items():
-            x = int(track.prediction[0][0])
-            y = int(track.prediction[1][0])
+            x = int(track.prediction[0])
+            y = int(track.prediction[1])
             cv2.circle(debug_frame, (x, y), 7, (0, 0, 255), -1)
             cv2.putText(debug_frame, f"ID:{track_id}", (x + 10, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 255), 2)
         cv2.imshow('Multi Ball Tracker Debug', debug_frame)
         cv2.waitKey(1)
         frame_height, frame_width = frame.shape[:2]
-        image_center = (frame_width / 2, frame_height / 2)
+        image_center = (frame_width / 2.0, frame_height / 2.0)
         selected_track = None
         min_center_dist = float('inf')
         for track in self.tracks.values():
-            pred = (track.prediction[0][0], track.prediction[1][0])
+            pred = (float(track.prediction[0]), float(track.prediction[1]))
             dist = np.linalg.norm(np.array(pred) - np.array(image_center))
             if dist < min_center_dist:
                 min_center_dist = dist
                 selected_track = track
         if selected_track is not None:
-            ball_center = (selected_track.prediction[0][0], selected_track.prediction[1][0])
-            normalized_radius = selected_track.radius / frame_width
-            normalized_offset = (ball_center[0] - frame_width / 2) / frame_width
+            ball_center = (float(selected_track.prediction[0]), float(selected_track.prediction[1]))
+            normalized_radius = float(selected_track.radius / frame_width)
+            normalized_offset = float((ball_center[0] - frame_width / 2.0) / frame_width)
             point_msg = Point()
             point_msg.x = normalized_radius
             point_msg.y = normalized_offset

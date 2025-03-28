@@ -1,7 +1,7 @@
 import rclpy
 from rclpy.node import Node
 from sensor_msgs.msg import Image
-from geometry_msgs.msg import Point
+from geometry_msgs.msg import Point, Pose, PoseArray
 from cv_bridge import CvBridge
 import cv2
 import apriltag
@@ -14,16 +14,13 @@ class AprilTagDetector(Node):
         self.declare_parameter('image_topic', '/camera/image_raw')
         topic = self.get_parameter('image_topic').get_parameter_value().string_value
 
-        self.subscription = self.create_subscription(
-            Image,
-            topic,
-            self.image_callback,
-            10
-        )
-
-        self.publisher = self.create_publisher(Point, '/box_position', 10)
+        self.subscription = self.create_subscription(Image, topic, self.image_callback, 10)
         self.bridge = CvBridge()
         self.detector = apriltag.Detector()
+
+        # Publishers
+        self.box_publisher = self.create_publisher(PoseArray, '/box_positions', 10)
+        self.robot_publisher = self.create_publisher(Point, '/robot_position', 10)
 
         self.get_logger().info(f"Subscribed to {topic} for AprilTag detection")
 
@@ -33,25 +30,43 @@ class AprilTagDetector(Node):
             gray = cv2.cvtColor(cv_image, cv2.COLOR_BGR2GRAY)
             tags = self.detector.detect(gray)
 
-            for tag in tags:
-                center = tag.center  # (x, y) pixel coords
+            h, w = gray.shape
+            box_poses = PoseArray()
+            box_poses.header = msg.header
 
-                # Normalize x and y to [-1, 1]
-                h, w = gray.shape
+            robot_position = None
+
+            for tag in tags:
+                tag_id = tag.tag_id
+                center = tag.center  # (x, y)
+
+                # Normalize to [-1, 1]
                 norm_x = (center[0] - w / 2) / (w / 2)
                 norm_y = (center[1] - h / 2) / (h / 2)
 
-                point = Point()
-                point.x = norm_x
-                point.y = norm_y
-                point.z = 0.0  # Could be used for estimated distance if needed
+                if tag_id == 0:
+                    # Robot tag
+                    robot_position = Point(x=norm_x, y=norm_y, z=0.0)
+                else:
+                    # Box tags
+                    pose = Pose()
+                    pose.position.x = norm_x
+                    pose.position.y = norm_y
+                    pose.position.z = 0.0
+                    box_poses.poses.append(pose)
 
-                self.publisher.publish(point)
-                self.get_logger().info(f"Published tag position: x={point.x:.2f}, y={point.y:.2f}")
-                break  # Only publish the first detected tag
+            # Publish all boxes
+            if box_poses.poses:
+                self.box_publisher.publish(box_poses)
+                self.get_logger().info(f"Published {len(box_poses.poses)} box tag(s)")
+
+            # Publish robot position
+            if robot_position:
+                self.robot_publisher.publish(robot_position)
+                self.get_logger().info(f"Published robot tag position: x={robot_position.x:.2f}, y={robot_position.y:.2f}")
+
         except Exception as e:
             self.get_logger().error(f"Failed to process image: {e}")
-
 
 def main(args=None):
     rclpy.init(args=args)

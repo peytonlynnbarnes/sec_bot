@@ -49,6 +49,12 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     curl https://packages.osrfoundation.org/gazebo.gpg --output /usr/share/keyrings/pkgs-osrf-archive-keyring.gpg && \
     echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/pkgs-osrf-archive-keyring.gpg] http://packages.osrfoundation.org/gazebo/ubuntu-stable $(lsb_release -cs) main" | tee /etc/apt/sources.list.d/gazebo-stable.list > /dev/null
 
+# Install Eigen first to ensure correct version and avoid conflicts
+RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
+    apt-get update && \
+    apt-get install -y \
+    libeigen3-dev
+
 # Install ROS2 Humble and dependencies (changed from Jazzy)
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     apt-get update && \
@@ -66,7 +72,6 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     libavcodec-dev \
     libavformat-dev \
     libswscale-dev \
-    # libeigen3-dev \
     python3-colcon-common-extensions \
     python3-vcstool \
     libglew-dev \
@@ -74,17 +79,26 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     libwayland-dev \
     libglu1-mesa-dev
 
-# Install Eigen first to ensure correct version and avoid conflicts
-RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
-    apt-get update && \
-    apt-get install -y \
-    libeigen3-dev
-
 # Create a virtual environment and install pip tools
 RUN python3 -m venv /opt/venv && \
     . /opt/venv/bin/activate && \
     pip install --cache-dir=$PIP_CACHE_DIR wheel setuptools pipx && \
     pipx ensurepath
+
+# Install cv_bridge and its Python bindings
+RUN apt-get update && apt-get install -y \
+    ros-humble-cv-bridge \
+    python3-cv-bridge \
+    ros-humble-vision-opencv
+
+# Set environment variable to find ROS headers
+ENV CPATH=/opt/ros/humble/include:$CPATH
+ENV LD_LIBRARY_PATH=/opt/ros/humble/lib:$LD_LIBRARY_PATH
+ENV CMAKE_PREFIX_PATH=/opt/ros/humble:$CMAKE_PREFIX_PATH
+
+# Ensure cv_bridge headers are available system-wide
+RUN mkdir -p /usr/include/cv_bridge && \
+    cp -r /opt/ros/humble/include/cv_bridge/* /usr/include/cv_bridge/
 
 # Prepare Pangolin cache
 WORKDIR $PANGOLIN_CACHE
@@ -132,9 +146,17 @@ WORKDIR $ROS_WS
 # Create separate build stage for ros2_orb_slam3 - will only rebuild if source changes
 RUN mkdir -p src/ros2_orb_slam3
 COPY src/ros2_orb_slam3 src/ros2_orb_slam3/
+
+# Apply patch for cv_bridge include if needed
+RUN if [ -f src/ros2_orb_slam3/include/ros2_orb_slam3/common.hpp ]; then \
+    sed -i 's|#include <cv_bridge/cv_bridge.hpp>|#include <cv_bridge/cv_bridge.h>|g' src/ros2_orb_slam3/include/ros2_orb_slam3/common.hpp; \
+    fi
+
 RUN --mount=type=cache,target=$ROS_WS/src/ros2_orb_slam3/build \
     /bin/bash -c "source /opt/ros/humble/setup.bash && \
-    colcon build --symlink-install --packages-select ros2_orb_slam3"
+    export CPLUS_INCLUDE_PATH=/opt/ros/humble/include:$CPLUS_INCLUDE_PATH && \
+    colcon build --symlink-install --packages-select ros2_orb_slam3 --cmake-args \
+    -DCMAKE_CXX_FLAGS='-I/opt/ros/humble/include -I/usr/include/eigen3'"
 
 # Stage 6: Install micro-ROS
 WORKDIR $MICROROS_WS
@@ -202,7 +224,9 @@ RUN --mount=type=cache,target=$PIP_CACHE_DIR \
     pip install --cache-dir=$PIP_CACHE_DIR "numpy<2.0" pybind11>=2.12 opencv-python opencv-python-headless cv-bridge && \
     /bin/bash -c "source /opt/ros/humble/setup.bash && \
     source $ROS_WS/install/setup.bash && \
-    colcon build --packages-select ball_tracker --cmake-clean-cache"
+    export CPLUS_INCLUDE_PATH=/opt/ros/humble/include:$CPLUS_INCLUDE_PATH && \
+    colcon build --packages-select ball_tracker --cmake-clean-cache --cmake-args \
+    -DCMAKE_CXX_FLAGS='-I/opt/ros/humble/include -I/usr/include/eigen3'"
 
 # Stage 9: build other packages
 # Copy and build other packages that change more frequently
@@ -212,8 +236,10 @@ COPY src/sec_bot src/sec_bot/
 # Build remaining packages
 RUN /bin/bash -c "source /opt/ros/humble/setup.bash && \
     source $ROS_WS/install/setup.bash && \
+    export CPLUS_INCLUDE_PATH=/opt/ros/humble/include:$CPLUS_INCLUDE_PATH && \
     rosdep install -r --from-paths src --ignore-src -y --rosdistro humble && \
-    colcon build --symlink-install --packages-select ball_tracker sec_bot"
+    colcon build --symlink-install --packages-select ball_tracker sec_bot --cmake-args \
+    -DCMAKE_CXX_FLAGS='-I/opt/ros/humble/include -I/usr/include/eigen3'"
 
 # Create an entrypoint script to source ROS2 setup
 RUN echo '#!/bin/bash\n\

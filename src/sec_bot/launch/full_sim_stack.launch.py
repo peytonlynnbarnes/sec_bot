@@ -1,5 +1,5 @@
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription, TimerAction
+from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription, TimerAction, ExecuteProcess
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import LaunchConfiguration
 from launch_ros.actions import Node
@@ -17,6 +17,8 @@ def generate_launch_description():
     cam_launch = os.path.join(ball_tracker_dir, 'launch', 'sim_cam.launch.py')
     follow_launch = os.path.join(ball_tracker_dir, 'launch', 'follow_ball.launch.py')
 
+    purple_ball_path = os.path.join(sec_bot_dir, 'models', 'purple_ball.sdf')
+
     return LaunchDescription([
         DeclareLaunchArgument(
             'use_sim_time',
@@ -30,9 +32,9 @@ def generate_launch_description():
             launch_arguments={'use_sim_time': use_sim_time}.items()
         ),
 
-        # Step 2: Launch simulated camera after 3s
+        # Step 3: Launch simulated camera
         TimerAction(
-            period=3.0,
+            period=2.0,
             actions=[
                 IncludeLaunchDescription(
                     PythonLaunchDescriptionSource(cam_launch),
@@ -41,23 +43,9 @@ def generate_launch_description():
             ]
         ),
 
-        # Step 3: Launch ball tracker after 6s
+        # Step 4: Launch follow ball logic
         TimerAction(
-            period=6.0,
-            actions=[
-                Node(
-                    package='ball_tracker',
-                    executable='sim_multi_ball_tracker',
-                    name='sim_multi_ball_tracker',
-                    output='screen',
-                    parameters=[{'use_sim_time': use_sim_time}]
-                )
-            ]
-        ),
-
-        # Step 4: Launch follow ball logic after 9s
-        TimerAction(
-            period=9.0,
+            period=3.0,
             actions=[
                 IncludeLaunchDescription(
                     PythonLaunchDescriptionSource(follow_launch),

@@ -1,15 +1,15 @@
 import rclpy
 from rclpy.node import Node
-from geometry_msgs.msg import Point, Twist
+from geometry_msgs.msg import Point, Twist, PointStamped
 from nav_msgs.msg import OccupancyGrid
-from tf2_ros import TransformListener, Buffer
+from tf2_ros import TransformListener, Buffer, TransformException
+from tf2_geometry_msgs import do_transform_point
 import math
 from math import atan2, sqrt, cos, sin
 import numpy as np
 import heapq
 
 class AStarPlanner:
-    # This class doesn't need changes as it's algorithm-based, not ROS-specific
     def __init__(self, grid, width, height):
         self.grid = np.array(grid, dtype=np.int8).reshape((height, width))
         self.width = width
@@ -41,10 +41,8 @@ class AStarPlanner:
 
         while open_heap:
             current = heapq.heappop(open_heap)[1]
-
             if current == goal:
                 break
-
             for next_node in self.get_neighbors(current):
                 new_cost = cost_so_far[current] + self.heuristic(current, next_node)
                 if next_node not in cost_so_far or new_cost < cost_so_far.get(next_node, float('inf')):
@@ -68,33 +66,30 @@ class FollowBall(Node):
     def __init__(self):
         super().__init__('follow_ball')
         
-        self.declare_parameters(namespace='',
+        self.declare_parameters(
+            namespace='',
             parameters=[
                 ('base_speed', 0.2),
                 ('max_speed', 0.3),
                 ('angular_gain', 0.8),
                 ('stop_distance', 0.3),
                 ('search_speed', 0.5),
-                ('fov', 1.0),
                 ('map_resolution', 0.05),
-                ('ball_scale_factor', 0.05),
-                ('stereo_baseline', 0.12),
-                ('focal_length', 525.0),
-                # Add parameters for frame IDs - these might need to be changed for ORB-SLAM3
-                ('map_frame', 'map'),         # NEW: Parameter for map frame
-                ('robot_frame', 'base_link')  # NEW: Parameter for robot frame
-            ])
+                ('map_frame', 'map'),
+                ('robot_frame', 'base_link'),
+                ('camera_frame', 'left_camera_link'),
+            ]
+        )
         
         self.tf_buffer = Buffer()
         self.tf_listener = TransformListener(self.tf_buffer, self)
         self.cmd_vel_pub = self.create_publisher(Twist, '/cmd_vel', 10)
-        self.create_subscription(Point, '/ball_positions', self.ball_callback, 10)
-        
-        # Update the map topic to match what ORB-SLAM3 publishes
-        # This might need to be changed depending on the actual topic from ros2_orb_slam3
+        self.create_subscription(PointStamped, '/ball_positions', self.ball_callback, 10)
         self.create_subscription(OccupancyGrid, '/orb_slam3/map', self.map_callback, 10)
         
         self.ball_position = None
+        self.ball_frame = None
+        self.ball_stamp = None
         self.current_map = None
         self.robot_pose = None
         self.path = []
@@ -104,21 +99,16 @@ class FollowBall(Node):
         self.search_mode_start_time = None
         self.search_attempt_counter = 0
         
-        # Get frame IDs from parameters
         self.map_frame = self.get_parameter('map_frame').value
         self.robot_frame = self.get_parameter('robot_frame').value
+        self.camera_frame = self.get_parameter('camera_frame').value
+
+        self.create_timer(0.1, self.navigation_loop)
 
     def ball_callback(self, msg):
-        baseline = self.get_parameter('stereo_baseline').value
-        focal_length = self.get_parameter('focal_length').value
-        
-        if msg.x != 0:
-            depth = (focal_length * baseline) / msg.x
-        else:
-            depth = 0.0
-            
-        self.ball_position = Point(x=msg.y, y=msg.z, z=depth)
-        
+        self.ball_position = msg.point
+        self.ball_frame = msg.header.frame_id
+        self.ball_stamp = msg.header.stamp
         self.search_mode_start_time = None
         self.search_attempt_counter = 0
 
@@ -130,14 +120,13 @@ class FollowBall(Node):
             transform = self.tf_buffer.lookup_transform(
                 self.map_frame, self.robot_frame, rclpy.time.Time(),
                 timeout=rclpy.duration.Duration(seconds=1.0))
-            
             x = transform.transform.translation.x
             y = transform.transform.translation.y
             quat = transform.transform.rotation
             theta = 2 * math.atan2(quat.z, quat.w)
             self.robot_pose = (x, y, theta)
             return True
-        except Exception as e:
+        except TransformException as e:
             self.get_logger().warn(f"Transform error: {str(e)} - Stopping robot")
             twist = Twist()
             self.cmd_vel_pub.publish(twist)
@@ -154,26 +143,29 @@ class FollowBall(Node):
         if not self.get_robot_pose():
             return
             
-        if None in (self.robot_pose, self.ball_position, self.current_map):
+        if None in (self.robot_pose, self.ball_position, self.current_map, self.ball_frame, self.ball_stamp):
             return
 
-        fov = self.get_parameter('fov').value
-        scale_factor = self.get_parameter('ball_scale_factor').value
-        
-        distance = self.ball_position.z * scale_factor
-        angle = self.ball_position.x * fov
+        try:
+            # transform ball position from camera frame to map frame
+            transform = self.tf_buffer.lookup_transform(
+                self.map_frame, self.ball_frame, self.ball_stamp,
+                timeout=rclpy.duration.Duration(seconds=1.0))
+            transformed_point = do_transform_point(self.ball_position, transform)
+            x_map = transformed_point.x
+            y_map = transformed_point.y
+            distance = sqrt((x_map - self.robot_pose[0])**2 + (y_map - self.robot_pose[1])**2)
+        except TransformException as e:
+            self.get_logger().warn(f"Transform error: {e} - Stopping robot")
+            twist = Twist()
+            self.cmd_vel_pub.publish(twist)
+            return
 
         stop_dist = self.get_parameter('stop_distance').value
         if distance < stop_dist:
             speed_multiplier = max(0.3, (distance / stop_dist)**2)
         else:
             speed_multiplier = 1.0
-
-        x_robot = distance * cos(angle)
-        y_robot = distance * sin(angle)
-
-        x_map = self.robot_pose[0] + x_robot * cos(self.robot_pose[2]) - y_robot * sin(self.robot_pose[2])
-        y_map = self.robot_pose[1] + x_robot * sin(self.robot_pose[2]) + y_robot * cos(self.robot_pose[2])
 
         map_info = self.current_map.info
         res = map_info.resolution
@@ -194,8 +186,7 @@ class FollowBall(Node):
         
         replan_condition = (
             self.last_goal is None or 
-            sqrt((x_map - self.last_goal[0])**2 + 
-                (y_map - self.last_goal[1])**2) > self.path_update_threshold
+            sqrt((x_map - self.last_goal[0])**2 + (y_map - self.last_goal[1])**2) > self.path_update_threshold
         )
 
         if replan_condition and time_since_last_plan > 3:

@@ -1,0 +1,207 @@
+[0.490s] DEBUG:colcon:Command line arguments: ['/home/peyton/.local/bin/colcon', 'build', '--symlink-install']
+[0.491s] DEBUG:colcon:Parsed command line arguments: Namespace(log_base=None, log_level=None, verb_name='build', build_base='build', install_base='install', merge_install=False, symlink_install=True, test_result_base=None, continue_on_error=False, executor='parallel', parallel_workers=12, event_handlers=None, ignore_user_meta=False, metas=['./colcon.meta'], base_paths=['.'], packages_ignore=None, packages_ignore_regex=None, paths=None, packages_up_to=None, packages_up_to_regex=None, packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_select_by_dep=None, packages_skip_by_dep=None, packages_skip_up_to=None, packages_select_build_failed=False, packages_skip_build_finished=False, packages_select_test_failures=False, packages_skip_test_passed=False, packages_select=None, packages_skip=None, packages_select_regex=None, packages_skip_regex=None, packages_start=None, packages_end=None, allow_overriding=[], cmake_args=None, cmake_target=None, cmake_target_skip_unavailable=False, cmake_clean_cache=False, cmake_clean_first=False, cmake_force_configure=False, ament_cmake_args=None, catkin_cmake_args=None, catkin_skip_building_tests=False, mixin_files=None, mixin=None, verb_parser=<colcon_mixin.mixin.mixin_argument.MixinArgumentDecorator object at 0x7ff16aafcdc0>, verb_extension=<colcon_core.verb.build.BuildVerb object at 0x7ff16aafc7f0>, main=<bound method BuildVerb.main of <colcon_core.verb.build.BuildVerb object at 0x7ff16aafc7f0>>, mixin_verb=('build',))
+[0.832s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) check parameters
+[0.832s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) check parameters
+[0.832s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) check parameters
+[0.832s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) check parameters
+[0.832s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) discover
+[0.832s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) discover
+[0.832s] INFO:colcon.colcon_core.package_discovery:Crawling recursively for packages in '/home/peyton/ros_ws/sec_bot'
+[0.832s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ignore', 'ignore_ament_install']
+[0.832s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore'
+[0.832s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore_ament_install'
+[0.832s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_pkg']
+[0.832s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_pkg'
+[0.832s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_meta']
+[0.833s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_meta'
+[0.833s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ros']
+[0.833s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ros'
+[0.853s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['cmake', 'python']
+[0.853s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'cmake'
+[0.854s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python'
+[0.854s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['python_setup_py']
+[0.854s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python_setup_py'
+[0.854s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extensions ['ignore', 'ignore_ament_install']
+[0.854s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extension 'ignore'
+[0.854s] Level 1:colcon.colcon_core.package_identification:_identify(build) ignored
+[0.854s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extensions ['ignore', 'ignore_ament_install']
+[0.854s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extension 'ignore'
+[0.854s] Level 1:colcon.colcon_core.package_identification:_identify(install) ignored
+[0.854s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extensions ['ignore', 'ignore_ament_install']
+[0.854s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extension 'ignore'
+[0.854s] Level 1:colcon.colcon_core.package_identification:_identify(log) ignored
+[0.855s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ignore', 'ignore_ament_install']
+[0.855s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore'
+[0.855s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore_ament_install'
+[0.855s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_pkg']
+[0.855s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_pkg'
+[0.855s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_meta']
+[0.855s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_meta'
+[0.855s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ros']
+[0.855s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ros'
+[0.855s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['cmake', 'python']
+[0.855s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'cmake'
+[0.855s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python'
+[0.855s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['python_setup_py']
+[0.855s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python_setup_py'
+[0.856s] Level 1:colcon.colcon_core.package_identification:_identify(src/ball_tracker) by extensions ['ignore', 'ignore_ament_install']
+[0.856s] Level 1:colcon.colcon_core.package_identification:_identify(src/ball_tracker) by extension 'ignore'
+[0.856s] Level 1:colcon.colcon_core.package_identification:_identify(src/ball_tracker) by extension 'ignore_ament_install'
+[0.856s] Level 1:colcon.colcon_core.package_identification:_identify(src/ball_tracker) by extensions ['colcon_pkg']
+[0.856s] Level 1:colcon.colcon_core.package_identification:_identify(src/ball_tracker) by extension 'colcon_pkg'
+[0.856s] Level 1:colcon.colcon_core.package_identification:_identify(src/ball_tracker) by extensions ['colcon_meta']
+[0.856s] Level 1:colcon.colcon_core.package_identification:_identify(src/ball_tracker) by extension 'colcon_meta'
+[0.856s] Level 1:colcon.colcon_core.package_identification:_identify(src/ball_tracker) by extensions ['ros']
+[0.856s] Level 1:colcon.colcon_core.package_identification:_identify(src/ball_tracker) by extension 'ros'
+[0.860s] DEBUG:colcon.colcon_core.package_identification:Package 'src/ball_tracker' with type 'ros.ament_python' and name 'ball_tracker'
+[0.861s] Level 1:colcon.colcon_core.package_identification:_identify(src/sec_bot) by extensions ['ignore', 'ignore_ament_install']
+[0.862s] Level 1:colcon.colcon_core.package_identification:_identify(src/sec_bot) by extension 'ignore'
+[0.862s] Level 1:colcon.colcon_core.package_identification:_identify(src/sec_bot) by extension 'ignore_ament_install'
+[0.862s] Level 1:colcon.colcon_core.package_identification:_identify(src/sec_bot) by extensions ['colcon_pkg']
+[0.862s] Level 1:colcon.colcon_core.package_identification:_identify(src/sec_bot) by extension 'colcon_pkg'
+[0.862s] Level 1:colcon.colcon_core.package_identification:_identify(src/sec_bot) by extensions ['colcon_meta']
+[0.862s] Level 1:colcon.colcon_core.package_identification:_identify(src/sec_bot) by extension 'colcon_meta'
+[0.862s] Level 1:colcon.colcon_core.package_identification:_identify(src/sec_bot) by extensions ['ros']
+[0.862s] Level 1:colcon.colcon_core.package_identification:_identify(src/sec_bot) by extension 'ros'
+[0.863s] DEBUG:colcon.colcon_core.package_identification:Package 'src/sec_bot' with type 'ros.ament_cmake' and name 'sec_bot'
+[0.863s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) using defaults
+[0.863s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) discover
+[0.863s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) using defaults
+[0.863s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) discover
+[0.863s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) using defaults
+[0.897s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) check parameters
+[0.897s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) discover
+[0.904s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 2 installed packages in /home/peyton/ros_ws/sec_bot/install
+[0.905s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 327 installed packages in /opt/ros/humble
+[0.914s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) using defaults
+[0.954s] Level 5:colcon.colcon_core.verb:set package 'ball_tracker' build argument 'cmake_args' from command line to 'None'
+[0.954s] Level 5:colcon.colcon_core.verb:set package 'ball_tracker' build argument 'cmake_target' from command line to 'None'
+[0.954s] Level 5:colcon.colcon_core.verb:set package 'ball_tracker' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.954s] Level 5:colcon.colcon_core.verb:set package 'ball_tracker' build argument 'cmake_clean_cache' from command line to 'False'
+[0.954s] Level 5:colcon.colcon_core.verb:set package 'ball_tracker' build argument 'cmake_clean_first' from command line to 'False'
+[0.954s] Level 5:colcon.colcon_core.verb:set package 'ball_tracker' build argument 'cmake_force_configure' from command line to 'False'
+[0.954s] Level 5:colcon.colcon_core.verb:set package 'ball_tracker' build argument 'ament_cmake_args' from command line to 'None'
+[0.954s] Level 5:colcon.colcon_core.verb:set package 'ball_tracker' build argument 'catkin_cmake_args' from command line to 'None'
+[0.954s] Level 5:colcon.colcon_core.verb:set package 'ball_tracker' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.954s] DEBUG:colcon.colcon_core.verb:Building package 'ball_tracker' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/peyton/ros_ws/sec_bot/build/ball_tracker', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/peyton/ros_ws/sec_bot/install/ball_tracker', 'merge_install': False, 'path': '/home/peyton/ros_ws/sec_bot/src/ball_tracker', 'symlink_install': True, 'test_result_base': None}
+[0.954s] Level 5:colcon.colcon_core.verb:set package 'sec_bot' build argument 'cmake_args' from command line to 'None'
+[0.954s] Level 5:colcon.colcon_core.verb:set package 'sec_bot' build argument 'cmake_target' from command line to 'None'
+[0.954s] Level 5:colcon.colcon_core.verb:set package 'sec_bot' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.954s] Level 5:colcon.colcon_core.verb:set package 'sec_bot' build argument 'cmake_clean_cache' from command line to 'False'
+[0.954s] Level 5:colcon.colcon_core.verb:set package 'sec_bot' build argument 'cmake_clean_first' from command line to 'False'
+[0.954s] Level 5:colcon.colcon_core.verb:set package 'sec_bot' build argument 'cmake_force_configure' from command line to 'False'
+[0.954s] Level 5:colcon.colcon_core.verb:set package 'sec_bot' build argument 'ament_cmake_args' from command line to 'None'
+[0.954s] Level 5:colcon.colcon_core.verb:set package 'sec_bot' build argument 'catkin_cmake_args' from command line to 'None'
+[0.954s] Level 5:colcon.colcon_core.verb:set package 'sec_bot' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.954s] DEBUG:colcon.colcon_core.verb:Building package 'sec_bot' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/peyton/ros_ws/sec_bot/build/sec_bot', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/peyton/ros_ws/sec_bot/install/sec_bot', 'merge_install': False, 'path': '/home/peyton/ros_ws/sec_bot/src/sec_bot', 'symlink_install': True, 'test_result_base': None}
+[0.955s] INFO:colcon.colcon_core.executor:Executing jobs using 'parallel' executor
+[0.956s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete
+[0.956s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/peyton/ros_ws/sec_bot/src/ball_tracker' with build type 'ament_python'
+[0.957s] Level 1:colcon.colcon_core.shell:create_environment_hook('ball_tracker', 'ament_prefix_path')
+[0.967s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_core.shell.bat': Not used on non-Windows systems
+[0.968s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/peyton/ros_ws/sec_bot/install/ball_tracker/share/ball_tracker/hook/ament_prefix_path.ps1'
+[0.969s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/peyton/ros_ws/sec_bot/install/ball_tracker/share/ball_tracker/hook/ament_prefix_path.dsv'
+[0.970s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/peyton/ros_ws/sec_bot/install/ball_tracker/share/ball_tracker/hook/ament_prefix_path.sh'
+[0.972s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.972s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.976s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/peyton/ros_ws/sec_bot/src/sec_bot' with build type 'ament_cmake'
+[0.976s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/peyton/ros_ws/sec_bot/src/sec_bot'
+[0.976s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.976s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[1.184s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/peyton/ros_ws/sec_bot/src/ball_tracker'
+[1.184s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[1.184s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[1.197s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/peyton/ros_ws/sec_bot/build/sec_bot': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/peyton/ros_ws/sec_bot/install/ball_tracker:/opt/ros/humble /usr/bin/cmake /home/peyton/ros_ws/sec_bot/src/sec_bot -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/peyton/ros_ws/sec_bot/install/sec_bot
+[1.571s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/peyton/ros_ws/sec_bot/build/sec_bot' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/peyton/ros_ws/sec_bot/install/ball_tracker:/opt/ros/humble /usr/bin/cmake /home/peyton/ros_ws/sec_bot/src/sec_bot -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/peyton/ros_ws/sec_bot/install/sec_bot
+[1.572s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/peyton/ros_ws/sec_bot/build/sec_bot': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/peyton/ros_ws/sec_bot/install/ball_tracker:/opt/ros/humble /usr/bin/cmake --build /home/peyton/ros_ws/sec_bot/build/sec_bot -- -j12 -l12
+[1.598s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/peyton/ros_ws/sec_bot/build/sec_bot' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/peyton/ros_ws/sec_bot/install/ball_tracker:/opt/ros/humble /usr/bin/cmake --build /home/peyton/ros_ws/sec_bot/build/sec_bot -- -j12 -l12
+[1.604s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/peyton/ros_ws/sec_bot/build/sec_bot': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/peyton/ros_ws/sec_bot/install/ball_tracker:/opt/ros/humble /usr/bin/cmake --install /home/peyton/ros_ws/sec_bot/build/sec_bot
+[1.628s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(sec_bot)
+[1.628s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/peyton/ros_ws/sec_bot/build/sec_bot' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/peyton/ros_ws/sec_bot/install/ball_tracker:/opt/ros/humble /usr/bin/cmake --install /home/peyton/ros_ws/sec_bot/build/sec_bot
+[1.636s] Level 1:colcon.colcon_core.environment:checking '/home/peyton/ros_ws/sec_bot/install/sec_bot' for CMake module files
+[1.637s] Level 1:colcon.colcon_core.environment:checking '/home/peyton/ros_ws/sec_bot/install/sec_bot' for CMake config files
+[1.637s] Level 1:colcon.colcon_core.shell:create_environment_hook('sec_bot', 'cmake_prefix_path')
+[1.637s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/peyton/ros_ws/sec_bot/install/sec_bot/share/sec_bot/hook/cmake_prefix_path.ps1'
+[1.638s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/peyton/ros_ws/sec_bot/install/sec_bot/share/sec_bot/hook/cmake_prefix_path.dsv'
+[1.638s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/peyton/ros_ws/sec_bot/install/sec_bot/share/sec_bot/hook/cmake_prefix_path.sh'
+[1.638s] Level 1:colcon.colcon_core.environment:checking '/home/peyton/ros_ws/sec_bot/install/sec_bot/bin'
+[1.638s] Level 1:colcon.colcon_core.environment:checking '/home/peyton/ros_ws/sec_bot/install/sec_bot/lib/pkgconfig/sec_bot.pc'
+[1.639s] Level 1:colcon.colcon_core.environment:checking '/home/peyton/ros_ws/sec_bot/install/sec_bot/lib/python3.10/site-packages'
+[1.639s] Level 1:colcon.colcon_core.environment:checking '/home/peyton/ros_ws/sec_bot/install/sec_bot/bin'
+[1.639s] INFO:colcon.colcon_core.shell:Creating package script '/home/peyton/ros_ws/sec_bot/install/sec_bot/share/sec_bot/package.ps1'
+[1.640s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/peyton/ros_ws/sec_bot/install/sec_bot/share/sec_bot/package.dsv'
+[1.641s] INFO:colcon.colcon_core.shell:Creating package script '/home/peyton/ros_ws/sec_bot/install/sec_bot/share/sec_bot/package.sh'
+[1.642s] INFO:colcon.colcon_core.shell:Creating package script '/home/peyton/ros_ws/sec_bot/install/sec_bot/share/sec_bot/package.bash'
+[1.644s] INFO:colcon.colcon_core.shell:Creating package script '/home/peyton/ros_ws/sec_bot/install/sec_bot/share/sec_bot/package.zsh'
+[1.646s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/peyton/ros_ws/sec_bot/install/sec_bot/share/colcon-core/packages/sec_bot)
+[1.646s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(sec_bot)
+[1.646s] Level 1:colcon.colcon_core.environment:checking '/home/peyton/ros_ws/sec_bot/install/sec_bot' for CMake module files
+[1.647s] Level 1:colcon.colcon_core.environment:checking '/home/peyton/ros_ws/sec_bot/install/sec_bot' for CMake config files
+[1.647s] Level 1:colcon.colcon_core.shell:create_environment_hook('sec_bot', 'cmake_prefix_path')
+[1.647s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/peyton/ros_ws/sec_bot/install/sec_bot/share/sec_bot/hook/cmake_prefix_path.ps1'
+[1.647s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/peyton/ros_ws/sec_bot/install/sec_bot/share/sec_bot/hook/cmake_prefix_path.dsv'
+[1.647s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/peyton/ros_ws/sec_bot/install/sec_bot/share/sec_bot/hook/cmake_prefix_path.sh'
+[1.648s] Level 1:colcon.colcon_core.environment:checking '/home/peyton/ros_ws/sec_bot/install/sec_bot/bin'
+[1.648s] Level 1:colcon.colcon_core.environment:checking '/home/peyton/ros_ws/sec_bot/install/sec_bot/lib/pkgconfig/sec_bot.pc'
+[1.648s] Level 1:colcon.colcon_core.environment:checking '/home/peyton/ros_ws/sec_bot/install/sec_bot/lib/python3.10/site-packages'
+[1.648s] Level 1:colcon.colcon_core.environment:checking '/home/peyton/ros_ws/sec_bot/install/sec_bot/bin'
+[1.648s] INFO:colcon.colcon_core.shell:Creating package script '/home/peyton/ros_ws/sec_bot/install/sec_bot/share/sec_bot/package.ps1'
+[1.649s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/peyton/ros_ws/sec_bot/install/sec_bot/share/sec_bot/package.dsv'
+[1.649s] INFO:colcon.colcon_core.shell:Creating package script '/home/peyton/ros_ws/sec_bot/install/sec_bot/share/sec_bot/package.sh'
+[1.649s] INFO:colcon.colcon_core.shell:Creating package script '/home/peyton/ros_ws/sec_bot/install/sec_bot/share/sec_bot/package.bash'
+[1.650s] INFO:colcon.colcon_core.shell:Creating package script '/home/peyton/ros_ws/sec_bot/install/sec_bot/share/sec_bot/package.zsh'
+[1.650s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/peyton/ros_ws/sec_bot/install/sec_bot/share/colcon-core/packages/sec_bot)
+[1.739s] DEBUG:colcon.colcon_core.task.python.build:While undoing a previous installation files outside the Python library path are being ignored: /home/peyton/ros_ws/sec_bot/install/ball_tracker/share/ament_index/resource_index/packages/ball_tracker
+[1.739s] DEBUG:colcon.colcon_core.task.python.build:While undoing a previous installation files outside the Python library path are being ignored: /home/peyton/ros_ws/sec_bot/install/ball_tracker/share/ball_tracker/package.xml
+[1.740s] DEBUG:colcon.colcon_core.task.python.build:While undoing a previous installation files outside the Python library path are being ignored: /home/peyton/ros_ws/sec_bot/install/ball_tracker/share/ball_tracker/launch/camera.launch.py
+[1.740s] DEBUG:colcon.colcon_core.task.python.build:While undoing a previous installation files outside the Python library path are being ignored: /home/peyton/ros_ws/sec_bot/install/ball_tracker/share/ball_tracker/launch/sim_cam.launch.py
+[1.740s] DEBUG:colcon.colcon_core.task.python.build:While undoing a previous installation files outside the Python library path are being ignored: /home/peyton/ros_ws/sec_bot/install/ball_tracker/share/ball_tracker/launch/follow_ball.launch.py
+[1.740s] DEBUG:colcon.colcon_core.task.python.build:While undoing a previous installation files outside the Python library path are being ignored: /home/peyton/ros_ws/sec_bot/install/ball_tracker/lib/ball_tracker/follow_ball
+[1.740s] DEBUG:colcon.colcon_core.task.python.build:While undoing a previous installation files outside the Python library path are being ignored: /home/peyton/ros_ws/sec_bot/install/ball_tracker/lib/ball_tracker/image_publisher
+[1.740s] DEBUG:colcon.colcon_core.task.python.build:While undoing a previous installation files outside the Python library path are being ignored: /home/peyton/ros_ws/sec_bot/install/ball_tracker/lib/ball_tracker/image_subscriber
+[1.740s] DEBUG:colcon.colcon_core.task.python.build:While undoing a previous installation files outside the Python library path are being ignored: /home/peyton/ros_ws/sec_bot/install/ball_tracker/lib/ball_tracker/multi_ball_tracker
+[1.740s] DEBUG:colcon.colcon_core.task.python.build:While undoing a previous installation files outside the Python library path are being ignored: /home/peyton/ros_ws/sec_bot/install/ball_tracker/lib/ball_tracker/sim_multi_ball_tracker
+[1.746s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/peyton/ros_ws/sec_bot/build/ball_tracker': PYTHONPATH=/home/peyton/ros_ws/sec_bot/build/ball_tracker/prefix_override:/home/peyton/.local/lib/python3.10/site-packages/colcon_core/task/python/colcon_distutils_commands:/home/peyton/ros_ws/sec_bot/install/ball_tracker/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/peyton/ros_ws/sec_bot/build/ball_tracker/build --no-deps symlink_data --force
+[2.091s] Level 1:colcon.colcon_core.shell:create_environment_hook('ball_tracker', 'pythonpath_develop')
+[2.092s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/peyton/ros_ws/sec_bot/build/ball_tracker/share/ball_tracker/hook/pythonpath_develop.ps1'
+[2.092s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/peyton/ros_ws/sec_bot/build/ball_tracker' returned '0': PYTHONPATH=/home/peyton/ros_ws/sec_bot/build/ball_tracker/prefix_override:/home/peyton/.local/lib/python3.10/site-packages/colcon_core/task/python/colcon_distutils_commands:/home/peyton/ros_ws/sec_bot/install/ball_tracker/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/peyton/ros_ws/sec_bot/build/ball_tracker/build --no-deps symlink_data --force
+[2.093s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/peyton/ros_ws/sec_bot/build/ball_tracker/share/ball_tracker/hook/pythonpath_develop.dsv'
+[2.094s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/peyton/ros_ws/sec_bot/build/ball_tracker/share/ball_tracker/hook/pythonpath_develop.sh'
+[2.094s] Level 1:colcon.colcon_core.environment:checking '/home/peyton/ros_ws/sec_bot/install/ball_tracker' for CMake module files
+[2.095s] Level 1:colcon.colcon_core.environment:checking '/home/peyton/ros_ws/sec_bot/install/ball_tracker' for CMake config files
+[2.096s] Level 1:colcon.colcon_core.environment:checking '/home/peyton/ros_ws/sec_bot/install/ball_tracker/lib'
+[2.096s] Level 1:colcon.colcon_core.environment:checking '/home/peyton/ros_ws/sec_bot/install/ball_tracker/bin'
+[2.096s] Level 1:colcon.colcon_core.environment:checking '/home/peyton/ros_ws/sec_bot/install/ball_tracker/lib/pkgconfig/ball_tracker.pc'
+[2.097s] Level 1:colcon.colcon_core.environment:checking '/home/peyton/ros_ws/sec_bot/install/ball_tracker/lib/python3.10/site-packages'
+[2.097s] Level 1:colcon.colcon_core.shell:create_environment_hook('ball_tracker', 'pythonpath')
+[2.097s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/peyton/ros_ws/sec_bot/install/ball_tracker/share/ball_tracker/hook/pythonpath.ps1'
+[2.097s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/peyton/ros_ws/sec_bot/install/ball_tracker/share/ball_tracker/hook/pythonpath.dsv'
+[2.097s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/peyton/ros_ws/sec_bot/install/ball_tracker/share/ball_tracker/hook/pythonpath.sh'
+[2.098s] Level 1:colcon.colcon_core.environment:checking '/home/peyton/ros_ws/sec_bot/install/ball_tracker/bin'
+[2.098s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(ball_tracker)
+[2.098s] INFO:colcon.colcon_core.shell:Creating package script '/home/peyton/ros_ws/sec_bot/install/ball_tracker/share/ball_tracker/package.ps1'
+[2.099s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/peyton/ros_ws/sec_bot/install/ball_tracker/share/ball_tracker/package.dsv'
+[2.099s] INFO:colcon.colcon_core.shell:Creating package script '/home/peyton/ros_ws/sec_bot/install/ball_tracker/share/ball_tracker/package.sh'
+[2.099s] INFO:colcon.colcon_core.shell:Creating package script '/home/peyton/ros_ws/sec_bot/install/ball_tracker/share/ball_tracker/package.bash'
+[2.100s] INFO:colcon.colcon_core.shell:Creating package script '/home/peyton/ros_ws/sec_bot/install/ball_tracker/share/ball_tracker/package.zsh'
+[2.100s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/peyton/ros_ws/sec_bot/install/ball_tracker/share/colcon-core/packages/ball_tracker)
+[2.100s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:closing loop
+[2.100s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:loop closed
+[2.101s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete finished with '0'
+[2.101s] DEBUG:colcon.colcon_core.event_reactor:joining thread
+[2.145s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.notify_send': Could not find 'notify-send'
+[2.145s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.terminal_notifier': Not used on non-Darwin systems
+[2.145s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.win32': Not used on non-Windows systems
+[2.145s] INFO:colcon.colcon_notification.desktop_notification:Sending desktop notification using 'notify2'
+[2.145s] DEBUG:colcon.colcon_notification.desktop_notification.notify2:Failed to initialize notify2: org.freedesktop.DBus.Error.FileNotFound: Failed to connect to socket /run/user/1000/bus: No such file or directory
+[2.145s] DEBUG:colcon.colcon_core.event_reactor:joined thread
+[2.145s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/peyton/ros_ws/sec_bot/install/local_setup.ps1'
+[2.146s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/peyton/ros_ws/sec_bot/install/_local_setup_util_ps1.py'
+[2.148s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/peyton/ros_ws/sec_bot/install/setup.ps1'
+[2.150s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/peyton/ros_ws/sec_bot/install/local_setup.sh'
+[2.151s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/peyton/ros_ws/sec_bot/install/_local_setup_util_sh.py'
+[2.152s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/peyton/ros_ws/sec_bot/install/setup.sh'
+[2.153s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/peyton/ros_ws/sec_bot/install/local_setup.bash'
+[2.154s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/peyton/ros_ws/sec_bot/install/setup.bash'
+[2.156s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/peyton/ros_ws/sec_bot/install/local_setup.zsh'
+[2.157s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/peyton/ros_ws/sec_bot/install/setup.zsh'

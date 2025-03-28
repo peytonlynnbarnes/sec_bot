@@ -1,0 +1,34 @@
+[0.518s] Invoking command in '/home/peyton/ros_ws/sec_bot/src/ball_tracker': PYTHONPATH=/home/peyton/ros_ws/sec_bot/build/ball_tracker/prefix_override:/home/peyton/.local/lib/python3.10/site-packages/colcon_core/task/python/colcon_distutils_commands:/home/peyton/ros_ws/sec_bot/install/ball_tracker/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/ball_tracker build --build-base /home/peyton/ros_ws/sec_bot/build/ball_tracker/build install --record /home/peyton/ros_ws/sec_bot/build/ball_tracker/install.log --single-version-externally-managed install_data
+[0.700s] running egg_info
+[0.701s] writing ../../build/ball_tracker/ball_tracker.egg-info/PKG-INFO
+[0.701s] writing dependency_links to ../../build/ball_tracker/ball_tracker.egg-info/dependency_links.txt
+[0.701s] writing entry points to ../../build/ball_tracker/ball_tracker.egg-info/entry_points.txt
+[0.702s] writing requirements to ../../build/ball_tracker/ball_tracker.egg-info/requires.txt
+[0.702s] writing top-level names to ../../build/ball_tracker/ball_tracker.egg-info/top_level.txt
+[0.703s] reading manifest file '../../build/ball_tracker/ball_tracker.egg-info/SOURCES.txt'
+[0.703s] adding license file 'LICENSE'
+[0.704s] writing manifest file '../../build/ball_tracker/ball_tracker.egg-info/SOURCES.txt'
+[0.704s] running build
+[0.704s] running build_py
+[0.704s] copying ball_tracker/follow_ball.py -> /home/peyton/ros_ws/sec_bot/build/ball_tracker/build/lib/ball_tracker
+[0.705s] running install
+[0.705s] running install_lib
+[0.706s] copying /home/peyton/ros_ws/sec_bot/build/ball_tracker/build/lib/ball_tracker/follow_ball.py -> /home/peyton/ros_ws/sec_bot/install/ball_tracker/lib/python3.10/site-packages/ball_tracker
+[0.707s] byte-compiling /home/peyton/ros_ws/sec_bot/install/ball_tracker/lib/python3.10/site-packages/ball_tracker/follow_ball.py to follow_ball.cpython-310.pyc
+[0.708s]   File "/home/peyton/ros_ws/sec_bot/install/ball_tracker/lib/python3.10/site-packages/ball_tracker/follow_ball.py", line 64
+[0.708s]     msg.linear.x = max(self.base_forward_speed
+[0.708s]                       ^
+[0.708s] SyntaxError: '(' was never closed
+[0.708s] 
+[0.708s] running install_data
+[0.708s] running install_egg_info
+[0.709s] removing '/home/peyton/ros_ws/sec_bot/install/ball_tracker/lib/python3.10/site-packages/ball_tracker-0.0.0-py3.10.egg-info' (and everything under it)
+[0.710s] Copying ../../build/ball_tracker/ball_tracker.egg-info to /home/peyton/ros_ws/sec_bot/install/ball_tracker/lib/python3.10/site-packages/ball_tracker-0.0.0-py3.10.egg-info
+[0.710s] running install_scripts
+[0.726s] Installing follow_ball script to /home/peyton/ros_ws/sec_bot/install/ball_tracker/lib/ball_tracker
+[0.726s] Installing image_publisher script to /home/peyton/ros_ws/sec_bot/install/ball_tracker/lib/ball_tracker
+[0.726s] Installing image_subscriber script to /home/peyton/ros_ws/sec_bot/install/ball_tracker/lib/ball_tracker
+[0.726s] Installing multi_ball_tracker script to /home/peyton/ros_ws/sec_bot/install/ball_tracker/lib/ball_tracker
+[0.726s] Installing sim_multi_ball_tracker script to /home/peyton/ros_ws/sec_bot/install/ball_tracker/lib/ball_tracker
+[0.726s] writing list of installed files to '/home/peyton/ros_ws/sec_bot/build/ball_tracker/install.log'
+[0.750s] Invoked command in '/home/peyton/ros_ws/sec_bot/src/ball_tracker' returned '0': PYTHONPATH=/home/peyton/ros_ws/sec_bot/build/ball_tracker/prefix_override:/home/peyton/.local/lib/python3.10/site-packages/colcon_core/task/python/colcon_distutils_commands:/home/peyton/ros_ws/sec_bot/install/ball_tracker/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/ball_tracker build --build-base /home/peyton/ros_ws/sec_bot/build/ball_tracker/build install --record /home/peyton/ros_ws/sec_bot/build/ball_tracker/install.log --single-version-externally-managed install_data

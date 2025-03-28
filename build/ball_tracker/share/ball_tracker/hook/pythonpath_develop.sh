@@ -1,3 +1,3 @@
 # generated from colcon_core/shell/template/hook_prepend_value.sh.em
 
-_colcon_prepend_unique_value PYTHONPATH "/home/peyton/dev_ws/build/ball_tracker"
+_colcon_prepend_unique_value PYTHONPATH "/home/peyton/ros_ws/sec_bot/build/ball_tracker"

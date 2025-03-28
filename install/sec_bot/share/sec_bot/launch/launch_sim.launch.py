@@ -1,1 +1,1 @@
-/home/peyton/dev_ws/src/sec_bot/launch/launch_sim.launch.py
+/home/peyton/ros_ws/sec_bot/src/sec_bot/launch/launch_sim.launch.py

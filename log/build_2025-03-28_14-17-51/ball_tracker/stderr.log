@@ -1,0 +1,5 @@
+  File "/home/peyton/ros_ws/sec_bot/install/ball_tracker/lib/python3.10/site-packages/ball_tracker/follow_ball.py", line 64
+    msg.linear.x = max(self.base_forward_speed
+                      ^
+SyntaxError: '(' was never closed
+

@@ -1,0 +1,29 @@
+[0.497s] Invoking command in '/home/peyton/ros_ws/sec_bot/src/ball_tracker': PYTHONPATH=/home/peyton/ros_ws/sec_bot/build/ball_tracker/prefix_override:/home/peyton/.local/lib/python3.10/site-packages/colcon_core/task/python/colcon_distutils_commands:/home/peyton/ros_ws/sec_bot/install/ball_tracker/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/ball_tracker build --build-base /home/peyton/ros_ws/sec_bot/build/ball_tracker/build install --record /home/peyton/ros_ws/sec_bot/build/ball_tracker/install.log --single-version-externally-managed install_data
+[0.669s] running egg_info
+[0.669s] writing ../../build/ball_tracker/ball_tracker.egg-info/PKG-INFO
+[0.669s] writing dependency_links to ../../build/ball_tracker/ball_tracker.egg-info/dependency_links.txt
+[0.670s] writing entry points to ../../build/ball_tracker/ball_tracker.egg-info/entry_points.txt
+[0.670s] writing requirements to ../../build/ball_tracker/ball_tracker.egg-info/requires.txt
+[0.670s] writing top-level names to ../../build/ball_tracker/ball_tracker.egg-info/top_level.txt
+[0.672s] reading manifest file '../../build/ball_tracker/ball_tracker.egg-info/SOURCES.txt'
+[0.672s] adding license file 'LICENSE'
+[0.673s] writing manifest file '../../build/ball_tracker/ball_tracker.egg-info/SOURCES.txt'
+[0.673s] running build
+[0.673s] running build_py
+[0.673s] copying ball_tracker/follow_ball.py -> /home/peyton/ros_ws/sec_bot/build/ball_tracker/build/lib/ball_tracker
+[0.674s] running install
+[0.674s] running install_lib
+[0.675s] copying /home/peyton/ros_ws/sec_bot/build/ball_tracker/build/lib/ball_tracker/follow_ball.py -> /home/peyton/ros_ws/sec_bot/install/ball_tracker/lib/python3.10/site-packages/ball_tracker
+[0.676s] byte-compiling /home/peyton/ros_ws/sec_bot/install/ball_tracker/lib/python3.10/site-packages/ball_tracker/follow_ball.py to follow_ball.cpython-310.pyc
+[0.677s] running install_data
+[0.677s] running install_egg_info
+[0.680s] removing '/home/peyton/ros_ws/sec_bot/install/ball_tracker/lib/python3.10/site-packages/ball_tracker-0.0.0-py3.10.egg-info' (and everything under it)
+[0.680s] Copying ../../build/ball_tracker/ball_tracker.egg-info to /home/peyton/ros_ws/sec_bot/install/ball_tracker/lib/python3.10/site-packages/ball_tracker-0.0.0-py3.10.egg-info
+[0.681s] running install_scripts
+[0.698s] Installing follow_ball script to /home/peyton/ros_ws/sec_bot/install/ball_tracker/lib/ball_tracker
+[0.698s] Installing image_publisher script to /home/peyton/ros_ws/sec_bot/install/ball_tracker/lib/ball_tracker
+[0.699s] Installing image_subscriber script to /home/peyton/ros_ws/sec_bot/install/ball_tracker/lib/ball_tracker
+[0.699s] Installing multi_ball_tracker script to /home/peyton/ros_ws/sec_bot/install/ball_tracker/lib/ball_tracker
+[0.699s] Installing sim_multi_ball_tracker script to /home/peyton/ros_ws/sec_bot/install/ball_tracker/lib/ball_tracker
+[0.699s] writing list of installed files to '/home/peyton/ros_ws/sec_bot/build/ball_tracker/install.log'
+[0.722s] Invoked command in '/home/peyton/ros_ws/sec_bot/src/ball_tracker' returned '0': PYTHONPATH=/home/peyton/ros_ws/sec_bot/build/ball_tracker/prefix_override:/home/peyton/.local/lib/python3.10/site-packages/colcon_core/task/python/colcon_distutils_commands:/home/peyton/ros_ws/sec_bot/install/ball_tracker/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/ball_tracker build --build-base /home/peyton/ros_ws/sec_bot/build/ball_tracker/build install --record /home/peyton/ros_ws/sec_bot/build/ball_tracker/install.log --single-version-externally-managed install_data

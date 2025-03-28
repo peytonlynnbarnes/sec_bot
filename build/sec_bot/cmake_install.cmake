@@ -1,8 +1,8 @@
-# Install script for directory: /home/peyton/dev_ws/src/sec_bot
+# Install script for directory: /home/peyton/ros_ws/sec_bot/src/sec_bot
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/peyton/dev_ws/install/sec_bot")
+  set(CMAKE_INSTALL_PREFIX "/home/peyton/ros_ws/sec_bot/install/sec_bot")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -43,7 +43,7 @@ if(NOT DEFINED CMAKE_OBJDUMP)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  include("/home/peyton/dev_ws/build/sec_bot/ament_cmake_symlink_install/ament_cmake_symlink_install.cmake")
+  include("/home/peyton/ros_ws/sec_bot/build/sec_bot/ament_cmake_symlink_install/ament_cmake_symlink_install.cmake")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT)
@@ -54,5 +54,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/peyton/dev_ws/build/sec_bot/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/peyton/ros_ws/sec_bot/build/sec_bot/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

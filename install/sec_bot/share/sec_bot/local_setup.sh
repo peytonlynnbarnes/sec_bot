@@ -1,1 +1,1 @@
-/home/peyton/dev_ws/build/sec_bot/ament_cmake_environment_hooks/local_setup.sh
+/home/peyton/ros_ws/sec_bot/build/sec_bot/ament_cmake_environment_hooks/local_setup.sh

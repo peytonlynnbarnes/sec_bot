@@ -1,0 +1,56 @@
+[0.294s] Invoking command in '/home/peyton/ros_ws/sec_bot/build/sec_bot': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/peyton/ros_ws/sec_bot/install/ball_tracker:/opt/ros/humble /usr/bin/cmake /home/peyton/ros_ws/sec_bot/src/sec_bot -DCMAKE_INSTALL_PREFIX=/home/peyton/ros_ws/sec_bot/install/sec_bot
+[0.333s] -- Found ament_cmake: 1.3.11 (/opt/ros/humble/share/ament_cmake/cmake)
+[0.486s] -- Override CMake install command with custom implementation using symlinks instead of copying resources
+[0.516s] -- Found ament_lint_auto: 0.12.11 (/opt/ros/humble/share/ament_lint_auto/cmake)
+[0.622s] -- Added test 'copyright' to check source files copyright and LICENSE
+[0.642s] -- Added test 'cppcheck' to perform static code analysis on C / C++ code
+[0.643s] -- Configured cppcheck include dirs: 
+[0.643s] -- Configured cppcheck exclude dirs and/or files: 
+[0.652s] -- Added test 'cpplint' to check C / C++ code against the Google style
+[0.652s] -- Configured cpplint exclude dirs and/or files: 
+[0.654s] -- Added test 'flake8' to check Python code syntax and style conventions
+[0.657s] -- Added test 'lint_cmake' to check CMake code style
+[0.659s] -- Added test 'pep257' to check Python code against some of the docstring style conventions in PEP 257
+[0.668s] -- Added test 'uncrustify' to check C / C++ code style
+[0.668s] -- Configured uncrustify additional arguments: 
+[0.670s] -- Added test 'xmllint' to check XML markup files
+[0.672s] -- Configuring done
+[0.682s] -- Generating done
+[0.690s] -- Build files have been written to: /home/peyton/ros_ws/sec_bot/build/sec_bot
+[0.694s] Invoked command in '/home/peyton/ros_ws/sec_bot/build/sec_bot' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/peyton/ros_ws/sec_bot/install/ball_tracker:/opt/ros/humble /usr/bin/cmake /home/peyton/ros_ws/sec_bot/src/sec_bot -DCMAKE_INSTALL_PREFIX=/home/peyton/ros_ws/sec_bot/install/sec_bot
+[0.697s] Invoking command in '/home/peyton/ros_ws/sec_bot/build/sec_bot': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/peyton/ros_ws/sec_bot/install/ball_tracker:/opt/ros/humble /usr/bin/cmake --build /home/peyton/ros_ws/sec_bot/build/sec_bot -- -j12 -l12
+[0.730s] Invoked command in '/home/peyton/ros_ws/sec_bot/build/sec_bot' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/peyton/ros_ws/sec_bot/install/ball_tracker:/opt/ros/humble /usr/bin/cmake --build /home/peyton/ros_ws/sec_bot/build/sec_bot -- -j12 -l12
+[0.739s] Invoking command in '/home/peyton/ros_ws/sec_bot/build/sec_bot': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/peyton/ros_ws/sec_bot/install/ball_tracker:/opt/ros/humble /usr/bin/cmake --install /home/peyton/ros_ws/sec_bot/build/sec_bot
+[0.746s] -- Install configuration: ""
+[0.747s] -- Execute custom install script
+[0.747s] -- Up-to-date symlink: /home/peyton/ros_ws/sec_bot/install/sec_bot/share/sec_bot/config/empty.yaml
+[0.747s] -- Up-to-date symlink: /home/peyton/ros_ws/sec_bot/install/sec_bot/share/sec_bot/config/view_bot.rviz
+[0.747s] -- Up-to-date symlink: /home/peyton/ros_ws/sec_bot/install/sec_bot/share/sec_bot/description/camera.xacro
+[0.748s] -- Up-to-date symlink: /home/peyton/ros_ws/sec_bot/install/sec_bot/share/sec_bot/description/gazebo_control.xacro
+[0.748s] -- Up-to-date symlink: /home/peyton/ros_ws/sec_bot/install/sec_bot/share/sec_bot/description/inertial_macros.xacro
+[0.748s] -- Up-to-date symlink: /home/peyton/ros_ws/sec_bot/install/sec_bot/share/sec_bot/description/robot.urdf.xacro
+[0.748s] -- Up-to-date symlink: /home/peyton/ros_ws/sec_bot/install/sec_bot/share/sec_bot/description/robot_core.xacro
+[0.748s] -- Up-to-date symlink: /home/peyton/ros_ws/sec_bot/install/sec_bot/share/sec_bot/description/ros2_control.xacro
+[0.748s] -- Up-to-date symlink: /home/peyton/ros_ws/sec_bot/install/sec_bot/share/sec_bot/description/urdf_help.txt
+[0.748s] -- Up-to-date symlink: /home/peyton/ros_ws/sec_bot/install/sec_bot/share/sec_bot/launch/ball_tracker_launch.py
+[0.749s] -- Up-to-date symlink: /home/peyton/ros_ws/sec_bot/install/sec_bot/share/sec_bot/launch/full_sim_stack.launch.py
+[0.749s] -- Up-to-date symlink: /home/peyton/ros_ws/sec_bot/install/sec_bot/share/sec_bot/launch/launch_sim.launch.py
+[0.749s] -- Up-to-date symlink: /home/peyton/ros_ws/sec_bot/install/sec_bot/share/sec_bot/launch/rsp.launch.py
+[0.749s] -- Up-to-date symlink: /home/peyton/ros_ws/sec_bot/install/sec_bot/share/sec_bot/worlds/empty.world
+[0.749s] -- Up-to-date symlink: /home/peyton/ros_ws/sec_bot/install/sec_bot/share/sec_bot/worlds/purple_ball.world
+[0.750s] -- Up-to-date symlink: /home/peyton/ros_ws/sec_bot/install/sec_bot/share/ament_index/resource_index/package_run_dependencies/sec_bot
+[0.750s] -- Up-to-date symlink: /home/peyton/ros_ws/sec_bot/install/sec_bot/share/ament_index/resource_index/parent_prefix_path/sec_bot
+[0.750s] -- Up-to-date symlink: /home/peyton/ros_ws/sec_bot/install/sec_bot/share/sec_bot/environment/ament_prefix_path.sh
+[0.750s] -- Up-to-date symlink: /home/peyton/ros_ws/sec_bot/install/sec_bot/share/sec_bot/environment/ament_prefix_path.dsv
+[0.750s] -- Up-to-date symlink: /home/peyton/ros_ws/sec_bot/install/sec_bot/share/sec_bot/environment/path.sh
+[0.750s] -- Up-to-date symlink: /home/peyton/ros_ws/sec_bot/install/sec_bot/share/sec_bot/environment/path.dsv
+[0.751s] -- Up-to-date symlink: /home/peyton/ros_ws/sec_bot/install/sec_bot/share/sec_bot/local_setup.bash
+[0.751s] -- Up-to-date symlink: /home/peyton/ros_ws/sec_bot/install/sec_bot/share/sec_bot/local_setup.sh
+[0.751s] -- Up-to-date symlink: /home/peyton/ros_ws/sec_bot/install/sec_bot/share/sec_bot/local_setup.zsh
+[0.751s] -- Up-to-date symlink: /home/peyton/ros_ws/sec_bot/install/sec_bot/share/sec_bot/local_setup.dsv
+[0.751s] -- Symlinking: /home/peyton/ros_ws/sec_bot/install/sec_bot/share/sec_bot/package.dsv
+[0.762s] -- Up-to-date symlink: /home/peyton/ros_ws/sec_bot/install/sec_bot/share/ament_index/resource_index/packages/sec_bot
+[0.762s] -- Up-to-date symlink: /home/peyton/ros_ws/sec_bot/install/sec_bot/share/sec_bot/cmake/sec_botConfig.cmake
+[0.762s] -- Up-to-date symlink: /home/peyton/ros_ws/sec_bot/install/sec_bot/share/sec_bot/cmake/sec_botConfig-version.cmake
+[0.762s] -- Up-to-date symlink: /home/peyton/ros_ws/sec_bot/install/sec_bot/share/sec_bot/package.xml
+[0.765s] Invoked command in '/home/peyton/ros_ws/sec_bot/build/sec_bot' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/peyton/ros_ws/sec_bot/install/ball_tracker:/opt/ros/humble /usr/bin/cmake --install /home/peyton/ros_ws/sec_bot/build/sec_bot

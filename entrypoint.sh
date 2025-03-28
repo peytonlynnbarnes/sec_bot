@@ -2,7 +2,10 @@
 set -e
 
 # Source ROS 2 installation
-source /opt/ros/jazzy/setup.bash
+source /opt/ros/humble/setup.bash
+
+# Source ROS 2 installation
+source /microros_ws/install/setup.bash
 
 # Source micro-ROS workspace
 source /microros_ws/install/local_setup.bash

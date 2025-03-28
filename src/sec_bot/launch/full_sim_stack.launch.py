@@ -15,9 +15,8 @@ def generate_launch_description():
 
     sim_launch = os.path.join(sec_bot_dir, 'launch', 'launch_sim.launch.py')
     cam_launch = os.path.join(ball_tracker_dir, 'launch', 'sim_cam.launch.py')
-    follow_launch = os.path.join(ball_tracker_dir, 'launch', 'follow_ball.launch.py')
+    follow_launch = os.path.join(ball_tracker_dir, 'launch', 'sim_follow_ball.launch.py')
 
-    purple_ball_path = os.path.join(sec_bot_dir, 'models', 'purple_ball.sdf')
 
     return LaunchDescription([
         DeclareLaunchArgument(

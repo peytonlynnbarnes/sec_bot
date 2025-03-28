@@ -1,28 +1,19 @@
-%YAML:1.0
+Camera.type: "Stereo"
 
-Camera.fx: 525.0
-Camera.fy: 525.0
-Camera.cx: 319.5
-Camera.cy: 239.5
-
-Camera.k1: 0.0
-Camera.k2: 0.0
-Camera.p1: 0.0
-Camera.p2: 0.0
-
+Camera.fx: 320.0
+Camera.fy: 320.0
+Camera.cx: 320.0
+Camera.cy: 240.0
 Camera.width: 640
 Camera.height: 480
-Camera.fps: 30.0
+Camera.fps: 30
 Camera.RGB: 1
-Camera.bf: 31.5         # <<< 👈 REQUIRED — your build demands this
 
-Camera.ThDepth: 35.0
+Camera.bf: 40.0   # fx * baseline (baseline = distance between cameras)
+Camera.ThDepth: 40.0
 
-ORBextractor.nFeatures: 1000
-ORBextractor.scaleFactor: 1.2
-ORBextractor.nLevels: 8
-ORBextractor.iniThFAST: 20
-ORBextractor.minThFAST: 7
+Stereo.b: 0.12    # Baseline in meters
+Stereo.Tolerance: 0.05
 
 Viewer.KeyFrameSize: 0.05
 Viewer.KeyFrameLineWidth: 1

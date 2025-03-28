@@ -11,20 +11,8 @@ ENV PANGOLIN_CACHE=/pangolin_cache
 ENV ORB_SLAM3_CACHE=/orb_slam3_cache
 ENV ROS_WS=/ros2_ws
 
-# Set up X11 display environment variables
-ENV DISPLAY=:1
-ENV QT_X11_NO_MITSHM=1
-ENV QT_GRAPHICSSYSTEM=native
-ENV NO_AT_BRIDGE=1
-ENV XDG_RUNTIME_DIR=/tmp/runtime-root
-ENV QT_QPA_PLATFORM=xcb
-ENV QT_QPA_PLATFORMTHEME=gtk2
-ENV QT_PLUGIN_PATH=/usr/lib/x86_64-linux-gnu/qt5/plugins
-ENV QT_QPA_PLATFORM_PLUGIN_PATH=/usr/lib/x86_64-linux-gnu/qt5/plugins/platforms
-
 # Create necessary directories
-RUN mkdir -p $PIP_CACHE_DIR $MICROROS_WS $PANGOLIN_CACHE $ORB_SLAM3_CACHE $ROS_WS /tmp/runtime-root
-RUN chmod 700 /tmp/runtime-root
+RUN mkdir -p $PIP_CACHE_DIR $MICROROS_WS $PANGOLIN_CACHE $ORB_SLAM3_CACHE $ROS_WS
 
 # Remove Docker's default apt-get cleanup configuration
 RUN rm -f /etc/apt/apt.conf.d/docker-clean
@@ -59,22 +47,7 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     bison \
     flex \
     libfl-dev \
-    libasio-dev \
-    # X11 and Qt dependencies
-    x11-apps \
-    libxcb1-dev \
-    libxcb-keysyms1-dev \
-    libxcb-image0-dev \
-    libxcb-icccm4-dev \
-    libxcb-render-util0-dev \
-    libxcb-randr0-dev \
-    libxcb-xinerama0-dev \
-    libxkbcommon-x11-dev \
-    libxcb-shape0-dev \
-    libxcb-xfixes0-dev \
-    libqt5gui5 \
-    qtbase5-dev \
-    mesa-utils
+    libasio-dev
 
 # Add ROS2 repository
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
@@ -217,12 +190,7 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     ros-humble-v4l2-camera \
     python3-opencv \
     libcap-dev \
-    libopencv-dev \
-    # Additional Gazebo X11 fix packages
-    libglu1-mesa \
-    libegl1-mesa \
-    libegl1 \
-    xvfb
+    libopencv-dev 
 
 RUN --mount=type=cache,target=$PIP_CACHE_DIR \
     . /opt/venv/bin/activate && \
@@ -252,27 +220,4 @@ RUN /bin/bash -c "source /opt/ros/humble/setup.bash && \
     colcon build --symlink-install --packages-select ball_tracker sec_bot --cmake-args \
     -DCMAKE_CXX_FLAGS='-I/opt/ros/humble/include -I/usr/include/eigen3'"
 
-# Create Xvfb startup script for headless systems
-RUN echo '#!/bin/bash\n\
-# Start Xvfb\n\
-Xvfb :1 -screen 0 1280x1024x24 &\n\
-sleep 2\n\
-\n\
-# Source ROS environments\n\
-source /opt/ros/humble/setup.bash\n\
-source $MICROROS_WS/install/local_setup.bash\n\
-if [ -f "$ROS_WS/install/local_setup.bash" ]; then\n\
-  source $ROS_WS/install/local_setup.bash\n\
-fi\n\
-\n\
-# Execute the command passed to the script\n\
-exec "$@"' > /entrypoint.sh && \
-chmod +x /entrypoint.sh
-
-# Add a healthcheck to verify the display server is working
-HEALTHCHECK --interval=30s --timeout=10s --start-period=15s --retries=3 \
-  CMD xdpyinfo -display :1 >/dev/null 2>&1 || exit 1
-
-# Set the entrypoint
-ENTRYPOINT ["/entrypoint.sh"]
-CMD ["bash"]
+# Create an entrypoint script to source ROS2 setup](#) ▋

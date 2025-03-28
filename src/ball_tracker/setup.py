@@ -15,7 +15,7 @@ setup(
         (os.path.join("share", package_name, "config"), glob("config/*.yaml")),
         (
             os.path.join("share", package_name, "config/Vocabulary"),
-            glob("config/Vocabulary/*.txt"),
+            glob("config/Vocabulary/*.bin"),
         ),
     ],
     install_requires=["setuptools"],

@@ -29,6 +29,7 @@ setup(
             'multi_ball_tracker = ball_tracker.multi_ball_tracker:main',
             'sim_multi_ball_tracker = ball_tracker.sim_multi_ball_tracker:main',
             'follow_ball = ball_tracker.follow_ball:main',
+            'april_tag_detector = ball_tracker.april_tag_detector:main',
         ],
     },
 )

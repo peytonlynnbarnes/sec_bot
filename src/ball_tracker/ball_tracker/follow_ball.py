@@ -15,7 +15,7 @@ class FollowBall(Node):
         self.publisher_ = self.create_publisher(Twist, '/cmd_vel', 10)
         
         self.declare_parameter("rcv_timeout_secs", 1.0)
-        self.declare_parameter("angular_chase_multiplier", 1.6)
+        self.declare_parameter("angular_chase_multiplier", 1.4)
         self.declare_parameter("base_forward_speed", 0.15)  # Base speed
         self.declare_parameter("max_forward_speed", 0.3)  # Maximum speed
         self.declare_parameter("search_angular_speed", 0.5)
@@ -23,7 +23,7 @@ class FollowBall(Node):
         self.declare_parameter("stop_size_thresh", 0.5)  # Stop when ball is large enough
         self.declare_parameter("filter_value", 0.9)
         self.declare_parameter("angular_timeout", 2.0)
-        self.declare_parameter("facing_threshold", 0.04)
+        self.declare_parameter("facing_threshold", 0.03)
         
         self.rcv_timeout_secs = self.get_parameter('rcv_timeout_secs').value
         self.angular_chase_multiplier = self.get_parameter('angular_chase_multiplier').value

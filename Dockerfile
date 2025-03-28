@@ -47,7 +47,20 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     bison \
     flex \
     libfl-dev \
-    libasio-dev
+    libasio-dev \
+    libqt5gui5 \
+    qtbase5-dev \
+    qtchooser \
+    qt5-qmake \
+    qtbase5-dev-tools \
+    libglib2.0-0 \
+    libxcb-xinerama0 \
+    libxcb-icccm4 \
+    libxcb-image0 \
+    libxcb-keysyms1 \
+    libxcb-render-util0 \
+    libxcb-xkb1 \
+    libxkbcommon-x11-0
 
 # Add ROS2 repository
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \

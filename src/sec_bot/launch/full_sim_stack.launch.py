@@ -14,36 +14,36 @@ def generate_launch_description():
     ball_tracker_dir = get_package_share_directory('ball_tracker')
 
     sim_launch = os.path.join(sec_bot_dir, 'launch', 'launch_sim.launch.py')
-    camera_launch = os.path.join(ball_tracker_dir, 'launch', 'camera.launch.py')
+    cam_launch = os.path.join(ball_tracker_dir, 'launch', 'sim_cam.launch.py')
     follow_launch = os.path.join(ball_tracker_dir, 'launch', 'follow_ball.launch.py')
 
     return LaunchDescription([
         DeclareLaunchArgument(
             'use_sim_time',
-            default_value='false',  # ❗ Real robot uses real time
+            default_value='true',
             description='Use simulation time'
         ),
 
-        # Step 1: Launch robot setup (URDF, TF, etc.)
+        # Step 1: Launch Gazebo simulation
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource(sim_launch),
             launch_arguments={'use_sim_time': use_sim_time}.items()
         ),
 
-        # Step 2: Launch real camera after 1s
+        # Step 2: Launch simulated camera after 3s
         TimerAction(
-            period=1.0,
+            period=3.0,
             actions=[
                 IncludeLaunchDescription(
-                    PythonLaunchDescriptionSource(camera_launch),
+                    PythonLaunchDescriptionSource(cam_launch),
                     launch_arguments={'use_sim_time': use_sim_time}.items()
                 )
             ]
         ),
 
-        # Step 3: Launch ball tracker after 2s
+        # Step 3: Launch ball tracker after 6s
         TimerAction(
-            period=2.0,
+            period=6.0,
             actions=[
                 Node(
                     package='ball_tracker',
@@ -55,9 +55,9 @@ def generate_launch_description():
             ]
         ),
 
-        # Step 4: Launch follow_ball after 3s
+        # Step 4: Launch follow ball logic after 9s
         TimerAction(
-            period=3.0,
+            period=9.0,
             actions=[
                 IncludeLaunchDescription(
                     PythonLaunchDescriptionSource(follow_launch),

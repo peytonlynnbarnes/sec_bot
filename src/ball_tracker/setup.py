@@ -32,6 +32,7 @@ setup(
             "multi_ball_tracker = ball_tracker.multi_ball_tracker:main",
             "sim_multi_ball_tracker = ball_tracker.sim_multi_ball_tracker:main",
             "follow_ball = ball_tracker.follow_ball:main",
+            "something = ball_tracker.something:main",
         ],
     },
 )

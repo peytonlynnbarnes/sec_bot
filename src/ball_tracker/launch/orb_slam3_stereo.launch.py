@@ -8,6 +8,8 @@ from launch.actions import DeclareLaunchArgument
 def generate_launch_description():
     use_sim_time = LaunchConfiguration("use_sim_time")
 
+    config_file_path = PathJoinSubstitution([FindPackageShare("ball_tracker"), "config/stereo.yaml"])
+
     return LaunchDescription(
         [
             DeclareLaunchArgument(
@@ -38,6 +40,7 @@ def generate_launch_description():
                         "use_sim_time": use_sim_time,
                         "left_image_topic": "/camera/left/image_raw",
                         "right_image_topic": "/camera/right/image_raw",
+                        "config_file_path": config_file_path,
                     }
                 ],
             ),

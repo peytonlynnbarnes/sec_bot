@@ -3,7 +3,7 @@ services:
   sec_bot:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile  # This now points to our Ubuntu 22.04 Dockerfile
     image: sec_bot_image
     container_name: sec_bot_container
     privileged: true
@@ -20,8 +20,9 @@ services:
     environment:
       - DISPLAY=${DISPLAY}
       - ROS_DOMAIN_ID=42
+      - ROS_DISTRO=humble  # Added to explicitly set ROS distro to Humble
     devices:
-      - "/dev/ttyACM0:/dev/ttyACM0" # Microcontroller device mapping
+      - "/dev/ttyACM0:/dev/ttyACM0"  # Microcontroller device mapping
     stdin_open: true
     tty: true
     command: /bin/bash

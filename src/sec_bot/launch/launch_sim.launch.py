@@ -20,6 +20,9 @@ def generate_launch_description():
     # Path to the boxes SDF file
     boxes_file_path = os.path.join(pkg_dir, 'models', 'boxes.sdf')
     
+    # path to apriltag
+    apriltag_file_path = os.path.join(pkg_dir, 'models', 'apriltag', 'model.sdf')
+    
     # Confirm files exist and are readable
     if not os.path.isfile(world_file_path):
         raise FileNotFoundError(f"Could not find world file at {world_file_path}")
@@ -82,6 +85,8 @@ def generate_launch_description():
                                  '-y', '-0.4871723',   # -14.5 inches from center
                                  '-z', '0.1'],
                       output='screen')
+
+    
     # Launch them all! 
     # The order ensures that Gazebo is started first, then we wait, 
     # then spawn the robot and boxes in sequence
@@ -92,5 +97,5 @@ def generate_launch_description():
         spawn_entity,        # Spawn the robot
         spawn_box1,          # Spawn the first box
         delay_between_boxes, # Add delay between box spawns
-        spawn_box2           # Spawn the second box
+        spawn_box2,           # Spawn the second box
     ])

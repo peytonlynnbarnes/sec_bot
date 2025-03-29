@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<sdf version="1.6">
+  <model name="ground_plane">
+    <static>true</static>
+    <link name="ground_plane_link">
+      <inertial>
+        <mass>0.1</mass>
+        <inertia>
+          <ixx>0.0001</ixx>
+          <ixy>0.0</ixy>
+          <ixz>0.0</ixz>
+          <iyy>0.0001</iyy>
+          <iyz>0.0</iyz>
+          <izz>0.0001</izz>
+        </inertia>
+      </inertial>
+      
+      <visual name="visual">
+        <pose>0 0 -0.005 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>100 100 0.01</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>1 1 1 1</ambient>
+          <diffuse>1 1 1 1</diffuse>
+        </material>
+      </visual>
+      
+      <collision name="collision">
+        <pose>0 0 -0.005 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>100 100 0.01</size>
+          </box>
+        </geometry>
+      </collision>
+    </link>
+  </model>
+</sdf>
+

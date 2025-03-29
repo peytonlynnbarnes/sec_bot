@@ -1,0 +1,41 @@
+<?xml version="1.0" ?>
+<sdf version="1.7">
+  <model name="simple_sign">
+    <static>true</static>
+    <link name="sign_link">
+      <visual name="sign_surface">
+        <geometry>
+          <box>
+            <size>0.5 0.3 0.02</size>
+          </geometry>
+          <material>
+            <texture>
+              <diffuse>model://apriltag/textures/apriltag.png</diffuse>
+            </texture>
+          </material>
+        </geometry>
+      </visual>
+      
+      <visual name="sign_frame">
+        <pose>0 0 0.01 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.52 0.32 0.01</size>
+          </geometry>
+          <material>
+            <ambient>0.5 0.5 0.5 1</ambient>
+            <diffuse>0.5 0.5 0.5 1</diffuse>
+          </material>
+        </geometry>
+      </visual>
+      
+      <collision name="sign_collision">
+        <geometry>
+          <box>
+            <size>0.5 0.3 0.02</size>
+          </box>
+        </geometry>
+      </collision>
+    </link>
+  </model>
+</sdf>

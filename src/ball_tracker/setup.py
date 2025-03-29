@@ -14,6 +14,7 @@ setup(
     ('share/ball_tracker/launch', ['launch/camera.launch.py']),
     ('share/ball_tracker/launch', ['launch/sim_cam.launch.py']),
     ('share/ball_tracker/launch', ['launch/follow_ball.launch.py']),
+    ('share/ball_tracker/launch', ['launch/april_tag.launch.py']),
     ],
     install_requires=['setuptools'],
     zip_safe=True,
@@ -30,6 +31,7 @@ setup(
             'sim_multi_ball_tracker = ball_tracker.sim_multi_ball_tracker:main',
             'follow_ball = ball_tracker.follow_ball:main',
             'april_tag_detector = ball_tracker.april_tag_detector:main',
+            'april_tag_reporter = ball_tracker.april_tag_reporter:main',
         ],
     },
 )
